@@ -1,0 +1,60 @@
+
+.girl-page .header .h1 {
+  color: #945231;
+}
+
+.girl-page .header .h2 {
+  color: #9a9a9a;
+}
+.girl-page .header .h2 span {
+  color: #ba9479;
+}
+
+.girl-page .header {
+  background: url(/images/girl/header.jpg) no-repeat 100% 100%;
+}
+
+.girl-page .header-ul li {
+  background-image: url(/images/girl/header_icons.png);
+  color: #7f7975;
+}
+.main-shave1 {
+  background: #822b1f;
+}
+.main-shave2 {
+  background: #945231;
+}
+.main-shave1 .h2 {
+  color: #fff;
+}
+
+.main-shave1 .p1 {
+  color: #fff;
+}
+
+.main-shave1 .p2{
+  color: #fff;
+}
+.main-shave1 .btn {
+  color: #fff;
+  border-color: #fff;
+}
+
+
+@media all and (max-width: 1570px) {
+
+  .girl-page .header {
+    background-image: url(/images/girl/header1.jpg);
+  }
+
+
+}
+
+@media all and (max-width: 1000px) {
+  .girl-page .header-ul li {
+    background-image: url(/images/girl/header_icons1.png);
+  }
+
+
+
+}

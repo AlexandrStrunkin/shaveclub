@@ -1,0 +1,189 @@
+<?
+function conv($n) { 
+	return iconv(SITE_CHARSET, "UTF-8", $n) ;
+}
+if(isset($_POST["PRODUCT_ID"]) && $_POST["PRODUCT_ID"]){
+	require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+	\Bitrix\Main\Loader::includeModule('iblock');
+	\Bitrix\Main\Loader::includeModule('catalog');
+	\Bitrix\Main\Loader::includeModule('sale');
+	$arItem=CIBlockElement::GetList(array(), array("ID" => $_POST["PRODUCT_ID"]), false, false, array("ID", "NAME", "PROPERTY_BRAND", "IBLOCK_SECTION_ID"))->Fetch();
+	$arItem["BRAND"]='';
+	if($arItem["PROPERTY_BRAND_VALUE"]){
+		$arItemBrand=CIBlockElement::GetList(array(), array("ID" => $arItem["PROPERTY_BRAND_VALUE"]), false, false, array("ID", "NAME"))->Fetch();
+		if($arItemBrand)
+			$arItem["BRAND"]=$arItemBrand["NAME"];
+	}
+	
+	$priceTypeIterator = \Bitrix\Catalog\GroupTable::getList(array(
+		'select' => array('ID', 'NAME', 'NAME_LANG' => 'CURRENT_LANG.NAME'),
+		'order' => array('SORT' => 'ASC', 'ID' => 'ASC')
+	));
+	while ($priceType = $priceTypeIterator->fetch()){
+		if($priceType['NAME']==$_POST["PRICE_ID"]){
+			$priceCode = $priceType['ID'];
+			break;
+		}
+	}
+	
+	$arPrice = CPrice::GetList( array(), array( "PRODUCT_ID" => $_POST["PRODUCT_ID"], "CATALOG_GROUP_ID" => $priceCode ) )->Fetch();
+	$tmpObSections=CIBlockSection::GetNavChain(false,$arItem["IBLOCK_SECTION_ID"], array("NAME"));
+	$arSections=array();
+	while($tmpArSections = $tmpObSections->Fetch()){
+		$arSections[]=$tmpArSections["NAME"];
+	}
+	if($arSections){
+		$arItem["CATEGORY"]=implode(" / ", $arSections);
+	}
+	
+	$arSiteFields = CSite::GetByID(SITE_ID)->Fetch();
+	$arItem["SHOP_NAME"]="{$arSiteFields['SITE_NAME']}";
+	
+	$arItem["PRICE"]=$arPrice["PRICE"];
+	$arItem = array_map("conv", $arItem);
+	echo json_encode($arItem);
+}elseif(isset($_POST["ID"]) && $_POST["ID"]){
+	require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+	\Bitrix\Main\Loader::includeModule('iblock');
+	\Bitrix\Main\Loader::includeModule('sale');
+	$arItem=CIBlockElement::GetList(array(), array("ID" => $_POST["ID"]), false, false, array("ID", "NAME", "PROPERTY_BRAND", "IBLOCK_SECTION_ID"))->Fetch();
+	$arItem["BRAND"]='';
+	if($arItem["PROPERTY_BRAND_VALUE"]){
+		$arItemBrand=CIBlockElement::GetList(array(), array("ID" => $arItem["PROPERTY_BRAND_VALUE"]), false, false, array("ID", "NAME"))->Fetch();
+		if($arItemBrand)
+			$arItem["BRAND"]=$arItemBrand["NAME"];
+	}
+	
+	$arBasketItems = CSaleBasket::GetList(
+        array(
+                "NAME" => "ASC",
+                "ID" => "ASC"
+            ),
+        array(
+                "FUSER_ID" => CSaleBasket::GetBasketUserID(),
+                "LID" => SITE_ID,
+                "PRODUCT_ID" => $_POST["ID"],
+                "ORDER_ID" => NULL
+            ),
+        false,
+        false,
+        array("QUANTITY", "PRICE", "CURRENCY")
+    )->Fetch();
+    $tmpObSections=CIBlockSection::GetNavChain(false,$arItem["IBLOCK_SECTION_ID"], array("NAME"));
+	$arSections=array();
+	while($tmpArSections = $tmpObSections->Fetch()){
+		$arSections[]=$tmpArSections["NAME"];
+	}
+	if($arSections){
+		$arItem["CATEGORY"]=implode(" / ", $arSections);
+	}
+	$arSiteFields = CSite::GetByID(SITE_ID)->Fetch();
+	$arBasketItems["SHOP_NAME"]=$arSiteFields["SITE_NAME"];
+	$arItem = array_map("conv", $arItem);
+	$arBasketItems= array_map("conv", $arBasketItems);
+	echo json_encode(array_merge($arItem, $arBasketItems));
+}elseif(isset($_POST["BASKET"]) && $_POST["BASKET"]){
+	require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+	\Bitrix\Main\Loader::includeModule('iblock');
+	\Bitrix\Main\Loader::includeModule('sale');
+	$arBasketItems=array();
+	$dbBasket = CSaleBasket::GetList(
+		array("DATE_INSERT" => "ASC", "NAME" => "ASC"),
+		array(
+			"FUSER_ID" => CSaleBasket::GetBasketUserID(),
+            "LID" => SITE_ID,
+            "ORDER_ID" => NULL
+        ),
+		false,
+		false,
+		array("PRODUCT_ID", "PRICE", "QUANTITY", "CURRENCY")
+	);
+	while($arBasket=$dbBasket->Fetch()){
+		$arBasketItems["ITEMS"][]=$arBasket;
+	}
+	if($arBasketItems["ITEMS"]){
+		foreach($arBasketItems["ITEMS"] as $key=>$arItem){
+			$arTmpItem=CIBlockElement::GetList(array(), array("ID" => $arItem["PRODUCT_ID"]), false, false, array("ID", "NAME", "PROPERTY_BRAND", "IBLOCK_SECTION_ID"))->Fetch();
+			$arTmpItem["BRAND"]=$arItem["CATEGORY"]='';
+			if($arTmpItem["PROPERTY_BRAND_VALUE"]){
+				$arItemBrand=CIBlockElement::GetList(array(), array("ID" => $arTmpItem["PROPERTY_BRAND_VALUE"]), false, false, array("ID", "NAME"))->Fetch();
+				if($arItemBrand)
+					$arTmpItem["BRAND"]=$arItemBrand["NAME"];
+			}
+			$tmpObSections=CIBlockSection::GetNavChain(false,$arTmpItem["IBLOCK_SECTION_ID"], array("NAME"));
+			$arSections=array();
+			while($tmpArSections = $tmpObSections->Fetch()){
+				$arSections[]=$tmpArSections["NAME"];
+			}
+			if($arSections){
+				$arItem["CATEGORY"]=implode(" / ", $arSections);
+			}
+			$arBasketItems["ITEMS"][$key]=array_merge($arItem, $arTmpItem);
+		}
+	}
+	$arSiteFields = CSite::GetByID(SITE_ID)->Fetch();
+	$arBasketItems["SHOP_NAME"]=$arSiteFields["SITE_NAME"];
+	$arBasketItems= array_map("conv", $arBasketItems);
+	echo json_encode($arBasketItems);
+}elseif(isset($_POST["ORDER_ID"]) && $_POST["ORDER_ID"]){
+	require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+	$ORDER_ID = $_POST["ORDER_ID"];
+	\Bitrix\Main\Loader::includeModule('iblock');
+	\Bitrix\Main\Loader::includeModule('sale');
+	$bUseAccountNumber = (\Bitrix\Main\Config\Option::get("sale", "account_number_template", "") !== "") ? true : false;
+	$arOrder = $arBasketItems=array();
+	if ($bUseAccountNumber){
+		$dbOrder = CSaleOrder::GetList(
+			array("DATE_UPDATE" => "DESC"),
+			array(
+				"ACCOUNT_NUMBER" => $ORDER_ID
+			)
+		);
+		$arOrder = $dbOrder->GetNext();
+	}
+
+	if (!$arOrder){
+		$dbOrder = CSaleOrder::GetList(
+			array("DATE_UPDATE" => "DESC"),
+			array(
+				"ID" => $ORDER_ID
+			)
+		);
+		$arOrder = $dbOrder->GetNext();
+	}
+	$dbBasket = CSaleBasket::GetList(
+		array("DATE_INSERT" => "ASC", "NAME" => "ASC"),
+		array("ORDER_ID" => $ORDER_ID),
+		false,
+		false,
+		array("PRODUCT_ID", "PRICE", "QUANTITY", "CURRENCY")
+	);
+	while($arBasket=$dbBasket->Fetch()){
+		$arOrder["ITEMS"][]=$arBasket;
+	}
+	if($arOrder["ITEMS"]){
+		foreach($arOrder["ITEMS"] as $key=>$arItem){
+			$arTmpItem=CIBlockElement::GetList(array(), array("ID" => $arItem["PRODUCT_ID"]), false, false, array("ID", "NAME", "PROPERTY_BRAND", "IBLOCK_SECTION_ID"))->Fetch();
+			$arTmpItem["BRAND"]=$arItem["CATEGORY"]='';
+			if($arTmpItem["PROPERTY_BRAND_VALUE"]){
+				$arItemBrand=CIBlockElement::GetList(array(), array("ID" => $arTmpItem["PROPERTY_BRAND_VALUE"]), false, false, array("ID", "NAME"))->Fetch();
+				if($arItemBrand)
+					$arTmpItem["BRAND"]=$arItemBrand["NAME"];
+			}
+			$tmpObSections=CIBlockSection::GetNavChain(false,$arTmpItem["IBLOCK_SECTION_ID"], array("NAME"));
+			$arSections=array();
+			while($tmpArSections = $tmpObSections->Fetch()){
+				$arSections[]=$tmpArSections["NAME"];
+			}
+			if($arSections){
+				$arItem["CATEGORY"]=implode(" / ", $arSections);
+			}
+			$arOrder["ITEMS"][$key]=array_merge($arItem, $arTmpItem);
+		}
+	}
+	$arOrder["TYPE"]=$_POST["TYPE"];
+	$arSiteFields = CSite::GetByID(SITE_ID)->Fetch();
+	$arOrder["SHOP_NAME"]=$arSiteFields["SITE_NAME"];
+	$arOrder= array_map("conv", $arOrder);
+	echo json_encode($arOrder);
+}?>

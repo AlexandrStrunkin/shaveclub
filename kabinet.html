@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <title></title>
+  <meta name="keywords" content=""/>
+  <meta name="description" content=""/>
+  <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/responsive.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/animate.css">
+  <link href="css/inside.css" rel="stylesheet">
+  <link href="css/kabinet_page.css" rel="stylesheet">
+  <link href="css/cusel.css" rel="stylesheet">
+  <link
+    href='http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&subset=latin,cyrillic,latin-ext,cyrillic-ext'
+    rel='stylesheet' type='text/css'>
+  <script src="js/wow.js"></script>
+  <script src="js/index.js"></script>
+  <script type="text/javascript" src="js/cusel.js"></script>
+ 	<script type="text/javascript" src="js/jScrollPane.js"></script>
+ 	<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+
+  <link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+  <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+  <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <div class="menu">
+    <div class="menu-arrow"></div>
+    <a href="#" class="menu-logo"><img src="images/logo.png" alt=""/></a>
+    <span class="menu-logo-text"> Бреем людей с <span>2012 г.</span></span>
+    <ul class="menu-nav">
+      <li><a href="index.html">БРИТВЫ ДЛЯ СЕБЯ</a></li>
+      <li><a href="girl.html">ЖЕНСКИЕ БРИТВЫ</a></li>
+      <li><a href="gift.html">БРИТВЫ В ПОДАРОК</a></li>
+      <li><a href="gillette.html">БРИТВЫ GILLETTE</a></li>
+      <li><a href="slalom.html">БРИТВЕННЫЙ КОМПЛЕКТ<br/>SLALOM</a></li>
+    </ul>
+    <ul class="menu-nav1">
+      <li><a href="#" class="private-office-link">Личный кабинет</a></li>
+      <li><a href="#" class="how-it-work-link">Как это работает?</a></li>
+      <li><a href="#" class="contacts-link">Контакты</a></li>
+    </ul>
+    <div class="menu-soc">
+      <ul>
+        <li><a href="http://vk.com" target="_blank" class="vk"></a></li>
+        <li><a href="http://facebook.com" target="_blank" class="facebook"></a></li>
+        <li><a href="http://instagram.com" target="_blank" class="instagram"></a></li>
+        <li><a href="http://odnoklassniki.com" target="_blank" class="odnoklassniki"></a></li>
+      </ul>
+    </div>
+    <div class="menu-phone">+7 (499) 707-71-07</div>
+
+  </div>
+  <div class="main-container inside-page kabinet-page">
+    <div class="mobile-top">
+      <div class="footer-soc">
+        <a href="http://vk.com" target="_blank" class="vk active"></a>
+        <a href="http://facebook.com" target="_blank" class="facebook"></a>
+        <a href="http://instagram.com" target="_blank" class="instagram"></a>
+        <a href="http://odnoklassniki.com" target="_blank" class="odnoklassniki"></a>
+      </div>
+      <span class="menu-btn"></span>
+    </div>
+
+      <div class="inside-page-col">
+        <div class="div"><form action="#" method="post" id="kabinet_form">
+          <div class="contacts-block1">
+            <h1 class="h1">личный кабинет</h1>
+            <span class="title">личные данные</span>
+
+            <div class="input-container">
+              <label><input type="text" name="fio" class="input" value="Викторов Олег Александрович"/></label>
+              <label><input type="text" name="email" class="input gray" value="victorovoleg@gmail.com"/></label>
+              <label><input type="text" name="password" id="password" class="input empty" onfocus="clearField('password', 'Новый пароль')" onblur="blurField('password', 'Новый пароль')" value="Новый пароль"/></label>
+              <label><input type="text" name="confirm_password" id="confirm_password" onfocus="clearField('confirm_password', 'Подтверждение пароля')" onblur="blurField('confirm_password', 'Подтверждение пароля')" class="input empty" value="Подтверждение пароля"/></label>
+              <label><input type="text" name="phone" class="input" value=""/><span class="error">Вы не указали контактный телефон<span>!</span></span></label>
+            </div>
+          </div>
+          <div class="delivery-address1">
+            <div>
+              <div class="fields">
+                <span class="title">адрес доставки</span>
+
+                <div class="input-container">
+                  <label><select id="city"><option value="1">Москва</option></select> </label>
+                  <label><select id="street"><option value="1">Ленинский проспект</option></select></label>
+                  <label><input type="text" class="input" value="91"/></label>
+                  <label><input type="text" class="input" value="25"/></label>
+                  <label><input type="text" class="input" value=""/><span class="error"
+                                                                          style="display: block"><span>!</span>Вы не указали индекс</span>
+                  </label>
+                </div>
+              </div>
+              <a href="#" class="btn">сохранить</a>
+              <p class="delivery-address1-text"><span><span>Заполните все помеченные поля для сохранения</span></span></p>
+
+            </div>
+
+          </div></form>
+
+        </div>
+
+        <div class="main-block4">
+          <div class="main-block4-col subs"><div><span class="main-block4-arr"></span>
+            <h2 class="h2 fadeInLeft">ПОДПИСКА НА БРИТВЫ</h2>
+
+            <p class="p fadeInLeft">подписка на регулярное получение новых кассет<br />
+              для бритья <strong>от 200 руб. в месяц.</strong></p>
+            <ul class=" fadeInLeft">
+              <li>Бесплатная доставка</li>
+              <li>Всегда острые и свежие бритвы</li>
+              <li>Автоматическая оплата</li>
+            </ul>
+
+
+            <a href="#" class="btn white-btn fadeInDown">оформить</a>
+            <a href="#" class="btn fadeInDown">подробнее</a>
+            <span class="text fadeIn" data-wow-delay="500ms">Новым подписчикам станок <span>в ПОДАРОК!</span></span>
+          </div>
+          </div>
+        </div>
+      </div><span class="inside-page-col-close"></span>
+      <div class="inside-page-col">
+
+        <span class="inside-page-col-shadow"></span>
+        <div class="checkout-block div">
+        <a href="#" class="cansel-btn">отменить</a><a href="#" class="repeat-btn">повторить</a>
+        <div class="text"><strong>ваш заказ:</strong> <span>№70765412</span> от 01 июля 2014</div>
+
+          <div class="order-composition">
+            <img class="img" alt="" src="images/inside/img.png" alt=""/>
+            <div>
+          <table>
+            <tr><td>бритва</td><td>Норма 4</td></tr>
+            <tr><td>план бритья</td><td>Полгода без проблем</td></tr>
+            <tr><td>комплектация</td><td>1 станок и 9 сменных кассет</td></tr>
+            <tr><td>доставка</td><td>Почта России</td></tr>
+          </table>
+
+            </div>              <span class="sum">4 500 <img src="images/inside/rub.png" alt=""/></span>
+                          <span class="not-paid">не оплачен</span>
+                          <div style="margin: 0">
+                          <a href="#" class="btn">изменить</a>
+                          <a href="#" class="btn btn1">оплатить</a></div>
+          </div>
+
+
+
+
+
+        </div>
+        <div class="history div"><span class="arr"></span> <div>
+          <a class="btn" href="#">открыть</a>
+                    <span class="title">история заказов</span>
+                  <p>Вы можете просмотреть весь список сделанных заказов,
+                  данные о стоимости и типах подписки.</p>
+                  </div>
+                  </div>
+        <div class="scheme div">
+                    <div>
+                    <span class="scheme-circle scheme-circle1">50%</span>
+                    <span class="scheme-text">ЗАПАС БРИТЬЯ
+                                <span>Истекает: 20.12.2015</span></span>
+                    </div>
+                    <div>
+                    <span class="scheme-circle scheme-circle2">09</span>
+                    <span class="scheme-text">ВЫ БРЕЕТЕСЬ С НАМИ
+                                <span>месяцев, 3 недели и 5 дней</span></span>
+                    </div>
+
+
+
+                  </div>
+
+        <div class="free-shave div">
+          <img src="images/inside/kabinet-bg.jpg" alt="" />
+          <div>
+            <a href="#" class="btn">пригласить</a>
+            <p><span><span>— Просто пригласи сюда своих друзей!</span></span></p>
+          </div>
+        </div>
+        <div class="feedback div">
+          <form action="#" method="post">
+            <span class="title">Обратная связь</span>
+            <a class="btn" href="#">отправить</a>
+            <div class="input-container">
+            <input type="text" class="input" id="feedback" onfocus="clearField('feedback', 'Опишите суть Вашего вопроса')" onblur="blurField('feedback', 'Опишите суть Вашего вопроса')" value="Опишите суть Вашего вопроса" /></div>
+
+          </form>
+        </div>
+
+      </div>
+
+    <!-- .content -->
+    <div class="clear"></div>
+
+
+  </div>
+
+
+  <!-- .footer -->
+</div>
+<!-- .wrapper -->
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+
+.gillette-page .header .h1 {
+  color: #f2e7ce;
+}
+
+.gillette-page .header .h2 {
+  color: #fff;
+}
+
+.gillette-page .header {
+  background: #1f2328 url(/images/gillette/header.jpg) no-repeat 100% 100%;
+}
+
+.gillette-page .header-ul li {
+  background-image: url(/images/gillette/header_icons.png);
+  color: #fff;
+}
+/*
+.main-block1-col ul li.desc:hover img {
+  display: inline;
+}
+
+.main-block1-col ul li.desc:hover span {
+  padding-top: 0;
+  margin-top: 35px;
+}*/
+
+@media all and (max-width: 1570px) {
+
+  .gillette-page .header {
+    background-image: url(/images/gillette/header1.jpg);
+  }
+
+
+}
+
+@media all and (max-width: 1000px) {
+  .gillette-page .header-ul li {
+    background-image: url(/images/gillette/header_icons1.png);
+  }
+
+
+
+}

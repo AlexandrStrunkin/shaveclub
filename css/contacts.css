@@ -1,0 +1,67 @@
+.contacts-page .h1 {
+  padding-bottom: 25px;
+}
+.contacts-page-table {
+  font: 18px/1 'PFDinTextCondPro-Medium', sans-serif;
+  color: #282b22;
+  text-transform: uppercase;
+  width: 100%;
+  margin: 0 0 55px;
+}
+.contacts-page .title {
+  color: #41433d;
+  font-size: 24px;
+}
+.contacts-page-table td {
+  padding: 20px 0 5px;
+  text-align: left;
+  border-bottom: 2px solid #dbd9d2;
+}
+.contacts-page-table td:nth-child(2) {
+  text-align: right;
+}
+.contacts-page-table tr:last-child td {
+  border-color: #fca713;
+}
+.contacts-page-table tr:last-child td:nth-child(2) {
+  color: #fca713;
+}
+.input-cols {
+  height: 70px;
+}
+.input-cols > div {
+  width: 50%;
+  float: left;
+}
+.input-cols > div:nth-child(1) > div {
+  padding-right: 27px;
+}
+.input-cols > div:nth-child(2) > div {
+  padding-left: 27px;
+}/*
+.contacts-page .input, .contacts-page .textarea {
+  color: #999490;
+}*/
+
+.contacts-map {
+  height: 960px;
+  padding: 0 !important;
+}
+#maptype, .gmnoprint {
+  display: none;
+}
+
+.contacts-page .btn {
+  margin: 40px 0;
+  color: #a19c99;
+  border-color: #f2f0eb;
+}
+.contacts-page .btn:hover {
+  color: #fca713;
+  border-color: #fca713;
+}
+@media all and (max-width: 1279px) {
+  .inside-page-col-shadow {
+    display: none;
+  }
+}

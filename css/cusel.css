@@ -1,0 +1,217 @@
+@charset "utf-8";
+/*
+	styles for select
+*/
+
+.cusel {
+  /* общий вид селекта включая стрелку справа */
+  height: 15px;
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 16px 15px;
+  border: 2px solid #dbd9d2;
+  width: 100% !important;
+  margin: 30px 0 0 -17px;
+  z-index: 1;
+}
+
+.cuselFrameRight {
+  /* левая чсть селект. обыно скругление и левая граница */
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 42px;
+  background: url(/images/inside/arrows.png) no-repeat 50% 50% !important;
+}
+
+.cuselText {
+  /* контейнер для отображенного текста селект */
+  height: 14px;
+  padding: 16px 15px;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+  font: 15px Arial, sans-serif; /* шрифты */
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #989491;
+
+}
+
+.cuselText.active {
+  color: #000;
+}
+
+.gray-select .cusel {
+  background: #686564;
+  border-color: #686564;
+  color: #fff !important;
+}
+
+.gray-select .cuselFrameRight {
+  background: url(/images/inside/arrows1.png) no-repeat 50% 50% !important;
+}
+
+.gray-select .cuselText {
+  color: #fff;
+}
+
+.cusel span {
+  /* оформление оптиона */
+  display: block;
+  cursor: pointer;
+  white-space: nowrap;
+  font: 15px Arial, sans-serif; /* шрифты */
+  padding: 16px 15px;
+  zoom: 1;
+  color: #999490;
+  border-bottom: 2px solid #f1f0eb;
+}
+
+.cusel span:hover,
+.cusel .cuselOptHover {
+  /* реакция оптиона на наведение */
+  color: #000;
+}
+
+/*
+	styles for focus and hover
+*/
+/*.cusel:hover,
+.cusel:hover .cuselFrameRight,
+.cusel:focus,
+.cusel:focus .cuselFrameRight,
+.cuselFocus,
+.cuselFocus .cuselFrameRight {
+	background-image: url(/images/selects-focus.png);
+}*/
+
+.cuselOpen {
+  z-index: 999;
+}
+
+/*
+	styles for scrollbar
+*/
+.cusel .cusel-scroll-wrap {
+  /* контейнер для блока с прокруткой */
+  display: block;
+  visibility: hidden;
+  position: absolute;
+  left: 1px;
+  top: 100%;
+
+  min-width: 99%;
+  width: 99%;
+  margin-top: 20px;
+  overflow: visible;
+
+  z-index: 1000;
+}
+
+.cusel .cusel-scroll-wrap:before {
+  background: url(/images/inside/arr1.png) no-repeat 100% 0 !important;
+  height: 10px;
+  content: "";
+  position: absolute;
+  display: block;
+  margin-top: -8px;
+  width: 99%;
+  z-index: 2000;
+}
+
+.cusel .jScrollPaneContainer {
+  position: relative;
+  overflow: hidden;
+  z-index: 5;
+  background: #fff;
+  border: 2px solid #f1f0eb;
+  width: 100% !important;
+}
+
+.cusel .jScrollPaneTrack {
+  /* трек для ползунка прокрутки */
+  height: 100%;
+  width: 40px !important;
+  background: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #fff;
+}
+
+.cusel .jScrollPaneDrag {
+  /* ползунок */
+  position: absolute;
+  background: #fca713 !important;
+  cursor: pointer;
+  width: 3px !important;
+  height: 100px !important;
+  right: 12px;
+  margin-top: 10px;
+
+}
+
+.cuselOpen, .cuselFocus {
+  background: #fca713 !important;
+  border-color: #fca713 !important;
+  color: #fff !important;
+}
+
+.cuselOpen .cuselText, .cuselFocus .cuselText {
+  color: #fff !important;
+}
+
+.cuselOpen .cuselFrameRight, .cuselFocus .cuselFrameRight {
+  background: url(/images/inside/arrows1.png) no-repeat 50% 50% !important;
+}
+
+.cusel .jScrollPaneDragTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+
+}
+
+.cusel .jScrollPaneDragBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+
+}
+
+.cusel .jScrollArrowUp {
+  /* стрелка вверх */
+  position: absolute;
+  top: 10px;
+  right: 0;
+  width: 26px !important;
+  height: 12px;
+  cursor: pointer;
+  background: url(/images/select-arrows.png) no-repeat 0 0;
+  overflow: hidden;
+}
+
+.cusel .jScrollArrowDown {
+  /* стрелка вниз */
+  width: 26px !important;
+  height: 15px;
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  background: url(/images/select-arrows.png) no-repeat 0 100%;
+  overflow: hidden;
+}
+
+.cusel span[val="-1"] {
+  display: none;
+}

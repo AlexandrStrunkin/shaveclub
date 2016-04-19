@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <title></title>
+        <meta name="keywords" content=""/>
+        <meta name="description" content=""/>
+        <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+        
+        <link rel="stylesheet" href="css/style.css" >
+        <link rel="stylesheet" href="css/responsive.css" >
+        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/inside.css" >
+        <link rel="stylesheet" href="css/contacts.css" >
+        <link rel="stylesheet" href="css/cusel.css" >
+        <link href='http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&subset=latin,cyrillic,latin-ext,cyrillic-ext' rel='stylesheet' type='text/css'>
+            
+        <script src="js/wow.js"></script>
+        <script src="js/index.js"></script>
+        <script type="text/javascript" src="js/cusel.js"></script>
+        <script type="text/javascript" src="js/jScrollPane.js"></script>
+        <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+
+        <link type="text/css" href="css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+        <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+        <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    </head>
+
+    <body>
+
+        <div class="wrapper">
+
+            <div class="menu">
+                <div class="menu-arrow"></div>
+                <a href="#" class="menu-logo"><img src="images/logo.png" alt=""/></a>
+                <span class="menu-logo-text"> Бреем людей с <span>2012 г.</span></span>
+                <ul class="menu-nav">
+                    <li><a href="index.html">БРИТВЫ ДЛЯ СЕБЯ</a></li>
+                    <li><a href="girl.html">ЖЕНСКИЕ БРИТВЫ</a></li>
+                    <li><a href="gift.html">БРИТВЫ В ПОДАРОК</a></li>
+                    <li><a href="gillette.html">БРИТВЫ GILLETTE</a></li>
+                    <li><a href="slalom.html">БРИТВЕННЫЙ КОМПЛЕКТ<br/>SLALOM</a></li>
+                </ul>
+                <ul class="menu-nav1">
+                    <li><a href="#" class="private-office-link">Личный кабинет</a></li>
+                    <li><a href="#" class="how-it-work-link">Как это работает?</a></li>
+                    <li><a href="#" class="contacts-link">Контакты</a></li>
+                </ul>
+                <div class="menu-soc">
+                    <ul>
+                        <li><a href="http://vk.com" target="_blank" class="vk"></a></li>
+                        <li><a href="http://facebook.com" target="_blank" class="facebook"></a></li>
+                        <li><a href="http://instagram.com" target="_blank" class="instagram"></a></li>
+                        <li><a href="http://odnoklassniki.com" target="_blank" class="odnoklassniki"></a></li>
+                    </ul>
+                </div>
+                <div class="menu-phone">+7 (499) 707-71-07</div>
+
+            </div>
+            <div class="main-container inside-page contacts-page">
+                <div class="mobile-top">
+                    <div class="footer-soc">
+                        <a href="http://vk.com" target="_blank" class="vk active"></a>
+                        <a href="http://facebook.com" target="_blank" class="facebook"></a>
+                        <a href="http://instagram.com" target="_blank" class="instagram"></a>
+                        <a href="http://odnoklassniki.com" target="_blank" class="odnoklassniki"></a>
+                    </div>
+                    <span class="menu-btn"></span>
+                </div>
+
+                    <div class="inside-page-col">
+                        <div class="div">
+                            <div class="">
+                                <h1 class="h1">контакты</h1>
+                                <table class="contacts-page-table">
+                                    <tr>
+                                        <td>Организация</td>
+                                        <td>ООО "ШейвКлаб"</td>
+                                    </tr>
+                                    <tr>
+                                        <td>адрес</td>
+                                        <td>г.Москва, Дмитровское ш., д.9а, стр.1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>телефон</td>
+                                        <td>+7 (499) 707 71 07</td>
+                                    </tr>
+                                    <tr class="email">
+                                        <td>почта</td>
+                                        <td>info@shaveclub.ru</td>
+                                    </tr>
+                                </table>
+                                <form action="#" method="post" id="contacts_form">
+                                    <span class="title">Задaйте нам вопрос</span>
+
+                                    <div class="input-container">
+                                        <label>
+                                            <select id="quest">
+                                                <option value="-1">Выберете отдел или вопрос по которому пишите</option>
+                                                <option value="1">Вопрос 1</option>
+                                                <option value="2">Вопрос 2</option>
+                                                <option value="3">Вопрос 3</option>
+                                            </select>
+                                        </label>
+
+                                        <div class="input-cols">
+                                            <div>
+                                                <div>
+                                                    <label><input type="text" class="input empty" id="name" onfocus="clearField('name', 'Ваше имя')" onblur="blurField('name', 'Ваше имя')" value="Ваше имя"/></label></div>
+                                            </div>
+                                            <div>
+                                                <div><label><input type="text" class="input empty" id="email" onfocus="clearField('email', 'Почта')" onblur="blurField('email', 'Почта')" value="Почта"/></label></div>
+                                            </div>
+                                        </div>
+                                        <label><textarea class="textarea empty" id="mes" onfocus="clearField('mes', 'Сообщение')" onblur="blurField('mes', 'Сообщение')">Сообщение</textarea></label>
+                                    </div>
+                                    <a href="#" class="btn">отправить</a>
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+                    
+                    <span class="inside-page-col-close"></span>
+                    <div class="inside-page-col">
+
+                        <span class="inside-page-col-shadow"></span>
+
+                        <div id="contacts-map" class="contacts-map div"></div>
+
+                    </div>
+                <!-- .content -->
+                <div class="clear"></div>
+
+
+            </div>
+
+
+            <!-- .footer -->
+        </div>
+        <!-- .wrapper -->
+
+    </body>
+</html>

@@ -1,0 +1,1 @@
+<a href="#" >&copy; <?=date("Y")?> ООО&ldquo;Шейвклаб&rdquo;</a> <a href="/about/privacy-policy/" >Политика конфиденциальности</a> <a href="/about/delivery/" >Условия доставки и оплаты</a>

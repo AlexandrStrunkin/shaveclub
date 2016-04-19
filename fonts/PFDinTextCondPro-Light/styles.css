@@ -1,0 +1,8 @@
+
+@font-face {
+	font-family: 'PFDinTextCondPro-Light';
+	src: url('PFDinTextCondPro-Light.eot?') format('eot'), 
+	     url('PFDinTextCondPro-Light.woff') format('woff'), 
+	     url('PFDinTextCondPro-Light.ttf')  format('truetype'),
+	     url('PFDinTextCondPro-Light.svg#PFDinTextCondPro-Light') format('svg');
+}

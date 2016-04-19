@@ -1,0 +1,711 @@
+@font-face {
+  font-family: 'PFDinTextPro-Regular';
+  src: url('../fonts/PFDinTextProReg/pfdintextpro-regular.eot?') format('eot'), url('../fonts/PFDinTextProReg/pfdintextpro-regular.woff') format('woff'), url('../fonts/PFDinTextProReg/pfdintextpro-regular.ttf') format('truetype'), url('../fonts/PFDinTextCondPro-Medium/PFDinTextCondPro-Medium.svg#PFDinTextCondPro-Medium') format('svg');
+}
+
+.howGridContainer{
+	width:100%;
+	height:100%;
+}
+
+.howGridContainer > div{
+	width:100%;
+}
+
+/*---Declare all boxes-----*/
+.howGridContainer > div:first-child,.howGridContainer > div:first-child > div,.howGridContainer > div:first-child > div:first-child > div:last-child,.howGridContainer > div:first-child > div:last-child > div
+,.howGridContainer > div:first-child > div:last-child > div div.description_box,.howGridContainer > div:nth-child(2),.howGridContainer > div:nth-child(2) > div,.howGridContainer > div:nth-child(2) > div:nth-child(2) > div
+{
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+/*---Normal box directions----*/
+.howGridContainer > div:first-child,.howGridContainer > div:first-child > div,.howGridContainer > div:first-child > div:first-child > div:last-child,.howGridContainer > div:first-child > div:last-child > div
+,.howGridContainer > div:first-child > div:last-child > div div.description_box,.howGridContainer > div:nth-child(2),.howGridContainer > div:nth-child(2) > div:nth-child(2) > div{
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+}
+
+/*----Row direction----*/
+.howGridContainer > div:first-child,.howGridContainer > div:nth-child(2){
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+/*----Horizontal orient-------*/
+
+.howGridContainer > div:first-child,.howGridContainer > div:nth-child(2),.howGridContainer > div:nth-child(2) > div:nth-child(2) > div{
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+}
+
+/*----Vertical orient-------*/
+
+.howGridContainer > div:first-child > div,.howGridContainer > div:first-child > div:first-child > div:last-child,.howGridContainer > div:first-child > div:last-child > div
+,.howGridContainer > div:first-child > div:last-child > div div.description_box {
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+}
+
+/*-----Column direction-----*/
+
+.howGridContainer > div:first-child > div,.howGridContainer > div:first-child > div:first-child > div:last-child,.howGridContainer > div:first-child > div:last-child > div
+,.howGridContainer > div:first-child > div:last-child > div div.description_box,.howGridContainer > div:nth-child(2) > div:nth-child(2) > div {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+/*-----Wrap prop in grid-----*/
+.howGridContainer > div:nth-child(2) > div:nth-child(2) > div,.howGridContainer > div:first-child > div:last-child > div,.howGridContainer > div:first-child > div:last-child > div div.description_box
+,.howGridContainer > div:nth-child(2){
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+/*---first grid row---*/
+
+.howGridContainer > div:first-child{
+    height:1210px;	
+}
+
+.howGridContainer > div:first-child > div {
+    -webkit-box-ordinal-group: 1;
+    -moz-box-ordinal-group: 1;
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+}
+
+.howGridContainer > div:first-child > div:first-child{
+    -webkit-box-flex: 2;
+    -moz-box-flex: 2;
+    -webkit-flex: 2 0;
+    -ms-flex: 2 0;
+    flex: 2 0;
+}
+
+.howGridContainer > div:first-child > div:last-child{
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1 0 ;
+    -ms-flex: 1 0 ;
+    flex: 1 0;
+}
+
+/*---first block in first row (2 blocks) ----*/
+
+.howGridContainer > div:first-child > div:first-child > div{
+	-webkit-box-ordinal-group: 1;
+    -moz-box-ordinal-group: 1;
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+}
+
+.howGridContainer > div:first-child > div:first-child > div:first-child{
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1 0;
+    -ms-flex: 1 0;
+    flex: 1 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box; /*Firefox 1-3*/
+    -webkit-box-sizing: border-box; /* Safari */
+    background:url(/images/how/first_block_back.jpg);
+    background-size: auto 100%;
+}
+
+	.howGridContainer > div:first-child > div:first-child > div:first-child h2{
+	    font-family: 'PFDinTextCondPro-Medium';
+	    text-transform: uppercase;
+	    color:#000000;
+	    font-size: 36px;
+	    margin:12% 0 4% 6.48%; 
+	}
+
+	.howGridContainer > div:first-child > div:first-child > div:first-child span{
+		display: block;
+	    font-family: 'PTSerifItalic';
+	    color:#808080;
+	    font-size: 22px;
+	    margin-left:6.48%;
+	    letter-spacing: 1px;
+	    line-height: 35px; 
+	}
+
+.howGridContainer > div:first-child > div:first-child > div:last-child{
+    -webkit-box-align: end;
+    -moz-box-align: end;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+
+    -webkit-box-flex: 2;
+    -moz-box-flex: 2;
+    -webkit-flex: 2 0;
+    -ms-flex: 2 0;
+    flex: 2 0;
+    background:url(/images/how/second_block_back.jpg);
+    background-size: auto 100%;
+}
+
+    .howGridContainer > div:first-child > div:first-child > div:last-child > div{
+        -webkit-box-flex: 1;
+        -moz-box-flex: 1;
+        -webkit-flex: 1 0;
+        -ms-flex: 1 0;
+        flex: 1 0;
+        width:50%;
+        position: relative;
+        text-align: center;  
+    }
+        .howGridContainer > div:first-child > div:first-child > div:last-child > div div.whiteBG{
+            position: absolute;
+            z-index: 1;
+            background:white;
+            opacity:0.97;
+            height: 100%;
+            width:100%;   
+        }
+
+        .howGridContainer > div:first-child > div:first-child > div:last-child > div h2{
+            position: absolute;
+            font-family: 'PFDinTextCondPro-Bold';
+            text-transform: uppercase;
+            font-size: 36px;
+            z-index: 2;
+            display: block;
+            width:100%;
+            letter-spacing: 12px;
+            top:34%;
+        }
+
+        .howGridContainer > div:first-child > div:first-child > div:last-child > div span{
+            position: absolute;
+            font-family: 'PTSerifItalic';
+            font-size: 22px;
+            z-index: 2;
+            display: block;
+            width:90%;
+            top:46%;
+            padding:0 20px;
+            line-height: 32px;
+        }
+
+        .howGridContainer > div:first-child > div:first-child > div:last-child > div div.orangeSep{
+            position: absolute;
+            z-index: 2;
+            display: block;
+            width:10%;
+            height:1px;
+            top:62%;
+            left:45%;
+            background:#fca713;
+        }                         
+
+/*---second block in first row (3 blocks)----*/
+
+.howGridContainer > div:first-child > div:last-child > div{
+ 	-webkit-box-ordinal-group: 1;
+    -moz-box-ordinal-group: 1;
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1 0;
+    -ms-flex: 1 0;
+    flex: 1 0;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+    position:relative;
+    overflow: hidden;
+
+    -webkit-box-pack: start;
+    -moz-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+    .steps_block > h3,.steps_block img{
+        -webkit-transition: all 500ms cubic-bezier(0.365, 0.660, 0.350, 1); /* older webkit */
+        -webkit-transition: all 500ms cubic-bezier(0.365, 0.660, 0.350, 1.290); 
+        -moz-transition: all 500ms cubic-bezier(0.365, 0.660, 0.350, 1.290); 
+        -o-transition: all 500ms cubic-bezier(0.365, 0.660, 0.350, 1.290); 
+        transition: all 500ms cubic-bezier(0.365, 0.660, 0.350, 1.290); /* custom */
+        top:0;
+    }
+
+    .steps_block > h3{
+        color:#fca713;
+        font-size: 36px;
+        text-transform: uppercase;
+        font-family: 'PFDinTextCondPro-Medium';
+        margin-top: 15%;
+        position:absolute;
+        width:100%;
+        text-align: center;
+        display: block;
+        left:0;
+    }
+    
+    .steps_block a{
+        color:#FCA713;
+    }
+
+    .steps_block div.block_description{
+        color:white;
+        font-size: 22px;
+        text-transform: uppercase;
+        font-family: 'PFDinTextCondPro-Medium';
+        width: 55%;
+        text-align: center;
+        margin-top: 26%;
+        line-height: 35px;
+        margin-bottom: 3%;
+        position: absolute;
+        left:22.5%;
+        -webkit-transition: all 500ms cubic-bezier(0.100, 0.905, 0.000, 1.000); 
+        -moz-transition: all 500ms cubic-bezier(0.100, 0.905, 0.000, 1.000); 
+        -o-transition: all 500ms cubic-bezier(0.100, 0.905, 0.000, 1.000); 
+        transition: all 500ms cubic-bezier(0.100, 0.905, 0.000, 1.000); /* custom */
+    }
+
+    .steps_block img{
+        position: absolute;
+        left:43.5%;
+        margin-top: 43%;
+    }
+
+    .steps_block:first-child div.block_description{
+        color:black;
+    }
+
+        .howGridContainer > div:first-child > div:last-child > div div.description_box{
+            position:absolute;
+            width:100%;
+            height:100%;
+            background:transparent;
+            top:0%;
+            left:-100%;
+            -webkit-transition: all 500ms cubic-bezier(0.170, 0.805, 0.535, 0.865); 
+            -moz-transition: all 500ms cubic-bezier(0.170, 0.805, 0.535, 0.865); 
+            -o-transition: all 500ms cubic-bezier(0.170, 0.805, 0.535, 0.865); 
+            transition: all 500ms cubic-bezier(0.170, 0.805, 0.535, 0.865); /* custom */
+            -webkit-box-pack: start;
+            -moz-box-pack: start;
+            -webkit-justify-content: flex-start;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+            -webkit-align-content: flex-start;
+            -ms-flex-line-pack: start;
+            align-content: flex-start;
+            -webkit-box-align: center;
+            -moz-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        div.description_box div{
+            background:#fca713;
+            width:10%;
+            height:1px;
+            margin-top: 36%;
+            margin-bottom: 5%;
+        }
+
+        div.description_box p{
+            font-family: 'PTSerifItalic';
+            color:#b3b3b3;
+            font-size: 16px;
+            width:80%;
+            line-height: 25px;
+        }
+
+        @-moz-document url-prefix() {
+            div.description_box div{
+                margin-top: 48%;
+            }   
+        }
+
+    .howGridContainer > div:first-child > div:last-child > div:first-child{
+        background:white;
+    }
+
+    .howGridContainer > div:first-child > div:last-child > div:nth-child(2){
+        background:#333331;
+    }
+
+    .howGridContainer > div:first-child > div:last-child > div:nth-child(2):before{
+        content: '';
+        position: absolute;
+        z-index: 99;
+        top: 0%;
+        left: 52.5%;
+        margin-left: -23px;
+        width: 0;
+        height: 0;
+        border-top: 15px solid white;
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;
+        border-bottom: 8px solid transparent;
+    }
+
+    .howGridContainer > div:first-child > div:last-child > div:last-child{
+        background:#191919;
+    }
+
+    .howGridContainer > div:first-child > div:last-child > div:last-child:before{
+        content: '';
+        position: absolute;
+        z-index: 99;
+        top: 0%;
+        left: 53%;
+        margin-left: -23px;
+        width: 0;
+        height: 0;
+        border-top: 15px solid #333331;
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;
+        border-bottom: 8px solid transparent;
+    }
+
+/*---second grid row---*/
+
+.howGridContainer > div:nth-child(2){
+    height:400px;
+}
+
+    .howGridContainer > div:nth-child(2) > div{
+    	-webkit-box-ordinal-group: 1;
+        -moz-box-ordinal-group: 1;
+        -webkit-order: 0;
+        -ms-flex-order: 0;
+        order: 0;
+        -webkit-box-flex: 1;
+        -moz-box-flex: 1;
+        -webkit-flex: 1 0;
+        -ms-flex: 1 0;
+        flex: 1 0;
+        -webkit-align-self: auto;
+        -ms-flex-item-align: auto;
+        align-self: auto;
+    }
+
+    .howGridContainer > div:nth-child(2) > div:first-child,.howGridContainer > div:nth-child(2) > div:last-child{
+        position:relative;
+        background:white;
+        -webkit-box-pack: center;
+        -moz-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-align-content: stretch;
+        -ms-flex-line-pack: stretch;
+        align-content: stretch;
+        -webkit-box-align: center;
+        -moz-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-transition: all .5s ease-out;
+         -moz-transition: all .5s ease;
+         -o-transition: all .5s ease;
+         transition: all .5s ease;
+         color:black;
+    }
+
+    .howGridContainer > div:nth-child(2) > div:first-child:before{
+        content: '';
+        position: absolute;
+        z-index: 99;
+        top: 44%;
+        left: 100%;
+        margin-left: -23px;
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-right: 15px solid #fca713;
+        border-left: 8px solid transparent;
+        border-bottom: 10px solid transparent;
+    }
+
+    .howGridContainer > div:nth-child(2) > div:last-child:after{
+        content: '';
+        position: absolute;
+        z-index: 99;
+        top: 44%;
+        left: 0;
+        margin-left: 0;
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-right: 8px solid transparent;
+        border-left: 15px solid #fca713;
+        border-bottom: 10px solid transparent;
+    }
+
+        .howGridContainer > div:nth-child(2) > div:first-child span,.howGridContainer > div:nth-child(2) > div:last-child span{
+            font-family: 'PFDinTextPro-Regular';
+            font-size: 22px;
+            width:70%;
+            line-height: 32px; 
+        }
+
+    .howGridContainer > div:nth-child(2) > div:nth-child(2){
+            position: relative;
+            overflow: hidden;
+    }
+
+        .howGridContainer > div:nth-child(2) > div:nth-child(2) > div{
+            width:100%;
+            height:100%;
+            position: absolute;
+            -webkit-box-pack: center;
+            -moz-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-align-content: stretch;
+            -ms-flex-line-pack: stretch;
+            align-content: stretch;
+            -webkit-box-align: center;
+            -moz-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        .smileLayer{
+            background:white;
+            font-size: 22px;
+            top:-100%;
+            text-transform: uppercase;
+            font-family: 'PFDinTextCondPro-Medium';
+            z-index:2;
+            -webkit-transition: top 500ms cubic-bezier(0.195, 0.010, 0.220, 1); /* older webkit */
+            -webkit-transition: top 500ms cubic-bezier(0.195, 0.010, 0.220, 1.210); 
+            -moz-transition: top 500ms cubic-bezier(0.195, 0.010, 0.220, 1.210); 
+            -o-transition: top 500ms cubic-bezier(0.195, 0.010, 0.220, 1.210); 
+            transition: top 500ms cubic-bezier(0.195, 0.010, 0.220, 1.210); /* custom */
+        }
+
+        .smileHoverOverlay:after {
+            content: '';
+            position: absolute;
+            z-index: 99;
+            top: 44%;
+            left: 0;
+            margin-left: 0;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-right: 8px solid transparent;
+            border-left: 15px solid #fca713;
+            border-bottom: 10px solid transparent;
+        }
+
+        .smileHoverOverlay:before {
+            content: '';
+            position: absolute;
+            z-index: 99;
+            top: 44%;
+            left: 100%;
+            margin-left: -23px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-right: 15px solid #fca713;
+            border-left: 8px solid transparent;
+            border-bottom: 10px solid transparent;
+        }
+
+            .smileLayer span{
+                width: 55%;
+                text-align: center;
+                line-height: 32px;
+                margin-top:30px;
+            }
+
+        .smileHoverOverlay{
+            background:#fca713;
+            font-size: 22px;
+            text-transform: uppercase;
+            font-family: 'PFDinTextCondPro-Medium';
+            top:0;
+            -webkit-transition: top 500ms cubic-bezier(0.195, 0.010, 0.220, 1); /* older webkit */
+            -webkit-transition: top 500ms cubic-bezier(0.195, 0.010, 0.220, 1.210); 
+            -moz-transition: top 500ms cubic-bezier(0.195, 0.010, 0.220, 1.210); 
+            -o-transition: top 500ms cubic-bezier(0.195, 0.010, 0.220, 1.210); 
+            transition: top 500ms cubic-bezier(0.195, 0.010, 0.220, 1.210); /* custom */
+        }
+
+            .smileHoverOverlay span{
+                color:white;
+                width: 55%;
+                text-align: center;
+                line-height: 32px;
+                margin-top:30px;
+            }
+
+    .howGridContainer > div:nth-child(2) > div:nth-child(2):hover .smileLayer{
+        top:0;
+    }
+
+
+/*---third grid row---*/
+
+.howGridContainer > div:last-child{
+    height:400px;
+    background:url(/images/how/bottom_background.jpg);
+    background-size: auto 100%;
+}
+
+    .howGridContainer > div:last-child div{
+        font-family: 'PFDinTextCondPro-Medium';
+        text-transform: uppercase;
+        width:60%;
+        font-size: 24px;
+        color:white;
+        padding-left: 4%;
+        padding-top: 10%;
+        line-height: 46px;
+    }
+
+        .howGridContainer > div:last-child span{
+            color:#fca713;
+        }
+
+
+/*-----Adapt-----*/
+
+@media all and (max-width: 1570px) {
+    .howGridContainer > div:first-child{
+        height:910px;  
+    }
+
+    .howGridContainer > div:nth-child(2){
+        height:300px;
+    }
+
+    .howGridContainer > div:last-child{
+        height:300px;
+    }
+
+    .howGridContainer > div:first-child > div:first-child > div:first-child h2{
+        font-size: 40px;
+    }
+
+    .howGridContainer > div:first-child > div:first-child > div:first-child span{
+        font-size: 17px;
+    }
+
+    .steps_block div.block_description{
+        font-size: 16px;
+        line-height: 25px;
+        left:20.5%;
+    }
+
+    .howGridContainer > div:nth-child(2) > div:first-child span, .howGridContainer > div:nth-child(2) > div:last-child span{
+        font-size: 18px;
+    }
+
+    .smileLayer span{
+        font-size: 14px;
+    }
+
+    div.description_box p{
+        font-size: 12px;
+        width: 80%;
+        padding-left:10%;
+    }
+
+    .howGridContainer > div:last-child div{
+        font-size: 18px;
+        line-height: 35px;
+    }
+
+    .steps_block img{
+        left:38.5%;
+    }
+
+    .steps_block > h3{
+        margin-left:-1%;
+    }
+
+    .howGridContainer > div:first-child > div:first-child > div:last-child > div span{
+        font-size: 18px;
+    }
+
+    .howGridContainer > div:nth-child(2) > div:first-child span, .howGridContainer > div:nth-child(2) > div:last-child span{
+        font-size: 16px;
+        line-height: 25px;
+        width:80%;
+    }
+}
+
+/*-----Mobile-----*/
+
+@media all and (max-width: 1000px) {
+    .steps_block div.block_description{
+        font-size: 12px;
+        line-height: 20px;
+        left:20.5%;
+    }
+
+    .steps_block img{
+        left:38.5%;
+    }
+
+    .steps_block > h3{
+        margin-left:-1%;
+    }
+
+    .howGridContainer > div:first-child > div:first-child > div:last-child > div span{
+        font-size: 16px;
+    }
+
+    .howGridContainer > div:last-child div{
+        font-size: 14px;
+        line-height: 30px;
+    }
+
+    .howGridContainer > div:nth-child(2) > div:first-child span, .howGridContainer > div:nth-child(2) > div:last-child span{
+        font-size: 13px;
+        line-height: 20px;
+    }
+
+    .smileLayer span{
+        font-size: 12px;
+    }
+
+    div.description_box p{
+        font-size: 12px;
+        width: 90%;
+        padding-left:10%;
+    }
+}

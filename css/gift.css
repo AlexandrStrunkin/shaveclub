@@ -1,0 +1,126 @@
+
+.gift-page .header .h1 {
+  color: #9a3b19;
+}
+
+.gift-page .header .h2 {
+  color: #5f4b49;
+}
+
+.gift-page .header {
+  background: #f7f6f2 url(/images/gift/header.jpg) no-repeat 100% 100%;
+}
+
+.gift-page .header-ul li {
+  background-image: url(/images/gift/header_icons_gift.png);
+}
+
+.main-shave1 {
+  background: #9a3b19 url(/images/gift/shave1_bg.jpg) no-repeat 100% 100%;
+}
+
+.main-shave2 {
+  background: #322929 url(/images/gift/shave2_bg.jpg) no-repeat 100% 100%;
+}
+
+.main-shave1 .h2, .main-shave2 .h2 {
+  color: #fff;
+}
+
+.main-shave1 .p1, .main-shave2 .p1 {
+  color: #aaa;
+}
+
+.main-shave1 .p2, .main-shave2 .p2 {
+  color: #f6f4f1;
+}
+
+.main-shave1 .btn, .main-block6-col .btn {
+  color: #fff;
+  border-color: #fff;
+}
+.main-block6-col .btn:hover {
+  color: #fca713;
+  border-color: #fca713;
+}
+.main-block6 {
+  width: 100%;
+  float: left;
+  position: relative;
+  z-index: 2;
+}
+
+.main-block6-col {
+  width: 50%;
+  float: left;
+  height: 300px;
+  background: #402822;
+}
+
+
+
+.main-block6-col > div {
+  padding: 70px 0 0 70px;
+}
+
+.main-block6-col .h2 {
+  font: 30px/1 'PFDinTextCondPro-Bold', sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.main-block6-col .p1 {
+  padding: 10px 0 50px;
+  font: 30px/1 'PFDinTextCondPro-Light', sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+@media all and (max-width: 1570px) {
+
+  .gift-page .header {
+    background-image: url(/images/gift/header1.jpg);
+    background-position: 20px 0;
+  }
+
+  .gift-page .header .h2 {
+    padding-bottom: 160px;
+  }
+
+  .main-block6-col > div {
+    padding: 60px 0 0 40px;
+  }
+
+  .main-block6-col .h2, .main-block6-col .p1 {
+    font-size: 24px;
+  }
+
+  .main-block6-col .btn {
+    width: 127px;
+  }
+
+}
+
+@media all and (max-width: 1000px) {
+  .gift-page .header-ul li {
+    background-image: url(/images/gift/header_icons_gift1.png);
+  }
+
+  .gift-page .header {
+    background-position: -400px 0;
+  }
+
+  .gift-page .header .h2 {
+    padding-bottom: 50px;
+  }
+
+  .main-block6-col {
+    width: 100%;
+  }
+  .main-block6-col .img {
+    width: 125%;
+    margin-left: -10px;
+    min-height: 100%;
+  }
+}
+

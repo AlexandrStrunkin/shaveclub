@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'PTSerifItalic';
+    src: url('pt_serif_italic.eot');
+    src: url('pt_serif_italic.eot') format('embedded-opentype'),
+         url('pt_serif_italic.woff') format('woff'),
+         url('pt_serif_italic.ttf') format('truetype'),
+         url('pt_serif_italic.svg#PTSerifItalic') format('svg');
+}

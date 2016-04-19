@@ -1,0 +1,109 @@
+
+.slalom-page .header .h1 {
+  color: #f2e7ce;
+}
+
+.slalom-page .header .h2 {
+  color: #fff;
+}
+
+.slalom-page .header {
+  background: #1f2328 url(/images/slalom/header.jpg) no-repeat 100% 100%;
+}
+
+.slalom-page .header-ul li {
+  background-image: url(/images/slalom/header_icons.png);
+  color: #fff;
+  white-space: nowrap;
+}
+.slalom-page .main-shave1 {
+  position: relative;
+  overflow: visible;
+}
+.main-shave1-arr {
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-left: 8px solid #fff;
+  border-bottom: 6px solid transparent;
+  position: absolute;
+  top: 70px;
+  right: -8px;
+  z-index: 20;
+}
+.slalom-page .main-shave2 img {
+  width: 100%;
+  min-height: 100%;
+}
+.main-block6-col .btn {
+  color: #fff;
+  border-color: #fff;
+}
+
+.main-block6 {
+  width: 100%;
+  float: left;
+  position: relative;
+  z-index: 2;
+}
+
+.main-block6-col {
+  width: 50%;
+  float: left;
+  height: 300px;
+  background: #322928;
+}
+
+
+
+.main-block6-col > div {
+  padding: 70px 0 0 70px;
+}
+
+.main-block6-col .h2 {
+  font: 30px/1 'PFDinTextCondPro-Bold', sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.main-block6-col .p1 {
+  padding: 10px 0 50px;
+  font: 30px/1 'PFDinTextCondPro-Light', sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+@media all and (max-width: 1570px) {
+
+  .slalom-page .header {
+    background-image: url(/images/slalom/header1.jpg);
+  }
+    .main-block6-col > div {
+    padding: 60px 0 0 40px;
+  }
+
+  .main-block6-col .h2, .main-block6-col .p1 {
+    font-size: 24px;
+  }
+
+  .main-block6-col .btn {
+    width: 127px;
+  }
+
+}
+
+@media all and (max-width: 1000px) {
+  .slalom-page .header-ul li {
+    background-image: url(/images/slalom/header_icons1.png);
+  }
+  .main-block6-col {
+    width: 100%;
+  }
+  .main-block6-col .img {
+    width: 125%;
+    margin-left: -10px;
+    min-height: 100%;
+  }
+
+
+}
