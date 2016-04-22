@@ -1,0 +1,50 @@
+.left_side.catalog_detail .info_block > div {
+    width: 100%; 
+}
+.left_side .props_block .char {
+    width: 100%;
+    margin: 5px 0;
+}
+.image_recomend{
+    float: left;
+    width: 45%;
+    text-align: center;
+}
+.image_recomend {
+    margin-right: 5px;
+    -webkit-transition: border-color ease-out 0.2s;
+    -moz-transition: border-color ease-out 0.2s;
+    -o-transition: border-color ease-out 0.2s;
+    transition: border-color ease-out 0.2s;
+    padding: 4px;
+    box-shadow: 0 1px 2px #e7e7e7;
+    white-space: normal;
+    border: 1px solid #e7e7e7;
+    margin-top: 20px;
+    min-height: 180px;
+}
+.tabs_content .image_recomend{
+    margin:20px 15px 0 15px;
+}
+.image_recomend:hover {
+    border: 1px solid #519bb1;
+}
+
+.image_recomend div.image,
+.image_recomend div.image a.thumb {
+    height: 125px;
+}
+
+.item_main_info{
+    overflow: hidden; 
+}
+.right_info{
+    float: right;
+    width: 55%;
+    padding-left: 0!important;
+}
+ .recommended{
+    /*position: absolute;*/
+    top: 409px;
+    width: 310px;   
+ }

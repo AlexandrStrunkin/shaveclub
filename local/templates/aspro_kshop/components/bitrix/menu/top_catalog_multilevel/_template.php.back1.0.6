@@ -1,0 +1,111 @@
+<?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+<?if( !empty( $arResult ) ){?>
+	<ul class="menu">
+		<?foreach( $arResult as $key => $arItem ){?>			
+			<li<?if($arItem["SELECTED"]||$key==0):?> class="<?if($key==0):?>first<?endif;?><?if($arItem["SELECTED"]):?> current<?endif;?>"<?endif;?>>
+				<a href="<?=$arItem["LINK"]?>"<?if($arItem["SELECTED"]):?> class="current"<?endif;?>><?=$arItem["TEXT"]?></a>
+				<?if( $arItem["IS_PARENT"] == 1 ){?>
+					<div class="child submenu">	
+						<?if($arItem["IS_PARENT"]==1):?><b class="space"></b><?endif;?>
+						<div class="child_wrapp">
+							<?foreach( $arItem["ITEMS"] as $arSubItem ){?>
+								<?if (count($arSubItem["ITEMS"])):?>
+									<div class="depth3">
+										<a class="title<?if( $arSubItem["SELECTED"] ):?> current<?endif?>" href="<?=$arSubItem["LINK"]?>"><?=$arSubItem["TEXT"]?></a>
+										<?foreach( $arSubItem["ITEMS"] as $arSubItem3 ){?>
+											<a <?if( $arSubItem3["SELECTED"] ):?>class="current"<?endif?> href="<?=$arSubItem3["LINK"]?>"><?=$arSubItem3["TEXT"]?></a>
+										<?}?>
+									</div>
+								<?else:?>
+									<a <?if( $arSubItem["SELECTED"] ):?>class="current"<?endif?> href="<?=$arSubItem["LINK"]?>"><?=$arSubItem["TEXT"]?></a>
+								<?endif;?>
+							<?}?>
+						</div>
+					</div>
+				<?}?>
+			</li>
+		<?}?>
+		<li class="more">
+			<a><?=GetMessage("CATALOG_VIEW_MORE_")?><i></i></a>
+			<b class="space"></b>
+			<div class="child submenu"><div class="child_wrapp clearfix"></div></div>
+		</li>
+		<li class="stretch"></li>
+	</ul>
+	<script>
+		
+		var menu = $(".catalog_menu ul.menu");
+		var extendedItemsContainer = $(menu).find("li.more");
+		
+		var extendedItemsSubmenu = $(extendedItemsContainer).find(".child_wrapp");
+		var extendedItemsContainerWidth = $(extendedItemsContainer).outerWidth();
+		var reCalculateMenu = function()
+		{
+			$(menu).find("li:not(.stretch)").show();
+			$(extendedItemsSubmenu).html("");
+			$(extendedItemsContainer).removeClass("visible");
+			calculateMenu();
+		}
+		var calculateMenu = function()
+		{
+			var menuWidth = $(menu).outerWidth();	
+			$(menu).css("display","");			
+			$(".catalog_menu .menu > li").each(function(index, element)
+			{
+				if (!$(element).is(".more")&&!$(element).is(".stretch"))
+				{
+					var itemOffset = $(element).position().left;
+					var itemWidth = $(element).outerWidth();
+					var submenu = $(element).find(".submenu"); 
+					var submenuWidth = $(submenu).outerWidth();
+					if ($(submenu).length) { if(index!=0) { $(submenu).css({"marginLeft": (itemWidth-submenuWidth)/2}); } }
+					
+					var iii = itemOffset+itemWidth+extendedItemsContainerWidth;					
+					if (itemOffset+itemWidth+extendedItemsContainerWidth>menuWidth)
+					{
+						if (!$(extendedItemsContainer).is(".visible")) {$(extendedItemsContainer).addClass("visible").css("display", "");}
+						var menuItem = $(element).clone();
+						$(menuItem).wrapInner('<div class="depth3"></div>');
+						$(menuItem).find("a").first().addClass("title");
+						$(menuItem).find(".child").remove();						
+						$(menuItem).find(".depth3").append($(element).find(".child_wrapp").html());		
+						$(extendedItemsSubmenu).append($(menuItem).html());
+						$(element).hide();
+					}
+					else
+					{
+						$(element).show();
+					}
+				}
+				if(!extendedItemsSubmenu.html().length){
+					extendedItemsContainer.hide();
+				}
+			});
+			
+			
+			
+		}
+		
+		$(extendedItemsContainer).hover(function()	{ $(extendedItemsContainer).equalize({children: ".depth3", equalize: "height"}); }, function(){});
+		
+		
+		
+		if ($(window).outerWidth()>600)
+		{
+			calculateMenu();
+			$(window).load(function(){reCalculateMenu();});
+		}
+
+		$(".catalog_menu .menu > li:not(.current):not(.more):not(.stretch) > a").click(function()
+		{
+			$(this).parents("li").siblings().removeClass("current");
+			$(this).parents("li").addClass("current");
+		});
+		
+		$(".catalog_menu .menu .child_wrapp a").click(function()
+		{
+			$(this).siblings().removeClass("current");
+			$(this).addClass("current");
+		});
+	</script>
+<?}?>

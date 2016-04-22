@@ -1,0 +1,68 @@
+<? if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+
+	function get_section_path($section_id, $build_dropdown=false)
+	{
+		CModule::IncludeModule("iblock");
+		$nav = CIBlockSection::GetNavChain(false, $section_id);
+		$elementsCount = 0;
+		$index = 0;
+		if ($nav){$elementsCount = $nav->SelectedRowsCount();}
+		$strAdded = '<span class="separator"></span>';
+		while($ar = $nav->GetNext())
+		{
+			++$index;
+			$arSections = array();
+			$rsSection = CIBlockSection::GetList(array(), array( "IBLOCK_ID" => $ar["IBLOCK_ID"], "ACTIVE" => "Y", "SECTION_ID" => $ar["IBLOCK_SECTION_ID"], "!ID" => $ar["ID"] ));
+			while( $arSection = $rsSection->GetNext() ){
+				$arSections[] = $arSection;
+			}
+			
+			if($build_dropdown){
+				$strAdded .= '<span class="drop">';
+				$strAdded .= '<a class="number" href="'.$ar["SECTION_PAGE_URL"].'">'.($arSections ? '<span>'.$ar["NAME"].'</span><b class="space"></b><span class="separator'.($index == $elementsCount ? ' cat_last' : '').'"></span>' : '<span>'.$ar["NAME"].'</span>').'</a>';
+				if($arSections){
+					$strAdded .= '<div class="dropdown_wrapp"><div class="dropdown">';
+					foreach($arSections as $arSection){
+						$strAdded .= '<a href="'.$arSection["SECTION_PAGE_URL"].'">'.$arSection["NAME"].'</a>';
+					}
+					$strAdded .= '</div></div>';
+				}
+				$strAdded .= '</span>';
+			}
+			else{
+				$strAdded .= '<a href="'.$ar["SECTION_PAGE_URL"].'"><span>'.$ar["NAME"].'</span></a><span class="separator'.($index == $elementsCount ? ' cat_last' : '').'"></span>';
+			}
+		}		
+		return $strAdded;
+	}
+?>
+
+<?
+	if(empty($arResult)) return "";
+	$strReturn = '';
+	for($index = 0, $itemSize = count($arResult); $index < $itemSize; $index++)
+	{
+		if($index < $itemSize-1) 
+		{
+			if($index > 0) $strReturn .= '<span class="separator"></span>';
+			$title = htmlspecialcharsex($arResult[$index]["TITLE"]);
+			$strReturn .= '<a href="'.$arResult[$index]["LINK"].'" title="'.$title.'"><span>'.$title.'</span></a>';
+		}
+	}
+	if (CSite::InDir(SITE_DIR.'catalog/') && !CSite::InDir(SITE_DIR.'catalog/index.php')) 
+	{
+		global $KShopSectionID;
+		if (COption::GetOptionString("aspro.kshop", "SHOW_BREADCRUMBS_CATALOG_SUBSECTIONS", "Y", SITE_ID)=="Y")
+		{
+			return '<div class="breadcrumbs">'.$strReturn.get_section_path($KShopSectionID, true).'</div>';
+		}
+		else
+		{
+			return '<div class="breadcrumbs">'.$strReturn.get_section_path($KShopSectionID, false).'</div>';
+		}	
+	} 
+	else
+	{
+		return '<div class="breadcrumbs">'.$strReturn.'</div>';
+	}
+?>
