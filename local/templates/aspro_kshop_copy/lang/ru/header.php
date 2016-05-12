@@ -23,4 +23,6 @@
 	$MESS["VALIDATOR_MIN"] = "Пожалуйста, введите число, большее или равное {0}.";
 	$MESS["REGISTER_INCLUDE_AREA"] = "Текст о регистрации";
 	$MESS["AUTH_INCLUDE_AREA"] = "Текст об авторизации";
+    $MESS["NEWS"] = "Новости";
+    $MESS["SALE"] = "Акции";
 ?>
