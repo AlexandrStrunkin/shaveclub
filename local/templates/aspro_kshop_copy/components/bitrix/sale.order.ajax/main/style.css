@@ -412,7 +412,7 @@ div#order_form_content .errortext {
     font-weight: bold;
     float: left;
     top: 14px;
-    font-size: 15px; 
+    font-size: 15px;
     color: #9d0a0f!important;
 }
 #store_off{
@@ -421,4 +421,7 @@ div#order_form_content .errortext {
 }
 #select_store{
     font-weight: bold;
+}
+.sale_order_full_table form input[type="submit"]{
+    margin-bottom: 15px;
 }
