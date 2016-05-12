@@ -36,19 +36,3 @@
             manualControls: ".news_block.<?=$arResult["CODE"]?> .flex-control-nav.flex-control-paging li a"
         });
 </script>
-<script>
-       $(function(){
-          $('body').on('click', '.slide_1', function(){
-               $('#slide_1').show();
-               $('#slide_2').hide();
-               $(this).addClass('active');
-               $(this).next().removeClass('active');
-          })
-          $('body').on('click', '.slide_2', function(){
-               $('#slide_2').show();
-               $('#slide_1').hide();
-               $(this).addClass('active');
-               $(this).prev().removeClass('active');
-          })
-       })
-</script>
