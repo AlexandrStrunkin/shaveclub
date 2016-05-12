@@ -189,7 +189,17 @@
                                 $i = 1;
                                 $countCount = count($arStore);
                                 $arDefaultStore = array_shift(array_values($arStore));
-                                arshow($arStore);
+
+                                function sort_key($a, $b)   // сортировка по значению SORT
+                                {
+                                    if ($a["SORT"] == $b["SORT"]) {
+                                        return 0;
+                                    }
+                                    return ($a["SORT"] < $b["SORT"]) ? -1 : 1;
+                                }
+
+                                usort($arStore, "sort_key");
+
                                 foreach ($arStore as $val)
                                 {
                                     $checked = ($val["ID"] == $arDefaultStore["ID"]) ? "checked" : "";
