@@ -189,9 +189,7 @@
                                 $i = 1;
                                 $countCount = count($arStore);
                                 $arDefaultStore = array_shift(array_values($arStore));
-                                arshow($arStore);
-                                foreach ($arStore as $val)
-                                {
+                                foreach ($arStore as $val) {
                                     $checked = ($val["ID"] == $arDefaultStore["ID"]) ? "checked" : "";
                                 ?>
                                 <tr class="store_row <?=$checked?>" id="row_<?=$val["ID"]?>" onclick="setChangeStore(<?=$val["ID"]?>);">
@@ -241,8 +239,7 @@
         <input type="hidden" name="POPUP_STORE_NAME" id="POPUP_STORE_NAME" value="<?=$arDefaultStore["TITLE"]?>" >
 
         <script type="text/javascript">
-            function setChangeStore(id)
-            {
+            function setChangeStore(id) {
 
                 var store = arStore[id];
 
