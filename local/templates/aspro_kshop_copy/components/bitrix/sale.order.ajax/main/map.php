@@ -189,7 +189,7 @@
                                 $i = 1;
                                 $countCount = count($arStore);
                                 $arDefaultStore = array_shift(array_values($arStore));
-
+                                arshow($arStore);
                                 foreach ($arStore as $val)
                                 {
                                     $checked = ($val["ID"] == $arDefaultStore["ID"]) ? "checked" : "";
@@ -242,23 +242,23 @@
 
         <script type="text/javascript">
             function setChangeStore(id)
-            {   
-                
+            {
+
                 var store = arStore[id];
 
                 BX('POPUP_STORE_ID').value = id;
                 BX('POPUP_STORE_NAME').value = BX.util.htmlspecialchars(store["TITLE"]);
 
                 var tbl = BX('store_table');
-               // 
+               //
                 for (var i = 0; i < tbl.getElementsByTagName('tr').length; i++)
                     BX.removeClass(BX(tbl.getElementsByTagName('tr')[i].id), 'checked');
 
                 BX.addClass(BX('row_' + id), 'checked');
-                   
+
                 if(window.GLOBAL_arMapObjects[objName])
                     window.GLOBAL_arMapObjects[objName].panTo([parseFloat(store["GPS_N"]), parseFloat(store["GPS_S"])], {flying: 1});
-                   
+
             }
 
             if (BX('BUYER_STORE') && parseInt(BX('BUYER_STORE').value) > 0)
