@@ -102,6 +102,10 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/props_format.php");
 </div>
 
 <script type="text/javascript">
+    window.onload = function () {     // выбор первого пункта доставки
+        $('.bx_element:first-child input').trigger('click');
+    };
+
 	function fGetBuyerProps(el)
 	{
 		var show = '<?=GetMessageJS('SOA_TEMPL_BUYER_SHOW')?>';

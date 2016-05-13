@@ -1,7 +1,7 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 ?>
 
-<script type="text/javascript">      
+<script type="text/javascript">
 	function fShowStore(id, showImages, formWidth, siteId)
 	{
 		var strUrl = '<?=$templateFolder?>' + '/map.php';
@@ -24,39 +24,39 @@
 					id: 'crmOk',
 					'action': function ()
 					{
-						GetBuyerStore();                
+						GetBuyerStore();
 						BX.WindowManager.Get().Close();
 					}
 				},
 				BX.CDialog.btnCancel
 			];
-             
+
 		storeForm.ClearButtons();
 		storeForm.SetButtons(button);
-		storeForm.Show();  
+		storeForm.Show();
         delyverySubmit();
         $('#ORDER_CONFIRM_BUTTON').attr('onclick',"");
-      //  BX('store_off').innerHTML = 'Выберите ПВЗ для оформления заказа'; 
+      //  BX('store_off').innerHTML = 'Выберите ПВЗ для оформления заказа';
        // alert('dfd');
 	}
 
     function delyverySubmit()
     {
-        $('#ORDER_CONFIRM_BUTTON').attr('onclick',"submitForm('Y')");      
+        $('#ORDER_CONFIRM_BUTTON').attr('onclick',"submitForm('Y')");
     }
 	function GetBuyerStore()
 	{
-        
+
 		BX('BUYER_STORE').value = BX('POPUP_STORE_ID').value;
 		//BX('ORDER_DESCRIPTION').value = '<?=GetMessage("SOA_ORDER_GIVE_TITLE")?>: '+BX('POPUP_STORE_NAME').value;
 		BX('store_desc').innerHTML = BX('POPUP_STORE_NAME').value;
         BX('store_pickup').setAttribute("value", BX('POPUP_STORE_ID').value);
-        BX('store_off').innerHTML = '';                                 
-		BX.show(BX('select_store'));  
+        BX('store_off').innerHTML = '';
+		BX.show(BX('select_store'));
         var id = BX('POPUP_STORE_ID');
        // console.log(id);
         if(id != ''){
-           BX('ORDER_CONFIRM_BUTTON').setAttribute("onclick", "submitForm('Y')"); 
+           BX('ORDER_CONFIRM_BUTTON').setAttribute("onclick", "submitForm('Y')");
         }
 	}
 	function showExtraParamsDialog(deliveryId)
@@ -101,7 +101,7 @@
 		paramsDialog.SetButtons(button);
 		//paramsDialog.adjustSizeEx();
 		paramsDialog.Show();
-        
+
 	}
 
 	function insertParamsToForm(deliveryId, paramsFormName)
@@ -238,13 +238,14 @@
 					} // endforeach
 				}
 				else // stores and courier
-				{       
+				{
 					if (count($arDelivery["STORE"]) > 0)
 						$clickHandler = "onClick = \"fShowStore('".$arDelivery["ID"]."','".$arParams["SHOW_STORES_IMAGES"]."','".$width."','".SITE_ID."')\";";
 					else
 						$clickHandler = "onClick = \"BX('ID_DELIVERY_ID_".$arDelivery["ID"]."').checked=true;submitForm();delyverySubmit();\"";
 					?>
                        <? // убираем службу достваки PickPoint
+                      // arshow($arDelivery);
                        if($arDelivery["ID"] != 41){?>
 						<div class="bx_element prop">
 
@@ -304,7 +305,7 @@
                                                  $_POST["DELIVERY_ID"] == 48 or
                                                  $_POST["DELIVERY_ID"] == 50 or
                                                  $_POST["DELIVERY_ID"] == 51){?>
-                                                    <span id="store_off">Выберите ПВЗ для оформления заказа</span>  
+                                                    <span id="store_off">Выберите ПВЗ для оформления заказа</span>
                                                  <?}?>
 										<?
 										endif;
