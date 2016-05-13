@@ -1,11 +1,11 @@
 #slide_2{
-    display:none ;
+    display: none;
 }
 .slide_1,
 .slide_2{
     float: left;
     margin-right: 10px;
-    cursor:pointer;
+    cursor: pointer;
 
 }
 .news_slider li{

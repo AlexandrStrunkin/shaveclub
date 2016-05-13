@@ -1,7 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <? $this->setFrameMode( true ); ?>
 <div class="news_block <?=$arResult["CODE"]?>">
-    <?/*<a href="<?=SITE_DIR.$arResult["CODE"]?>/"><h3><?=$arResult["NAME"]?></h3></a>    */?>
     <div class="news_slider_navigation news_navigation_<?=$arResult["CODE"]?>"></div>
     <div class="news_slider_wrapp slide_<?=$arResult["CODE"]?>">
         <ul class="news_slider ">
