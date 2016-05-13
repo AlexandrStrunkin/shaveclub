@@ -39,11 +39,11 @@
 	$MESS["SALE_REFRESH_DESCRIPTION"] = "Обновить расчеты";
 	$MESS["SALE_APPLY"] = "Применить";
 	$MESS["STB_COUPON_LABEL"] = "Код купона на скидку";
-	
+
 	$MESS["SALE_BACK"] = "Продолжить покупки";
 	$MESS["SALE_BACK_DESCRIPTION"] = "Вернуться к выбору товаров";
 	$MESS["SALE_ORDER"] = "Оформить заказ";
-	$MESS["SALE_TO_BASKET_DESCRIPTION"] = "Полноценное оформление заказа";
+	$MESS["SALE_TO_BASKET_DESCRIPTION"] = "Начать оформление заказа";
 	$MESS["SALE_ORDER_DESCRIPTION"] = "";
 	$MESS["SALE_FAST_ORDER"] = "Быстрый заказ";
 	$MESS["SALE_FAST_ORDER_DESCRIPTION"] = "Вам потребуется указать<br />только имя и номер телефона";

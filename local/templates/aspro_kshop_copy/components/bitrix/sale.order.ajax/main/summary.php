@@ -12,7 +12,7 @@
             <td class="order_item_discount"><?=GetMessage("SOA_TEMPL_SUM_DISCOUNT")?></td>
             <td class="order_item_price">Сумма</td>
 			<!--<td class="order_item_props"><?=GetMessage("SOA_TEMPL_SUM_PROPS")?></td>
-			<td class="order_item_price_type"><?=GetMessage("SOA_TEMPL_SUM_PRICE_TYPE")?></td>  
+			<td class="order_item_price_type"><?=GetMessage("SOA_TEMPL_SUM_PRICE_TYPE")?></td>
 			td class="order_item_weight"><?=GetMessage("SOA_TEMPL_SUM_WEIGHT")?></td>   -->
 		</tr>
 	</thead>
@@ -26,7 +26,7 @@
 				<?if (count($arBasketItems["DETAIL_PICTURE"]) > 0):?>
 					<?$img = CFile::ResizeImageGet($arBasketItems["DETAIL_PICTURE"], Array("width" => $arParams["DISPLAY_IMG_WIDTH"], "height" =>  $arParams["DISPLAY_IMG_HEIGHT"]));?>
 					<img src="<?=$img["src"]?>" alt="<?=$arBasketItems["NAME"]?>" title="<?=$arBasketItems["NAME"]?>" />
-				<?elseif(count($arBasketItems["PREVIEW_PICTURE"]) > 0):?>	
+				<?elseif(count($arBasketItems["PREVIEW_PICTURE"]) > 0):?>
 					<?$img = CFile::ResizeImageGet($arBasketItems["DETAIL_PICTURE"], Array("width" => $arParams["DISPLAY_IMG_WIDTH"], "height" =>  $arParams["DISPLAY_IMG_HEIGHT"]));?>
 					<img src="<?=$img["src"]?>" alt="<?=$arBasketItems["NAME"]?>" title="<?=$arBasketItems["NAME"]?>" />
 				<?else:?>
@@ -39,14 +39,14 @@
             <td class="order_item_discount"><?=$arBasketItems["DISCOUNT_PRICE_PERCENT_FORMATED"]?></td>
              <td align="right" class="cost_cell"><?=$arBasketItems["PRICE"]*$arBasketItems["QUANTITY"]?> руб.</td>
             <!--<td class="order_item_props"><? foreach($arBasketItems["PROPS"] as $val) { echo $val["NAME"].": ".$val["VALUE"]."<br />"; } ?></td>
-		    <td class="order_item_price_type"><?=$arBasketItems["NOTES"]?></td>    
+		    <td class="order_item_price_type"><?=$arBasketItems["NOTES"]?></td>
 			<td class="order_item_weight"><?=$arBasketItems["WEIGHT_FORMATED"]?></td> -->
 		</tr>
 		<?
 	}
 	?>
 	</tbody>
-	
+
 	<!--<tr>
 		<td class="name-cell"></td>
 		<td class="order_item_props"></td>
@@ -59,12 +59,12 @@
 	</tr>  -->
 	<tr>
 		<td class="name-cell"></td>
-		<!--<td class="order_item_props"></td>  
+		<!--<td class="order_item_props"></td>
 		<td class="order_item_price_type"></td>  -->
 		<td class="order_item_discount"></td>
-		<td class="order_item_weight"></td> 
+		<td class="order_item_weight"></td>
 		<td class="order_item_quantity"></td>
-		<td align="right"><b><?=GetMessage("SOA_TEMPL_SUM_SUMMARY")?></b></td>
+		<td style="text-align: right;"><b><?=GetMessage("SOA_TEMPL_SUM_SUMMARY")?></b></td>
 		<td align="right"><?=$arResult["ORDER_PRICE_FORMATED"]?></td>
 	</tr>
 	<?
@@ -73,12 +73,12 @@
 		?>
 		<tr>
 			<td class="name-cell"></td>
-			<!--<td class="order_item_props"></td> 
+			<!--<td class="order_item_props"></td>
 			<td class="order_item_price_type"></td>  -->
 			<td class="order_item_discount"></td>
-			<td class="order_item_weight"></td>  
+			<td class="order_item_weight"></td>
 			<td class="order_item_quantity"></td>
-			<td align="right"><b><?=GetMessage("SOA_TEMPL_SUM_DISCOUNT")?><?if (strLen($arResult["DISCOUNT_PERCENT_FORMATED"])>0):?> (<?echo $arResult["DISCOUNT_PERCENT_FORMATED"];?>)<?endif;?>:</b></td>
+			<td style="text-align: right;"><b><?=GetMessage("SOA_TEMPL_SUM_DISCOUNT")?><?if (strLen($arResult["DISCOUNT_PERCENT_FORMATED"])>0):?> (<?echo $arResult["DISCOUNT_PERCENT_FORMATED"];?>)<?endif;?>:</b></td>
 			<td align="right"><?echo $arResult["DISCOUNT_PRICE_FORMATED"]?>
 			</td>
 		</tr>
@@ -91,12 +91,12 @@
 			?>
 			<tr>
 				<td class="name-cell"></td>
-				<!--<td class="order_item_props"></td>  
+				<!--<td class="order_item_props"></td>
 				<td class="order_item_price_type"></td> -->
 				<td class="order_item_discount"></td>
-				<td class="order_item_weight"></td> 
+				<td class="order_item_weight"></td>
 				<td class="order_item_quantity"></td>
-				<td align="right"><?=$val["NAME"]?> <?=$val["VALUE_FORMATED"]?>:</td>
+				<td style="text-align: right;"><?=$val["NAME"]?> <?=$val["VALUE_FORMATED"]?>:</td>
 				<td align="right"><?=$val["VALUE_MONEY_FORMATED"]?></td>
 			</tr>
 			<?
@@ -107,12 +107,12 @@
 		?>
 		<tr>
 			<td class="name-cell"></td>
-			<!--<td class="order_item_props"></td>   
+			<!--<td class="order_item_props"></td>
 			<td class="order_item_price_type"></td>  -->
 			<td class="order_item_discount"></td>
-			<td class="order_item_weight"></td> 
+			<td class="order_item_weight"></td>
 			<td class="order_item_quantity"></td>
-			<td align="right"><b><?=GetMessage("SOA_TEMPL_SUM_DELIVERY")?></b></td>
+			<td style="text-align: right;"><b><?=GetMessage("SOA_TEMPL_SUM_DELIVERY")?></b></td>
 			<td align="right"><?=$arResult["DELIVERY_PRICE_FORMATED"]?></td>
 		</tr>
 		<?
@@ -120,12 +120,12 @@
 	?>
 	<tr>
 		<td class="name-cell"></td>
-		<!--<td class="order_item_props"></td> 
+		<!--<td class="order_item_props"></td>
 		<td class="order_item_price_type"></td>    -->
 		<td class="order_item_discount"></td>
-		<td class="order_item_weight"></td> 
+		<td class="order_item_weight"></td>
 		<td class="order_item_quantity"></td>
-		<td align="right"><b><?=GetMessage("SOA_TEMPL_SUM_IT")?></b></td>
+		<td style="text-align: right;"><b><?=GetMessage("SOA_TEMPL_SUM_IT")?></b></td>
 		<td align="right"><b><?=$arResult["ORDER_TOTAL_PRICE_FORMATED"]?></b>
 		</td>
 	</tr>
@@ -135,12 +135,12 @@
 		?>
 		<tr>
 			<td class="name-cell"></td>
-			<!--<td class="order_item_props"></td>   
+			<!--<td class="order_item_props"></td>
 			<td class="order_item_price_type"></td> -->
 			<td class="order_item_discount"></td>
 			<td class="order_item_weight"></td>
 			<td class="order_item_quantity"></td>
-			<td align="right"><b><?=GetMessage("SOA_TEMPL_SUM_PAYED")?></b></td>
+			<td style="text-align: right;"><b><?=GetMessage("SOA_TEMPL_SUM_PAYED")?></b></td>
 			<td align="right"><?=$arResult["PAYED_FROM_ACCOUNT_FORMATED"]?></td>
 		</tr>
 		<?

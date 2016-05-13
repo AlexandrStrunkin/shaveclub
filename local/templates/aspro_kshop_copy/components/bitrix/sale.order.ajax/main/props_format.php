@@ -116,7 +116,7 @@
                             elseif ($arProperties["TYPE"] == "TEXT")
                             {
                                 if($arProperties["CODE"] == "store_pickup"){ ?>
-                                
+
                                         <input class="ora-store" for="" code="<?=$arProperties["CODE"]?>" type="hidden" id="store_pickup" name="<?=$arProperties["FIELD_NAME"]?>" value="<?=htmlspecialcharsbx($arResult["STORE_LIST"][$arResult["BUYER_STORE"]]["ID"])?>">
                               <?  }else{
                                     ?>
@@ -222,9 +222,9 @@
                                 </div>
                                 <?
                                 } else {
-                                    
+
                                     if($_POST["DELIVERY_ID"] != 45 and      // id пунктов самовывоза
-                                       $_POST["DELIVERY_ID"] != 47 and                   
+                                       $_POST["DELIVERY_ID"] != 47 and
                                        $_POST["DELIVERY_ID"] != 48 and
                                        $_POST["DELIVERY_ID"] != 50 and
                                        $_POST["DELIVERY_ID"] != 51 ){
@@ -253,7 +253,7 @@
                                         <div style="clear: both;"></div>
                                 <?}else{?>
                                     <input type="hidden" value="-" code="<?=$arProperties["CODE"]?>" rows="<?=$rows?>" cols="<?=$arProperties["SIZE1"]?>" name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>">  <?// ставим тире для оформления заказа      ?>
-                                <?} 
+                                <?}
                                 }
                             }
                             elseif ($arProperties["TYPE"] == "LOCATION")
@@ -362,7 +362,7 @@
                                         foreach($arProperties["VARIANTS"] as $arVariants):
                                         ?>
                                         <input
-                                            code="<?=$arProperties["CODE"]?>" 
+                                            code="<?=$arProperties["CODE"]?>"
                                             type="radio"
                                             name="<?=$arProperties["FIELD_NAME"]?>"
                                             id="<?=$arProperties["FIELD_NAME"]?>_<?=$arVariants["VALUE"]?>"
