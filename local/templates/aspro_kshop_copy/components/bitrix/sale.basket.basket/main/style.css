@@ -801,3 +801,7 @@ input.bt2:active{border:1px solid #d2d2d2}
 .bx-touch 	 .bx_item_detail_scu_small_noadaptive .bx_slide_right{right:  0;background:url(images/fade_right.png) repeat-y   right center;background-size: 100% auto}
 
 /* end of sku */
+
+.description{
+    width: 170px;
+}
