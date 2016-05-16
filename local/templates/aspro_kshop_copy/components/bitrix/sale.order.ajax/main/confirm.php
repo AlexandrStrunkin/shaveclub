@@ -21,11 +21,7 @@ if (!empty($arResult["ORDER"]))
 
 		<table class="sale_order_full_table">
 			<tr>                 <!--Вывод информации о заказе, после оформления заказа -->
-				<td class="ps_logo">
-					<div class="pay_name"><?=GetMessage("SOA_TEMPL_PAY")?></div>
-					<?=CFile::ShowImage($arResult["PAY_SYSTEM"]["LOGOTIP"], 100, 100, "border=0", "", false);?>
-					<div class="paysystem_name"><?=$arResult["PAY_SYSTEM"]["NAME"] ?></div><br>
-				</td>
+
 			</tr>
 			<?
 			if (strlen($arResult["PAY_SYSTEM"]["ACTION_FILE"]) > 0)
