@@ -8,8 +8,9 @@
 if (count($arResult["ERRORS"][0]) > 0){
 	//print_r($arResult["ERRORS"][0]);
 	foreach ($arResult["ERRORS"] as $key => $error)
-		if (intval($key) == 0 && $key !== 0)
+		if (intval($key) == 0 && $key !== 0){
 			$arResult["ERRORS"][$key] = str_replace("#FIELD_NAME#", "&quot;".GetMessage("REGISTER_FIELD_".$key)."&quot;", $error);
+        }
 
 	ShowError(implode("<br />", $arResult["ERRORS"]));}
 ?>
@@ -20,35 +21,25 @@ if (count($arResult["ERRORS"][0]) > 0){
     <div class="form-block">
     <script type="text/javascript">
        $(document).ready(function(){
-          $('#reloadCaptcha').click(function(){
-             $('#whiteBlock').show();
+          $('#reload_captcha').click(function(){
+             $('#white_block').show();
              $.getJSON('<?=$this->__folder?>/reload_captcha.php', function(data) {
-                $('#captchaImg').attr('src','/bitrix/tools/captcha.php?captcha_sid='+data);
-                $('#captchaSid').val(data);
-                $('#whiteBlock').hide();
+                $('#captcha_img').attr('src','/bitrix/tools/captcha.php?captcha_sid='+data);
+                $('#captcha_sid').val(data);
+                $('#white_block').hide();
              });
              return false;
           });
        });
     </script>
-	<script>
-		$(document).ready(function(){
-			$("form#registraion-page-form").validate
-			({
-				rules:{ emails: "email"}
-			});
-		})
-	</script>
+
 
 	<form id="registraion-page-form" method="post" action="<?=POST_FORM_ACTION_URI?>" name="regform" enctype="multipart/form-data" >
 			<?if($arResult["BACKURL"] <> ''):?>
 				<input type="hidden" name="backurl" value="<?=$arResult["BACKURL"]?>" />
 			<?endif;?>
 			<?
-				/*$tmp = array( "LOGIN", "EMAIL", "PASSWORD", "CONFIRM_PASSWORD" );
-				for( $i = 4; $i < count($arResult["SHOW_FIELDS"]); $i++ )
-					$tmp[] = $arResult["SHOW_FIELDS"][$i];
-				$arResult["SHOW_FIELDS"] = $tmp;*/
+
                 $arResult['SHOW_FIELDS'] = array(
                                            'NAME',
                                            'PERSONAL_PHONE',
@@ -136,15 +127,16 @@ if (count($arResult["ERRORS"][0]) > 0){
 	<?//endif?>
 <?endforeach?>
 			<?if ($arResult["USE_CAPTCHA"] == "Y"){?>
-                <div class="r " id="captchaBlock">
+                <div class="r " id="captcha_block">
                     <label><?=GetMessage("REGISTER_CAPTCHA_PROMT")?>:<span class="star">*</span></label>
-                       <div id="whiteBlock">
-                          <img id="loaderImg" src="<?=SITE_TEMPLATE_PATH?>/i/ajax-loader.gif" />
+                       <div id="white_block">
+                          <img id="loader_img" src="<?=SITE_TEMPLATE_PATH?>/images/ajax-loader.gif" />
                        </div>
-                    <input id="captchaSid" type="hidden" name="captcha_sid" value="<?=$arResult["CAPTCHA_CODE"]?>" />
-                    <img id="captchaImg" src="/bitrix/tools/captcha.php?captcha_sid=<?=$arResult["CAPTCHA_CODE"]?>" width="180" height="40" alt="CAPTCHA" style="display:block;" />
-                    <a id="reloadCaptcha"><?=GetMessage('RELOAD_CAPTCHA')?></a>
+                    <input id="captcha_sid" type="hidden" name="captcha_sid" value="<?=$arResult["CAPTCHA_CODE"]?>" />
+                    <img id="captcha_img" src="/bitrix/tools/captcha.php?captcha_sid=<?=$arResult["CAPTCHA_CODE"]?>" width="180" height="40" alt="CAPTCHA" style="display:block;" />
+                    <a id="reload_captcha"><?=GetMessage('RELOAD_CAPTCHA')?></a>
                     <input <?=!empty( $error ) ? 'class="error"' : ''?> required type="text" name="captcha_word" maxlength="50" value="" />
+
                 </div>
 			<?}?>
 			<div class="but-r">
