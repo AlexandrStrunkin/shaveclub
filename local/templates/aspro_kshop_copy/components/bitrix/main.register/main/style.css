@@ -23,3 +23,14 @@ top:4px;
 	background-repeat: no-repeat;
 	background-image: url(images/error.png);
 }
+/*--CAPTCHA--*/
+#captchaBlock{position:relative;}
+#captchaBlock #whiteBlock{display:none; text-align:center; position:absolute; background-color:#FFF; width:180px; height:40px;}
+#captchaBlock #whiteBlock #loaderImg{margin-top:3px;}
+.module-form-block-wr .form-block .r.register-captcha img{
+   margin-bottom: 0px;
+}
+#reloadCaptcha{
+   margin-bottom: 15px;
+   display: block;
+}

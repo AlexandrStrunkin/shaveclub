@@ -60,6 +60,7 @@
 	$MESS["REGISTER_FILL_IT"] = "Заполните это поле";
 	$MESS["REGISTER_REGISTER"] = "Зарегистрироваться";
 	$MESS["REQUIRED_FIELDS"] = "Обязательные поля";
+    $MESS["RELOAD_CAPTCHA"] = "Поменять картинку";
 	$MESS["PHONE_DESCRIPTION"] = "Телефон необходим для подтверждения заказа";
 	$MESS["EMAIL_DESCRIPTION"] = "Если Вы укажете свой e-mail - это существенно ускорит обработку заказа. <br>Пожалуйста проверяйте свою почту чаще!";
 ?>
