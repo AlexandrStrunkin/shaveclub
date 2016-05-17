@@ -9,7 +9,7 @@ if(!empty( $_REQUEST["change_password"])){
 	<div class="module-authorization">
 		<?if($arResult['SHOW_ERRORS'] == 'Y'):?>
 			<?ShowMessage($arResult['ERROR_MESSAGE']);?>
-		<?endif;?>		
+		<?endif;?>
 		<div class="authorization-cols">
 			<div class="col authorization">
 				<div class="auth-title"><?=GetMessage("ALLREADY_REGISTERED");?></div>
@@ -29,7 +29,7 @@ if(!empty( $_REQUEST["change_password"])){
 								<?if($_POST["USER_LOGIN"]=='' && isset($_POST["USER_LOGIN"])){?><label class="error"><?=GetMessage("FIELD_REQUIRED")?></label><?}?>
 							</div>
 							<div class="r">
-								<label><?=GetMessage("AUTH_PASSWORD")?>:<span class="star">*</span></label><br />									
+								<label><?=GetMessage("AUTH_PASSWORD")?>:<span class="star">*</span></label><br />
 								<input type="password" name="USER_PASSWORD" required maxlength="50" size="17" tabindex="8" />
 								<a class="forgot" href="<?=SITE_DIR?>auth/forgot-password/<?=!empty( $_REQUEST["backurl"] ) ? '?backurl='.$_REQUEST["backurl"] : ''?>" tabindex="9"><?=GetMessage("FORGOT_PASSWORD")?></a>
 								<?if($_POST["USER_PASSWORD"]=='' && isset($_POST["USER_PASSWORD"])){?><label class="error"><?=GetMessage("FIELD_REQUIRED")?></label><?}?>
@@ -49,7 +49,7 @@ if(!empty( $_REQUEST["change_password"])){
 									<label for="remuser" tabindex="11"><?=GetMessage("AUTH_REMEMBER_ME")?></label>
 								</div>
 								<div class="clearboth"></div>
-							</div>							
+							</div>
 						</form>
 					</div>
 					<?if($arResult["AUTH_SERVICES"]):/*?>
@@ -72,9 +72,9 @@ if(!empty( $_REQUEST["change_password"])){
 					<?*/endif;?>
 					<div class="clearboth"></div>
 				</div>
-				
+
 			</div>
-			
+
 			<div class="col registration">
 				<div class="auth-title"><?=GetMessage("NEW_USER");?></div>
 				<div class="form-block">
@@ -86,19 +86,19 @@ if(!empty( $_REQUEST["change_password"])){
 							</a>
 						<!--/noindex-->
 					</div>
-				</div>					
+				</div>
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
 	if($(window).width() >= 600){
 		$('.authorization-cols').equalize({children: '.col .auth-title', reset: true});
-		$('.authorization-cols').equalize({children: '.col .form-block', reset: true}); 
+		$('.authorization-cols').equalize({children: '.col .form-block', reset: true});
 	}
-	
+
 	$(document).ready(function(){
 		$(window).resize();
-		
+
 		$(".authorization-cols .col.authorization .soc-avt .row a").click(function(){
 			$(window).resize();
 		});
@@ -107,7 +107,7 @@ if(!empty( $_REQUEST["change_password"])){
 		<?}else{?>
 			document.system_auth_form<?=$arResult["RND"]?>.USER_LOGIN.focus();
 		<?}?>
-		
+
 		$("#avtorization-form-page").validate({
 			focusCleanup: false,
 			rules: {
@@ -117,8 +117,8 @@ if(!empty( $_REQUEST["change_password"])){
 				}
 			}
 		});
-		
-		$("form[name=bx_auth_servicesform]").validate(); 
+
+		$("form[name=bx_auth_servicesform]").validate();
 	});
 	</script>
 <?endif;?>
