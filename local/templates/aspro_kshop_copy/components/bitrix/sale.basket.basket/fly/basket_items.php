@@ -17,7 +17,7 @@
 					<?
 						foreach ($arResult["GRID"]["HEADERS"] as $id => $arHeader)
 						{
-							if ($arHeader["id"] == "DELETE"){$bDeleteColumn = true;}	
+							if ($arHeader["id"] == "DELETE"){$bDeleteColumn = true;}
 							if ($arHeader["id"] == "TYPE"){$bTypeColumn = true;}
 							if ($arHeader["id"] == "QUANTITY"){$bQuantityColumn = true;}
 						}
@@ -48,7 +48,7 @@
 							if (in_array($arHeader["id"], array("PROPS", "DELAY", "DELETE", "TYPE"))) continue; // some values are not shown in columns in this template
 							if ($arHeader["id"] == "NAME"):
 							?>
-								<td class="thumb-cell">	
+								<td class="thumb-cell">
 									<?if( strlen($arItem["PREVIEW_PICTURE"]["SRC"])>0 ){?>
 										<?if (strlen($arItem["DETAIL_PAGE_URL"]) > 0):?><a href="<?=$arItem["DETAIL_PAGE_URL"]?>" class="thumb"><?endif;?>
 											<img src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" alt="<?=(is_array($arItem["PREVIEW_PICTURE"]["ALT"])?$arItem["PREVIEW_PICTURE"]["ALT"]:$arItem["NAME"]);?>" title="<?=(is_array($arItem["PREVIEW_PICTURE"]["TITLE"])?$arItem["PREVIEW_PICTURE"]["TITLE"]:$arItem["NAME"]);?>" />
@@ -61,17 +61,17 @@
 										<?if (strlen($arItem["DETAIL_PAGE_URL"]) > 0):?><a href="<?=$arItem["DETAIL_PAGE_URL"]?>" class="thumb"><?endif;?>
 											<img src="<?=SITE_TEMPLATE_PATH?>/images/no_photo_medium.png" alt="<?=$arItem["NAME"]?>" title="<?=$arItem["NAME"]?>" width="80" height="80" />
 										<?if (strlen($arItem["DETAIL_PAGE_URL"]) > 0):?></a><?endif;?>
-									<?}?>	
+									<?}?>
 									<?if (!empty($arItem["BRAND"])):?><div class="ordercart_brand"><img src="<?=$arItem["BRAND"]?>" /></div><?endif;?>
 								</td>
 								<td class="name-cell">
 									<?if (strlen($arItem["DETAIL_PAGE_URL"]) > 0):?><a href="<?=$arItem["DETAIL_PAGE_URL"]?>"><?endif;?><?=$arItem["NAME"]?><?if (strlen($arItem["DETAIL_PAGE_URL"]) > 0):?></a><?endif;?><br />
-									<?if ($bPropsColumn):?>	
+									<?if ($bPropsColumn):?>
 										<div class="item_props">
 											<? foreach ($arItem["PROPS"] as $val) {
 													if (is_array($arItem["SKU_DATA"])) {
 														$bSkip = false;
-														foreach ($arItem["SKU_DATA"] as $propId => $arProp) { if ($arProp["CODE"] == $val["CODE"]) { $bSkip = true; break; } } 
+														foreach ($arItem["SKU_DATA"] as $propId => $arProp) { if ($arProp["CODE"] == $val["CODE"]) { $bSkip = true; break; } }
 														if ($bSkip) continue;
 													} echo '<span class="item_prop"><span class="name">'.$val["NAME"].':&nbsp;</span><span class="property_value">'.$val["VALUE"].'</span></span>';
 												}?>
@@ -91,7 +91,7 @@
 															<ul id="prop_<?=$arProp["CODE"]?>_<?=$arItem["ID"]?>" style="width: 200%;margin-left:0%;">
 															<?	foreach ($arProp["VALUES"] as $valueId => $arSkuValue){
 																	$selected = "";
-																	foreach ($arItem["PROPS"] as $arItemProp) { 
+																	foreach ($arItem["PROPS"] as $arItemProp) {
 																		if ($arItemProp["CODE"] == $arItem["SKU_DATA"][$propId]["CODE"])
 																			{ if ($arItemProp["VALUE"] == $arSkuValue["NAME"] || $arItemProp["VALUE"] == $arSkuValue["XML_ID"]) $selected = "class=\"bx_active\""; }
 																	};?>
@@ -117,7 +117,7 @@
 																<?foreach ($arProp["VALUES"] as $valueId => $arSkuValue) {
 																	$selected = "";
 																	foreach ($arItem["PROPS"] as $arItemProp) {
-																		if ($arItemProp["CODE"] == $arItem["SKU_DATA"][$propId]["CODE"]) 
+																		if ($arItemProp["CODE"] == $arItem["SKU_DATA"][$propId]["CODE"])
 																		{ if ($arItemProp["VALUE"] == $arSkuValue["NAME"]) $selected = "class=\"bx_active\""; }
 																	}?>
 																	<li style="width:10%;" <?=$selected?>><a href="javascript:void(0);"><?=$arSkuValue["NAME"]?></a></li>
@@ -141,31 +141,31 @@
 											$ratio = isset($arItem["MEASURE_RATIO"]) ? $arItem["MEASURE_RATIO"] : 0;
 											$max = isset($arItem["AVAILABLE_QUANTITY"]) ? "max=\"".$arItem["AVAILABLE_QUANTITY"]."\"" : "";
 										?>
-										<?if (isset($arItem["MEASURE_RATIO"])&& floatval($arItem["MEASURE_RATIO"]) != 0&& !CSaleBasketHelper::isSetParent($arItem)):?><span onclick="setQuantity('<?=$arItem["ID"]?>', '<?=$ratio?>', 'down')" class="minus">-</span><?endif;?>										
+										<?if (isset($arItem["MEASURE_RATIO"])&& floatval($arItem["MEASURE_RATIO"]) != 0&& !CSaleBasketHelper::isSetParent($arItem)):?><span onclick="setQuantity('<?=$arItem["ID"]?>', '<?=$ratio?>', 'down')" class="minus">-</span><?endif;?>
 										<input
 											type="text"
-											class="text" 
+											class="text"
 											id="QUANTITY_INPUT_<?=$arItem["ID"]?>"
 											name="QUANTITY_INPUT_<?=$arItem["ID"]?>"
 											size="2"
-											data-id="<?=$arItem["ID"];?>" 
+											data-id="<?=$arItem["ID"];?>"
 											maxlength="18"
 											min="0"
 											<?=$max?>
 											step="<?=$ratio?>"
 											value="<?=$arItem["QUANTITY"]?>"
 											onchange="updateQuantity('QUANTITY_INPUT_<?=$arItem["ID"]?>', '<?=$arItem["ID"]?>', '<?=$ratio?>')"
-										>	
+										>
 										<?if (isset($arItem["MEASURE_RATIO"])&& floatval($arItem["MEASURE_RATIO"]) != 0&& !CSaleBasketHelper::isSetParent($arItem)):?><span onclick="setQuantity('<?=$arItem["ID"]?>', '<?=$ratio?>', 'up')" class="plus">+</span><?endif;?>
 									</div>
 									<?if (isset($arItem["MEASURE_TEXT"]) && $arParams["SHOW_MEASURE"]=="Y"):?><div class="measure"><?=$arItem["MEASURE_TEXT"];?></div><?endif;?>
-									<input type="hidden" id="QUANTITY_<?=$arItem['ID']?>" name="QUANTITY_<?=$arItem['ID']?>" value="<?=$arItem["QUANTITY"]?>" /> 
+									<input type="hidden" id="QUANTITY_<?=$arItem['ID']?>" name="QUANTITY_<?=$arItem['ID']?>" value="<?=$arItem["QUANTITY"]?>" />
 									<?=getQuantitySelectControl("QUANTITY_SELECT_".$arItem["ID"], "QUANTITY_SELECT_".$arItem["ID"], $arItem["QUANTITY"], $arItem["AVAILABLE_QUANTITY"], $arItem["MEASURE_RATIO"], $arItem["MEASURE_TEXT"]); // quantity selector for mobile ?>
 								</td>
 							<?elseif ($arHeader["id"] == "SUMM"):?>
 								<td class="summ-cell"><?=$arItem["SUMM_FORMATED"];?></td>
 							<?elseif ($arHeader["id"] == "PRICE"):?>
-								<td class="cost-cell">								
+								<td class="cost-cell">
 									<?if( doubleval($arItem["DISCOUNT_PRICE_PERCENT"]) > 0 ){?>
 										<div class="price"><?=$arItem["PRICE_FORMATED"]?></div>
 										<div class="price discount"><strike><?=$arItem["FULL_PRICE_FORMATED"]?></strike></div>
@@ -205,22 +205,22 @@
 				<?
 					$arTotal = array();
 					if ($bWeightColumn) { $arTotal["WEIGHT"]["NAME"] = GetMessage("SALE_TOTAL_WEIGHT"); $arTotal["WEIGHT"]["VALUE"] = $arResult["allWeight_FORMATED"];}
-					if ($arParams["PRICE_VAT_SHOW_VALUE"] == "Y") 
-					{ 
+					if ($arParams["PRICE_VAT_SHOW_VALUE"] == "Y")
+					{
 						$arTotal["VAT_EXCLUDED"]["NAME"] = GetMessage("SALE_VAT_EXCLUDED"); $arTotal["VAT_EXCLUDED"]["VALUE"] = $arResult["allSum_wVAT_FORMATED"];
 						$arTotal["VAT_INCLUDED"]["NAME"] = GetMessage("SALE_VAT_INCLUDED"); $arTotal["VAT_INCLUDED"]["VALUE"] = $arResult["allVATSum_FORMATED"];
 					}
 					if (doubleval($arResult["DISCOUNT_PRICE_ALL"]) > 0)
 					{
-						$arTotal["PRICE"]["NAME"] = GetMessage("SALE_TOTAL"); 
+						$arTotal["PRICE"]["NAME"] = GetMessage("SALE_TOTAL");
 						$arTotal["PRICE"]["VALUES"]["ALL"] = str_replace(" ", "&nbsp;", $arResult["allSum_FORMATED"]);
 						$arTotal["PRICE"]["VALUES"]["WITHOUT_DISCOUNT"] = $arResult["PRICE_WITHOUT_DISCOUNT"];
 					}
 					else
 					{
-						$arTotal["PRICE"]["NAME"] = GetMessage("SALE_TOTAL"); 
+						$arTotal["PRICE"]["NAME"] = GetMessage("SALE_TOTAL");
 						$arTotal["PRICE"]["VALUES"]["ALL"] = $arResult["allSum_FORMATED"];
-					}			
+					}
 				?>
 			</tbody>
 		</table>
@@ -228,7 +228,7 @@
 	<div class="itog">
 		<table class="colored fixed" height="100%" width="100%">
 			<?$totalCols = 3 + ($arParams["AJAX_MODE_CUSTOM"] != "Y" ? 1 : 0) + ($arParams["SHOW_FULL_ORDER_BUTTON"] == "Y" ? 1 : 0)?>
-			<tfoot>				
+			<tfoot>
 				<tr data-id="total_row">
 					<td colspan="<?=($totalCols - 1)?>" class="row_titles">
 						<?foreach($arTotal as $key => $value):?>
@@ -257,7 +257,7 @@
 				<tr data-id="total_buttons">
 					<td>
 						<div class="basket_close">
-							<a class="button30 fast_order"><span><?=GetMessage("SALE_BACK")?></span></a>
+							<a class="button30 "><span><?=GetMessage("SALE_BACK")?></span></a>
 							<div class="description"><?=GetMessage("SALE_BACK_DESCRIPTION");?></div>
 						</div>
 					</td>
@@ -271,7 +271,7 @@
 					<?endif;?>
 					<td>
 						<div class="basket_back">
-							<a href="<?=$arParams["PATH_TO_BASKET"]?>" class="button30 gradient close"><span><?=GetMessage("GO_TO_BASKET")?></span></a>
+							<a href="<?=$arParams["PATH_TO_BASKET"]?>" class="button30 fast_order close"><span><?=GetMessage("GO_TO_BASKET")?></span></a>
 							<div class="description"><?=GetMessage("SALE_TO_BASKET_DESCRIPTION");?></div>
 						</div>
 					</td>
@@ -284,12 +284,12 @@
 						</td>
 					<?endif;?>
 					<td width="19%">
-						<?if ($arParams["SHOW_FAST_ORDER_BUTTON"]=="Y"):?>
+						<?/*if ($arParams["SHOW_FAST_ORDER_BUTTON"]=="Y"):?>
 							<div class="basket_fast_order clearfix">
 								<a onclick="oneClickBuyBasket()" class="button30 gradient fast_order"><span><?=GetMessage("SALE_FAST_ORDER")?></span></a>
 								<div class="description"><?=GetMessage("SALE_FAST_ORDER_DESCRIPTION");?></div>
 							</div>
-						<?endif;?>
+						<?endif;*/?>
 					</td>
 				</tr>
 			</tfoot>
