@@ -20,12 +20,8 @@ if (!empty($arResult["ORDER"]))
 		<br /><br />
 
 		<table class="sale_order_full_table">
-			<tr>                 <!--Âûâîä èíôîðìàöèè î çàêàçå, ïîñëå îôîðìëåíèÿ çàêàçà -->
-				<td class="ps_logo">
-					<div class="pay_name"><?=GetMessage("SOA_TEMPL_PAY")?></div>
-					<?=CFile::ShowImage($arResult["PAY_SYSTEM"]["LOGOTIP"], 100, 100, "border=0", "", false);?>
-					<div class="paysystem_name"><?=$arResult["PAY_SYSTEM"]["NAME"] ?></div><br>
-				</td>
+			<tr>                 <!--Ð’Ñ‹Ð²Ð¾Ð´ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ð¸ Ð¾ Ð·Ð°ÐºÐ°Ð·Ðµ, Ð¿Ð¾ÑÐ»Ðµ Ð¾Ñ„Ð¾Ñ€Ð¼Ð»ÐµÐ½Ð¸Ñ Ð·Ð°ÐºÐ°Ð·Ð° -->
+
 			</tr>
 			<?
 			if (strlen($arResult["PAY_SYSTEM"]["ACTION_FILE"]) > 0)
