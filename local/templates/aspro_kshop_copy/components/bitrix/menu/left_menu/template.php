@@ -11,7 +11,7 @@
 <script>
 	$("ul.left_menu li:not(.current)").click(function()
 	{
-		$(this).siblings().removeClass("current"); $(this).addClass("current");		
+		$(this).siblings().removeClass("current"); $(this).addClass("current");
 	});
 </script>
 
