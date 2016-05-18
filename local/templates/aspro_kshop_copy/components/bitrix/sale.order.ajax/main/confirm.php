@@ -20,6 +20,11 @@ if (!empty($arResult["ORDER"]))
 		<br />
 
 		<table class="sale_order_full_table">
+
+			<tr>
+
+			</tr>
+
 			<?
 			if (strlen($arResult["PAY_SYSTEM"]["ACTION_FILE"]) > 0)
 			{

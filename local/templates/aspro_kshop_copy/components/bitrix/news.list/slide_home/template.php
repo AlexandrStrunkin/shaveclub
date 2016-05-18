@@ -8,7 +8,7 @@
                 $this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
                 $this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
                 ?>
-                <li id="<?=$this->GetEditAreaId($arItem['ID']);?>">
+                <li id="<?=$this->GetEditAreaId($arItem['ID']);?>" >
                     <div class="date"><?=$arItem["DISPLAY_ACTIVE_FROM"]?></div>
                     <a class="name" href="<?=$arItem["DETAIL_PAGE_URL"]?>"><?=$arItem["NAME"]?></a>
                     <div class="preview"><?=$arItem['~PREVIEW_TEXT'];?></div>
@@ -17,7 +17,7 @@
         </ul>
 
     </div>
-    <ul class="flex-control-nav flex-control-paging"><?foreach($arResult["ITEMS"] as $arItem){?><li><a></a></li><?}?></ul>
+    <ul class="flex-control-nav flex-control-paging_<?=$arResult["CODE"]?>"><?foreach($arResult["ITEMS"] as $arItem){?><li><a></a></li><?}?></ul>
 </div>
 <script>
         $(".slide_<?=$arResult["CODE"]?>").flexslider({
@@ -32,6 +32,6 @@
             controlNav: true,
             pauseOnHover: true,
             controlsContainer: ".news_navigation_<?=$arResult["CODE"]?>",
-            manualControls: ".news_block.<?=$arResult["CODE"]?> .flex-control-nav.flex-control-paging li a"
+            manualControls: ".news_block.<?=$arResult["CODE"]?> .flex-control-nav.flex-control-paging_<?=$arResult["CODE"]?> li a"
         });
 </script>

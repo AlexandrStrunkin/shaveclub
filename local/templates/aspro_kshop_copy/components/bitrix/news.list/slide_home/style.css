@@ -1,5 +1,5 @@
 #slide_2{
-    display: none;
+  opacity: 0;
 }
 .slide_1,
 .slide_2{
@@ -8,10 +8,16 @@
     cursor: pointer;
 
 }
-.news_slider li{
-   width: 360px!important;
+.news_slider1 li{
+   /*width: 360px!important; */
 }
 .slide_1.active,
 .slide_2.active{
     border-bottom: 2px solid #177997;
+}
+.news_slider{
+    width: 2880px;
+}
+.news_slider_navigation ul:nth-child(2){
+    display: none;
 }
