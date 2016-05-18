@@ -94,7 +94,7 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/props_format.php");
 	?>
 	<input type="hidden" name="showProps" id="showProps" value="<?=($_POST["showProps"] == 'Y' ? 'Y' : 'N')?>" />
 </div>
-<div id="sale_order_props" <?=($bHideProps && $_POST["showProps"] != "Y")?"style='display:none;'":''?> class="sale_order_table props">
+<div id="sale_order_props" <?=($bHideProps && $_POST["showProps"] != "Y")?"style='display:block;'":''?> class="sale_order_table props">
 	<?
 	PrintPropsForm($arResult["ORDER_PROP"]["USER_PROPS_N"], $arParams["TEMPLATE_LOCATION"]);
 	PrintPropsForm($arResult["ORDER_PROP"]["USER_PROPS_Y"], $arParams["TEMPLATE_LOCATION"]);
@@ -102,6 +102,10 @@ include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/props_format.php");
 </div>
 
 <script type="text/javascript">
+    window.onload = function () {     // выбор первого пункта доставки
+        $('.bx_element:first-child input').trigger('click');
+    };
+
 	function fGetBuyerProps(el)
 	{
 		var show = '<?=GetMessageJS('SOA_TEMPL_BUYER_SHOW')?>';

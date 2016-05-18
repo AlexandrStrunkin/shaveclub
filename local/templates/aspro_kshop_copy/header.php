@@ -1,4 +1,4 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?> 
+<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <?IncludeTemplateLangFile(__FILE__); global $APPLICATION, $TEMPLATE_OPTIONS; $fields = CSite::GetByID(SITE_ID)->Fetch();?>
 <?if($GET["debug"]=="y"){error_reporting(E_ERROR | E_PARSE);}
 //if(isset($_GET['test']) && $_GET['test'] == 'fghr3u342gfh5342gth68') $USER->Authorize(1);
@@ -17,7 +17,7 @@ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 
     <?$APPLICATION->ShowMeta("apple-mobile-web-app-status-bar-style");?>
     <?$APPLICATION->ShowMeta("SKYPE_TOOLBAR");?>
     <?$APPLICATION->ShowHead();?>
-    
+
     <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css" />    <?if(CModule::IncludeModule("aspro.kshop")) {CKShop::Start(SITE_ID);}?>
     <!--[if gte IE 9]><style type="text/css">.basket_button, .button30, .icon {filter: none;}</style><![endif]-->
     <script type="text/javascript">
@@ -34,7 +34,7 @@ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 
     </script>
     <?/*<link rel="icon" href="/bitrix/templates/aspro_kshop_copy/themes/azure_grey/images/favicon.ico" type="image/x-icon">
       <link rel="shortcut icon" href="/bitrix/templates/aspro_kshop_copy/themes/azure_grey/images/favicon.ico" type="image/x-icon">*/?>
-</head>	
+</head>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function (d, w, c) {
@@ -67,14 +67,14 @@ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 
 <body id="main">
     <?if(!CModule::IncludeModule("aspro.kshop")){?><center><?$APPLICATION->IncludeFile(SITE_DIR."include/error_include_module.php");?></center></body></html><?die();?><?}?>
 <!--noindex-->
-<div id="preload_wrapp" style="display:none;"> 
+<div id="preload_wrapp" style="display:none;">
     <?$arImages = array("button_icons.png", "slider_pagination.png", "arrows_big.png", "like_icons.png", "arrows_small.png", "sort_icons.png");?>
     <?foreach($arImages as $image):?><img src="<?=SITE_TEMPLATE_PATH?>/images/<?=$image;?>" /><?endforeach;?>
 </div><? //it's for fast load some sprites ?>
 <!--/noindex-->
 <?$APPLICATION->IncludeComponent(
-        "aspro:theme.kshop", 
-        ".default", 
+        "aspro:theme.kshop",
+        ".default",
         array(
             "DEMO" => "N",
             "MODULE_ID" => "aspro.kshop",
@@ -85,7 +85,7 @@ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 
 <?CKShop::SetJSOptions();?>
 <?$isFrontPage = CSite::InDir(SITE_DIR.'index.php');?>
 <div class="wrapper <?=($isFrontPage ? "front_page" : "")?> basket_<?=strToLower($TEMPLATE_OPTIONS["BASKET"]["CURRENT_VALUE"])?> head_<?=strToLower($TEMPLATE_OPTIONS["HEAD"]["CURRENT_VALUE"])?> banner_<?=strToLower($TEMPLATE_OPTIONS["BANNER_WIDTH"]["CURRENT_VALUE"])?>">
-<div id="panel"><?$APPLICATION->ShowPanel();?></div>	
+<div id="panel"><?$APPLICATION->ShowPanel();?></div>
 <div class="top-h-row">
     <div class="wrapper_inner">
         <div class="h-user-block" id="personal_block">
@@ -133,8 +133,8 @@ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 
     </div>
 </div>
 
-<header id="header">	
-    <div class="wrapper_inner">	
+<header id="header">
+    <div class="wrapper_inner">
         <table class="middle-h-row" cellspacing="0" cellpadding="0" border="0" width="100%"><tr>
                 <td class="logo_wrapp">
                     <div class="logo">
@@ -144,8 +144,8 @@ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 
                 <td  class="center_block">
                     <div class="main-nav">
                         <?$APPLICATION->IncludeComponent(
-                                "bitrix:menu", 
-                                "top_general_multilevel", 
+                                "bitrix:menu",
+                                "top_general_multilevel",
                                 array(
                                     "ROOT_MENU_TYPE" => "top_general",
                                     "MENU_CACHE_TYPE" => "Y",
@@ -199,8 +199,8 @@ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 
                                 )
                             );?>
                         <?Bitrix\Main\Page\Frame::getInstance()->finishDynamicWithID("small-basket-block", "");?>
-                    </div>	
-                </td>		
+                    </div>
+                </td>
             </tr></table>
         <div class="catalog_menu">
             <?$APPLICATION->IncludeComponent("bitrix:menu", "top_catalog_multilevel", array(
@@ -222,7 +222,7 @@ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 
     </div>
 </header>
 
-<div class="wrapper_inner">				
+<div class="wrapper_inner">
     <section class="middle <?=($isFrontPage ? 'main' : '')?>">
         <div class="container">
         <?if(!$isFrontPage):?>

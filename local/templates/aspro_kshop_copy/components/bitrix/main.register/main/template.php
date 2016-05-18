@@ -8,8 +8,9 @@
 if (count($arResult["ERRORS"][0]) > 0){
 	//print_r($arResult["ERRORS"][0]);
 	foreach ($arResult["ERRORS"] as $key => $error)
-		if (intval($key) == 0 && $key !== 0) 
+		if (intval($key) == 0 && $key !== 0){
 			$arResult["ERRORS"][$key] = str_replace("#FIELD_NAME#", "&quot;".GetMessage("REGISTER_FIELD_".$key)."&quot;", $error);
+        }
 
 	ShowError(implode("<br />", $arResult["ERRORS"]));}
 ?>
@@ -18,56 +19,58 @@ if (count($arResult["ERRORS"][0]) > 0){
 
 	<div class="form-block-title"><?=GetMessage("REGISTER_PERSONAL_DATA")?></div>
     <div class="form-block">
-	
-	<script>
-		$(document).ready(function(){
-			$("form#registraion-page-form").validate
-			({
-				rules:{ emails: "email"}	
-			});
-		})
-	</script>
-	
-	<form id="registraion-page-form" method="post" action="<?=POST_FORM_ACTION_URI?>" name="regform" enctype="multipart/form-data" >					
+    <script type="text/javascript">
+       $(document).ready(function(){
+          $('#reload_captcha').click(function(){
+             $('#white_block').show();
+             $.getJSON('<?=$this->__folder?>/reload_captcha.php', function(data) {
+                $('#captcha_img').attr('src','/bitrix/tools/captcha.php?captcha_sid='+data);
+                $('#captcha_sid').val(data);
+                $('#white_block').hide();
+             });
+             return false;
+          });
+       });
+    </script>
+
+
+	<form id="registraion-page-form" method="post" action="<?=POST_FORM_ACTION_URI?>" name="regform" enctype="multipart/form-data" >
 			<?if($arResult["BACKURL"] <> ''):?>
 				<input type="hidden" name="backurl" value="<?=$arResult["BACKURL"]?>" />
 			<?endif;?>
 			<?
-				/*$tmp = array( "LOGIN", "EMAIL", "PASSWORD", "CONFIRM_PASSWORD" );
-				for( $i = 4; $i < count($arResult["SHOW_FIELDS"]); $i++ )
-					$tmp[] = $arResult["SHOW_FIELDS"][$i];                    
-				$arResult["SHOW_FIELDS"] = $tmp;*/
+
                 $arResult['SHOW_FIELDS'] = array(
                                            'NAME',
                                            'PERSONAL_PHONE',
-                                           'EMAIL',                                           
+                                           'EMAIL',
                                            'PASSWORD',
                                            'CONFIRM_PASSWORD',
                                            //'PERSONAL_STREET',
 											'LOGIN'
                                         );
 			?>
-			
+
 			<?foreach ($arResult["SHOW_FIELDS"] as $FIELD):?>
 
-<div class="r">	
-<?if( $FIELD != "LOGIN" ):?>				
+<div class="r">
+<?if( $FIELD != "LOGIN" ):?>
 	<label><?=GetMessage("REGISTER_FIELD_".$FIELD)?>:<?if ($arResult["REQUIRED_FIELDS_FLAGS"][$FIELD] == "Y"):?><span class="star">*</span><?endif;?></label>
-<?endif;?>			
-            
+<?endif;?>
+
 			<?//print_r($arResult["ERRORS"]);?>
 			<?if( array_key_exists( $FIELD, $arResult["ERRORS"] ) ):?>
-				<?$class='class="error"'?>		
+				<?$class='class="error"'?>
 			<?endif;?>
-			
+
             <?switch ($FIELD){
 					case "PASSWORD":?>
 						<input size="30" type="password" name="REGISTER[<?=$FIELD?>]" required value="<?=$arResult["VALUES"][$FIELD]?>" autocomplete="off" class="bx-auth-input <?=(array_key_exists( $FIELD, $arResult["ERRORS"] ))? 'error': ''?>"  />
-						
+
 					<?break;
 					case "CONFIRM_PASSWORD":?>
 						<input size="30" type="password" name="REGISTER[<?=$FIELD?>]" required value="<?=$arResult["VALUES"][$FIELD]?>" autocomplete="off" <?=$class?> />
-					
+
 					<?break;
 					case "PERSONAL_GENDER":?>
 						<select name="REGISTER[<?=$FIELD?>]">
@@ -91,56 +94,61 @@ if (count($arResult["ERRORS"][0]) > 0){
 					case "PERSONAL_NOTES":
 					case "WORK_NOTES":?>
 						<textarea cols="30" rows="5" name="REGISTER[<?=$FIELD?>]"><?=$arResult["VALUES"][$FIELD]?></textarea>
-						
+
 					<?case "PERSONAL_STREET":?>
 						<textarea cols="30" rows="5" name="REGISTER[<?=$FIELD?>]"><?=$arResult["VALUES"][$FIELD]?></textarea>
 						<?break;?>
 					<?case "EMAIL":?>
-						<input size="30" type="email" name="REGISTER[<?=$FIELD?>]" required value="<?=$arResult["VALUES"][$FIELD]?>" placeholder="example@mail.ru" <?=$class?> id="emails"/> 
-                        <div class="pr em"><?=GetMessage("EMAIL_DESCRIPTION")?></div>      
+						<input size="30" type="email" name="REGISTER[<?=$FIELD?>]" required value="<?=$arResult["VALUES"][$FIELD]?>" placeholder="example@mail.ru" <?=$class?> id="emails"/>
+                        <div class="pr em"><?=GetMessage("EMAIL_DESCRIPTION")?></div>
 					<?break;?>
 					<?case "NAME":?>
-						<input size="30" type="text" name="REGISTER[<?=$FIELD?>]" required value="<?=$arResult["VALUES"][$FIELD]?>" <?=$class?>/>                              
+                        <input size="30" type="text" name="REGISTER[<?=$FIELD?>]" required value="<?=(empty($arResult["VALUES"]['NAME']))? $arResult["VALUES"]['LAST_NAME']:$arResult["VALUES"]['NAME']; ?>" <?=$class?>/>
 					<?break;?>
 					<?case "PERSONAL_PHONE":?>
-						<input size="30" type="text" name="REGISTER[<?=$FIELD?>]" class="phone-input <?=(array_key_exists( $FIELD, $arResult["ERRORS"] ))? 'error': ''?>" required value="<?=$arResult["VALUES"][$FIELD]?>" /> 
-                        <div class="pr"><?=GetMessage("PHONE_DESRIPTION")?></div>      
-					<?break;?>	
+						<input size="30" type="text" name="REGISTER[<?=$FIELD?>]" class="phone-input <?=(array_key_exists( $FIELD, $arResult["ERRORS"] ))? 'error': ''?>" required value="<?=$arResult["VALUES"][$FIELD]?>" />
+                        <div class="pr"><?=GetMessage("PHONE_DESRIPTION")?></div>
+					<?break;?>
 					<?break;
 					default:?>
 						<?// hide login?>
 						<input size="30" <?=$FIELD == "LOGIN" ? 'type="hidden" value="1"' : 'type="text"'?> name="REGISTER[<?=$FIELD?>]"  />
 						<?break;?>
-			
+
                 <?}?>
-	
+
 				<?if( $FIELD != "LOGIN" && array_key_exists( $FIELD, $arResult["ERRORS"] ) ):?>
 					<label class="error"><?=GetMessage("REGISTER_FILL_IT")?></label>
 				<?endif;?>
-				
-            
+
+
     </div>
-	
+
 	<?//endif?>
 <?endforeach?>
 			<?if ($arResult["USE_CAPTCHA"] == "Y"){?>
-				<div class="r register-captcha">
-					<label><?=GetMessage("REGISTER_CAPTCHA_PROMT")?>:<span class="star">*</span></label>
-					<input type="hidden" name="captcha_sid" value="<?=$arResult["CAPTCHA_CODE"]?>" />
-					<img src="/bitrix/tools/captcha.php?captcha_sid=<?=$arResult["CAPTCHA_CODE"]?>" width="180" height="40" alt="CAPTCHA" style="display:block;" />
-					<input <?=!empty( $error ) ? 'class="error"' : ''?> required type="text" name="captcha_word" maxlength="50" value="" />
-				</div>
+                <div class="r " id="captcha_block">
+                    <label><?=GetMessage("REGISTER_CAPTCHA_PROMT")?>:<span class="star">*</span></label>
+                       <div id="white_block">
+                          <img id="loader_img" src="<?=SITE_TEMPLATE_PATH?>/images/ajax-loader.gif" />
+                       </div>
+                    <input id="captcha_sid" type="hidden" name="captcha_sid" value="<?=$arResult["CAPTCHA_CODE"]?>" />
+                    <img id="captcha_img" src="/bitrix/tools/captcha.php?captcha_sid=<?=$arResult["CAPTCHA_CODE"]?>" width="180" height="40" alt="CAPTCHA" style="display:block;" />
+                    <a id="reload_captcha"><?=GetMessage('RELOAD_CAPTCHA')?></a>
+                    <input <?=!empty( $error ) ? 'class="error"' : ''?> required type="text" name="captcha_word" maxlength="50" value="" />
+
+                </div>
 			<?}?>
 			<div class="but-r">
 				<button class="button30" type="submit" name="register_submit_button" value="<?=GetMessage("AUTH_REGISTER")?>">
 					<span><?=GetMessage("REGISTER_REGISTER")?></span>
 				</button>
 				<div class="prompt"><span class="star">*</span> &nbsp;&mdash;&nbsp; <?=GetMessage("REQUIRED_FIELDS")?></div>
-				<div class="clearboth"></div>				
-			</div>				
+				<div class="clearboth"></div>
+			</div>
 		</form>
-        
-			
+
+
 	</div>
 <?//}?>
 </div><?}?>
