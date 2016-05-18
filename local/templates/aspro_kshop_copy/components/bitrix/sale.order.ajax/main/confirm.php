@@ -17,12 +17,14 @@ if (!empty($arResult["ORDER"]))
 	if (!empty($arResult["PAY_SYSTEM"]))
 	{
 		?>
-		<br /><br />
+		<br />
 
 		<table class="sale_order_full_table">
-			<tr>                 <!--Вывод информации о заказе, после оформления заказа -->
+
+			<tr>
 
 			</tr>
+
 			<?
 			if (strlen($arResult["PAY_SYSTEM"]["ACTION_FILE"]) > 0)
 			{

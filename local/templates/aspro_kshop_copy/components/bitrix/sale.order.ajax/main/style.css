@@ -422,3 +422,6 @@ div#order_form_content .errortext {
 #select_store{
     font-weight: bold;
 }
+.sale_order_full_table form input[type="submit"]{
+    margin-bottom: 15px;
+}

@@ -1,4 +1,3 @@
-
  $(function(){
   $('body').on('click', '.slide_1', function(){
        $('#slide_1').show();
