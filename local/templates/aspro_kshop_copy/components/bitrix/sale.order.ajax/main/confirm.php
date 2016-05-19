@@ -3,12 +3,11 @@
 if (!empty($arResult["ORDER"]))
 {
 	?>
-	<b><?=GetMessage("SOA_TEMPL_ORDER_COMPLETE")?></b><br /><br />
+	<b><?= GetMessage("SOA_TEMPL_ORDER_COMPLETE", Array("#ORDER_DATE#" => $arResult["ORDER"]["DATE_INSERT"], "#ORDER_ID#" => $arResult["ORDER"]["ACCOUNT_NUMBER"]))?></b>
 	<table class="sale_order_full_table">
 		<tr>
 			<td>
-				<?= GetMessage("SOA_TEMPL_ORDER_SUC", Array("#ORDER_DATE#" => $arResult["ORDER"]["DATE_INSERT"], "#ORDER_ID#" => $arResult["ORDER"]["ACCOUNT_NUMBER"]))?>
-				<br /><br />
+				<br />
 				<?= GetMessage("SOA_TEMPL_ORDER_SUC1", Array("#LINK#" => $arParams["PATH_TO_PERSONAL"])) ?>
 			</td>
 		</tr>
