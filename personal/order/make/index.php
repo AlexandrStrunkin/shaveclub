@@ -6,7 +6,7 @@ $APPLICATION->SetTitle("Заказы");
 }*/
 ?><?$APPLICATION->IncludeComponent(
 	"bitrix:sale.order.ajax", 
-	"order_make_location_2.0", 
+	".default", 
 	array(
 		"PAY_FROM_ACCOUNT" => "N",
 		"COUNT_DELIVERY_TAX" => "N",
@@ -36,7 +36,7 @@ $APPLICATION->SetTitle("Заказы");
 		"PATH_TO_AUTH" => "/auth/",
 		"DISABLE_BASKET_REDIRECT" => "Y",
 		"PRODUCT_COLUMNS" => "",
-		"COMPONENT_TEMPLATE" => "order_make_location_2.0",
+		"COMPONENT_TEMPLATE" => ".default",
 		"DISPLAY_IMG_WIDTH" => "90",
 		"DISPLAY_IMG_HEIGHT" => "90",
 		"COMPATIBLE_MODE" => "Y",
@@ -66,7 +66,8 @@ $APPLICATION->SetTitle("Заказы");
 		"PRODUCT_COLUMNS_HIDDEN" => "",
 		"USE_CUSTOM_MAIN_MESSAGES" => "N",
 		"USE_CUSTOM_ADDITIONAL_MESSAGES" => "N",
-		"USE_CUSTOM_ERROR_MESSAGES" => "N"
+		"USE_CUSTOM_ERROR_MESSAGES" => "N",
+		"ADDITIONAL_PICT_PROP_12" => "-"
 	),
 	false
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
