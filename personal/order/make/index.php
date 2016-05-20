@@ -66,7 +66,11 @@ $APPLICATION->SetTitle("Заказы");
 		"PRODUCT_COLUMNS_HIDDEN" => "",
 		"USE_CUSTOM_MAIN_MESSAGES" => "N",
 		"USE_CUSTOM_ADDITIONAL_MESSAGES" => "N",
-		"USE_CUSTOM_ERROR_MESSAGES" => "N"
+		"USE_CUSTOM_ERROR_MESSAGES" => "N",
+		"ADDITIONAL_PICT_PROP_12" => "-",
+		"ADDITIONAL_PICT_PROP_9" => "-",
+		"ADDITIONAL_PICT_PROP_10" => "-",
+		"ADDITIONAL_PICT_PROP_73" => "-"
 	),
 	false
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
