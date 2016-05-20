@@ -7,8 +7,9 @@ if (!empty($arResult["ORDER"]))
 	<table class="sale_order_full_table">
 		<tr>
 			<td>
-				<br />
-				<?= GetMessage("SOA_TEMPL_ORDER_SUC1", Array("#LINK#" => $arParams["PATH_TO_PERSONAL"])) ?>
+                <?= GetMessage("SOA_TEMPL_ORDER") ?>
+                <br />
+                <?= GetMessage("SOA_TEMPL_ORDER_SUC1", Array("#LINK#" => $arParams["PATH_TO_PERSONAL"])) ?>
 			</td>
 		</tr>
 	</table>
