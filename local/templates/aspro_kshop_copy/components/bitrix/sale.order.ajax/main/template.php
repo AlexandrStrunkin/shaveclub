@@ -213,7 +213,6 @@ if (!function_exists("cmpBySort"))
 			</script>
             <script type="text/javascript">
                 $(document).ready(function() {
-                    alert('dfsfs');
                     $.ajax({
                         url: arKShopOptions['SITE_DIR'] + 'ajax/basket_fly_order.php',
                         type: 'post',
