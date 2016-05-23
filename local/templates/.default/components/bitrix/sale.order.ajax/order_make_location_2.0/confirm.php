@@ -2,7 +2,7 @@
 <?
 
 ?>
-<div class="inside-page-col"> 
+<div class="inside-page-col">
     <div class="inner_page_content">
         <?
             if (!empty($arResult["ORDER"]))
@@ -13,7 +13,7 @@
                     <td>
                         <div class="final_step_title">заказ <font style="color: #DD9C42">№<?=$arResult["ORDER"]["ID"]?></font> успешно оформлен</div>
                         <br /><br />
-                        <? //основные свойства заказа 
+                        <? //основные свойства заказа
                             $rsOrder = CSaleOrder::GetList(array('ID' => 'ASC'), array('ID' => $arResult["ORDER"]["ID"]), false, false, array());
                             while($arOrder = $rsOrder->Fetch()) {
                                 $order=$arOrder;
@@ -21,22 +21,22 @@
                             $rsPropOrder = CSaleOrderPropsValue::GetList(array('ID' => 'ASC'), array('ORDER_ID' => $arResult["ORDER"]["ID"]), false, false, array());
                             while($arPropOrder = $rsPropOrder->Fetch()) {
                                 $propOrder[]=$arPropOrder;
-                            }; 
-                            
+                            };
+
                             //состав корзины для текущего пользователя
                             $arID = array();
                             $arBasketItems = array();
                             $dbBasketItems = CSaleBasket::GetList(array("NAME" => "ASC", "ID" => "ASC"), array( "FUSER_ID" => CSaleBasket::GetBasketUserID(), "LID" => SITE_ID, "ORDER_ID" => $arResult["ORDER"]["ID"]), false, false, array());
-                            
+
                             while ($arItems = $dbBasketItems->Fetch())
                             {
                                 if ('' != $arItems['PRODUCT_PROVIDER_CLASS'] || '' != $arItems["CALLBACK_FUNC"])
-                                {    
+                                {
                                    // CSaleBasket::UpdatePrice($arItems["ORDER_ID"], $arItems["CALLBACK_FUNC"], $arItems["MODULE"], $arItems["PRODUCT_ID"], $arItems["QUANTITY"], "N",  $arItems["PRODUCT_PROVIDER_CLASS"]);
                                     $arID[] = $arItems["ID"];
                                 }
                             }
-                            
+
                             if (!empty($arID))
                             {
                                 $dbBasketItems = CSaleBasket::GetList( array("NAME" => "ASC", "ID" => "ASC"), array("ID" => $arID, "ORDER_ID" => $arResult["ORDER"]["ID"]), false, false, array());
@@ -44,27 +44,27 @@
                                 {  $arBasketItems[] = $arItems;
                                 }
                             }
-                            
+
                             //получаем картинку бритвы
                             $prosuct = CIBlockElement::GetList(array(), array("ID"=>$arBasketItems[0]["PRODUCT_ID"]), false, false, array("IBLOCK_SECTION_ID"));
-                            $arProduct = $prosuct->Fetch();   
+                            $arProduct = $prosuct->Fetch();
                             $photo = CIBlockSection::GetList(array(), array("IBLOCK_ID"=>12,"ID"=>$arProduct["IBLOCK_SECTION_ID"]),false,array("UF_DETAIL_PICTURE"));
-                            $arPhoto = $photo->Fetch();  
-                             
+                            $arPhoto = $photo->Fetch();
+
                             //Печатаем массив, содержащий актуальную на текущий момент корзину
-                            //Выбранная доставка 
+                            //Выбранная доставка
                             $db_dtype = CSaleDelivery::GetList( array( "SORT" => "ASC", "NAME" => "ASC"), array( "ID" => $order["DELIVERY_ID"]), false, false, array());
                             $delivery = $db_dtype->Fetch();
                             //Выбранная платежная система
                             $payment = CSalePaySystem::GetByID($order["PAY_SYSTEM_ID"]);
-                            //Свойства товара 
+                            //Свойства товара
                             $db_itype = CIBlockElement::GetList( array(), array( "ID" => $arBasketItems[0]["PRODUCT_ID"]), false, false, array("IBLOCK_SECTION_ID", "PROPERTY_CASSETTE"));
                             $item = $db_itype->Fetch();
                             $casseteProp = explode(" ", $item["PROPERTY_CASSETTE_VALUE"]);
                             //Свойства секции
                             $db_stype = CIBlockSection::GetList( array(), array( "ID" => $item["IBLOCK_SECTION_ID"]), false, array("UF_*"), false);
-                            $section = $db_stype->Fetch(); 
-                        ?>                     
+                            $section = $db_stype->Fetch();
+                        ?>
                         <div class="table-title">контактные данные</div>
                         <table class="contact-date">
                             <tr>
@@ -114,7 +114,7 @@
                                         <tr>
                                             <td>Бритвенный станок</td>
                                             <td style="white-space: nowrap">x <?=$machineQuantity?></td>
-                                        </tr> 
+                                        </tr>
                                         <tr>
                                             <td>Сменные кассеты</td>
                                             <td style="white-space: nowrap">x <?=$casseteQuantity?></td>
@@ -130,8 +130,8 @@
                         </table>
                         <!--                        <img class="shave-image" width="130" src="<?=CFile::GetPath($section["PICTURE"])?>" alt="">
                         -->                        <br> <br>
-                        <?// arshow($order['PRICE']);  
-                            if ($order['PRICE']!=0) {                                
+                        <?// arshow($order['PRICE']);
+                            if ($order['PRICE']!=0) {
                             ?>
                             <div class="table-title">сумма заказа</div>
                             <table class="contact-date sum-order">
@@ -140,7 +140,7 @@
                                     //                            arshow($payment);
                                      //наличные
                                     /*if($payment["ID"]==17 || $payment["ID"]==19) {
-                                        $cartPrice=$cartPrice-50;   
+                                        $cartPrice=$cartPrice-50;
                                         $cashAlert='+50 руб.';
                                     }
                                     */
@@ -191,8 +191,8 @@
                     <div class="paysystem_name"><?= $arResult["PAY_SYSTEM"]["NAME"] ?></div><br>
                     </td>
                     </tr>   -->
-                    <?    
-                       
+                    <?
+
                         if (strlen($arResult["PAY_SYSTEM"]["ACTION_FILE"]) > 0)
                         {
                         ?>
@@ -201,7 +201,7 @@
                                 <?
                                     if ($arResult["PAY_SYSTEM"]["NEW_WINDOW"] == "Y")
                                     {
-                                    ?> 
+                                    ?>
                                     <script language="JavaScript">
                                         window.open('<?=$arParams["PATH_TO_PAYMENT"]?>?ORDER_ID=<?=urlencode(urlencode($arResult["ORDER"]["ACCOUNT_NUMBER"]))?>');
                                     </script>
@@ -218,7 +218,7 @@
                                     {
                                         if (strlen($arResult["PAY_SYSTEM"]["PATH_TO_ACTION"])>0)
                                         {
-                                           // echo $arResult["PAY_SYSTEM"]["PATH_TO_ACTION"];    
+                                           // echo $arResult["PAY_SYSTEM"]["PATH_TO_ACTION"];
                                                      //                                   include($arResult["PAY_SYSTEM"]["PATH_TO_ACTION"]);
                                         }
                                     }
@@ -253,7 +253,7 @@
     </div>
 </div>
 <div class="inside-page-col info-final-step">
-    <!--    <div><span class="inside-page-col-shadow-faq"></span></div>-->    
+    <!--    <div><span class="inside-page-col-shadow-faq"></span></div>-->
     <img class="smile-image" src="/images/smile-shave.png" alt="">
     <div class="title-info-final">спасибо за заказ</div>
     <div class="note-info-final">Осталось совсем немного и Ваши бритвы приедут к Вам домой!</div>
@@ -313,22 +313,22 @@ if ($aCheckData['response_code'] !== '') {
     $signature = strtoupper(md5(md5(ps_uniteller::$Shop_ID) . '&' . md5($sOrderID) . '&' . md5($sHouldPay)
         . '&' . md5('') . '&' . md5('') . '&' . md5($sLiftime) . '&' . md5('') . '&' . md5('') . '&' . md5('')
         . '&' . md5('') . '&' . md5(ps_uniteller::$Password)));
-    
-    
+
+
 //    da(ps_uniteller::$Shop_ID);
 //    da($sOrderID);
 //    da($sHouldPay);
 //    da($sLiftime);
-//    da(ps_uniteller::$Password);   
+//    da(ps_uniteller::$Password);
 ?>
 <form action="<?= ps_uniteller::$url_uniteller_pay ?>" method="post" target="_blank">
     <font class="tablebodytext"><br>
     <?
-       /*  
+       /*
      ?><?= GetMessage('SUSP_ACCOUNT_NO') ?>
     <?= $sOrderID . GetMessage('SUSP_ORDER_FROM') . $sDateInsert ?><br> <?= GetMessage('SUSP_ORDER_SUM') ?><b><?= SaleFormatCurrency($sHouldPay, $sCurrency) ?>
     <?*/?>
-    </b><br> <br> 
+    </b><br> <br>
         <input type="hidden" name="Shop_IDP"
         value="<?= ps_uniteller::$Shop_ID ?>">
         <input type="hidden" name="Order_IDP" value="<?= $sOrderID ?>"> <input
@@ -381,9 +381,9 @@ if ($aCheckData['response_code'] !== '') {
         value="<?= substr(($URL_RETURN_NO . '?ID=' . $sOrderID), 0, 128) ?>">
         <?endif;?> <input type="submit" name="Submit"
         value="<?echo GetMessage('SUSP_UNITELLER_PAY_BUTTON') ?>"> </font>
-</form>  
+</form>
 <?
-  /*   
+  /*
  ?>
 <p align="justify">
     <font class="tablebodytext"><b><?echo GetMessage('SUSP_DESC_TITLE') ?>
@@ -394,7 +394,7 @@ if ($aCheckData['response_code'] !== '') {
     </font>
 </p>
 <?
-  */   
+  */
  ?>
 <?php
 }
