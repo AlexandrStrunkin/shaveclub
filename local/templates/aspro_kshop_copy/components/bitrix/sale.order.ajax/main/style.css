@@ -424,10 +424,10 @@ div#order_form_content .errortext {
 }
 .sale_order_full_table form input[type="submit"]{
     margin-bottom: 15px;
-    background: url(images/icons_paymethod_pay.png) no-repeat #fff -16px 0;
+    background: url(images/icons_paymethod_pay.png) no-repeat #fff -5px 0;
     color: transparent;
     height: 53px;
-    width: 64px;
+    width: 84px;
     cursor: pointer;
     text-align: left;
 }
