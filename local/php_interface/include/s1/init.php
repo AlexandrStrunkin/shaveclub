@@ -29,8 +29,7 @@
 
 
     //функция генерации кода для подарочного сертификата
-    function generateSertificate()
-    {
+    function generateSertificate(){
 
         $allchars = 'ABCDEFGHIJKLNMOPQRSTUVWXYZ0123456789';
         $string = '';
@@ -49,13 +48,6 @@
     // ---- Класс для работы с разными стоимостями доставки для разных наборов бритв
     class bundlePrice {
 
-        /********************
-        *
-        * @param string $code
-        * @return float $startBundlePrice
-        *
-        * *****************/
-
         private static function getStartBundlePrice($code){
             $arSelect = Array("ID");
             $arFilter = Array("IBLOCK_ID"=>12,"ACTIVE"=>"Y","CODE"=>$code);
@@ -70,35 +62,14 @@
 
         }
 
-        /********************
-        *
-        * Функция для поиска CODE для стартового набора,
-        * исходной строкой будет что-то типа razor_norma_4,
-        * вырезаем все после первого подчеркивания и приклеиваем _start
-        *
-        * @param string $code
-        * @return string
-        *
-        * *****************/
-
         private static function getStartBundleCode($code){
             return substr($code,strpos($code, "_")+1)."_start";
         }
 
-        /********************
-        *
-        * @param array $items
-        * @param int $customPrice
-        * @return bool
-        *
-        * *****************/
 
         public static function isAStartBundle($items,$customPrice){
-      //      arshow($items);
             $_SESSION['startBundle'] = "";
-            if(// self::getStartBundlePrice($items['CODE']) > $customPrice)
-                //&& ($items[0]["CATALOG"]["PROPERTIES"]["PRICE_START"]["VALUE"]<$customPrice)
-                substr_count($items['CODE'],'_start') > 0){
+            if(substr_count($items['CODE'],'_start') > 0){
                 $_SESSION['startBundle'] = "T";
                 return true;
             }
@@ -106,43 +77,18 @@
 
     }
 
-
-    //добавляем к стоимости заказа 50р при выборе оплаты наличными
-   /* AddEventHandler("sale", "OnBeforeOrderAdd","addToFinalSum");
-    function addToFinalSum(&$arFields) {
-
-        if(($arFields["PAY_SYSTEM_ID"]==17 || $arFields["PAY_SYSTEM_ID"]==19) && $_POST["sertGift"]!="Y"){
-            $arFields["PRICE"]+=50;
-        }
-
-        if(!$_SESSION['startBundle']){
-            $arFields['PRICE'] = $arFields['PRICE'] - $arFields['PRICE_DELIVERY'];
-            $arFields['PRICE_DELIVERY'] -= 200;
-            if($arFields['PRICE_DELIVERY']<0){
-                $arFields['PRICE_DELIVERY'] = 0;
-            }
-            $arFields['PRICE'] = $arFields['PRICE'] + $arFields['PRICE_DELIVERY'];
-        }
-
-        unset($_SESSION['startBundle']);
-    }  */
-
-
     //меняем логин пользователя на email при создании пользователя
     AddEventHandler("main", "OnBeforeUserAdd","setUserFields");
     function setUserFields(&$arFields) {
         $arFields["LOGIN"] = $arFields["EMAIL"];
         $arFields["FIO"] = "";
-        //        $arFields["PERSONAL_PHONE"] = $_POST["ORDER_PROP_3"];
     }
 
 
     //генерация подарочного сертификата при его покупке
     AddEventHandler("sale", "OnOrderAdd", Array("AfterOrderAdd", "addSertificate"));
-    class AfterOrderAdd
-    {
-        function addSertificate($ID, $arFields)
-        {
+    class AfterOrderAdd{
+        function addSertificate($ID, $arFields){
             if ($ID > 0) {
                 //собираем корзину заказа
                 $dbBasketItems = CSaleBasket::GetList(array(),array("FUSER_ID" => CSaleBasket::GetBasketUserID(),"LID" => SITE_ID,"ORDER_ID" => "NULL"),false,false,array());
@@ -228,47 +174,13 @@
         CSaleBasket::DeleteAll(CSaleBasket::GetBasketUserID());
 
         //проверяем ID элемента
-        $product = CCatalogProduct::GetList(array(),array("ID"=>$ID /*,"TYPE"=>2*/ /*это для комплекта*/));
+        $product = CCatalogProduct::GetList(array(),array("ID"=>$ID));
         $arProduct = $product->Fetch();
 
         if ($arProduct["ID"] > 0) {
 
-            // arshow($arProduct);
-
             $element = CIBlockElement::GetList(array(), array("IBLOCK_ID"=> 12,"ID"=>$arProduct["ID"]), false, false, array("PROPERTY_ECONOMY", "PROPERTY_LENGTH", "PROPERTY_CASSETTE", "PROPERTY_RAZOR", "PROPERTY_DELIVERY", "CODE"));
             $arElement = $element->Fetch();
-
-            //arshow($arElement);
-
-            /*$PROPS[] = array("NAME" => "Экономия, %",
-            "CODE" => "ECONOMY",
-            "VALUE" => $arElement["PROPERTY_ECONOMY_VALUE"],
-            "SORT" => "100"
-            );
-
-            $PROPS[] = array("NAME" => "Срок, месяцев",
-            "CODE" => "LENGTH",
-            "VALUE" => $arElement["PROPERTY_LENGTH_VALUE"],
-            "SORT" => "100"
-            );
-
-            $PROPS[] = array("NAME" => "Сменные кассеты",
-            "CODE" => "CASSETTE",
-            "VALUE" => $arElement["PROPERTY_CASSETTE_VALUE"],
-            "SORT" => "100"
-            );
-
-            $PROPS[] = array("NAME" => "Бритвенный станок",
-            "CODE" => "RAZOR",
-            "VALUE" => $arElement["PROPERTY_RAZOR_VALUE"],
-            "SORT" => "100"
-            );
-
-            $PROPS[] = array("NAME" => "Доставка",
-            "CODE" => "DELIVERY",
-            "VALUE" => $arElement["PROPERTY_DELIVERY_VALUE"],
-            "SORT" => "100"
-            );    */
 
             //если кладем сертификат, то добавляем дополнительное свойство
             if (substr_count($arElement["CODE"], "gift") > 0) {
@@ -334,23 +246,15 @@
 
     //добавляем в письмо о заказе дополнительную информацию
     AddEventHandler('main', 'OnBeforeEventSend', Array("newOrder", "orderDataChange"));
-    //AddEventHandler('sale', 'OnOrderNewSendEmail', Array("newOrder", "orderDataChange"));
 
-    class newOrder
-    {
-        function orderDataChange(&$arFields, &$arTemplate)
-        //function orderDataChange($order_id, &$arFields, &$arTemplate)
-        {
-
-            //$data = serialize($arFields)."\n\n".serialize($arTemplate);
-            //file_put_contents($_SERVER["DOCUMENT_ROOT"]."/bitrix/php_interface/s1/test.txt",$data);
+    class newOrder{
+        function orderDataChange(&$arFields, &$arTemplate){
 
             if ($arFields["ORDER_ID"] > 0) {
                 //общая инфо о зказе
                 $order = CSaleOrder::GetById($arFields["ORDER_ID"]);
 
                 //служба доставки
-                //$delivery = CSaleDelivery::GetById($order["DELIVERY_ID"]);
                 if ($order["DELIVERY_ID"]=='pickpoint:postamat') {
                     $order["DELIVERY_ID"]=37;
                     $delivery = Services\Manager::getById($order["DELIVERY_ID"]);
@@ -366,24 +270,9 @@
                 $pattern = "/(\D)/";
                 $price = preg_replace($pattern,'',$arFields["PRICE"]);
 
-                /*if ($order["PAY_SYSTEM_ID"]==17) {
-                $arFields["PAYSYSTEM"] = $paysystem['NAME'].' +50 руб';
-                $price = $price + 50;
-                } else {
 
-                }
-                */
                 $arFields["PAYSYSTEM"] = $paysystem['NAME'];
 
-                //вычисляем стоимость доставки
-                /*if(!$_SESSION['startBundle']){
-                $price = $price - $arFields['DELIVERY_PRICE'];
-                $arFields["DELIVERY_PRICE"] -= 200;
-                if($arFields["DELIVERY_PRICE"]<0){
-                $arFields["DELIVERY_PRICE"] = 0;
-                }
-                $price = $price + $arFields["DELIVERY_PRICE"];
-                } */
 
                 $arFields["PRICE"] = $price;
 
@@ -402,17 +291,11 @@
                 $arIblockItem = CIBlockElement::GetList(array(), array("ID"=>$basketItem["PRODUCT_ID"]))->Fetch();
                 $arSection =  CIBlockSection::GetList(array(), array("ID"=>$arIblockItem["IBLOCK_SECTION_ID"]))->Fetch();
 
-                //arshow($paysystem);
-                //            die;
-
                 //собираем полученные данные
-                //            $arFields["PRICE"] = $arFields["PRICE"] + 50;
                 $arFields["DELIVERY_TYPE"] = $delivery["NAME"];
                 $arFields["PHONE"] = $orderProps["PHONE"];
                 $arFields["ZIP"] = $orderProps["ZIP"];
-                // $arFields["ADDRESS"] = $location["COUNTRY_NAME"].", ".$location["REGION_NAME"].", ".$location["CITY_NAME"].", ".$orderProps["ADDRESS"];
                 $arFields["ADDRESS"] = $location["COUNTRY_NAME"].", ".$location["CITY_NAME"].", ".$orderProps["ADDRESS"];
-                //                $arFields["ORDER_LIST"] = /*"Бритва ".$arSection["NAME"]; , ".*/$arFields["ORDER_LIST"];
                 $arFields["ORDER_LIST"] = str_replace(".00 шт.", " шт.", $arFields["ORDER_LIST"]);
             }
 
@@ -420,91 +303,8 @@
     }
 
     //добавляем в письмо о заказе дополнительную информацию
-    /*AddEventHandler('main', 'OnBeforeEventSend', Array("newOrder", "orderDataChange"));
-
-    class newOrder
-    {
-    function orderDataChange(&$arFields, &$arTemplate)
-    {
-
-    $data = serialize($arFields)."\n\n".serialize($arTemplate);
-    file_put_contents($_SERVER["DOCUMENT_ROOT"]."/bitrix/php_interface/s1/test.txt",$data);
-
-    if ($arFields["ORDER_ID"] > 0) {
-    //общая инфо о зказе
-    $order = CSaleOrder::GetById($arFields["ORDER_ID"]);
-    //служба доставки
-    //$delivery = CSaleDelivery::GetById($order["DELIVERY_ID"]);
-    if ($order["DELIVERY_ID"]=='pickpoint:postamat') {
-    $order["DELIVERY_ID"]=37;
-    $delivery = Services\Manager::getById($order["DELIVERY_ID"]);
-
-    } else {
-    $delivery = CSaleDelivery::GetById($order["DELIVERY_ID"]);
-    }
-
-
-    //платежная система
-    $paysystem = CSalePaysystem::GetById($order["PAY_SYSTEM_ID"]);
-    //убираем лишние символы в цене
-    $pattern = "/(\D)/";
-    $price = preg_replace($pattern,'',$arFields["PRICE"]);
-
-    /*if ($order["PAY_SYSTEM_ID"]==17) {
-    $arFields["PAYSYSTEM"] = $paysystem['NAME'].' +50 руб';
-    $price = $price + 50;
-    } else {
-
-    }
-    */
-    /*$arFields["PAYSYSTEM"] = $paysystem['NAME'];
-
-    //вычисляем стоимость доставки
-    /*if(!$_SESSION['startBundle']){
-    $price = $price - $arFields['DELIVERY_PRICE'];
-    $arFields["DELIVERY_PRICE"] -= 200;
-    if($arFields["DELIVERY_PRICE"]<0){
-    $arFields["DELIVERY_PRICE"] = 0;
-    }
-    $price = $price + $arFields["DELIVERY_PRICE"];
-    } */
-    /*
-    $arFields["PRICE"] = $price;
-
-    //свойства заказа
-    $orderProps = array();
-    $db_props = CSaleOrderPropsValue::GetList(array(),array("ORDER_ID" => $order["ID"]));
-    while($orderProp = $db_props->Fetch()) {
-    $orderProps[$orderProp["CODE"]] = $orderProp["VALUE"];
-    }
-    //местоположение
-    $location = CSaleLocation::GetByID($orderProps["LOCATION"]);
-
-    //состав заказа
-    $basket =  CSaleBasket::GetList(array(), array("ORDER_ID"=>$order["ID"]));
-    $basketItem = $basket->Fetch();
-    $arIblockItem = CIBlockElement::GetList(array(), array("ID"=>$basketItem["PRODUCT_ID"]))->Fetch();
-    $arSection =  CIBlockSection::GetList(array(), array("ID"=>$arIblockItem["IBLOCK_SECTION_ID"]))->Fetch();
-
-    //arshow($paysystem);
-    //            die;
-
-    //собираем полученные данные
-    //            $arFields["PRICE"] = $arFields["PRICE"] + 50;
-    $arFields["DELIVERY_TYPE"] = $delivery["NAME"];
-    $arFields["PHONE"] = $orderProps["PHONE"];
-    $arFields["ZIP"] = $orderProps["ZIP"];
-    // $arFields["ADDRESS"] = $location["COUNTRY_NAME"].", ".$location["REGION_NAME"].", ".$location["CITY_NAME"].", ".$orderProps["ADDRESS"];
-    $arFields["ADDRESS"] = $location["COUNTRY_NAME"].", ".$location["CITY_NAME"].", ".$orderProps["ADDRESS"];
-    //                $arFields["ORDER_LIST"] = /*"Бритва ".$arSection["NAME"]; , ".*//*$arFields["ORDER_LIST"];
-    $arFields["ORDER_LIST"] = str_replace(".00 шт.", " шт.", $arFields["ORDER_LIST"]);;
-    }
-
-    }
-    } */
     AddEventHandler("main", "OnAfterUserAdd", "OnAfterUserAddHandler");
-    function OnAfterUserAddHandler(&$arFields)
-    {
+    function OnAfterUserAddHandler(&$arFields){
         $user = new CUser;
         $fields = Array(
             "UF_SITE" => 22,

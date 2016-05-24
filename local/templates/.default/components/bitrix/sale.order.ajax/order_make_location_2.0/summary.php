@@ -14,7 +14,6 @@
             //получаем родительский раздел текущей бритвы
             $part = CIBlockSection::GetList(array(), array("IBLOCK_ID"=>12,"ID"=>$arSection["IBLOCK_SECTION_ID"]),false, array());
             $arPart = $part->Fetch();
-            //            arshow($arResult["BASKET_ITEMS"]);
         ?>
 
 
@@ -30,12 +29,6 @@
             if (count($arResult["BASKET_ITEMS"]) < 1) {
                 header("location: /");
             }
-
-            //           arshow(bundlePrice::isAStartBundle($arResult['BASKET_ITEMS']));
-            //           arshow($arResult['BASKET_ITEMS']);
-            //           arshow(getStartBundlePrice('cassete_super_6'));
-            //           $code = 'cassete_super_6';
-            //           arshow(bundlePrice::getStartBundlePrice(substr($code,strpos($code, "_")+1)."_start"));
         ?>
 
         <?
@@ -101,17 +94,6 @@
                             <td><?=intval($item["PRICE"])?> Р</td>
                         </tr>
 
-                        <!-- <tr>
-                        <td>комплектация</td>
-                        <td>Бритвенный станок<br/>
-                        Сменные кассеты
-                        </td>
-                        <td>х<?=$setItemsQuantity[$setItems["razor_".$arSection["CODE"]]["ID"]]?><br/>
-                        х<?=$setItemsQuantity[$setItems["cassette_".$arSection["CODE"]]["ID"]]?>
-                        </td>
-                        <td>в подарок</td>
-                        </tr> -->
-
                         <tr>
                             <td>доставка</td>
                             <td><?=$arResult["DELIVERY"][$arResult["USER_VALS"]["DELIVERY_ID"]]["NAME"]?></td>
@@ -122,11 +104,7 @@
                                     ?>
                                 <?
                                         echo str_replace("руб.","Р",$arResult["DELIVERY_PRICE_FORMATED"]);
-                                   /* if(bundlePrice::isAStartBundle($arProductTMP["PRODUCT"], $clearedPriceForItems)){
-                                         echo str_replace("руб.","Р",$arResult["DELIVERY_PRICE_FORMATED"]);
-                                    } else {
-                                         echo "0 P";
-                                    }     */
+
                                 ?>
                                 <?
                                     // echo str_replace("руб.","Р",$arResult["DELIVERY_PRICE_FORMATED"]);
@@ -161,21 +139,11 @@
                             <td></td>
                             <td></td>
                             <td class="tableSum">
-                                <?  // arshow($arResult);
-                                    /* if(bundlePrice::isAStartBundle($arResult['BASKET_ITEMS'],$clearedPriceForItems)){
-                                    //ORDER_TOTAL_PRICE_FORMATED
-                                    $totalPrice = (int)preg_replace('/\s/','',$arResult["ORDER_PRICE"]) - (int)preg_replace('/\s/','',$arResult['DELIVERY_PRICE_FORMATED']);
-                                    // echo $totalPrice." Р";
-                                    } else {
-                                    //echo str_replace("руб.","Р",$arResult["ORDER_TOTAL_PRICE_FORMATED"]);  }    */
-                                    //                                    $totalPrice = $arResult["ORDER_PRICE"];
+                                <?
                                     $totalPrice = $arResult["ORDER_PRICE"]+$arResult["DELIVERY_PRICE"];
                                 ?>
-                                <?/*наличные*/
-                                    /*if ($arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 17 || $arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 19 ){
-                                    echo ((float)$totalPrice + 50)." Р";
-                                    } else {*/
-                                    //   echo (float)$totalPrice." Р";
+                                <?
+
                                     echo  $totalPrice." P"
                                     //}?>
                             </td>
@@ -187,7 +155,7 @@
             <?}
             //если в корзине "СЕРТИФИКАТ"
             else if (substr_count($arResult["BASKET_ITEMS"][0]["CATALOG"]["CODE"], "gift") > 0){ ?>
-            <?//arshow($arResult["BASKET_ITEMS"][0])
+            <?
             ?>
             <img class="img label" src="/images/gift_label.png" alt=""/>
             <img class="img" src="<?=CFIle::GetPath($arSection["UF_DETAIL_PICTURE"])?>" alt=""/>
@@ -201,7 +169,7 @@
                     </tr>
 
                     <?foreach ($arResult["BASKET_ITEMS"] as $item){?>
-                        <?//arshow($item)?>
+
                         <tr>
                             <td>план бритья</td>
                             <td><?=$item["NAME"]?></td>
@@ -212,12 +180,12 @@
                     <tr>
                         <td>доставка</td>
                         <?
-                            //                               arshow($arResult["BASKET_ITEMS"]);
+
                         ?>
                         <td><?=$arResult["DELIVERY"][$arResult["USER_VALS"]["DELIVERY_ID"]]["NAME"]?></td>
                         <td></td>
                         <?  $clearedPriceForItems = (int)preg_replace('/\s/','',$arResult['PRICE_WITHOUT_DISCOUNT']) /*- (int)preg_replace('/\s/','',$arResult['DELIVERY_PRICE_FORMATED'])*/;
-                            //                            arshow($clearedPriceForItems);
+
                             if (!bundlePrice::isAStartBundle($arResult['BASKET_ITEMS'],$clearedPriceForItems)) {?>
                             <td class="deliveryCostSummary">0 p</td>
                             <? } else { ?>
@@ -251,18 +219,10 @@
                         <td></td>
                         <td class="tableSum">
                             <?
-                                /*if(!bundlePrice::isAStartBundle($arResult['BASKET_ITEMS'],$clearedPriceForItems)){
-                                $totalPrice = (int)preg_replace('/\s/','',$arResult["ORDER_TOTAL_PRICE_FORMATED"]) - (int)preg_replace('/\s/','',$arResult['DELIVERY_PRICE_FORMATED']);
-                                //echo $totalPrice." Р";
-                                } else {
-                                //echo str_replace("руб.","Р",$arResult["ORDER_TOTAL_PRICE_FORMATED"]);      } */
                                 $totalPrice = $arResult["ORDER_PRICE"]+$arResult["DELIVERY_PRICE"];
 
                             ?>
-                            <?/*наличные*/
-                                /*if ($arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 17 || $arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 19){
-                                echo ((float)$totalPrice + 50)." Р";
-                                } else {*/
+                            <?
                                 echo (float)$totalPrice." Р";
                                 //}?>
                         </td>
@@ -271,7 +231,6 @@
                 <br>
             </div>
             <?} else { //если в корзине СВОЙ ПЛАН?>
-            <?//arshow($arResult["BASKET_ITEMS"][0][])?>
             <img class="img" src="<?=CFIle::GetPath($arSection["UF_DETAIL_PICTURE"])?>" alt=""/>
             <div class="table-container">
 
@@ -291,7 +250,6 @@
                     </tr>
 
                     <?foreach ($arResult["BASKET_ITEMS"] as $item){?>
-                        <?//arshow($item)?>
                         <tr>
                             <td><?=$item["NAME"]?></td>
                             <td><?=$item["PRICE"]?> Р</td>
@@ -340,17 +298,9 @@
                         <td></td>
                         <td class="tableSum">
                             <?
-                                /* if(!bundlePrice::isAStartBundle($arResult['BASKET_ITEMS'],$clearedPriceForItems)){
-                                $totalPrice = (int)preg_replace('/\s/','',$arResult["ORDER_TOTAL_PRICE_FORMATED"]) - (int)preg_replace('/\s/','',$arResult['DELIVERY_PRICE_FORMATED']);
-                                //echo $totalPrice." Р";
-                                } else {
-                                //echo str_replace("руб.","Р",$arResult["ORDER_TOTAL_PRICE_FORMATED"]);     } */
                                 $totalPrice = $arResult["ORDER_PRICE"]+$arResult["DELIVERY_PRICE"];
                             ?>
-                            <?/*наличные*/
-                                /*if ($arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 17 || $arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 19 ){
-                                echo ((float)$totalPrice + 50)." Р";
-                                } else {*/
+                            <?
                                 echo (float)$totalPrice." Р";
                                 //}?>
                         </td>
@@ -377,61 +327,11 @@
     </div>
 
     <? }
-    /*$APPLICATION->IncludeComponent(
-    "bitrix:sale.basket.basket",
-    "basket_coupon",
-    array(
-    "COLUMNS_LIST" => array(
-    ),
-    "PATH_TO_ORDER" => "/personal/order/make/",
-    "HIDE_COUPON" => "N",
-    "PRICE_VAT_SHOW_VALUE" => "N",
-    "COUNT_DISCOUNT_4_ALL_QUANTITY" => "N",
-    "USE_PREPAYMENT" => "N",
-    "QUANTITY_FLOAT" => "N",
-    "SET_TITLE" => "N",
-    "ACTION_VARIABLE" => "action",
-    "OFFERS_PROPS" => array(
-    )
-    ),
-    false
-);*/?>
-<?
-    /*
     ?>
-    <script>
-    $(document).ready(function(){
-    $('.submitCoupon').unbind('click').click(function(e){
-    e.preventDefault();
-    var coupon = $(".couponCode")[1].value;
-    $.post("/ajax/coupon.php",{coupon:coupon},function(data){
-    price = data.split('#') ;
-    //alert(data);
-    //price = JSON.parse(data);
-    //alert(price);
-    console.log(price);
-    $('.tableDiscountPerc').html(price[0]);
-    $('.tableSum').html(price[1]+' Р');
-    $('.finalSumYellow').html(price[1]+' P');
-    if (price[2]=='Y' && price[0]!=0) {
-    $('.form_discount').html(price[3]);
-    $.fancybox.open({href: '#success_form'});
-
-    } else {
-    //alert(price[2]);
-    $.fancybox.open({href: '#error_form'})
-    }
-    })
-    })
-    })
-    </script>
-    <?
-    */ /////////////////////////////
-?>
 
 
 <div class="payment">
-    <?if ($arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 25 || $arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 27/*наличные*/){?>
+    <?if ($arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 25 || $arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 27){?>
         <img class="img" src="/images/inside/payment2.png" alt="" />
         <div class="cash active"><div>
                 <span class="title"> итого <img alt="" src="/images/inside/icon1.png"></span>
@@ -454,12 +354,7 @@
                         <?if ($discountValue!='100%') {?>
                             <div class="line"></div>
                             <div class="sum">сумма: <span class="finalSumYellow"><?
-                                    /*if(bundlePrice::isAStartBundle($arResult['BASKET_ITEMS'],$clearedPriceForItems)){
-                                    $totalPrice = (int)preg_replace('/\s/','',$arResult["ORDER_TOTAL_PRICE_FORMATED"]) - (int)preg_replace('/\s/','',$arResult['DELIVERY_PRICE_FORMATED']); //+ 50;
-                                    echo $totalPrice." Р";
-                                    } else {
-                                    $totalPrice = $arResult["ORDER_PRICE"];// + 50;
-                                    //echo str_replace("руб.","Р",$arResult["ORDER_TOTAL_PRICE_FORMATED"]);     } */
+
                                     $totalPrice = $arResult["ORDER_PRICE"]+$arResult["DELIVERY_PRICE"];
 
                                     echo $totalPrice." Р";
@@ -472,11 +367,10 @@
             </div>
 
         </div>
-        <?} else if ($arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 26 /*uniteller*/){?>
+        <?} else if ($arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 26 ){?>
         <img class="img" src="/images/inside/payment.png" alt="" />
         <div class="black-bg active"><div>
                 <span class="title"> итого <img alt="" src="/images/inside/icon1.png"></span>
-                <?//arshow($arResult) ?>
                 <p class="paySystemText">
                     <? if ($discountValue!='100%') { ?>
                         Оплатите сейчас через платежную систему Uniteller. Это быстро, удобно и, главное, безопасно!
@@ -491,17 +385,8 @@
                             <?}?>
                         <div class="sum">сумма: <span class="finalSumYellow">
                                 <?
-                                    /*if(bundlePrice::isAStartBundle($arResult['BASKET_ITEMS'],$clearedPriceForItems)){
-                                    $totalPrice = (int)preg_replace('/\s/','',$arResult["ORDER_TOTAL_PRICE_FORMATED"]) - (int)preg_replace('/\s/','',$arResult['DELIVERY_PRICE_FORMATED']);
-                                    echo $totalPrice." Р";
 
-                                    } else {
-
-
-                                    } */
                                     $totalPrice = $arResult["ORDER_PRICE"]+$arResult["DELIVERY_PRICE"];
-                                    //$totalPrice = $arResult["ORDER_PRICE"];
-                                    //echo str_replace("руб.","Р",$arResult["ORDER_TOTAL_PRICE_FORMATED"]);
                                     echo $totalPrice." Р";
                                 ?>
                             </span></div>
@@ -512,18 +397,6 @@
 
         </div>
         <?}?>
-
-
-    <?
-        /*
-        $sales = CSaleDiscount::GetList(array(),array(), false, array());
-
-        while ($arSales = $sales->Fetch())
-        {
-        //                arshow($arSales);
-        }
-        */
-    ?>
 
 </div>
 
