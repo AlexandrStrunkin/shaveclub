@@ -115,8 +115,9 @@
     if ($site == "ru") {
         $site = "s2";
     }
+
     //для каждого сайта init.php свой и находится в папке, соответствующей ID сайта (s1 или s2) и весь уникальный для сайта код писать туда
-    include ($_SERVER["DOCUMENT_ROOT"]."/bitrix/php_interface/".$site."/init.php");
+    include ($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/".$site."/init.php");
     include ($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/include/.config.php");
 
 
