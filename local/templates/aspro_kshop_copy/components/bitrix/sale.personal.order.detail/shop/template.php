@@ -60,7 +60,7 @@
     <div class="t"><?=GetMessage('SPOD_ORDER_PROPERTIES')?></div>
     <table class="module-orders-list colored">
         <tbody>
-            <?/*				
+            <?/*
                 <tr>
                 <td><?=GetMessage('SPOD_ORDER_COMPLETE_SET')?>:</td>
                 <td></td>
@@ -250,9 +250,56 @@
                     <td><?=$arResult["TRACKING_NUMBER"]?></td>
                 </tr>
                 <?endif;?>
+                <?foreach ($arResult['PAYMENT'] as $payment):?>
+                    <tr>
+                        <td><?=GetMessage('SPOD_PAY_SYSTEM')?>:</td>
+                        <td>
+                            <?if(intval($payment["PAY_SYSTEM_ID"])):?>
+                                <?if ($payment['PAY_SYSTEM']):?>
+                                    <?=$payment["PAY_SYSTEM"]["NAME"].' ('.$payment['PRICE_FORMATED'].')'?>
+                                <?else:?>
+                                    <?=$payment["PAY_SYSTEM_NAME"].' ('.$payment['PRICE_FORMATED'].')';?>
+                                <?endif;?>
+                            <?else:?>
+                                <?=GetMessage("SPOD_NONE")?>
+                            <?endif?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><?=GetMessage('SPOD_ORDER_PAYED')?>:</td>
+                        <td>
+                            <?if($payment["PAID"] == "Y"):?>
+                                <?=GetMessage('SPOD_YES')?>
+                                <?if(strlen($payment["DATE_PAID_FORMATED"])):?>
+                                    (<?=GetMessage('SPOD_FROM')?> <?=$payment["DATE_PAID_FORMATED"]?>)
+                                <?endif;?>
+                            <?else:?>
+                                <?=GetMessage('SPOD_NO')?>
+                                <?if($payment["CAN_REPAY"]=="Y" && $payment["PAY_SYSTEM"]["PSA_NEW_WINDOW"] == "Y"):?>
+                                    &nbsp;&nbsp;&nbsp;[<a href="<?=$payment["PAY_SYSTEM"]["PSA_ACTION_FILE"]?>" target="_blank"><?=GetMessage("SPOD_REPEAT_PAY")?></a>]
+                                <?endif;?>
+                            <?endif;?>
+                        </td>
+                    </tr>
+                    <?if($payment["CAN_REPAY"]=="Y" && $payment["PAY_SYSTEM"]["PSA_NEW_WINDOW"] != "Y"):?>
+                        <tr>
+                            <td colspan="2">
+                                <?
+                                    if (array_key_exists('ERROR', $payment) && strlen($payment['ERROR']) > 0)
+                                        ShowError($payment['ERROR']);
+                                    elseif (array_key_exists('BUFFERED_OUTPUT', $payment))
+                                        echo $payment['BUFFERED_OUTPUT'];
+                                ?>
+                            </td>
+                        </tr>
+                    <?endif?>
+
+                <?endforeach;?>
+
             <?if($arResult["CAN_REPAY"]=="Y" && $arResult["PAY_SYSTEM"]["PSA_NEW_WINDOW"] != "Y"):?>
                 <tr>
                     <td colspan="2">
+
                         <?
                             $ORDER_ID = $ID;
 
@@ -278,7 +325,7 @@
     <div class="t"><?=GetMessage('SPOD_ORDER_BASKET')?></div>
     <table class="module-orders-list colored goods">
         <thead>
-            <tr>			
+            <tr>
                 <td colspan="2"><?=GetMessage('SPOD_NAME')?></td>
                 <td><?=GetMessage('SPOD_QUANTITY')?></td>
                 <td><?=GetMessage('SPOD_PRICE')?></td>
@@ -313,7 +360,7 @@
                                 </a>
                                 <?endif;?>
                         </td>
-                        <?endif;?>							
+                        <?endif;?>
                     <td class="vname" <?=($hasImg ? '' : 'colspan="2"')?>>
                         <?if($hasLink):?>
                             <a href="<?=$prod["DETAIL_PAGE_URL"]?>" target="_blank">
@@ -379,8 +426,8 @@
                 <td class="custom_t1"><?=GetMessage('SPOD_PRODUCT_SUM')?>:</td>
                 <td class="custom_t2"><?=$arResult['PRODUCT_SUM_FORMATTED']?></td>
             </tr>
-            <?$discount=0; 
-            foreach($arResult['BASKET'] as $item)$discount+=$item['DISCOUNT_PRICE']; 
+            <?$discount=0;
+            foreach($arResult['BASKET'] as $item)$discount+=$item['DISCOUNT_PRICE'];
             if(intval($discount)):?>
             <tr>
                 <td class="custom_t1"><?=GetMessage('SPOD_DISCOUNT')?>:</td>
@@ -398,7 +445,7 @@
                 <tr>
                     <td class="custom_t1"><?=$tax["TAX_NAME"]?>:</td>
                     <td class="custom_t2"><?=$tax["VALUE_MONEY_FORMATED"]?></td>
-                </tr>	
+                </tr>
                 <?endforeach;?>
             <? ///// TAX SUM ?>
             <?if(floatval($arResult["TAX_VALUE"])):?>
