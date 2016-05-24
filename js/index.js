@@ -16,7 +16,7 @@ $(document).ready(function () {
 
 
     //слайдеры главная
-    $(".scroll-slider").each(scrollSlider);       
+    $(".scroll-slider").each(scrollSlider);
 
     //мобильная версия (показать/скрыть меню)
     $(".menu-btn").click(function () {
@@ -76,7 +76,7 @@ $(document).ready(function () {
         $(this).closest("label").find("input").focus();
         $(this).hide();
     });
-    
+
     $('.title').click(function(){
         $(".active").click();
 //        alert(123)
@@ -136,7 +136,7 @@ $(document).ready(function () {
     });
 
     $(".bx-ui-sls-fake").focus(function(){
-        $(".dropdown-block").addClass("active-input");     
+        $(".dropdown-block").addClass("active-input");
     });
 
     $(".bx-ui-sls-fake").blur(function(){
@@ -225,15 +225,15 @@ $(document).ready(function () {
             if (val >= 0)
                 el[0].value = val;
             el.change();
-        }    
+        }
     });
 
     $("input.count").keyup(function () {
-        var val  = $(this).val().replace(/\D+/,''); 
+        var val  = $(this).val().replace(/\D+/,'');
         if (val < 0 || val == "") {
             val = 0;
-        } 
-        $(this).val(val);               
+        }
+        $(this).val(val);
     });
 
 
@@ -268,10 +268,10 @@ $(document).ready(function () {
         return false;
     });
 
-    $(".img .plus").click(function () { 
+    $(".img .plus").click(function () {
         $(".img .plus").removeClass("active");
-        el = $(this);                            
-        el.addClass("active");  
+        el = $(this);
+        el.addClass("active");
         var id = el.attr("rel");
 
         $(".razor_full_description").hide();
@@ -353,9 +353,9 @@ $(document).ready(function () {
             $(".main-block3-col .triangle img").attr("src", "images/bg32.png");
     });
 
-    $(".inside-page-col").jScrollPane({showArrows: true, scrollbarMargin: 0}); 
+    $(".inside-page-col").jScrollPane({showArrows: true, scrollbarMargin: 0});
     // $('.bx_page').jScrollPane({showArrows: true, scrollbarMargin: 0});
-    $('.aboutus .scroll-pane').jScrollPane();       
+    $('.aboutus .scroll-pane').jScrollPane();
 });
 function splitNums(delimiter, str) {
     str = str.toString();
@@ -410,9 +410,9 @@ function menuHeight() {
             // var url = document.location.href;
             //    if (url.indexOf("/order/make/") > 0){} else {
             $(".inside-page-col").jScrollPane({showArrows: true, scrollbarMargin: 0});
-        //     $('.bx_page').jScrollPane({showArrows: true, scrollbarMargin: 0}); 
+        //     $('.bx_page').jScrollPane({showArrows: true, scrollbarMargin: 0});
             //  }
-        } 
+        }
 
 
 
@@ -489,7 +489,7 @@ function scrollSlider(index) {
 
 
 };
-$(window).resize(function () {    
+$(window).resize(function () {
 
     menuHeight();
     //$(".main-container").css("margin-left", $(".menu").width());
@@ -522,7 +522,7 @@ function addToBasket(id) {
             function(data){
                 //alert(data);
                 if (data == "OK") {
-                    document.location.href="/personal/order/make/";  
+                    document.location.href="/personal/order/make/";
                 }
         })
     }
@@ -538,61 +538,61 @@ function planCreate() {
         function(data){
             //alert(data);
             if (data == "OK") {
-                document.location.href="/personal/order/make/";  
+                document.location.href="/personal/order/make/";
             }
-    })  
+    })
 }
 
 //показать/скрыть окно создания собственного плана
-function makePlan() {    
+function makePlan() {
 
     if ($('.svoy-plan').css("display") == "none") {
         $(".svoy-plan").siblings("div").fadeOut();
         $('.svoy-plan').fadeIn(500, function(){
             $('.svoy-plan').css("opacity","1");
 
-            if (document.location.href.indexOf("personal") > 0) {                   
+            if (document.location.href.indexOf("personal") > 0) {
 
                 $(".inside-page-col").each(function(){
                     if ($(this).find(".svoy_plan")) {
                         api = $(this).data('jsp');
-                        api.destroy();  
-                    }   
-                }) 
+                        api.destroy();
+                    }
+                })
 
                 $(".inside-page-col").jScrollPane({showArrows: true, scrollbarMargin: 0});
 
             }
         });
 
-        $(".inside-page-col-close").css("display","block");      
+        $(".inside-page-col-close").css("display","block");
 
     }
 
     else {
 
-        $(".inside-page-col-close").css("display","none");  
-        $(".svoy-plan").siblings("div").fadeIn();  
+        $(".inside-page-col-close").css("display","none");
+        $(".svoy-plan").siblings("div").fadeIn();
         $('.svoy-plan').fadeOut(500, function(){
-            if (document.location.href.indexOf("personal") > 0) {            
+            if (document.location.href.indexOf("personal") > 0) {
 
                 $(".inside-page-col").each(function(){
                     if ($(this).find(".svoy_plan")) {
                         api = $(this).data('jsp');
-                        api.destroy();  
-                    }    
-                })   
+                        api.destroy();
+                    }
+                })
 
-                $(".inside-page-col").jScrollPane({showArrows: true, scrollbarMargin: 0});    
+                $(".inside-page-col").jScrollPane({showArrows: true, scrollbarMargin: 0});
 
-                $('.svoy-plan').css("display","none"); 
+                $('.svoy-plan').css("display","none");
             }
         });
     }
     //заново инициализируем скролл
     $(".inside-page-col .jspPane").animate({"top": "0"}, 500);
 
-}          
+}
 
 function sertSubmit() {
     var code = $(".sertActivate").val();
@@ -618,7 +618,7 @@ function sertSubmit() {
 }
 
 
-     
+
 
 
 
