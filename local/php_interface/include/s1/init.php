@@ -48,6 +48,13 @@
     // ---- Класс для работы с разными стоимостями доставки для разных наборов бритв
     class bundlePrice {
 
+        /********************
+        *
+        * @param string $code
+        * @return float $startBundlePrice
+        *
+        * *****************/
+
         private static function getStartBundlePrice($code){
             $arSelect = Array("ID");
             $arFilter = Array("IBLOCK_ID"=>12,"ACTIVE"=>"Y","CODE"=>$code);
@@ -62,10 +69,27 @@
 
         }
 
+        /********************
+        *
+        * Функция для поиска CODE для стартового набора,
+        * исходной строкой будет что-то типа razor_norma_4,
+        * вырезаем все после первого подчеркивания и приклеиваем _start
+        *
+        * @param string $code
+        * @return string
+        *
+        * *****************/
+
         private static function getStartBundleCode($code){
             return substr($code,strpos($code, "_")+1)."_start";
         }
-
+        /********************
+        *
+        * @param array $items
+        * @param int $customPrice
+        * @return bool
+        *
+        * *****************/
 
         public static function isAStartBundle($items,$customPrice){
             $_SESSION['startBundle'] = "";
