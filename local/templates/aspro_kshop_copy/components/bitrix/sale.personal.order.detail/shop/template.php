@@ -250,6 +250,7 @@
                     <td><?=$arResult["TRACKING_NUMBER"]?></td>
                 </tr>
                 <?endif;?>
+                <?arshow($arResult['PAYMENT'])?>
                 <?foreach ($arResult['PAYMENT'] as $payment):?>
                     <tr>
                         <td><?=GetMessage('SPOD_PAY_SYSTEM')?>:</td>
