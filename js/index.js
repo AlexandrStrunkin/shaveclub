@@ -79,7 +79,6 @@ $(document).ready(function () {
 
     $('.title').click(function(){
         $(".active").click();
-//        alert(123)
     });
 
     //выбор типа доставки
@@ -410,7 +409,6 @@ function menuHeight() {
             // var url = document.location.href;
             //    if (url.indexOf("/order/make/") > 0){} else {
             $(".inside-page-col").jScrollPane({showArrows: true, scrollbarMargin: 0});
-        //     $('.bx_page').jScrollPane({showArrows: true, scrollbarMargin: 0});
             //  }
         }
 
@@ -492,7 +490,6 @@ function scrollSlider(index) {
 $(window).resize(function () {
 
     menuHeight();
-    //$(".main-container").css("margin-left", $(".menu").width());
     $(".scroll-slider").each(scrollSlider);
     $(".inside-page-col").jScrollPane({showArrows: true, scrollbarMargin: 0});
     //  $('.bx_page').jScrollPane({showArrows: true, scrollbarMargin: 0});
@@ -536,7 +533,6 @@ function planCreate() {
 
     $.post("/ajax/planCreate.php",{razor_count:razor_count,cassette_count:cassette_count,razor:razor},
         function(data){
-            //alert(data);
             if (data == "OK") {
                 document.location.href="/personal/order/make/";
             }
