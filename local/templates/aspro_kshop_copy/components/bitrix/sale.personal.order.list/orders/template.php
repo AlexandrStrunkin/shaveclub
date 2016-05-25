@@ -131,8 +131,8 @@
 											</tr>
 										<?}?>
 										<tr class="order_property price">
-												<td class="name"><?=GetMessage("STPOL_ORDER_TO_AMOUNT")?>:</td>
-												<td class="r"><?=$val["ORDER"]["FORMATED_PRICE"]?></td>
+											<td class="name"><?=GetMessage("STPOL_ORDER_TO_AMOUNT")?>:</td>
+											<td class="r"><?=$val["ORDER"]["FORMATED_PRICE"]?></td>
 										</tr>
 									</table>
 
