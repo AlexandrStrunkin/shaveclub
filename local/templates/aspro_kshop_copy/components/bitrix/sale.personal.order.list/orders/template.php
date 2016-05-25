@@ -139,7 +139,6 @@
 
 								</div>
 								<!--noindex-->
-                                <?//arshow($val)?>
 									<a href="<?=$val["ORDER"]["URL_TO_DETAIL"]?>" class="button22"><span><?=GetMessage("SPOL_T_DETAIL")?></span></a>
 									<a href="<?=$val["ORDER"]["URL_TO_COPY"]?>" class="button22"><span><?=GetMessage("SPOL_T_COPY_ORDER_DESCR")?></span></a>
 									<?if( $val["ORDER"]["CAN_CANCEL"] == "Y"  && ($val["ORDER"]["STATUS_ID"] == "N" || $val["ORDER"]["STATUS_ID"] == "P")){?>
