@@ -567,7 +567,7 @@ function makePlan() {
 
     else {
 
-        $(".inside-page-col-close").css("display","none");
+        $(".inside-page-col-close").css("display", "none");
         $(".svoy-plan").siblings("div").fadeIn();
         $('.svoy-plan').fadeOut(500, function(){
             if (document.location.href.indexOf("personal") > 0) {
@@ -581,7 +581,7 @@ function makePlan() {
 
                 $(".inside-page-col").jScrollPane({showArrows: true, scrollbarMargin: 0});
 
-                $('.svoy-plan').css("display","none");
+                $('.svoy-plan').css("display", "none");
             }
         });
     }
