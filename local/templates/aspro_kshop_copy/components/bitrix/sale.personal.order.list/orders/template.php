@@ -16,7 +16,7 @@
 				return number_format( $price, 0, '', ' ' ).substr($currency["FORMAT_STRING"], strrpos($currency["FORMAT_STRING"], ' '));
 			}
 		}
-	}	
+	}
 ?>
 <small><?//var_dump($arResult["ORDERS"]);?></small>
 <?if (count($arResult["ORDERS"])):?>
@@ -34,15 +34,15 @@
 		<tbody>
 		<?foreach( $arResult["ORDERS"] as $val ){?>
 			<?$summ = 0;
-			foreach( $val["BASKET_ITEMS"] as $vval ){		
+			foreach( $val["BASKET_ITEMS"] as $vval ){
 				$summ += $vval["PRICE"] * $vval["QUANTITY"];
 			}?>
-			
+
 				<tr class="tr-d">
 					<td class="item-name-cell">
 						<a class="item_name"><span class="icon"><i></i></span><span class="name"><?=GetMessage("STPOL_ORDER")?><?=$val["ORDER"]["ACCOUNT_NUMBER"]?></span></a>
-						
-						<span class="order-extra-properties">	
+
+						<span class="order-extra-properties">
 							, <span class="item">
 								<?=GetMessage("STPOL_ORDER_DATE")?>:<?$date = explode( ' ', $val["ORDER"]["DATE_INSERT_FORMAT"] );?> <?=$date[0]?>,
 							</span>
@@ -53,11 +53,11 @@
 								<?=GetMessage("STPOL_ORDER_SUMM")?>:&nbsp;
 								<?=$val["ORDER"]["FORMATED_PRICE"]?>
 							</span>
-							<span class="item"><?=GetMessage("STPOL_ORDER_PAY")?>:&nbsp; 
+							<span class="item"><?=GetMessage("STPOL_ORDER_PAY")?>:&nbsp;
 								<span class="pay-status-cell<?=$val["ORDER"]["PAYED"] == 'Y' ? ' payed' : ' not_payed'?>"><?=$val["ORDER"]["PAYED"] == 'Y' ? GetMessage("SPOL_T_PAYED") : GetMessage("SPOL_T_NOT_PAYED")?></span>,
 							</span>
 							<span class="item">
-								<?=GetMessage("SPOL_T_STATUS")?>:&nbsp; 
+								<?=GetMessage("SPOL_T_STATUS")?>:&nbsp;
 								<?if( $val["ORDER"]["CANCELED"] == "Y" ){?><?=GetMessage("SPOL_T_CANCELED");?>
 								<?}elseif( $val["ORDER"]["STATUS_ID"]){?><?=$arResult["INFO"]["STATUS"][$val["ORDER"]["STATUS_ID"]]["NAME"]?><?}?>
 							</span>
@@ -100,12 +100,12 @@
 										<td class="summ-th"><?=GetMessage("STPOL_ORDER_SUMM")?></td>
 									</tr>
 								</thead>
-								<tbody>								
+								<tbody>
 									<?foreach( $val["BASKET_ITEMS"] as $vval ):?>
 										<tr>
 											<td  class="name-cell">
 												<a href="<?=$vval["DETAIL_PAGE_URL"]?>"><?=$vval["NAME"]?></a>
-												<div class="item-extra-properties">	
+												<div class="item-extra-properties">
 													<?=formatPrice($vval["PRICE"], $vval["CURRENCY"]);?> &times; <?=$vval["QUANTITY"]?>
 												</div>
 											</td>
@@ -122,7 +122,7 @@
 							</table>
 							<div class="result-row">
 								<div class="result">
-								
+
 									<table cellspacing="0" cellpadding="0" border="0">
 										<?if( intval( $val["ORDER"]["PRICE_DELIVERY"] ) > 0 ){?>
 											<tr class="order_property">
@@ -135,13 +135,14 @@
 												<td class="r"><?=$val["ORDER"]["FORMATED_PRICE"]?></td>
 										</tr>
 									</table>
-								
+
 
 								</div>
 								<!--noindex-->
-									<a href="<?=$val["ORDER"]["URL_TO_DETAIL"]?>" class="button22"><span><?=GetMessage("SPOL_T_DETAIL")?></span></a>						
-									<a href="<?=$val["ORDER"]["URL_TO_COPY"]?>" class="button22"><span><?=GetMessage("SPOL_T_COPY_ORDER_DESCR")?></span></a>						
-									<?if( $val["ORDER"]["CAN_CANCEL"] == "Y" ){?>
+                                <?//arshow($val)?>
+									<a href="<?=$val["ORDER"]["URL_TO_DETAIL"]?>" class="button22"><span><?=GetMessage("SPOL_T_DETAIL")?></span></a>
+									<a href="<?=$val["ORDER"]["URL_TO_COPY"]?>" class="button22"><span><?=GetMessage("SPOL_T_COPY_ORDER_DESCR")?></span></a>
+									<?if( $val["ORDER"]["CAN_CANCEL"] == "Y"  && ($val["ORDER"]["STATUS_ID"] == "N" || $val["ORDER"]["STATUS_ID"] == "P")){?>
 										<a href="<?=$val["ORDER"]["URL_TO_CANCEL"]?>" class="button22 grey"><span><?=GetMessage("SPOL_T_DELETE_DESCR")?></span></a>
 									<?}?>
 								<!--/noindex-->

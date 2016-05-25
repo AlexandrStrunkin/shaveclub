@@ -42,12 +42,12 @@
     <script type="text/javascript" src="/js/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="/js/jquery.jscrollpane.min.js"></script>
 
-    <script type="text/javascript" src="/js/jquery.fancybox.js"></script>      
+    <script type="text/javascript" src="/js/jquery.fancybox.js"></script>
     <link type="text/css" href="/css/jquery.fancybox.css" rel="stylesheet" media="all"/>
 
     <script src="/js/index.js"></script>
     <script src="/js/callback.js"></script>
-    <script src="/js/inputmask.js"></script>   
+    <script src="/js/inputmask.js"></script>
 
 
     <script type="text/javascript">
@@ -72,7 +72,7 @@
 
 <div class="main-container inside-page kabinet-page">
 
-<?include($_SERVER["DOCUMENT_ROOT"]."/include/mobile_top.php");?> 
+<?include($_SERVER["DOCUMENT_ROOT"]."/include/mobile_top.php");?>
 
 <div class="inside-page-col">
     <div class="div">
@@ -117,7 +117,7 @@
                     <li>Бесплатная доставка</li>
                     <li>Всегда острые и свежие бритвы</li>
                     <li>Автоматическая оплата</li>
-                </ul>   
+                </ul>
 
                 <?/*
                     <a href="#" class="btn white-btn fadeInDown">оформить</a>
@@ -171,7 +171,7 @@
             if ($obThisSection["ID"] == $obElement["IBLOCK_SECTION_ID"]):
                 $arSection["THIS"] = $obThisSection;
                 else:
-                $arSection["SIBLINGS"] = $obThisSection; 
+                $arSection["SIBLINGS"] = $obThisSection;
                 endif;
             endwhile;
 
@@ -202,7 +202,7 @@
                 <a href="#"><img src="/images/inside/icon5.png" alt=""/><span class="title">изменить способ оплаты</span></a>
             </li>
 
-        </ul>       
+        </ul>
     </div>
     <div class="history history1 div"><span class="arr"></span> <div>
             <?if($listOrder == "Y"):?>
@@ -222,14 +222,14 @@
 
             if ($timeThis<0.1):
                 $procent = 100;
-                $back = 0;      
+                $back = 0;
                 elseif($timeThis>1):
-                $procent = 0;  
-                $back = 10;    
+                $procent = 0;
+                $back = 10;
                 else:
                 $procent = 100 - (round($timeThis*10))*10;
                 $back = round($timeThis*10);
-                endif; 
+                endif;
 
             $firstTime = explode(" ",$obOrderFirst["DATE_INSERT"]);
             $timeFirst  = explode(".",$firstTime[0]);
@@ -238,9 +238,9 @@
             $nowTimeDays = intval($dateThis[0])+intval($dateThis[1])*30+intval($dateThis[2])*360;
 
             $pastDaysSum = $nowTimeDays - $regTimeDays;
-            $pastDate[] = floor($pastDaysSum/360);   
+            $pastDate[] = floor($pastDaysSum/360);
             $pastDaysSum = $pastDaysSum - $pastDate[0]*360;
-            $pastDate[] = floor($pastDaysSum/30); 
+            $pastDate[] = floor($pastDaysSum/30);
             $pastDaysSum = $pastDaysSum - $pastDate[1]*30;
             $pastDate[] = $pastDaysSum;
 
@@ -258,7 +258,7 @@
                 $year = intval($dateThis[1]) - intval($timeFirst[1]);
                 $day = intval($dateThis[0]) - intval($timeFirst[1]);
             }
-            else{ 
+            else{
                 $year = intval($dateThis[2]) - intval($timeFirst[2]);
                 $month = intval($dateThis[1]) - intval($timeFirst[1]);
                 $day = intval($dateThis[1]) - intval($timeFirst[1]);
@@ -282,10 +282,10 @@
                     <span>
                         <?if($pastDate[1]):
                             echo $_plural_years[plural_type($pastDate[0])].' ';
-                            echo $pastDate[1].' '.$_plural_months[plural_type($pastDate[1])];    
+                            echo $pastDate[1].' '.$_plural_months[plural_type($pastDate[1])];
                             else:
-                            echo $_plural_months[plural_type($pastDate[1])];                 
-                            endif;?>                
+                            echo $_plural_months[plural_type($pastDate[1])];
+                            endif;?>
                         и <?echo $pastDate[2]." ".$_plural_days[plural_type($pastDate[1])]?></span></span>
             </div>
         </div>
@@ -306,12 +306,12 @@
             <span class="title">Обратная связь</span>
             <a class="btn" id="feedback_btn" href="#">отправить</a>
             <div class="input-container">
-                <div id="feedMessage"></div>             
+                <div id="feedMessage"></div>
                 <input type="hidden" id=user_mail value="<?=$USER->GetID()?>">
                 <input type="text" class="input" id="feedback" onfocus="clearField('feedback', 'Опишите суть Вашего вопроса')" onblur="blurField('feedback', 'Опишите суть Вашего вопроса')" value="Опишите суть Вашего вопроса" /></div>
 
         </form>
-    </div>      
+    </div>
 
 
     <div class="svoy-plan inside-page orders-history">
@@ -320,7 +320,7 @@
         <?$resOrder = CSaleOrder::GetList(array('ID' => 'DESC'), array("USER_ID" => $USER->GetID()), false);
             while($obOrder = $resOrder -> Fetch()){
                 $dateOrder = explode(" ", $obOrder["DATE_INSERT"]);
-            ?>  
+            ?>
             <div class="checkout-block div">
                 <?
 //                    arshow($obOrder);
@@ -328,7 +328,7 @@
                 <?if($obOrder["CANCELED"]=="N"):?>
                     <? if ($obOrder["STATUS_ID"]=="N" || $obOrder["STATUS_ID"]=="P" || $obOrder["STATUS_ID"]=="B") {?>
                     <div id="cancel_order">
-                        <a href="#" class="cansel-btn" rel="<?=$obOrder["ID"]?>">отменить</a>            
+                        <a href="#" class="cansel-btn" rel="<?=$obOrder["ID"]?>">отменить</a>
                     </div>
                     <?}?>
                     <?else:
@@ -349,7 +349,7 @@
                     $arQuant = array();
                     foreach($quant as $val):
                         $arQuant[] = $val;
-                        endforeach;    
+                        endforeach;
 
                     if(!empty($obBasket["TYPE"])):
                     ?>
@@ -373,19 +373,19 @@
                     </div>
                     <?endif;?>
                 <div class="text"><strong>ваш заказ:</strong> <span>№<?=$obOrder["ID"]?></span> от <?=$dateOrder[0]?></div>
-                <?               
+                <?
 
                     //  arshow($obBasket);
                     $resElement = CIBlockElement::GetById($obBasket["PRODUCT_ID"]);
                     $obElement = $resElement -> Fetch();
-                    $resSection = CIBlockSection::GetList(Array(), Array("IBLOCK_ID"=> 12,"ID"=>$obElement["IBLOCK_SECTION_ID"]), false, Array("NAME","ID","UF_DETAIL_PICTURE","CODE"));           
-                    $obSection = $resSection -> Fetch(); 
-                    $resParentSection = CIBlockSection::GetById($obSection["ID"]);  
-                    $obParentSection = $resParentSection ->Fetch();    
-                    $resParentSection = CIBlockSection::GetList(Array(), Array("IBLOCK_ID"=> 12,"ID"=>$obParentSection["IBLOCK_SECTION_ID"]), false, Array("NAME","CODE"));                 $obParentSection = $resParentSection ->Fetch(); 
+                    $resSection = CIBlockSection::GetList(Array(), Array("IBLOCK_ID"=> 12,"ID"=>$obElement["IBLOCK_SECTION_ID"]), false, Array("NAME","ID","UF_DETAIL_PICTURE","CODE"));
+                    $obSection = $resSection -> Fetch();
+                    $resParentSection = CIBlockSection::GetById($obSection["ID"]);
+                    $obParentSection = $resParentSection ->Fetch();
+                    $resParentSection = CIBlockSection::GetList(Array(), Array("IBLOCK_ID"=> 12,"ID"=>$obParentSection["IBLOCK_SECTION_ID"]), false, Array("NAME","CODE"));                 $obParentSection = $resParentSection ->Fetch();
                     $link = "/".$obParentSection["CODE"]."/".$obSection["CODE"]."/";
-                    $picture = CFile::GetPath($obSection["UF_DETAIL_PICTURE"]);           
-                ?> 
+                    $picture = CFile::GetPath($obSection["UF_DETAIL_PICTURE"]);
+                ?>
                 <div class="order-composition">
                     <?if($resBasketProps -> SelectedRowsCount() > 0):?>
                         <img alt="" src="/images/gift_label.png" class="img label">
@@ -402,10 +402,10 @@
                             <tr><td>доставка</td><td><?=$arDelivery[$obOrder["DELIVERY_ID"]]?></td></tr>
                         </table>
 
-                    </div>      
+                    </div>
                     <?
                         include(GetLangFileName(dirname(__FILE__) . '/', '/uniteller.php'));
-                        if (!class_exists('ps_uniteller')) {        
+                        if (!class_exists('ps_uniteller')) {
                             include(dirname(__FILE__) . '/tools.php');
                         }
 
@@ -445,9 +445,9 @@
                             }
                             $signature = strtoupper(md5(md5(ps_uniteller::$Shop_ID) . '&' . md5($obOrder["ID"]) . '&' . md5($sHouldPay)
                                 . '&' . md5('0') . '&' . md5('0') . '&' . md5($sLiftime) . '&' . md5('') . '&' . md5('') . '&' . md5('')
-                                . '&' . md5('') . '&' . md5(ps_uniteller::$Password)));      
-                        }    
-                    ?>  
+                                . '&' . md5('') . '&' . md5(ps_uniteller::$Password)));
+                        }
+                    ?>
                     <?//arshow($obBasket)?>
                     <span class="sum"><?=number_format($obOrder["PRICE"], 2)?>&nbsp;<img src="/images/inside/rub.png" alt=""/></span>
                     <?//arshow($obOrder, true)?>
@@ -462,7 +462,7 @@
                                 <form action="<?= ps_uniteller::$url_uniteller_pay ?>" method="post" target="_blank">
                                     <!--<font class="tablebodytext"><br><?= GetMessage('SUSP_ACCOUNT_NO') ?>
                                     <?= $sOrderID . GetMessage('SUSP_ORDER_FROM') . $sDateInsert ?><br> <?= GetMessage('SUSP_ORDER_SUM') ?><b><?= SaleFormatCurrency($sHouldPay, $sCurrency) ?>
-                                    </b><br> <br></br>--> 
+                                    </b><br> <br></br>-->
                                     <input type="hidden" name="Shop_IDP"
                                         value="<?= ps_uniteller::$Shop_ID ?>">
                                     <input type="hidden" name="Order_IDP" value="<?= $obOrder["ID"] ?>"> <input
@@ -519,15 +519,15 @@
                                     <input type="hidden" value="0" name="EMoneyType" >
 
                                     <!--</font>-->
-                                </form> 
+                                </form>
                             </div>
                             <? } ?>
                         <?elseif ($obOrder["PAYED"] == "Y"):?>
-                        <span class="not-paid" style="color:green !important; border-color:green">оплачен</span>    
+                        <span class="not-paid" style="color:green !important; border-color:green">оплачен</span>
                         <?endif;?>
 
 
-                </div> 
+                </div>
 
 
             </div>
