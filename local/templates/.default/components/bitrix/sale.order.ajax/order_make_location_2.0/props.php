@@ -1,6 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-<? include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/props_format.php");?>  
-<?     
+<? include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/props_format.php");?>
+<?
 $bHideProps = false;
     ?>
 
@@ -10,20 +10,12 @@ $bHideProps = false;
     <span class="title">контактные данные</span>
     <div class="input-container">
 
-        <?  
-//            $bHideProps = false;   
-         
-    
-        ?> 
-           
         <div id="sale_order_props" >
             <?
-                PrintPropsForm($arResult["ORDER_PROP"]["USER_PROPS_N"], $arParams["TEMPLATE_LOCATION"]);  
                 PrintPropsForm($arResult["ORDER_PROP"]["USER_PROPS_Y"], $arParams["TEMPLATE_LOCATION"]);
+                PrintPropsForm($arResult["ORDER_PROP"]["USER_PROPS_N"], $arParams["TEMPLATE_LOCATION"]);
             ?>
         </div>
-
-
         <script type="text/javascript">
             function fGetBuyerProps(el)
             {
@@ -85,5 +77,5 @@ $bHideProps = false;
 
 
     </div>
-</div>       
+</div>
 <div style="clear: both;"></div>
