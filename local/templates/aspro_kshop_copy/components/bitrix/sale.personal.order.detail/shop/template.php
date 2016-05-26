@@ -257,7 +257,7 @@
             </tr>
         </thead>
         <tbody>
-            <?foreach($arResult["BASKET"] as $prod):?>
+            <?foreach($arResult["BASKET"] as $prod){?>
                 <tr>
                     <?
                         $hasLink = !empty($prod["DETAIL_PAGE_URL"]);
@@ -320,7 +320,7 @@
                         <?endif;?>
                     <td><?=htmlspecialcharsEx($prod["NOTES"])?></td>
                 </tr>
-                <?endforeach;?>
+                <?};?>
         </tbody>
     </table>
     <table class="module-orders-list result">
