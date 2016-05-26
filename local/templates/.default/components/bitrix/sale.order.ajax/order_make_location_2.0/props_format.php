@@ -1,24 +1,23 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>  
+<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <?
     if ($USER->IsAuthorized()) {
         $userID = $USER->GetID();
         $userProps = CUser::GetByID($userID);
         $arUserProps = $userProps->Fetch();
-        //        arshow($arResult);
-    ?> 
+    ?>
     <script type="text/javascript">
         $(document).ready(function () {
             name='<?=$arResult["USER_PROPS_Y"][1]["VALUE_FORMATED"]?>';
             phone='<?=$arUserProps["PERSONAL_PHONE"]?>';
             email='<?=$arUserProps["EMAIL"]?>';
             if (name!='') {
-                $("#ORDER_PROP_1").val(name); 
+                $("#ORDER_PROP_1").val(name);
             }
             if (phone!='') {
                 $("#ORDER_PROP_3").val(phone);
             }
             if (email!='') {
-                $("#ORDER_PROP_2").val(email); 
+                $("#ORDER_PROP_2").val(email);
             }
 
 
@@ -26,7 +25,7 @@
 
         });
     </script>
-    <?   } 
+    <?   }
     if (!function_exists("showFilePropertyField"))
     {
         function showFilePropertyField($name, $property_fields, $values, $max_file_size_show=50000)
@@ -84,15 +83,10 @@
             if (!empty($arSource))
             {
             ?>
-            <?   
+            <?
                 foreach ($arSource as $arProperties)
-                { 
-                    //arshow($arProperties,true);
-                    if ($arProperties["CODE"] == "ZIP"){  /*
-                        ?>
-                        <span class="title address_title">адрес доставки</span>
-                        <?
-                    */ }
+                {
+                    if ($arProperties["CODE"] == "ZIP"){ }
 
                     if ($arProperties["TYPE"] == "CHECKBOX")
                     {
@@ -114,20 +108,20 @@
                         </div>
                         <?
                             endif;
-                    ?>        
+                    ?>
                     <?
                     }
                     elseif ($arProperties["TYPE"] == "TEXT")
                     {
-                    ?> 
+                    ?>
                     <label>
-                        <input type="text" placeholder="<?=$arProperties["NAME"]?>" class="input" size="<?=$arProperties["SIZE1"]?>" value="<?=$arProperties["VALUE"]?>" name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>" autocomplete="off">
-                    </label>  
+                        <input type="text" placeholder="<?=$arProperties["NAME"]?>" class="<?if($arProperties["CODE"] != "KOMMENT"){?>input<?}?> koment" size="<?=$arProperties["SIZE1"]?>" value="<?=$arProperties["VALUE"]?>" name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>" autocomplete="off">
+                    </label>
                     <?
                     }
                     elseif ($arProperties["TYPE"] == "SELECT")
                     {
-                    ?>    							
+                    ?>
                     <select name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>" size="<?=$arProperties["SIZE1"]?>">
                         <?
                             foreach($arProperties["VARIANTS"] as $arVariants):
@@ -136,13 +130,13 @@
                             <?
                                 endforeach;
                         ?>
-                    </select>  								
+                    </select>
                     <div style="clear: both;"></div>
                     <?
                     }
                     elseif ($arProperties["TYPE"] == "MULTISELECT")
                     {
-                    ?>   							
+                    ?>
                     <select multiple name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>" size="<?=$arProperties["SIZE1"]?>">
                         <?
                             foreach($arProperties["VARIANTS"] as $arVariants):
@@ -151,14 +145,14 @@
                             <?
                                 endforeach;
                         ?>
-                    </select>                                            								
+                    </select>
                     <div style="clear: both;"></div>
                     <?
                     }
                     elseif ($arProperties["TYPE"] == "TEXTAREA")
                     {
                         $rows = ($arProperties["SIZE2"] > 10) ? 4 : $arProperties["SIZE2"];
-                    ?>         							
+                    ?>
                     <textarea rows="<?=$rows?>" cols="<?=$arProperties["SIZE1"]?>" name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>"><?=$arProperties["VALUE"]?></textarea>
                     <div style="clear: both;"></div>
                     <?
@@ -179,7 +173,7 @@
                         }
                     ?>
 
-                    <?                          
+                    <?
 
 
                         $GLOBALS["APPLICATION"]->IncludeComponent(
@@ -194,12 +188,12 @@
                                 "LOCATION_VALUE" => $value,
                                 "ORDER_PROPS_ID" => $arProperties["ID"],
                                 "ONCITYCHANGE" => ($arProperties["IS_LOCATION"] == "Y" || $arProperties["IS_LOCATION4TAX"] == "Y") ? "submitForm()" : "",
-                                "SIZE1" => $arProperties["SIZE1"], 
+                                "SIZE1" => $arProperties["SIZE1"],
                             ),
                             null,
                             array('HIDE_ICONS' => 'Y')
                         );
-                          
+
                         CSaleLocation::proxySaleAjaxLocationsComponent(array(
                             "AJAX_CALL" => "N",
                             "COUNTRY_INPUT_NAME" => "COUNTRY",
@@ -234,7 +228,7 @@
                             $locationTemplateP,
                             true,
                             'location-block-wrapper'
-                        ); 
+                        );
                     ?>
 
                     <div style="clear: both;"></div>
@@ -263,7 +257,7 @@
                             <?
                                 endforeach;
                         }
-                    ?>      								
+                    ?>
                     <div style="clear: both;"></div>
                     <?
                     }
@@ -292,7 +286,7 @@
                     <div style="clear: both;"></div>
                     <?
                     }
-                }     					
+                }
             }
         }
     }

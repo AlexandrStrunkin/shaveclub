@@ -27,9 +27,11 @@
                             <?=GetMessage('SPOD_YES')?> (<?=GetMessage('SPOD_FROM')?> <?=$arResult["DATE_CANCELED_FORMATED"]?>)
                             <?elseif($arResult["CAN_CANCEL"] == "Y"):?>
                             <?=GetMessage('SPOD_NO')?>&nbsp;&nbsp;&nbsp;
+                            <?if($arResult["STATUS_ID"] == "N" || $arResult["STATUS_ID"] == "P"){?>
                             <a class="button22 grey" href="<?=$arResult["URL_TO_CANCEL"]?>">
                                 <span><?=GetMessage("SPOD_ORDER_CANCEL")?></span>
                             </a>
+                            <?}?>
                             <?endif?>
                     </td>
                 </tr>
@@ -332,7 +334,9 @@
                 <td class="custom_t2"><?=$arResult['PRODUCT_SUM_FORMATTED']?></td>
             </tr>
             <?$discount=0;
-            foreach($arResult['BASKET'] as $item)$discount+=$item['DISCOUNT_PRICE'];
+            foreach($arResult['BASKET'] as $item){
+                $discount+=$item['DISCOUNT_PRICE'];
+            }
             if(intval($discount)):?>
             <tr>
                 <td class="custom_t1"><?=GetMessage('SPOD_DISCOUNT')?>:</td>

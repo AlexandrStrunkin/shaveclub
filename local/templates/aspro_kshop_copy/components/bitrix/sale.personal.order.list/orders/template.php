@@ -127,8 +127,8 @@
 											</tr>
 										<?}?>
 										<tr class="order_property price">
-												<td class="name"><?=GetMessage("STPOL_ORDER_TO_AMOUNT")?>:</td>
-												<td class="r"><?=$val["ORDER"]["FORMATED_PRICE"]?></td>
+											<td class="name"><?=GetMessage("STPOL_ORDER_TO_AMOUNT")?>:</td>
+											<td class="r"><?=$val["ORDER"]["FORMATED_PRICE"]?></td>
 										</tr>
 									</table>
 
@@ -137,7 +137,6 @@
 								<!--noindex-->
 									<a href="<?=$val["ORDER"]["URL_TO_DETAIL"]?>" class="button22"><span><?=GetMessage("SPOL_T_DETAIL")?></span></a>
 									<a href="<?=$val["ORDER"]["URL_TO_COPY"]?>" class="button22"><span><?=GetMessage("SPOL_T_COPY_ORDER_DESCR")?></span></a>
-
                                     <?         // подключение оплаты яндекс кассы
                                     CSalePaySystemAction::InitParamArrays($val["ORDER"], $val["ORDER"]["ID"], $arResult["PAY_SYSTEM"]["PARAMS"]);
 
@@ -165,9 +164,7 @@
                                         ShowError($message);
                                     }   // подключение оплаты яндекс кассы
                                     ?>
-
-
-                                    <?if( $val["ORDER"]["CAN_CANCEL"] == "Y" ){?>
+									<?if( $val["ORDER"]["CAN_CANCEL"] == "Y"  && ($val["ORDER"]["STATUS_ID"] == "N" || $val["ORDER"]["STATUS_ID"] == "P")){?>
 										<a href="<?=$val["ORDER"]["URL_TO_CANCEL"]?>" class="button22 grey"><span><?=GetMessage("SPOL_T_DELETE_DESCR")?></span></a>
 									<?}?>
 								<!--/noindex-->
