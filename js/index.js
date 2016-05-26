@@ -519,7 +519,7 @@ function addToBasket(id) {
             function(data){
                 //alert(data);
                 if (data == "OK") {
-                    document.location.href="/personal/order/make/";
+                    document.location.href = "/personal/order/make/";
                 }
         })
     }
@@ -534,7 +534,7 @@ function planCreate() {
     $.post("/ajax/planCreate.php",{razor_count:razor_count,cassette_count:cassette_count,razor:razor},
         function(data){
             if (data == "OK") {
-                document.location.href="/personal/order/make/";
+                document.location.href = "/personal/order/make/";
             }
     })
 }
@@ -595,7 +595,7 @@ function sertSubmit() {
     if (code) {
         $.post("/ajax/checkSertificate.php",{code: code}, function(data){
             if (data == 'OK') {
-                document.location.href="/personal/order/make/";
+                document.location.href = "/personal/order/make/";
             }
             else {
                 $.fancybox.open({href: '#error_message'});
