@@ -27,9 +27,11 @@
                             <?=GetMessage('SPOD_YES')?> (<?=GetMessage('SPOD_FROM')?> <?=$arResult["DATE_CANCELED_FORMATED"]?>)
                             <?elseif($arResult["CAN_CANCEL"] == "Y"):?>
                             <?=GetMessage('SPOD_NO')?>&nbsp;&nbsp;&nbsp;
+                            <?if($arResult["STATUS_ID"] == "N" || $arResult["STATUS_ID"] == "P"){?>
                             <a class="button22 grey" href="<?=$arResult["URL_TO_CANCEL"]?>">
                                 <span><?=GetMessage("SPOD_ORDER_CANCEL")?></span>
                             </a>
+                            <?}?>
                             <?endif?>
                     </td>
                 </tr>
@@ -60,7 +62,7 @@
     <div class="t"><?=GetMessage('SPOD_ORDER_PROPERTIES')?></div>
     <table class="module-orders-list colored">
         <tbody>
-            <?/*				
+            <?/*
                 <tr>
                 <td><?=GetMessage('SPOD_ORDER_COMPLETE_SET')?>:</td>
                 <td></td>
@@ -250,35 +252,13 @@
                     <td><?=$arResult["TRACKING_NUMBER"]?></td>
                 </tr>
                 <?endif;?>
-            <?if($arResult["CAN_REPAY"]=="Y" && $arResult["PAY_SYSTEM"]["PSA_NEW_WINDOW"] != "Y"):?>
-                <tr>
-                    <td colspan="2">
-                        <?
-                            $ORDER_ID = $ID;
 
-                            try
-                            {
-                                include($arResult["PAY_SYSTEM"]["PSA_ACTION_FILE"]);
-                            }
-                            catch(\Bitrix\Main\SystemException $e)
-                            {
-                                if($e->getCode() == CSalePaySystemAction::GET_PARAM_VALUE)
-                                    $message = GetMessage("SOA_TEMPL_ORDER_PS_ERROR");
-                                else
-                                    $message = $e->getMessage();
-
-                                ShowError($message);
-                            }
-                        ?>
-                    </td>
-                </tr>
-                <?endif;?>
         </tbody>
     </table>
     <div class="t"><?=GetMessage('SPOD_ORDER_BASKET')?></div>
     <table class="module-orders-list colored goods">
         <thead>
-            <tr>			
+            <tr>
                 <td colspan="2"><?=GetMessage('SPOD_NAME')?></td>
                 <td><?=GetMessage('SPOD_QUANTITY')?></td>
                 <td><?=GetMessage('SPOD_PRICE')?></td>
@@ -313,7 +293,7 @@
                                 </a>
                                 <?endif;?>
                         </td>
-                        <?endif;?>							
+                        <?endif;?>
                     <td class="vname" <?=($hasImg ? '' : 'colspan="2"')?>>
                         <?if($hasLink):?>
                             <a href="<?=$prod["DETAIL_PAGE_URL"]?>" target="_blank">
@@ -379,8 +359,10 @@
                 <td class="custom_t1"><?=GetMessage('SPOD_PRODUCT_SUM')?>:</td>
                 <td class="custom_t2"><?=$arResult['PRODUCT_SUM_FORMATTED']?></td>
             </tr>
-            <?$discount=0; 
-            foreach($arResult['BASKET'] as $item)$discount+=$item['DISCOUNT_PRICE']; 
+            <?$discount=0;
+            foreach($arResult['BASKET'] as $item){
+                $discount+=$item['DISCOUNT_PRICE'];
+            }
             if(intval($discount)):?>
             <tr>
                 <td class="custom_t1"><?=GetMessage('SPOD_DISCOUNT')?>:</td>
@@ -398,7 +380,7 @@
                 <tr>
                     <td class="custom_t1"><?=$tax["TAX_NAME"]?>:</td>
                     <td class="custom_t2"><?=$tax["VALUE_MONEY_FORMATED"]?></td>
-                </tr>	
+                </tr>
                 <?endforeach;?>
             <? ///// TAX SUM ?>
             <?if(floatval($arResult["TAX_VALUE"])):?>
