@@ -10,20 +10,12 @@ $bHideProps = false;
     <span class="title">контактные данные</span>
     <div class="input-container">
 
-        <?
-//            $bHideProps = false;
-
-
-        ?>
-
         <div id="sale_order_props" >
             <?
                 PrintPropsForm($arResult["ORDER_PROP"]["USER_PROPS_Y"], $arParams["TEMPLATE_LOCATION"]);
                 PrintPropsForm($arResult["ORDER_PROP"]["USER_PROPS_N"], $arParams["TEMPLATE_LOCATION"]);
             ?>
         </div>
-
-
         <script type="text/javascript">
             function fGetBuyerProps(el)
             {
