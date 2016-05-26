@@ -134,21 +134,20 @@
 
 <?$resOrder = CSaleOrder::GetList(array('ID' => 'DESC'), array("USER_ID" => $USER->GetID()), false, array("nTopCount" => 1));
     $resOrderFirst = CSaleOrder::GetList(array('ID' => 'ASC'), array("USER_ID" => $USER->GetID()), false, array("nTopCount" => 1));
-    if($resOrder ->SelectedRowsCount()>0):
+    if($resOrder ->SelectedRowsCount()>0){
         $obOrderFirst = $resOrderFirst -> Fetch();
         $resDelivery = CSaleDelivery::GetList(array(),array());
         $arDelivery = array();
-        while($obDelivery = $resDelivery -> Fetch()):
+        while($obDelivery = $resDelivery -> Fetch()){
             $arDelivery[$obDelivery["ID"]] = $obDelivery["NAME"];
-            endwhile;
+        };
         $arStatus = array();
         $resStatus = CSaleStatus::GetList(array(), array("LID" => "ru"));
-        while($obStatus = $resStatus -> Fetch()):
+        while($obStatus = $resStatus -> Fetch()){
             $arStatus[$obStatus["ID"]] = $obStatus["NAME"];
-            endwhile;
+        };
 
         $obOrder = $resOrder -> Fetch();
-         //arshow($obOrder);
         $resBasket = CSaleBasket::GetList(array(),array("ORDER_ID"=>$obOrder["ID"]));
         $obBasket = $resBasket -> Fetch();
 
@@ -166,33 +165,34 @@
 
         $arSection = array();
 
-        while($obThisSection = $resThisSection -> Fetch()):
+        while($obThisSection = $resThisSection -> Fetch()) {
 
-            if ($obThisSection["ID"] == $obElement["IBLOCK_SECTION_ID"]):
+            if ($obThisSection["ID"] == $obElement["IBLOCK_SECTION_ID"]){
                 $arSection["THIS"] = $obThisSection;
-                else:
+            }else{
                 $arSection["SIBLINGS"] = $obThisSection;
-                endif;
-            endwhile;
+            };
+        };
 
         $linkSiblings = "/".$obParentSection["CODE"]."/".$arSection["SIBLINGS"]["CODE"]."/";
         $linkThis =  "/".$obParentSection["CODE"]."/".$arSection["THIS"]["CODE"]."/";
         $listOrder = "Y";
 
-        else:
+    }else{
         $linkSiblings = "/";
         $linkThis = "/";
-        endif;
+    };
 ?>
 
 <div class="inside-page-col ">
 
     <span class="inside-page-col-shadow"></span>
     <div class="change-block">
-        <ul><li>
-
+        <ul>
+            <li>
                 <a href="<?=$linkSiblings?>"><img src="/images/inside/icon2.png" alt=""/><span class="title">изменить бритву</span></a>
-            </li><li>
+            </li>
+            <li>
                 <a href="#"><img src="/images/inside/icon3.png" alt=""/><span class="title">изменить способ доставки</span></a>
             </li>
             <li>
@@ -214,22 +214,21 @@
         </div>
     </div>
     <?if($listOrder == "Y") {
-            //                arshow($arSection["THIS"]["UF_ZAPAS"]);
             $zapas = intval($arSection["THIS"]["UF_ZAPAS"])*7*24*3600;
             $time = (intval(date("U")) - intval(strtotime($obOrder["DATE_INSERT"])));
             $timeThis = $time/$zapas;
             $zapas_end = date("d.m.Y" ,(strtotime($obOrder["DATE_INSERT"]) + $zapas));
 
-            if ($timeThis<0.1):
+            if ($timeThis<0.1) {
                 $procent = 100;
                 $back = 0;
-                elseif($timeThis>1):
+            }elseif($timeThis>1) {
                 $procent = 0;
                 $back = 10;
-                else:
+            }else{
                 $procent = 100 - (round($timeThis*10))*10;
                 $back = round($timeThis*10);
-                endif;
+            };
 
             $firstTime = explode(" ",$obOrderFirst["DATE_INSERT"]);
             $timeFirst  = explode(".",$firstTime[0]);
@@ -254,11 +253,11 @@
             $_plural_times = array('раз', 'раза', 'раз');
 
 
-            if(intval($dateThis[2])-intval($timeFirst[2])<1){
+            if(intval($dateThis[2])-intval($timeFirst[2])<1) {
                 $year = intval($dateThis[1]) - intval($timeFirst[1]);
                 $day = intval($dateThis[0]) - intval($timeFirst[1]);
             }
-            else{
+            else {
                 $year = intval($dateThis[2]) - intval($timeFirst[2]);
                 $month = intval($dateThis[1]) - intval($timeFirst[1]);
                 $day = intval($dateThis[1]) - intval($timeFirst[1]);
@@ -280,12 +279,12 @@
                 <span class="scheme-circle scheme-circle2" style="background-position: <?echo -101*($year);?>px 0"><?=$pastDate[0]?></span>
                 <span class="scheme-text">ВЫ БРЕЕТЕСЬ С НАМИ
                     <span>
-                        <?if($pastDate[1]):
+                        <?if($pastDate[1]){
                             echo $_plural_years[plural_type($pastDate[0])].' ';
                             echo $pastDate[1].' '.$_plural_months[plural_type($pastDate[1])];
-                            else:
+                        }else{
                             echo $_plural_months[plural_type($pastDate[1])];
-                            endif;?>
+                        };?>
                         и <?echo $pastDate[2]." ".$_plural_days[plural_type($pastDate[1])]?></span></span>
             </div>
         </div>
@@ -322,9 +321,7 @@
                 $dateOrder = explode(" ", $obOrder["DATE_INSERT"]);
             ?>
             <div class="checkout-block div">
-                <?
-//                    arshow($obOrder);
-                ?>
+
                 <?if($obOrder["CANCELED"]=="N"):?>
                     <? if ($obOrder["STATUS_ID"]=="N" || $obOrder["STATUS_ID"]=="P" || $obOrder["STATUS_ID"]=="B") {?>
                     <div id="cancel_order">
@@ -336,7 +333,6 @@
                     <?endif;?>
                 <?$resBasket = CSaleBasket::GetList(array(),array("ORDER_ID"=>$obOrder["ID"]));
                     $obBasket = $resBasket ->Fetch();
-                    // arshow($obBasket);
                     $resBasketProps =  CSaleBasket::GetPropsList(array(),array("BASKET_ID"=>$obBasket["ID"], "CODE"=>"GIFT"),false,false, array());
                     $arSetItems = CCatalogProductSet::getAllSetsByProduct($obBasket["PRODUCT_ID"], 1);
                     $quant = array();
@@ -351,12 +347,12 @@
                         $arQuant[] = $val;
                         endforeach;
 
-                    if(!empty($obBasket["TYPE"])):
+                    if(!empty($obBasket["TYPE"])){
                     ?>
 
                     <a href="javascript:void(0)" onclick="addToBasket(<?=$obBasket["PRODUCT_ID"]?>)" class="repeat-btn">повторить</a>
 
-                    <?else:
+                    <?}else{
                         $resType = CIBlockElement::GetByID($obBasket["PRODUCT_ID"]);
                         $obType = $resType ->Fetch();
                         $resType =  CIBlockSection::GetList(Array(), Array("IBLOCK_ID"=>12, "ID" => $obType["IBLOCK_SECTION_ID"]),false,
@@ -371,11 +367,10 @@
                         <input type="hidden" class="count_caseta" value="<?=$arQuant[1]?>" />
                         <input type="hidden" class="el_code" value="<?=$obType["CODE"]?>" />
                     </div>
-                    <?endif;?>
+                    <?};?>
                 <div class="text"><strong>ваш заказ:</strong> <span>№<?=$obOrder["ID"]?></span> от <?=$dateOrder[0]?></div>
                 <?
 
-                    //  arshow($obBasket);
                     $resElement = CIBlockElement::GetById($obBasket["PRODUCT_ID"]);
                     $obElement = $resElement -> Fetch();
                     $resSection = CIBlockSection::GetList(Array(), Array("IBLOCK_ID"=> 12,"ID"=>$obElement["IBLOCK_SECTION_ID"]), false, Array("NAME","ID","UF_DETAIL_PICTURE","CODE"));
@@ -393,7 +388,6 @@
                         <?else:?>
                         <a href="<?=$link?>"><img class="img" alt="" src="<?=$picture?>" alt=""/></a>
                         <?endif;?>
-                        <?//arshow($arQuant, true);?>
                     <div>
                         <table>
                             <tr><td>бритва</td><td><?=$obSection["NAME"]?></td></tr>
@@ -408,9 +402,6 @@
                         if (!class_exists('ps_uniteller')) {
                             include(dirname(__FILE__) . '/tools.php');
                         }
-
-                        //$sOrderID = (strlen(CSalePaySystemAction::GetParamValue('ORDER_ID')) > 0) ? CSalePaySystemAction::GetParamValue('ORDER_ID') : $GLOBALS['SALE_INPUT_PARAMS']['ORDER']['ID'];
-                        //                        $sOrderID = trim($sOrderID);
 
                         $arOrder = CSaleOrder::GetByID($obOrder["ID"]);
                         $aCheckData = array();
@@ -438,19 +429,15 @@
 
                             if ($iLiftime > 0) {
                                 $sLiftime = (string)$iLiftime;
-                                //        $signature = strtoupper(md5(ps_uniteller::$Shop_ID . $sOrderID . $sHouldPay . $iLiftime . ps_uniteller::$Password));
                             } else {
                                 $sLiftime = '';
-                                //        $signature = strtoupper(md5(ps_uniteller::$Shop_ID . $sOrderID . $sHouldPay . ps_uniteller::$Password));
                             }
                             $signature = strtoupper(md5(md5(ps_uniteller::$Shop_ID) . '&' . md5($obOrder["ID"]) . '&' . md5($sHouldPay)
                                 . '&' . md5('0') . '&' . md5('0') . '&' . md5($sLiftime) . '&' . md5('') . '&' . md5('') . '&' . md5('')
                                 . '&' . md5('') . '&' . md5(ps_uniteller::$Password)));
                         }
                     ?>
-                    <?//arshow($obBasket)?>
                     <span class="sum"><?=number_format($obOrder["PRICE"], 2)?>&nbsp;<img src="/images/inside/rub.png" alt=""/></span>
-                    <?//arshow($obOrder, true)?>
                     <?if($cancel == "Y"):?>
                         <span class="not-paid">Отменен</span>
                         <?elseif ($obOrder["PAYED"]!= "Y"):?>
@@ -532,11 +519,6 @@
 
             </div>
             <?}?>
-
-
-
-
-
         <span class="inside-page-col-close close-bg-black" onclick="makePlan()"></span>
 
 
