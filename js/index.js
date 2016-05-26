@@ -25,7 +25,6 @@ $(document).ready(function () {
             el.animate({"margin-left": 0}, 500);
             menu.animate({"margin-left": -220}, 500, function () {
                 menu.css({"display": "none", width: 0});
-                //menuHeight();
             });
         } else {
             el.css("position", "absolute");
@@ -35,14 +34,12 @@ $(document).ready(function () {
                 if ($(window).width() < 1000)
                     $(".menu").css({"height": $(".main-container").height()});
                 $(".menu").jScrollPane({showArrows: true, scrollbarMargin: 0});
-                //menuHeight();
             });
         }
 
     });
 
     $(".overlook").click(function () {
-        //  window.location.href = "#";
     });
 
 
@@ -60,7 +57,6 @@ $(document).ready(function () {
     });
 
     //***************
-    //inside page (oform.html)
 
     //стиль инпутов, появление сообщений об ошибках
     $(".input, .textarea").focus(function () {
@@ -82,18 +78,6 @@ $(document).ready(function () {
     });
 
     //выбор типа доставки
-    /*
-    $(".delivery-type .item").click(function () {
-    $(".delivery-type .item").removeClass("active");
-    $(this).addClass("active");
-    });
-    $(".courier-service .item").click(function () {
-    var el = $(this);
-    $(".delivery-type .item").removeClass("active");
-    if (el.hasClass("active"))
-    el.removeClass("active");
-    else el.addClass("active");
-    });      */
 
     $(".online .title, .cash").unbind("click").click(function () {
 
@@ -128,9 +112,6 @@ $(document).ready(function () {
         }, function(){
             $(this).removeClass("active");
     }).click(function () {
-        //  $(this).removeClass("active");
-        //  $(this).fadeOut(500);
-        //    $(this).next().fadeOut(500);
 
     });
 
@@ -145,8 +126,6 @@ $(document).ready(function () {
 
 
     //нестандартный select
-    //if ($("select").length > 0)
-    //    $("select").selectBox();
     if ($("select").length > 0) {
         cuSel({changedEl: "select", visRows: 3, scrollArrows: true});
         $(".cusel").each(function () {
@@ -162,23 +141,8 @@ $(document).ready(function () {
 
     /**************/
     //страница контакты
-    //init();
-    /*var div = $(".contacts-map");
-    if (div.length > 0)
-    div.gMap({
-    markers: [
-    { latitude: 55.899018,
-    longitude: 37.598633}
-    ],
-    icon: { image: "images/marker.png",
-    iconsize: [78, 131]
-    },
-    latitude: 55.899018,
-    longitude: 37.598633,
-    zoom: 13 });
-    */
+
     $(".contacts_form .btn, #kabinet_form .btn, .feedback .btn, .opt-order .btn").click(function () {
-        // $(this).closest("form").submit();
         // return false;
     });
     $(".opt-order form").submit(function () {
@@ -278,55 +242,7 @@ $(document).ready(function () {
         $(".preview-product-ul li").hide();
         $(".preview-product-ul li[rel=" + id + "]").fadeIn(200);
         $(".inside-page-col").jScrollPane({showArrows: true, scrollbarMargin: 0});
-       //  $('.bx_page').jScrollPane({showArrows: true, scrollbarMargin: 0});
-
-        /*
-        var el = $(this), id = el.attr("id"), el1;
-        if (!id) return;
-        id = id.replace("plus", "");
-        el1 = $("#block" + id);
-
-        $(".plus").removeClass("active");
-        $(".preview-product-ul .no-active").show();
-        $(".preview-product-ul .active").hide();
-
-
-        el.addClass("active");
-        el1.find(".active").show();
-        el1.find(".no-active").hide();
-        $(".preview-product-ul li:visible").hide();
-        el1.next().fadeIn(200);
-        el1.next().next().fadeIn(200);
-        el1.fadeIn(200);
-        $(".preview-product-ul .img1").removeClass("active1");
-        el1.find(".img1").addClass("active1");
-        */
-
-
-        /*
-        if ($(window).width() <= 1280)
-        window.scroll(0, parseFloat(id) * 167 - 167);
-        else {
-        $(".inside-page-col1").data('jsp').scrollToY(parseFloat(id) * 167 - 167, 500);
-        window.scroll(0, 0);
-        }
-        */
     });
-
-    // $(".preview-product-ul .img1").css("background-image", "url(" + $(".preview-product .img img").attr("src") + ")");
-
-    // $(".preview-product-ul li").click(function () {
-    /*var el = $(this), id = el.attr("id"), el1;
-    id = id.replace("block", "");*/
-    /*el1 = $("#plus" + id);
-    el1.click();*/
-    //});
-    /*$(".preview-product .plus").each(function(){
-    var el = $(this), id = el.attr("id"), p = el.position();
-    id = id.replace("plus", "");
-    $("#block" + id + " .img1").css("background-position", "-"+p.left+"px -"+ p.top +"px");
-    });*/
-    // $("#plus3").click();
 
     $(".cuselOpen").click(function () {
         return false;
@@ -353,7 +269,6 @@ $(document).ready(function () {
     });
 
     $(".inside-page-col").jScrollPane({showArrows: true, scrollbarMargin: 0});
-    // $('.bx_page').jScrollPane({showArrows: true, scrollbarMargin: 0});
     $('.aboutus .scroll-pane').jScrollPane();
 });
 function splitNums(delimiter, str) {
@@ -397,25 +312,15 @@ function menuHeight() {
         var h = $(window).height();
         if (isMobile) {
             h = h - 61;
-            //$("body").css("overflow", "auto");
         }
         $(".contacts-map").css({"height": h});
         $(".inside-page-col, .jspContainer").css({"height": h});
         if (w <= 1000) {
-            // $("body").css("overflow", "auto");
             $(".inside-page-col").addClass("auto_h");
         }
         if (!isMobile) {
-            // var url = document.location.href;
-            //    if (url.indexOf("/order/make/") > 0){} else {
             $(".inside-page-col").jScrollPane({showArrows: true, scrollbarMargin: 0});
-            //  }
         }
-
-
-
-
-        // $(".menu").css({"height": h, overflow: "hidden"});
     }
 
     //Полоски с планами должны растягиваться в таком случае, а баннер "для себя" должен всегда примыкать к нижней границе
@@ -451,7 +356,6 @@ function scrollSlider(index) {
     ul.css("margin-left", 0);
 
     var m = 0, animated = false;
-    //el.find(".arrow-left").hide();
     ar.unbind("click").click(function () {
         var step = w;
         if (animated) return false;
@@ -465,13 +369,10 @@ function scrollSlider(index) {
         ar.show();
         if (m < -(l - 1) * w) {
             m = -(l - 1) * w;
-            return;
-            //el.find(".arrow-right").hide();
-        }
+            return;        }
         if (m > 0) {
             m = 0;
             return;
-            //el.find(".arrow-left").hide();
         }
         if (count < 1) count = 1;
         if (count > l) count = l;
@@ -492,7 +393,6 @@ $(window).resize(function () {
     menuHeight();
     $(".scroll-slider").each(scrollSlider);
     $(".inside-page-col").jScrollPane({showArrows: true, scrollbarMargin: 0});
-    //  $('.bx_page').jScrollPane({showArrows: true, scrollbarMargin: 0});
     $('.aboutus .scroll-pane').each(function(){
         var api = $(this).data('jsp');
         api.reinitialise();
@@ -517,7 +417,6 @@ function addToBasket(id) {
     if (parseInt(id) > 0) {
         $.post("/ajax/addToBasket.php",{ID:id},
             function(data){
-                //alert(data);
                 if (data == "OK") {
                     document.location.href = "/personal/order/make/";
                 }
@@ -599,7 +498,6 @@ function sertSubmit() {
             }
             else {
                 $.fancybox.open({href: '#error_message'});
-                //                alert(data);
                 if (data == "error") {
                     $("div.form_text").html('Извините, такой сертификат не <font style="color:#D6911C">зарегистрирован </font>в нашей базе. Пожалуйста, обратитесь <br> к администратору для выяснения возникших сложностей.')
                 }   else {
