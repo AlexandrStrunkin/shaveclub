@@ -62,20 +62,7 @@
     <div class="t"><?=GetMessage('SPOD_ORDER_PROPERTIES')?></div>
     <table class="module-orders-list colored">
         <tbody>
-            <?/*
-                <tr>
-                <td><?=GetMessage('SPOD_ORDER_COMPLETE_SET')?>:</td>
-                <td></td>
-                </tr>
-            */?>
             <?foreach($arResult["ORDER_PROPS"] as $prop):?>
-                <?/*
-                    <?if($prop["SHOW_GROUP_NAME"] == "Y"):?>
-                    <tr class="gn">
-                    <td colspan="2"><?=$prop["GROUP_NAME"]?></td>
-                    </tr>
-                    <?endif;?>
-                */?>
                 <tr class="vl">
                     <td><?=$prop['NAME']?>:</td>
                     <td>
@@ -272,7 +259,7 @@
             </tr>
         </thead>
         <tbody>
-            <?foreach($arResult["BASKET"] as $prod):?>
+            <?foreach($arResult["BASKET"] as $prod){?>
                 <tr>
                     <?
                         $hasLink = !empty($prod["DETAIL_PAGE_URL"]);
@@ -305,13 +292,6 @@
                     </td>
                     <td class="vqnt">
                         <?=$prod["QUANTITY"]?>
-                        <?/*
-                            <?if(strlen($prod['MEASURE_TEXT'])):?>
-                            <?=$prod['MEASURE_TEXT']?>
-                            <?else:?>
-                            <?=GetMessage('SPOD_DEFAULT_MEASURE')?>
-                            <?endif;?>
-                        */?>
                     </td>
                     <td class="price"><?=$prod["PRICE_FORMATED"]?></td>
                     <?if($arResult['HAS_PROPS']):?>
@@ -342,18 +322,12 @@
                         <?endif;?>
                     <td><?=htmlspecialcharsEx($prod["NOTES"])?></td>
                 </tr>
-                <?endforeach;?>
+                <?};?>
         </tbody>
     </table>
     <table class="module-orders-list result">
         <tbody>
             <? ///// WEIGHT ?>
-            <?/*if(floatval($arResult["ORDER_WEIGHT"])):?>
-                <tr>
-                    <td class="custom_t1"><?=GetMessage('SPOD_TOTAL_WEIGHT')?>:</td>
-                    <td class="custom_t2"><?=$arResult['ORDER_WEIGHT_FORMATED']?></td>
-                </tr>
-                <?endif;*/?>
             <? ///// PRICE SUM ?>
             <tr>
                 <td class="custom_t1"><?=GetMessage('SPOD_PRODUCT_SUM')?>:</td>
