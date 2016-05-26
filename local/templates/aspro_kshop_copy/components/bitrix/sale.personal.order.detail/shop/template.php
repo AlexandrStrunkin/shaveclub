@@ -296,7 +296,7 @@
                         <td>
                             <?if(is_array($prod["PROPS"]) && !empty($prod["PROPS"])):?>
                                 <table cellspacing="0" class="bx_ol_sku_prop">
-                                    <?foreach($prod["PROPS"] as $prop):?>
+                                    <?foreach($prod["PROPS"] as $prop){?>
                                         <?if(!empty($prop['SKU_VALUE']) && $prop['SKU_TYPE'] == 'image'):?>
                                             <tr>
                                                 <td colspan="2">
@@ -310,7 +310,7 @@
                                                 <td style="padding-left: 10px !important"><b><?=$prop["VALUE"]?></b></td>
                                             </tr>
                                             <?endif;?>
-                                        <?endforeach?>
+                                        <?}?>
                                 </table>
                                 <?endif;?>
                         </td>
