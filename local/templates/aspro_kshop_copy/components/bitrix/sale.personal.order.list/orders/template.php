@@ -147,26 +147,24 @@
 
                                     $pathToAction = $_SERVER["DOCUMENT_ROOT"].$arPaySysAction["ACTION_FILE"];
                                     $pathToAction = str_replace("\\", "/", $pathToAction);
-                                    while (substr($pathToAction, strlen($pathToAction) - 1, 1) == "/")
+                                    while (substr($pathToAction, strlen($pathToAction) - 1, 1) == "/") {
                                         $pathToAction = substr($pathToAction, 0, strlen($pathToAction) - 1);
-                                    if (file_exists($pathToAction))
-                                    {
-                                        if (is_dir($pathToAction) && file_exists($pathToAction."/payment.php"))
-                                            $pathToAction .= "/payment.php";
-                                        $val["PAY_SYSTEM"]["PSA_ACTION_FILE"] = $pathToAction;
-
                                     }
-                                    try
-                                    {
+                                    if (file_exists($pathToAction)){
+                                        if (is_dir($pathToAction) && file_exists($pathToAction."/payment.php")){
+                                            $pathToAction .= "/payment.php";
+                                        }
+                                        $val["PAY_SYSTEM"]["PSA_ACTION_FILE"] = $pathToAction;
+                                    }
+                                    try{
                                         include($val["PAY_SYSTEM"]["PSA_ACTION_FILE"]);
                                     }
-                                    catch(\Bitrix\Main\SystemException $e)
-                                    {
-                                        if($e->getCode() == CSalePaySystemAction::GET_PARAM_VALUE)
+                                    catch(\Bitrix\Main\SystemException $e){
+                                        if($e->getCode() == CSalePaySystemAction::GET_PARAM_VALUE){
                                             $message = GetMessage("SOA_TEMPL_ORDER_PS_ERROR");
-                                        else
+                                        }else{
                                             $message = $e->getMessage();
-
+                                        }
                                         ShowError($message);
                                     }   // подключение оплаты яндекс кассы
                                     ?>
