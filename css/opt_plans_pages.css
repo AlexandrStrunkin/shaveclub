@@ -218,12 +218,12 @@
 }
 .plans {
     padding: 0 !important;
-    height: 553px;
+    height: 533px;
 }
 .plans li {
     text-align: center;
     width: 33.3%;
-    height: 553px;
+    height: 580px;
     float: left;
     position: relative;
 
@@ -354,7 +354,6 @@
 }
 .plans-create {
     padding: 0 !important;
-    top: -40px;
     position: relative;
 }
 .plans-create .div {
