@@ -68,7 +68,7 @@
             var coupon = $(".couponCode")[1].value;
             $.post("/ajax/coupon.php",{coupon:coupon},function(data){
                 price = data.split('#') ;
-                //alert(data);
+                alert(data);
                 //price = JSON.parse(data);
                 //alert(price);
               //  console.log(price);
@@ -140,7 +140,11 @@
                 err = "yes";
                 //проверяем email на существование
                 var email = $("#ORDER_PROP_2").val();
-                $.post('/ajax/checkEmail.php',{email:email},function(data){
+                    name= $("#ORDER_PROP_1").val();
+                    phone= $("#ORDER_PROP_3").val();
+                    adress= $("#ORDER_PROP_7").val();
+                    komment= $("#ORDER_PROP_69").val();
+                $.post('/ajax/checkEmail.php',{email:email,name:name,phone:phone,adress:adress,komment:komment},function(data){
                     if (data == "Y") {
                         $("#auth_form_link").click();
                         $("#auth_form .form_error").css("display","block").html("Ваш email уже зарегистрирован в системе. Пожалуйста, авторизуйтесь!");

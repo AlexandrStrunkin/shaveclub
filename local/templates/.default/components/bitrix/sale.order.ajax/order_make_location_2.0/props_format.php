@@ -1,23 +1,33 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-<?
+<?  global $USER;
+
     if ($USER->IsAuthorized()) {
         $userID = $USER->GetID();
         $userProps = CUser::GetByID($userID);
         $arUserProps = $userProps->Fetch();
+        $us_auth = "Y";
     ?>
     <script type="text/javascript">
         $(document).ready(function () {
-            name='<?=$arResult["USER_PROPS_Y"][1]["VALUE_FORMATED"]?>';
-            phone='<?=$arUserProps["PERSONAL_PHONE"]?>';
             email='<?=$arUserProps["EMAIL"]?>';
-            if (name!='') {
-                $("#ORDER_PROP_1").val(name);
-            }
+            name='<?=$_SESSION["FIO"]?>';
+            phone='<?=$_SESSION["PHONE"]?>';
+            adress='<?=$_SESSION["ADRESS"]?>';
+            komment='<?=$_SESSION["KOMMENT"]?>';
             if (phone!='') {
                 $("#ORDER_PROP_3").val(phone);
             }
+            if (name!='') {
+                $("#ORDER_PROP_1").val(name);
+            }
             if (email!='') {
                 $("#ORDER_PROP_2").val(email);
+            }
+            if (adress!='') {
+                $("#ORDER_PROP_7").val(adress);
+            }
+            if (komment!='') {
+                $("#ORDER_PROP_69").val(komment);
             }
 
 
@@ -26,6 +36,7 @@
         });
     </script>
     <?   }
+
     if (!function_exists("showFilePropertyField"))
     {
         function showFilePropertyField($name, $property_fields, $values, $max_file_size_show=50000)
@@ -114,6 +125,7 @@
                     elseif ($arProperties["TYPE"] == "TEXT")
                     {
                     ?>
+
                     <label>
                         <input type="text" placeholder="<?=$arProperties["NAME"]?>" class="<?if($arProperties["CODE"] != "KOMMENT"){?>input<?}?> koment" size="<?=$arProperties["SIZE1"]?>" value="<?=$arProperties["VALUE"]?>" name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>" autocomplete="off">
                     </label>
