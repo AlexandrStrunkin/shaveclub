@@ -5,29 +5,28 @@
         $userID = $USER->GetID();
         $userProps = CUser::GetByID($userID);
         $arUserProps = $userProps->Fetch();
-        $us_auth = "Y";
     ?>
     <script type="text/javascript">
         $(document).ready(function () {
-            email='<?=$arUserProps["EMAIL"]?>';
-            name='<?=$_SESSION["FIO"]?>';
-            phone='<?=$_SESSION["PHONE"]?>';
-            adress='<?=$_SESSION["ADRESS"]?>';
-            komment='<?=$_SESSION["KOMMENT"]?>';
-            if (phone!='') {
+            email = '<?=$arUserProps["EMAIL"]?>';
+            name = '<?=$_SESSION["FIO"]?>';
+            phone = '<?=$_SESSION["PHONE"]?>';
+            address = '<?=$_SESSION["ADDRESS"]?>';
+            comment = '<?=$_SESSION["COMMENT"]?>';
+            if (phone != '') {
                 $("#ORDER_PROP_3").val(phone);
             }
-            if (name!='') {
+            if (name != '') {
                 $("#ORDER_PROP_1").val(name);
             }
-            if (email!='') {
+            if (email != '') {
                 $("#ORDER_PROP_2").val(email);
             }
-            if (adress!='') {
-                $("#ORDER_PROP_7").val(adress);
+            if (address != '') {
+                $("#ORDER_PROP_7").val(address);
             }
-            if (komment!='') {
-                $("#ORDER_PROP_69").val(komment);
+            if (comment != '') {
+                $("#ORDER_PROP_69").val(comment);
             }
 
 
