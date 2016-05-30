@@ -29,8 +29,6 @@
             $(".bx-ui-sls-input-block").addClass('errorCity');
 
         }
-//        $(".bx-ui-sls-fake").attr("placeholder", "Введите название населенного пункта для выбора способа доставки...");
-
         $("#ORDER_PROP_3").inputmask("+7(999) 999-99-99");
 
         $(".make_order").live("click",function(){
@@ -68,10 +66,6 @@
             var coupon = $(".couponCode")[1].value;
             $.post("/ajax/coupon.php",{coupon:coupon},function(data){
                 price = data.split('#') ;
-                //alert(data);
-                //price = JSON.parse(data);
-                //alert(price);
-              //  console.log(price);
                 $('.tableDiscountPerc').html(price[0]);
                 $('.tableSum').html(price[1]+' Р');
                 $('.finalSumYellow').html(price[1]+' P');
@@ -80,7 +74,6 @@
                     $.fancybox.open({href: '#success_form'});
 
                 } else {
-                    //alert(price[2]);
                     $.fancybox.open({href: '#error_form'})
                 }
             })
@@ -102,12 +95,8 @@
             $(".bx-ui-sls-input-block").addClass('errorCity');
         }
 
-        //        alert(err);
-
         $("#sale_order_props .input").each(function(){
             //проверяем валидность email
-            //            alert( $(this).val() );
-            //            alert(err);
 
             if ($(this).attr("placeholder") == "E-Mail" && $(this).val() != "") {
                 var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
@@ -140,21 +129,24 @@
                 err = "yes";
                 //проверяем email на существование
                 var email = $("#ORDER_PROP_2").val();
-                $.post('/ajax/checkEmail.php',{email:email},function(data){
-                    if (data == "Y") {
-                        $("#auth_form_link").click();
-                        $("#auth_form .form_error").css("display","block").html("Ваш email уже зарегистрирован в системе. Пожалуйста, авторизуйтесь!");
-                        $("#auth_email").val(email);
-                    }
-                    else {
-                        err = "no";
-                        submitForm('Y');
-                    }
+                    name = $("#ORDER_PROP_1").val();
+                    phone = $("#ORDER_PROP_3").val();
+                    address = $("#ORDER_PROP_7").val();
+                    comment = $("#ORDER_PROP_69").val();
+                $.post('/ajax/checkEmail.php',{email:email, name:name ,phone:phone, address:address, comment:comment},
+                    function(data){
+                        if (data == "Y") {
+                            $("#auth_form_link").click();
+                            $("#auth_form .form_error").css("display","block").html("Ваш email уже зарегистрирован в системе. Пожалуйста, авторизуйтесь!");
+                            $("#auth_email").val(email);
+                        }
+                        else {
+                            err = "no";
+                            submitForm('Y');
+                        }
                 })
             }
             <?}?>
-
-        //        alert(err);
 
         if (err == "yes"){
             return false;
@@ -235,11 +227,6 @@
 <div class="bx_order_make">
 
     <?
-        //         arshow($_SESSION, true);
-        //            arshow($arResult, true);
-    ?>
-
-    <?
 
 
         if(!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "N")
@@ -272,7 +259,6 @@
             <script type="text/javascript">
 
                 function checkBundleStatus(){
-                    //console.log($('label[for="ID_DELIVERY_pickpoint_postamat"] div.price').text());
                     data = localStorage.getItem('isAStartBundle')
                     if (data!="T"){
                         finalPrice = parseInt($('label[for="ID_DELIVERY_pickpoint_postamat"] div.price').text());
@@ -280,7 +266,6 @@
                             finalPrice = 0;
                         }
                         $('label[for="ID_DELIVERY_pickpoint_postamat"] div.price').html(finalPrice + ' <span class="rouble">i</span>');
-                    //    $('.deliveryCostSummary').html(finalPrice + 'Р');
                         $('.tableSum').html(parseInt($('.tableSum').text())+finalPrice+' Р');
                         $('.finalSumYellow').html(parseInt($('.finalSumYellow').text())+finalPrice+' Р');
                     }
@@ -409,7 +394,6 @@
                                 {
 
                                     foreach($arResult["ERROR"] as $v) {
-                                        //  echo ShowError($v);
                                     }
 
                                 ?>

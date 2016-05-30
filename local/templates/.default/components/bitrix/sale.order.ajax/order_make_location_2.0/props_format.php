@@ -1,5 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-<?
+<?  global $USER;
+
     if ($USER->IsAuthorized()) {
         $userID = $USER->GetID();
         $userProps = CUser::GetByID($userID);
@@ -7,17 +8,25 @@
     ?>
     <script type="text/javascript">
         $(document).ready(function () {
-            name='<?=$arResult["USER_PROPS_Y"][1]["VALUE_FORMATED"]?>';
-            phone='<?=$arUserProps["PERSONAL_PHONE"]?>';
-            email='<?=$arUserProps["EMAIL"]?>';
-            if (name!='') {
-                $("#ORDER_PROP_1").val(name);
-            }
-            if (phone!='') {
+            email = '<?=$arUserProps["EMAIL"]?>';
+            name = '<?=$_SESSION["FIO"]?>';
+            phone = '<?=$_SESSION["PHONE"]?>';
+            address = '<?=$_SESSION["ADDRESS"]?>';
+            comment = '<?=$_SESSION["COMMENT"]?>';
+            if (phone != '') {
                 $("#ORDER_PROP_3").val(phone);
             }
-            if (email!='') {
+            if (name != '') {
+                $("#ORDER_PROP_1").val(name);
+            }
+            if (email != '') {
                 $("#ORDER_PROP_2").val(email);
+            }
+            if (address != '') {
+                $("#ORDER_PROP_7").val(address);
+            }
+            if (comment != '') {
+                $("#ORDER_PROP_69").val(comment);
             }
 
 
@@ -26,6 +35,7 @@
         });
     </script>
     <?   }
+
     if (!function_exists("showFilePropertyField"))
     {
         function showFilePropertyField($name, $property_fields, $values, $max_file_size_show=50000)
@@ -114,6 +124,7 @@
                     elseif ($arProperties["TYPE"] == "TEXT")
                     {
                     ?>
+
                     <label>
                         <input type="text" placeholder="<?=$arProperties["NAME"]?>" class="<?if($arProperties["CODE"] != "KOMMENT"){?>input<?}?> koment" size="<?=$arProperties["SIZE1"]?>" value="<?=$arProperties["VALUE"]?>" name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>" autocomplete="off">
                     </label>
