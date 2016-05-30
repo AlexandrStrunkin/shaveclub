@@ -31,8 +31,7 @@
                     if ($res > 0) {
                         $USER->Login($_POST["email"],$_POST["pass"],'N','Y');
                         echo "OK";
-                    }
-                    else {
+                    } else {
                         echo $USER->LAST_ERROR;
                     }
 

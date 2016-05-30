@@ -8,8 +8,7 @@
         $userCheck = CUser::GetList(($by = "id"), ($order = "asc"), array("=EMAIL" => $_POST["email"])) -> Fetch();
         if($userCheck["ID"] > 0) {
             echo "Y";
-        }
-        else {
+        } else {
             echo "N";
         }
 
