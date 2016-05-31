@@ -65,11 +65,15 @@
     padding-top: 40px;
   }
 
-  .main-shave1 .p1, .main-shave2 .p1 {
+  .main-shave1 .p1 {
     font-size: 17px;
-
+    width: 325px;
   }
 
+  .main-shave2 .p1 {
+    font-size: 17px;
+    width: 305px;
+  }
   .main-shave1 .p2, .main-shave2 .p2 {
     font-size: 15px;
     padding-bottom: 37px;
@@ -325,10 +329,10 @@
 
   .footer-soc a {
     height: 31px;
-    width: 32px;     
-    margin-left: 8px;      
+    width: 32px;
+    margin-left: 8px;
     float: left;
-  }      
+  }
 
   .footer > div {
     padding-left: 40px;
