@@ -56,19 +56,19 @@
                             <img class="iconinstagram" src="/images/inst.png" alt="">
                         </a>
                         <?$APPLICATION->IncludeComponent(
-                                "aspro:social.info", 
-                                ".default", 
-                                array(
-                                    "CACHE_TYPE" => "A",
-                                    "CACHE_TIME" => "36000000",
-                                    "CACHE_GROUPS" => "Y",
-                                    "VK" => "https://vk.com/dorco_razors",
-                                    "FACE" => "https://www.facebook.com/dorcorazorsru",
-                                    "TWIT" => "",
-                                    "COMPONENT_TEMPLATE" => ".default"
-                                ),
-                                false
-                            );?> 
+	"aspro:social.info", 
+	".default", 
+	array(
+		"CACHE_TYPE" => "A",
+		"CACHE_TIME" => "36000000",
+		"CACHE_GROUPS" => "Y",
+		"VK" => "https://vk.com/dorcorazorsru",
+		"FACE" => "https://www.facebook.com/dorcorazorsru",
+		"TWIT" => "",
+		"COMPONENT_TEMPLATE" => ".default"
+	),
+	false
+);?> 
                     </div>
                 </li>
                 <li>

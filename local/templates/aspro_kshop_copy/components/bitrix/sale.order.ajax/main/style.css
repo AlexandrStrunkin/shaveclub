@@ -422,3 +422,12 @@ div#order_form_content .errortext {
 #select_store{
     font-weight: bold;
 }
+.sale_order_full_table form input[type="submit"]{
+    margin-bottom: 15px;
+    background: url(images/icons_paymethod_pay.png) no-repeat #fff -5px 0;
+    color: transparent;
+    height: 53px;
+    width: 84px;
+    cursor: pointer;
+    text-align: left;
+}

@@ -1,7 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <? $this->setFrameMode( true ); ?>
 <div class="news_block">
-	<a href="<?=SITE_DIR?>news/"><h3><?=GetMessage('NEWS_TITLE')?></h3></a>
 	<div class="news_slider_navigation"></div>
 	<div class="news_slider_wrapp">
 		<ul class="news_slider">
@@ -16,7 +15,7 @@
 				</li>
 			<?}?>
 		</ul>
-		
+
 	</div>
 	<ul class="flex-control-nav flex-control-paging"><?foreach($arResult["ITEMS"] as $arItem){?><li><a></a></li><?}?></ul>
 </div>

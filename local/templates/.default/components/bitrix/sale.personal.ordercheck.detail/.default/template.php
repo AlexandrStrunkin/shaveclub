@@ -70,7 +70,7 @@
 			</div>
 		</div>
 	<?endif;?>
-	
+
 	<div class="order-item">
 	<div class="order-title">
 		<b class="r2"></b><b class="r1"></b><b class="r0"></b>
@@ -122,7 +122,7 @@
 			</tbody></table>
 		</div>
 	</div>
-	
+
 	<div class="order-item">
 	<div class="order-title">
 		<b class="r2"></b><b class="r1"></b><b class="r0"></b>
@@ -213,7 +213,7 @@
 
 							if(!empty($val["PROPS"]))
 							{
-								foreach($val["PROPS"] as $vv) 
+								foreach($val["PROPS"] as $vv)
 									echo "<p>".$vv["NAME"].": ".$vv["VALUE"]."</p>";
 							}?></td>
 							<td class="cart-item-price"><?=$val["PRICE_FORMATED"]?></td>
@@ -224,7 +224,7 @@
 					}
 					?>
 					</tbody>
-					<tfoot>									    
+					<tfoot>
 						<tr>
 							<td class="cart-item-name">
 								<?

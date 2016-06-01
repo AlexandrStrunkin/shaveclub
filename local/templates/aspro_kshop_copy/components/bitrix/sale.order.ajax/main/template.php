@@ -110,7 +110,7 @@ if (!function_exists("cmpBySort"))
 			try{
 				$(document).ready(function(){
 					<?if(trim(COption::GetOptionString("aspro.kshop", "PHONE_MASK", "+9 (999) 999-99-99", SITE_ID))){?>
-						$('input[code="PHONE"]').mask('<?=trim(COption::GetOptionString("aspro.kshop", "PHONE_MASK", "+9 (999) 999-99-99", SITE_ID));?>'); 
+						$('input[code="PHONE"]').mask('<?=trim(COption::GetOptionString("aspro.kshop", "PHONE_MASK", "+9 (999) 999-99-99", SITE_ID));?>');
 					<?}?>
 				});
 			}
@@ -154,7 +154,7 @@ if (!function_exists("cmpBySort"))
 				<?endif?>
 
 				BX.ajax.submit(orderForm, ajaxResult);
-                
+
 				return true;
 			}
 
@@ -199,18 +199,29 @@ if (!function_exists("cmpBySort"))
 				BX("profile_change").value = "Y";
 				submitForm();
 			}
-			
+
 			BX.addCustomEvent('onAjaxSuccess', function(){
 			   try{
 					$(document).ready(function(){
 						<?if(trim(COption::GetOptionString("aspro.kshop", "PHONE_MASK", "+9 (999) 999-99-99", SITE_ID))){?>
 							$('input[code="PHONE"]').mask('<?=trim(COption::GetOptionString("aspro.kshop", "PHONE_MASK", "+9 (999) 999-99-99", SITE_ID));?>');
-						<?}?> 
+						<?}?>
 					});
 				}
 				catch(e){}
 			});
 			</script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $.ajax({
+                        url: arKShopOptions['SITE_DIR'] + 'ajax/basket_fly_order.php',
+                        type: 'post',
+                        success: function(html){
+                            $('#basket_line').append(html);
+                        }
+                    });
+                });
+            </script>
 			<?if($_POST["is_ajax_post"] != "Y")
 			{
 				?><form action="<?=$APPLICATION->GetCurPage();?>" method="POST" name="ORDER_FORM" id="ORDER_FORM" enctype="multipart/form-data" class="validatable">
@@ -240,7 +251,7 @@ if (!function_exists("cmpBySort"))
 				</script>
 				<?
 			}
-			
+
 			// field personal phone
 			if($USER->IsAuthorized()){
 				foreach($arResult["ORDER_PROP"]["USER_PROPS_Y"] as $i => $arProp){
@@ -279,7 +290,7 @@ if (!function_exists("cmpBySort"))
 					<input type="hidden" name="confirmorder" id="confirmorder" value="Y">
 					<input type="hidden" name="profile_change" id="profile_change" value="N">
 					<input type="hidden" name="is_ajax_post" id="is_ajax_post" value="Y">
-					<input type="hidden" name="json" value="Y">              
+					<input type="hidden" name="json" value="Y">
 					<button class="button30 checkout" type="button" id="ORDER_CONFIRM_BUTTON" name="submitbutton" onClick="submitForm('Y');" value="<?=GetMessage("SOA_TEMPL_BUTTON")?>"><span><?=GetMessage("SOA_TEMPL_BUTTON")?></span></button>
 				</form>
 				<?
@@ -309,10 +320,10 @@ if (!function_exists("cmpBySort"))
 
 	<div style="display: none">
 		<?// we need to have all styles for sale.location.selector.steps, but RestartBuffer() cuts off document head with styles in it?>
-		<? 
+		<?
         $APPLICATION->IncludeComponent(
-	"bitrix:sale.location.selector.steps", 
-	"location_selector_kshop", 
+	"bitrix:sale.location.selector.steps",
+	"location_selector_kshop",
 	array(
 		"COMPONENT_TEMPLATE" => "location_selector_kshop",
 		"ID" => "",
@@ -335,8 +346,8 @@ if (!function_exists("cmpBySort"))
 	false
 );?>
 		<?$APPLICATION->IncludeComponent(
-	"bitrix:sale.location.selector.search", 
-	"new_location", 
+	"bitrix:sale.location.selector.search",
+	"new_location",
 	array(
 		"COMPONENT_TEMPLATE" => "new_location",
 		"ID" => "",

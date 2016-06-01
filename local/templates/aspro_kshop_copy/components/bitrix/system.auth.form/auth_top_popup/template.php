@@ -3,7 +3,7 @@
 <?if( $arResult["FORM_TYPE"] == "login" ){?>
 	<?if( !empty( $arResult["ERROR_MESSAGE"] ) ):?><div class="form_description"><?=$arResult["ERROR_MESSAGE"]["MESSAGE"]?></div><?endif;?>
 	<?CAjax::Init();?>
-	
+
 	<div class="form-wr">
 		<form id="avtorization-form" name="system_auth_form<?=$arResult["RND"]?>" method="post" target="_top" action="<?=SITE_DIR?>auth/" onsubmit="return jsAjaxUtil.InsertFormDataToNode(this, 'ajax_auth', true);">
 			<?if($arResult["BACKURL"] <> ''):?>
@@ -17,7 +17,7 @@
 				<input type="text" name="USER_LOGIN" maxlength="50" value="<?=$arResult["USER_LOGIN"]?>" placeholder="<?=GetMessage("AUTH_LOGIN")?>" autocomplete="on" tabindex="1"/>
 			</div>
 			<div class="r">
-				<label  class="" for="avtorization-password"><?=GetMessage("AUTH_PASSWORD")?><span class="star">*</span></label>	
+				<label  class="" for="avtorization-password"><?=GetMessage("AUTH_PASSWORD")?><span class="star">*</span></label>
 				<input type="password" name="USER_PASSWORD" maxlength="50" placeholder="<?=GetMessage("AUTH_PASSWORD")?>" tabindex="2"/>
 				<a class="forgot" href="<?=SITE_DIR?>auth/forgot-password/" tabindex="3"><?=GetMessage("AUTH_FORGOT_PASSWORD_2")?></a>
 			</div>
@@ -43,26 +43,26 @@
 	<?if($arResult["AUTH_SERVICES"]):?>
 		<div class="soc-avt" style="display:none;">
 			<?=GetMessage("SOCSERV_AS_USER_FORM");?>
-			<?$APPLICATION->IncludeComponent("bitrix:socserv.auth.form", "icons", 
+			<?$APPLICATION->IncludeComponent("bitrix:socserv.auth.form", "icons",
 				array(
 					"AUTH_SERVICES" => $arResult["AUTH_SERVICES"],
 					"AUTH_URL" => SITE_DIR."auth/?login=yes",
 					"POST" => $arResult["POST"],
 					"SUFFIX" => "form",
-				), 
+				),
 				$component, array("HIDE_ICONS"=>"Y")
 			);
 			?>
 		</div>
-	<?endif;?> 
+	<?endif;?>
 	<script>
 		$(document).ready(function()
-		{ 
-			$("#avtorization-form-page").validate({ rules:{ USER_LOGIN: { email:true, required:true } } }); 
-			$("form[name=bx_auth_servicesform]").validate(); 
+		{
+			$("#avtorization-form-page").validate({ rules:{ USER_LOGIN: { email:true, required:true } } });
+			$("form[name=bx_auth_servicesform]").validate();
 		})
 	</script>
-	
+
 	<div class="reg-new">
 		<!--noindex--><a href="<?=SITE_DIR?>auth/registration/" rel="nofollow" tabindex="6"><?=GetMessage("AUTH_REGISTER_NEW")?></a><!--/noindex-->
 	</div>

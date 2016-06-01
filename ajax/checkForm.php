@@ -8,11 +8,11 @@
                 $res = $USER->Login($_POST["email"],$_POST["pass"],'N','Y');
                 if (!is_array($res)) {
                     echo "OK";
-                }        
+                }
                 break;
 
                 //////////////////////
-                         
+
                 //регистрация пользователя
             case "reg":
                 //проверяем email на существование
@@ -25,15 +25,14 @@
                         "PASSWORD" => $_POST["pass"],
                         "CONFIRM_PASSWORD" => $_POST["pass"],
                         "ACTIVE" => "Y",
-                        "GROUP_ID" => array(3,4,5) 
+                        "GROUP_ID" => array(3,4,5)
                     );
                     $res = $USER->Add($userData);
                     if ($res > 0) {
                         $USER->Login($_POST["email"],$_POST["pass"],'N','Y');
                         echo "OK";
-                    } 
-                    else {
-                        echo $USER->LAST_ERROR; 
+                    } else {
+                        echo $USER->LAST_ERROR;
                     }
 
               //  }

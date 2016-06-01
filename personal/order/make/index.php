@@ -66,7 +66,18 @@ $APPLICATION->SetTitle("Заказы");
 		"PRODUCT_COLUMNS_HIDDEN" => "",
 		"USE_CUSTOM_MAIN_MESSAGES" => "N",
 		"USE_CUSTOM_ADDITIONAL_MESSAGES" => "N",
-		"USE_CUSTOM_ERROR_MESSAGES" => "N"
+		"USE_CUSTOM_ERROR_MESSAGES" => "N",
+		"ADDITIONAL_PICT_PROP_12" => "-",
+		"ADDITIONAL_PICT_PROP_9" => "-",
+		"ADDITIONAL_PICT_PROP_10" => "-",
+		"ADDITIONAL_PICT_PROP_73" => "-",
+		"SHOW_ORDER_BUTTON" => "final_step",
+		"SHOW_TOTAL_ORDER_BUTTON" => "N",
+		"SHOW_DELIVERY_LIST_NAMES" => "Y",
+		"SHOW_DELIVERY_INFO_NAME" => "Y",
+		"SKIP_USELESS_BLOCK" => "Y",
+		"SERVICES_IMAGES_SCALING" => "standard",
+		"USE_YM_GOALS" => "N"
 	),
 	false
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

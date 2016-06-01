@@ -20,7 +20,7 @@
     $APPLICATION->SetAdditionalCSS($templateFolder."/style_cart.css");
     $APPLICATION->SetAdditionalCSS($templateFolder."/style.css");
 
-    CJSCore::Init(array('fx', 'popup', 'window', 'ajax'));       
+    CJSCore::Init(array('fx', 'popup', 'window', 'ajax'));
 
 ?>
 <script>
@@ -28,9 +28,7 @@
         if($("[name=ORDER_PROP_6]").val()==0 ){
             $(".bx-ui-sls-input-block").addClass('errorCity');
 
-        }  
-//        $(".bx-ui-sls-fake").attr("placeholder", "Введите название населенного пункта для выбора способа доставки...");
-
+        }
         $("#ORDER_PROP_3").inputmask("+7(999) 999-99-99");
 
         $(".make_order").live("click",function(){
@@ -56,35 +54,30 @@
                 $(this).children().children(".bx-ui-sls-input-block").removeClass("errorCity"); }
         })
 
-    })    
+    })
 
     $(document).ready(function(){
         if ($("#discountVal").val()=='100%') {
             $('#ID_PAY_SYSTEM_ID_17').click();
-        }     
+        }
 
         $('.submitCoupon').unbind('click').click(function(e){
             e.preventDefault();
             var coupon = $(".couponCode")[1].value;
             $.post("/ajax/coupon.php",{coupon:coupon},function(data){
                 price = data.split('#') ;
-                //alert(data);
-                //price = JSON.parse(data);
-                //alert(price);
-              //  console.log(price);
                 $('.tableDiscountPerc').html(price[0]);
                 $('.tableSum').html(price[1]+' Р');
                 $('.finalSumYellow').html(price[1]+' P');
                 if (price[2]=='Y' && price[0]!=0) {
                     $('.form_discount').html(price[3]);
-                    $.fancybox.open({href: '#success_form'}); 
+                    $.fancybox.open({href: '#success_form'});
 
                 } else {
-                    //alert(price[2]);
                     $.fancybox.open({href: '#error_form'})
                 }
-            })  
-        })  
+            })
+        })
     });
 
 
@@ -102,17 +95,13 @@
             $(".bx-ui-sls-input-block").addClass('errorCity');
         }
 
-        //        alert(err);
-
         $("#sale_order_props .input").each(function(){
             //проверяем валидность email
-            //            alert( $(this).val() );
-            //            alert(err);
 
             if ($(this).attr("placeholder") == "E-Mail" && $(this).val() != "") {
-                var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i; 
+                var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
                 if(!pattern.test($(this).val())) {
-                    if (!$(this).siblings("span").hasClass("error")) {    
+                    if (!$(this).siblings("span").hasClass("error")) {
                         $(this).parent().append("<span class='error'>Некорректный '" + $(this).attr("placeholder") + "'! <span>!</span></span>");
                     }
                     //если email невалидный, ставим флаг ошибки
@@ -121,13 +110,13 @@
                 }
             }
             //проверяем остальные поля
-            else if ($(this).val() == "") {  
-                if (!$(this).siblings("span").hasClass("error")) {               
+            else if ($(this).val() == "") {
+                if (!$(this).siblings("span").hasClass("error")) {
                     $(this).parent().append("<span class='error'>Заполните поле '" + $(this).attr("placeholder") + "'! <span>!</span></span>");
                 }
                 //если поле не заполнено, ставим флаг ошибки
-                err = "yes"; 
-                $(".inside-page-col:eq(0) .jspPane").animate({top:"0px"}, 500);  
+                err = "yes";
+                $(".inside-page-col:eq(0) .jspPane").animate({top:"0px"}, 500);
             }
         })
 
@@ -140,28 +129,31 @@
                 err = "yes";
                 //проверяем email на существование
                 var email = $("#ORDER_PROP_2").val();
-                $.post('/ajax/checkEmail.php',{email:email},function(data){   
-                    if (data == "Y") {                                     
-                        $("#auth_form_link").click();
-                        $("#auth_form .form_error").css("display","block").html("Ваш email уже зарегистрирован в системе. Пожалуйста, авторизуйтесь!");
-                        $("#auth_email").val(email);  
-                    }
-                    else {
-                        err = "no"; 
-                        submitForm('Y'); 
-                    }
-                }) 
-            }      
+                    name = $("#ORDER_PROP_1").val();
+                    phone = $("#ORDER_PROP_3").val();
+                    address = $("#ORDER_PROP_7").val();
+                    comment = $("#ORDER_PROP_69").val();
+                $.post('/ajax/checkEmail.php',{email:email, name:name ,phone:phone, address:address, comment:comment},
+                    function(data){
+                        if (data == "Y") {
+                            $("#auth_form_link").click();
+                            $("#auth_form .form_error").css("display","block").html("Ваш email уже зарегистрирован в системе. Пожалуйста, авторизуйтесь!");
+                            $("#auth_email").val(email);
+                        }
+                        else {
+                            err = "no";
+                            submitForm('Y');
+                        }
+                })
+            }
             <?}?>
-
-        //        alert(err);
 
         if (err == "yes"){
             return false;
         }
         else {
-            submitForm('Y'); 
-        }    
+            submitForm('Y');
+        }
 
     }
 
@@ -171,7 +163,7 @@
     var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
     var list = document.querySelector('body');
 
-    var observer = new MutationObserver(function(mutations) {  
+    var observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
             if (mutation.type === 'childList') {
                 var input_width = $(".inside-page .input").outerWidth();
@@ -181,9 +173,9 @@
     });
 
     observer.observe(list, {
-        attributes: true, 
-        childList: true, 
-        characterData: true 
+        attributes: true,
+        childList: true,
+        characterData: true
     });
     /////////////////////////////////////////////////////
 
@@ -235,11 +227,6 @@
 <div class="bx_order_make">
 
     <?
-        //         arshow($_SESSION, true);
-        //            arshow($arResult, true);
-    ?>
-
-    <?
 
 
         if(!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "N")
@@ -272,15 +259,13 @@
             <script type="text/javascript">
 
                 function checkBundleStatus(){
-                    //console.log($('label[for="ID_DELIVERY_pickpoint_postamat"] div.price').text());     
                     data = localStorage.getItem('isAStartBundle')
                     if (data!="T"){
-                        finalPrice = parseInt($('label[for="ID_DELIVERY_pickpoint_postamat"] div.price').text()) - 200;
+                        finalPrice = parseInt($('label[for="ID_DELIVERY_pickpoint_postamat"] div.price').text());
                         if(finalPrice<0 || !finalPrice){
                             finalPrice = 0;
-                        }  
+                        }
                         $('label[for="ID_DELIVERY_pickpoint_postamat"] div.price').html(finalPrice + ' <span class="rouble">i</span>');
-                    //    $('.deliveryCostSummary').html(finalPrice + 'Р');
                         $('.tableSum').html(parseInt($('.tableSum').text())+finalPrice+' Р');
                         $('.finalSumYellow').html(parseInt($('.finalSumYellow').text())+finalPrice+' Р');
                     }
@@ -307,7 +292,7 @@
                         )
                     ))?>);
 
-                    <?endif?> 
+                    <?endif?>
 
 
                 function submitForm(val)
@@ -387,14 +372,14 @@
                 }
             </script>
 
-            <div class="inside-page-col" > 
+            <div class="inside-page-col" >
                 <div class="div" >
 
                     <?if($_POST["is_ajax_post"] != "Y")
                         {
-                        ?><form action="<?=$APPLICATION->GetCurPage();?>" method="POST" name="ORDER_FORM" id="ORDER_FORM" enctype="multipart/form-data">   
+                        ?><form action="<?=$APPLICATION->GetCurPage();?>" method="POST" name="ORDER_FORM" id="ORDER_FORM" enctype="multipart/form-data">
                             <?=bitrix_sessid_post()?>
-                            <div id="order_form_content">     
+                            <div id="order_form_content">
                                 <?
                                 }
                                 else
@@ -406,10 +391,9 @@
 
                             <?
                                 if(!empty($arResult["ERROR"]) && $arResult["USER_VALS"]["FINAL_STEP"] == "Y")
-                                {   
+                                {
 
                                     foreach($arResult["ERROR"] as $v) {
-                                        //  echo ShowError($v);                                             
                                     }
 
                                 ?>
@@ -441,10 +425,10 @@
 
                             <?
 
-                                include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/related_props.php");                                  
+                                include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/related_props.php");
                             ?>
 
-                            <div id="summary_ajax" style="display: none !important;">     
+                            <div id="summary_ajax" style="display: none !important;">
                                 <?
                                     include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/summary.php");
                                     if(strlen($arResult["PREPAY_ADIT_FIELDS"]) > 0)
@@ -455,7 +439,7 @@
 
                             <?if($_POST["is_ajax_post"] != "Y")
                                 {
-                                ?> 
+                                ?>
 
 
                             </div>
@@ -490,7 +474,7 @@
                 </div>
             </div>
 
-            <div class="inside-page-col order_shadow" > 
+            <div class="inside-page-col order_shadow" >
 
                 <div id="summary_no_ajax">
                     <?
@@ -499,7 +483,7 @@
                             echo $arResult["PREPAY_ADIT_FIELDS"];
                     ?>
                 </div>
-            </div> 
+            </div>
 
             <?
             }
