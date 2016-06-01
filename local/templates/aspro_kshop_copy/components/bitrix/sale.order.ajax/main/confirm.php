@@ -3,7 +3,6 @@
 if (!empty($arResult["ORDER"]))
 {
 	?>
-    <?arshow($arBlockId)?>
     <?if($arResult["ORDER"]["PAY_SYSTEM_ID"] == $arBlockId["PAY_SISTEM_ID"]){?>
          <b><?= GetMessage("SOA_TEMPL_ORDER_COMPLETE");?> </b><br><br>
     <?}else{?>
