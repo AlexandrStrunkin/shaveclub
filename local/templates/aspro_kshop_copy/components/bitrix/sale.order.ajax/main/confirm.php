@@ -3,26 +3,40 @@
 if (!empty($arResult["ORDER"]))
 {
 	?>
-	<b><?=GetMessage("SOA_TEMPL_ORDER_COMPLETE")?></b><br /><br />
-	<table class="sale_order_full_table">
-		<tr>
-			<td>
-				<?= GetMessage("SOA_TEMPL_ORDER_SUC", Array("#ORDER_DATE#" => $arResult["ORDER"]["DATE_INSERT"], "#ORDER_ID#" => $arResult["ORDER"]["ACCOUNT_NUMBER"]))?>
-				<br /><br />
-				<?= GetMessage("SOA_TEMPL_ORDER_SUC1", Array("#LINK#" => $arParams["PATH_TO_PERSONAL"])) ?>
-			</td>
-		</tr>
-	</table>
+    <?arshow($arResult["ORDER"]["PAY_SYSTEM"])?>
+    <?if($arResult["ORDER"]["PAY_SYSTEM_ID"] == 25){?>
+         <b><?= GetMessage("SOA_TEMPL_ORDER_COMPLETE");?> </b><br><br>
+    <?}else{?>
+        <b><?= GetMessage("SOA_TEMPL_ORDER_COMPLETE1", Array("#ORDER_DATE#" => $arResult["ORDER"]["DATE_INSERT"], "#ORDER_ID#" => $arResult["ORDER"]["ACCOUNT_NUMBER"]))?></b>
+    <?}?>
+    <table class="sale_order_full_table">
+        <tr>
+            <td>
+
+                <?if($arResult["ORDER"]["PAY_SYSTEM_ID"] == 25){
+                    echo GetMessage("SOA_TEMPL_ORDER_SUC", Array("#ORDER_DATE#" => $arResult["ORDER"]["DATE_INSERT"], "#ORDER_ID#" => $arResult["ORDER"]["ACCOUNT_NUMBER"]));?>
+                    <br /><br />
+                    <?echo GetMessage("ORDER_COMPLETE");
+                }else{?>
+                    <?= GetMessage("SOA_TEMPL_ORDER") ?>
+                    <br />
+                    <?= GetMessage("SOA_TEMPL_ORDER_SUC1", Array("#LINK#" => $arParams["PATH_TO_PERSONAL"])) ?>
+                <?}?>
+            </td>
+        </tr>
+    </table>
 	<?
 	if (!empty($arResult["PAY_SYSTEM"]))
 	{
 		?>
-		<br /><br />
+		<br />
 
 		<table class="sale_order_full_table">
-			<tr>                 <!--Вывод информации о заказе, после оформления заказа -->
+
+			<tr>
 
 			</tr>
+
 			<?
 			if (strlen($arResult["PAY_SYSTEM"]["ACTION_FILE"]) > 0)
 			{
