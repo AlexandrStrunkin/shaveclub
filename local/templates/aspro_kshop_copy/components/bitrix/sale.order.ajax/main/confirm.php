@@ -1,10 +1,10 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-<?
+<?  global $arBlockId;
 if (!empty($arResult["ORDER"]))
 {
 	?>
-    <?arshow($arResult["ORDER"]["PAY_SYSTEM"])?>
-    <?if($arResult["ORDER"]["PAY_SYSTEM_ID"] == 25){?>
+    <?arshow($arBlockId)?>
+    <?if($arResult["ORDER"]["PAY_SYSTEM_ID"] == $arBlockId["PAY_SISTEM_ID"]){?>
          <b><?= GetMessage("SOA_TEMPL_ORDER_COMPLETE");?> </b><br><br>
     <?}else{?>
         <b><?= GetMessage("SOA_TEMPL_ORDER_COMPLETE1", Array("#ORDER_DATE#" => $arResult["ORDER"]["DATE_INSERT"], "#ORDER_ID#" => $arResult["ORDER"]["ACCOUNT_NUMBER"]))?></b>
@@ -13,7 +13,7 @@ if (!empty($arResult["ORDER"]))
         <tr>
             <td>
 
-                <?if($arResult["ORDER"]["PAY_SYSTEM_ID"] == 25){
+                <?if($arResult["ORDER"]["PAY_SYSTEM_ID"] == $arBlockId["PAY_SISTEM_ID"]){
                     echo GetMessage("SOA_TEMPL_ORDER_SUC", Array("#ORDER_DATE#" => $arResult["ORDER"]["DATE_INSERT"], "#ORDER_ID#" => $arResult["ORDER"]["ACCOUNT_NUMBER"]));?>
                     <br /><br />
                     <?echo GetMessage("ORDER_COMPLETE");
