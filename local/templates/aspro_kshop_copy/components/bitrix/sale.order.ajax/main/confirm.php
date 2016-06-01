@@ -4,7 +4,7 @@ if (!empty($arResult["ORDER"]))
 {
 	?>
     <? if ($arResult["ORDER"]["PAY_SYSTEM_ID"] == $arBlockId["PAY_SISTEM_ID"]) { ?>
-        <b><?= GetMessage("SOA_TEMPL_ORDER_COMPLETE");?> </b><br><br>
+
     <? } else { ?>
         <b><?= GetMessage("SOA_TEMPL_ORDER_COMPLETE1", Array("#ORDER_DATE#" => $arResult["ORDER"]["DATE_INSERT"], "#ORDER_ID#" => $arResult["ORDER"]["ACCOUNT_NUMBER"]))?></b>
     <? } ?>
