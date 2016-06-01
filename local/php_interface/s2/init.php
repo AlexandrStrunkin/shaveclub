@@ -51,31 +51,33 @@
             if($item["CODE"] == "store_pickup"){
                 $store = CCatalogStore::GetList(array(),array("ID"=>$item["VALUE"]))->Fetch();
                 $arOrder_new["pickup"] = ' <a href="http://'.$path.'/store/'.$item["VALUE"].'/">'.$store["TITLE"].'</a>';
-            }elseif($item["CODE"] == "EMAIL"){
+            } elseif ($item["CODE"] == "EMAIL") {
                 $arOrder_new["email"] = $item["VALUE"];
-            }elseif($item["CODE"] == "quick_order"){
+            } elseif ($item["CODE"] == "quick_order") {
                 $arOrder_new["quick_order"] = $item["VALUE"];
             }
 
         }
 
-        if($arOrder_new["quick_order"] != "Y"){
+        if ($arOrder_new["quick_order"] != "Y") {
             $ORDER_ID = $arFields["ORDER_ID"];
             $arOrderProps = array();
             $order_props = CSaleOrderPropsValue::GetOrderProps($ORDER_ID);//Свойства заказа
             while ($arProps = $order_props->Fetch()) {
-                if(!empty($arProps["CODE"]))
+                if (!empty($arProps["CODE"])){
                     $arOrderProps[$arProps["CODE"]] = $arProps;
-                else
+                } else {
                     $arOrderProps[$arProps["ID"]] = $arProps;
+                }
             }
 
             $arFields["PHONE"] = $arOrderProps["PHONE"]["VALUE"];
-            if(!empty($arOrderProps["LOCATION"]["VALUE"])) {
-                $arLocs = CSaleLocation::GetByID((int)$arOrderProps["LOCATION"]["VALUE"], LANGUAGE_ID);
+            if (!empty($arOrderProps["LOCATION"]["VALUE"])) {
+                $arLocs = CSaleLocation::GetByID((int) $arOrderProps["LOCATION"]["VALUE"], LANGUAGE_ID);
                 $arFields["ADDRESS"] = $arLocs["COUNTRY_NAME"] . ", " . $arLocs["REGION_NAME_LANG"] . ', ' . $arLocs["CITY_NAME"];
-                if(!empty($arOrderProps["ADDRESS"]["VALUE"]))
+                if (!empty($arOrderProps["ADDRESS"]["VALUE"])){
                     $arFields["ADDRESS"] .= ', ' . $arOrderProps["ADDRESS"]["VALUE"];
+                }
             }
 
             $dbOrder = CSaleOrder::GetList(
@@ -84,7 +86,7 @@
                 false,
                 false
             );
-            $arOrder = $dbOrder->Fetch();
+            $arOrder = $dbOrder -> Fetch();
             //email из настроек юзера
 
 
@@ -98,30 +100,34 @@
             $arFields["PICKUP"] = $arOrder_new["pickup"];
 
             $DELIVERY_NAME = '';
-            if (strpos($arOrder["DELIVERY_ID"], ":") !== false)    {
+            if (strpos($arOrder["DELIVERY_ID"], ":") !== false) {
                 $arId = explode(":", $arOrder["DELIVERY_ID"]);
                 $dbDelivery = CSaleDeliveryHandler::GetBySID($arId[0]);
-                $arDelivery = $dbDelivery->Fetch();
+                $arDelivery = $dbDelivery -> Fetch();
                 $DELIVERY_NAME = htmlspecialcharsEx($arDelivery["NAME"])." - ".htmlspecialcharsEx($arDelivery["PROFILES"][$arId[1]]["TITLE"]);
             }
             elseif (IntVal($arOrder["DELIVERY_ID"]) > 0) {
                 $arDelivery = CSaleDelivery::GetByID($arOrder["DELIVERY_ID"]);
                 $DELIVERY_NAME = $arDelivery["NAME"];
             }
+
             $arFields["DELIVERY_NAME"] = $DELIVERY_NAME.'<br>'.$arOrder_new["pickup"];
             $arFields["DELIVERY_PRICE"] = round($arOrder["PRICE_DELIVERY"], 0);
-            if(IntVal($arFields["DELIVERY_PRICE"]) <= 0)
+            if (IntVal($arFields["DELIVERY_PRICE"]) <= 0) {
                 $arFields["DELIVERY_PRICE"] = 'Бесплатно';
+            }
 
             if (IntVal($arOrder["PAY_SYSTEM_ID"]) > 0) {
                 $arPaySys = CSalePaySystem::GetByID($arOrder["PAY_SYSTEM_ID"], $arOrder["PERSON_TYPE_ID"]);
-                if ($arPaySys)
+                if ($arPaySys) {
                     $arFields["PAYMENT_NAME"] = htmlspecialcharsEx($arPaySys["NAME"]);
+                }
             }
 
             $arFields["USER_DESCRIPTION"] = '';
-            if(!empty($arOrder["USER_DESCRIPTION"]))
+            if (!empty($arOrder["USER_DESCRIPTION"])) {
                 $arFields["USER_DESCRIPTION"] = $arOrder["USER_DESCRIPTION"];
+            }
 
             $dbBasketTmp = CSaleBasket::GetList(
                 array("NAME" => "ASC"),
@@ -138,41 +144,45 @@
                     $id = (int)$tmp[1];
                     $res = CIblockElement::GetById($id)->GetNextElement();
                     $props = $res->GetProperties();
-                    foreach($props as $val) {
-                        if(!strstr($val['CODE'],'CML2_') && !empty($val['VALUE']))
+                    foreach ($props as $val) {
+                        if (!strstr($val['CODE'],'CML2_') && !empty($val['VALUE'])) {
                             $arVals[] = $val['NAME'].': '.$val['VALUE'];
+                        }
                     }
-                    if(!empty($arVals)) {
+                    if (!empty($arVals)) {
                         $arBasketTmp['NAME'] .= ' ('.implode(', ',$arVals).')';
                     }
                 }
-                if($arBasketTmp['DISCOUNT_PRICE'] > 0)
+                if ($arBasketTmp['DISCOUNT_PRICE'] > 0){
                     $DISCOUNT_PRICE += $arBasketTmp['DISCOUNT_PRICE'];
+                }
 
-                if($arBasketTmp['BASE_PRICE'] > 0)
+                if ($arBasketTmp['BASE_PRICE'] > 0) {
                     $BASE_PRICE += $arBasketTmp['BASE_PRICE'] * $arBasketTmp['QUANTITY'];
+                }
 
                 $arBasketValue[] = $arBasketTmp;
             }
-            if($BASE_PRICE > 0) {
+            if ($BASE_PRICE > 0) {
                 $DISCOUNT_VALUE = $BASE_PRICE - $arOrder["PRICE"] + $arOrder["PRICE_DELIVERY"];
                 $arFields["DISCOUNT_VALUE"] = round($DISCOUNT_VALUE, 0);
             }
 
             $BasketListStr = '';
-            if(!empty($arBasketId)) {
+            if (!empty($arBasketId)) {
                 $arLinks = $arPictures = array();
                 $res = CIblockElement::GetList(array(),array("ID" => $arBasketId), false, false, array("ID", "IBLOCK_ID", "DETAIL_PAGE_URL", "PREVIEW_PICTURE", "DETAIL_PICTURE"));
-                while($ob = $res->GetNextElement()) {
+                while ($ob = $res->GetNextElement()) {
                     $arItemFields = $ob->GetFields();
                     $arLinks[$arItemFields["ID"]] = "http://".$_SERVER["SERVER_NAME"] . $arItemFields["DETAIL_PAGE_URL"];
                     $arPictures[$arItemFields["ID"]] = !empty($arItemFields["PREVIEW_PICTURE"]) ? $arItemFields["PREVIEW_PICTURE"] : $arItemFields["DETAIL_PICTURE"];
                 }
-                foreach($arBasketValue as $arBasket) {
+                foreach ($arBasketValue as $arBasket) {
                     $arFile = CFile::ResizeImageGet($arPictures[$arBasket["PRODUCT_ID"]], array('width' => 130, 'height' => 200), BX_RESIZE_IMAGE_PROPORTIONAL, true);
                     $ItemPrice = round($arBasket["PRICE"], 0) . '<span></span>';
-                    if($arBasket["QUANTITY"] > 1)
+                    if ($arBasket["QUANTITY"] > 1) {
                         $ItemPrice = round($arBasket["QUANTITY"] * $arBasket["PRICE"], 0) . ' (' . round($arBasket["PRICE"], 0) . '/шт.)';
+                    }
 
                     $BasketListStr .= "
                     <div class=\"row\" style=\"width: 100%; overflow: hidden; border-bottom: 2px solid #f0f0f0; height: 140px;\">
@@ -205,9 +215,6 @@
                 $arFields["BASKET_COUNT"] = count($arBasketValue);
             }
             $arFields["ORDER_LIST"] = $BasketListStr;
-            arshow(SITE_SERVER_NAME);
-            arshow($arFields["ORDER_LIST"]);
-            arshow($_SERVER["SERVER_NAME"]);
         }else{
             return false;
         }
