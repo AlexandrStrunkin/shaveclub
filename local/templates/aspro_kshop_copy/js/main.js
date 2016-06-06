@@ -527,7 +527,7 @@ if(!isFunction("deleteFromBasketPopup"))
 						{
 							if ($(basketWindow).find(".total_wrapp .more_row").length) {
 								$(basketWindow).find(".total_wrapp .more_row .count_message").html($(newBasket).find(".total_wrapp .more_row .count_message").html());
-								$(basketWindow).find(".total_wrapp .more_row .count").animateNumbers(parseInt(delSpaces($(newBasket).find(".total_wrapp .more_row .count").text()).replace(/,/g, "")), speed, false);
+								$(basketWindow).find(".total_wrapp .more_row .count").animateNumbers(parseFloat(delSpaces($(newBasket).find(".total_wrapp .more_row .count").text()).replace(",", ".")).toFixed(2), speed, false);
 							}	
 						} 
 						else
