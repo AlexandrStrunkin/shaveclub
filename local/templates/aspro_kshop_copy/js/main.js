@@ -18,7 +18,7 @@ $.fn.equalizeHeights = function(){
     $.fn.animateNumbers = function(stop, duration, formatPrice, start, ease, callback){	
         return this.each(function() {
             var $this = $(this);
-            var start = (start === undefined) ? parseInt(delSpaces($this.text()).replace(/,/g, "")) : start;			
+            var start = (start === undefined) ? parseFloat(delSpaces($this.text()).replace(",", ".")).toFixed(2) : start;			
 			formatPrice = (formatPrice === undefined) ? false : formatPrice;
             $({value: start}).animate({value: stop}, {
             	duration: duration == undefined ? 1000 : duration,
@@ -32,7 +32,7 @@ $.fn.equalizeHeights = function(){
 					}
             	},
             	complete: function(){ 
-					if(parseInt(delSpaces($this.text())) !== stop){
+					if(parseFloat(delSpaces($this.text())) !== stop){
 						if(formatPrice){
 							$this.text(jsPriceFormat(stop));
 						}
