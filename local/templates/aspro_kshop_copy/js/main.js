@@ -18,7 +18,7 @@ $.fn.equalizeHeights = function(){
     $.fn.animateNumbers = function(stop, duration, formatPrice, start, ease, callback){	
         return this.each(function() {
             var $this = $(this);
-            var start = (start === undefined) ? parseInt(delSpaces($this.text()).replace(/,/g, "")) : start;			
+            var start = (start === undefined) ? parseFloat(delSpaces($this.text()).replace(",", ".")).toFixed(2) : start;			
 			formatPrice = (formatPrice === undefined) ? false : formatPrice;
             $({value: start}).animate({value: stop}, {
             	duration: duration == undefined ? 1000 : duration,
@@ -32,7 +32,7 @@ $.fn.equalizeHeights = function(){
 					}
             	},
             	complete: function(){ 
-					if(parseInt(delSpaces($this.text())) !== stop){
+					if(parseFloat(delSpaces($this.text()).replace(",", ".")).toFixed(2) !== stop){
 						if(formatPrice){
 							$this.text(jsPriceFormat(stop));
 						}
@@ -679,8 +679,8 @@ if(!isFunction("postAnimateBasketFly"))
 				{
 					if($(oldBasket).find("tr[data-id=total_row] .row_values div[data-type="+$(element).attr("data-type")+"]").length)
 					{	
-						var newPrice = parseInt(delSpaces($(element).find("span.price").text()).replace(/,/g, ""));
-						var newDiscountPrice = parseInt(delSpaces($(element).find("div.price.discount strike").text()).replace(/,/g, ""));	
+						var newPrice = parseFloat(delSpaces($(element).find("span.price").text()).replace(",", ".")).toFixed(2);
+						var newDiscountPrice = parseFloat(delSpaces($(element).find("div.price.discount strike").text()).replace(",", ".")).toFixed(2);	
 						var dataBlock = $(oldBasket).find("tr[data-id=total_row] .row_values div[data-type="+$(element).attr("data-type")+"]");
 						if($(element).attr("data-type")=="price_discount")
 							{
