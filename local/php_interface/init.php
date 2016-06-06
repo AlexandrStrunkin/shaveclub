@@ -103,7 +103,7 @@
                     if ($arFields['DELIVERY_PRICE']=='Бесплатно') {
                         $arFields['DELIVERY_PRICE']=0;
                     }
-
+                    arshow($arFields);
 
                 }
             }
