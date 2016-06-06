@@ -679,8 +679,8 @@ if(!isFunction("postAnimateBasketFly"))
 				{
 					if($(oldBasket).find("tr[data-id=total_row] .row_values div[data-type="+$(element).attr("data-type")+"]").length)
 					{	
-						var newPrice = parseInt(delSpaces($(element).find("span.price").text()).replace(/,/g, ""));
-						var newDiscountPrice = parseInt(delSpaces($(element).find("div.price.discount strike").text()).replace(/,/g, ""));	
+						var newPrice = parseFloat(delSpaces($(element).find("span.price").text()).replace(",", ".")).toFixed(2);
+						var newDiscountPrice = parseFloat(delSpaces($(element).find("div.price.discount strike").text()).replace(",", ".")).toFixed(2);	
 						var dataBlock = $(oldBasket).find("tr[data-id=total_row] .row_values div[data-type="+$(element).attr("data-type")+"]");
 						if($(element).attr("data-type")=="price_discount")
 							{
@@ -843,7 +843,7 @@ if(!isFunction("preAnimateBasketPopup"))
 								if ($(basketWindow).find(".total_wrapp .more_row").length)
 								{
 									$(basketWindow).find(".total_wrapp .more_row .count_message").html($(newBasket).find(".total_wrapp .more_row .count_message").html());
-									$(basketWindow).find(".total_wrapp .more_row .count").animateNumbers(parseInt(delSpaces($(newBasket).find(".total_wrapp .more_row .count").text()).replace(/,/g, "")), speed, false);
+									$(basketWindow).find(".total_wrapp .more_row .count").animateNumbers(parseFloat(delSpaces($(newBasket).find(".total_wrapp .more_row .count").text()).replace(",", ".")), speed, false);
 								}
 								else
 								{
