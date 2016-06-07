@@ -58,8 +58,8 @@
             }
 
         }
-
-        if ($arOrder_new["quick_order"] != "Y") {
+        if ($arOrder_new["quick_order"] != "Y" && $arOrder_new["quick_order"]) {
+            arshow($arFields);
             $ORDER_ID = $arFields["ORDER_ID"];
             $arOrderProps = array();
             $order_props = CSaleOrderPropsValue::GetOrderProps($ORDER_ID);//Свойства заказа
@@ -143,7 +143,9 @@
                     $tmp = explode('#',$arBasketTmp['PRODUCT_XML_ID']);
                     $id = (int)$tmp[1];
                     $res = CIblockElement::GetById($id)->GetNextElement();
-                    $props = $res->GetProperties();
+                    if ($res) {
+                        $props = $res->GetProperties();
+                    }
                     foreach ($props as $val) {
                         if (!strstr($val['CODE'],'CML2_') && !empty($val['VALUE'])) {
                             $arVals[] = $val['NAME'].': '.$val['VALUE'];
@@ -215,7 +217,8 @@
                 $arFields["BASKET_COUNT"] = count($arBasketValue);
             }
             $arFields["ORDER_LIST"] = $BasketListStr;
-        }else{
+
+        } elseif ($arOrder_new["quick_order"]) {
             return false;
         }
     }
