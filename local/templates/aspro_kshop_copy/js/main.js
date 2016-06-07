@@ -32,7 +32,7 @@ $.fn.equalizeHeights = function(){
 					}
             	},
             	complete: function(){ 
-					if(parseFloat(delSpaces($this.text())) !== stop){
+					if(parseFloat(delSpaces($this.text()).replace(",", ".")).toFixed(2) !== stop){
 						if(formatPrice){
 							$this.text(jsPriceFormat(stop));
 						}
