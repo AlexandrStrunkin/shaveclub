@@ -192,6 +192,9 @@ if (!function_exists("cmpBySort"))
 
 				BX.closeWait();
 				BX.onCustomEvent(orderForm, 'onAjaxSuccess');
+                $(function(){
+                    $('.bx-core-adm-dialog-buttons #crmOk').attr('value', 'Выбрать');
+                })
 			}
 
 			function SetContact(profileId)
