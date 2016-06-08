@@ -59,7 +59,6 @@
 
         }
         if ($arOrder_new["quick_order"] != "Y" && $arOrder_new["quick_order"]) {
-            arshow($arFields);
             $ORDER_ID = $arFields["ORDER_ID"];
             $arOrderProps = array();
             $order_props = CSaleOrderPropsValue::GetOrderProps($ORDER_ID);//Свойства заказа
