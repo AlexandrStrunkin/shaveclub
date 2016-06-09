@@ -522,12 +522,12 @@ if(!isFunction("deleteFromBasketPopup"))
 						$(basketWindow).find("input[name=total_price]").attr("value", $(newBasket).find("input[name=total_price]").attr("value"));
 						
 						$(basketWindow).find(".total_wrapp .total .price").animateNumbers(newSummPrice, (speed*3), true); 	
-						
+						// анимация кол-ва товара в дополнительных строках плавающей корзины
 						if ($(newBasket).find(".total_wrapp .more_row").length)
 						{
 							if ($(basketWindow).find(".total_wrapp .more_row").length) {
 								$(basketWindow).find(".total_wrapp .more_row .count_message").html($(newBasket).find(".total_wrapp .more_row .count_message").html());
-								$(basketWindow).find(".total_wrapp .more_row .count").animateNumbers(parseFloat(delSpaces($(newBasket).find(".total_wrapp .more_row .count").text()).replace(",", ".")).toFixed(2), speed, false);
+								$(basketWindow).find(".total_wrapp .more_row .count").animateNumbers(parseInt(delSpaces($(newBasket).find(".total_wrapp .more_row .count").text()).replace(/,/g, "")), speed, false));
 							}	
 						} 
 						else
@@ -837,13 +837,14 @@ if(!isFunction("preAnimateBasketPopup"))
 								$(element).find(".cost-cell .price").html("0");			
 								$(element).find(".cost-cell .price").animateNumbers($(newBasket).find("input[name=item_price_"+$(element).attr("product-id")+"]").attr("value"), (speed*2), true, 0, "", function () { $(element).removeAttr("animated"); });
 							});
-
+                            // анимация кол-ва товара в дополнительных строках плавающей корзины
+                            
 							if ($(newBasket).find(".total_wrapp .more_row").length)
 							{
 								if ($(basketWindow).find(".total_wrapp .more_row").length)
 								{
 									$(basketWindow).find(".total_wrapp .more_row .count_message").html($(newBasket).find(".total_wrapp .more_row .count_message").html());
-									$(basketWindow).find(".total_wrapp .more_row .count").animateNumbers(parseFloat(delSpaces($(newBasket).find(".total_wrapp .more_row .count").text()).replace(",", ".")), speed, false);
+									$(basketWindow).find(".total_wrapp .more_row .count").animateNumbers(parseInt(delSpaces($(newBasket).find(".total_wrapp .more_row .count").text()).replace(/,/g, "")), speed, false);
 								}
 								else
 								{
