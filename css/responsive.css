@@ -1,7 +1,13 @@
 .wrapper {
  /*width: 1920px;*/
 }
+  .main-shave1 .p1 {
+    width: 355px;
+  }
 
+  .main-shave2 .p1 {
+    width: 305px;
+  }
 @media all and (max-width: 1570px) {
   .menu-nav, .menu-nav1, .menu-soc {
     width: 72%;
@@ -67,9 +73,7 @@
 
   .main-shave1 .p1, .main-shave2 .p1 {
     font-size: 17px;
-
   }
-
   .main-shave1 .p2, .main-shave2 .p2 {
     font-size: 15px;
     padding-bottom: 37px;
@@ -325,10 +329,10 @@
 
   .footer-soc a {
     height: 31px;
-    width: 32px;     
-    margin-left: 8px;      
+    width: 32px;
+    margin-left: 8px;
     float: left;
-  }      
+  }
 
   .footer > div {
     padding-left: 40px;

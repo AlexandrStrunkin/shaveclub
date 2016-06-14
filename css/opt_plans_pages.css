@@ -218,12 +218,12 @@
 }
 .plans {
     padding: 0 !important;
-    height: 583px;
+    height: 533px;
 }
 .plans li {
     text-align: center;
     width: 33.3%;
-    height: 583px;
+    height: 580px;
     float: left;
     position: relative;
 
@@ -234,7 +234,7 @@
 .plans-name {
     font-size: 24px;
     font-weight: bold;
-    padding: 85px 0 20px;
+    padding: 85px 0 10px;
     color: #333;
     text-transform: uppercase;
     display: block;
@@ -252,7 +252,7 @@
     width: 35px;
     height: 2px;
     background: #7a6f67;
-    margin: 20px auto 20px;
+    margin: 15px auto 15px;
 
 }
 .plans-title {
@@ -271,7 +271,7 @@
 .plans-text{
     color: #dd9c42;
     font: 24px/1 'PFDinTextCondPro-Medium', sans-serif;
-    padding: 15px 0 25px;
+    padding: 12px 0 17px;
     display: block;
 
 }
@@ -281,7 +281,7 @@
     padding: 0 !important;
     position: absolute;
     bottom: 0;
-    height: 170px;
+    height: 200px;
     width: 100%;
 }
 .plans-container .arr {
@@ -294,7 +294,7 @@
 }
 .plans-container .price {
     display: block;
-    padding: 20px 0 30px;
+    padding: 20px 0 15px;
     font-size: 26px;
     font-weight: bold;
 }
@@ -354,7 +354,6 @@
 }
 .plans-create {
     padding: 0 !important;
-
     position: relative;
 }
 .plans-create .div {

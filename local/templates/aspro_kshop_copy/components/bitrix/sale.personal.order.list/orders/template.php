@@ -1,17 +1,13 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <?
-	if (!function_exists("formatPrice"))
-	{
-		function formatPrice ($price, $currencyCode)
-		{
-			if (!$price&&$currencyCode)
-			{
+	if (!function_exists("formatPrice")) {
+		function formatPrice ($price, $currencyCode) {
+			if (!$price&&$currencyCode) {
 				$currency = CCurrencyLang::GetCurrencyFormat($currencyCode, LANGUAGE_ID);
 				return substr($currency["FORMAT_STRING"], strrpos($currency["FORMAT_STRING"], ' '));
 			}
 			elseif ($price&&!$currencyCode) { return number_format( $price, 0, '', ' '); }
-			elseif ($price&&$currencyCode)
-			{
+			elseif ($price&&$currencyCode){
 				$currency = CCurrencyLang::GetCurrencyFormat($currencyCode, LANGUAGE_ID);
 				return number_format( $price, 0, '', ' ' ).substr($currency["FORMAT_STRING"], strrpos($currency["FORMAT_STRING"], ' '));
 			}
@@ -32,9 +28,9 @@
 			</tr>
 		</thead>
 		<tbody>
-		<?foreach( $arResult["ORDERS"] as $val ){?>
+		<?foreach( $arResult["ORDERS"] as $val ) {?>
 			<?$summ = 0;
-			foreach( $val["BASKET_ITEMS"] as $vval ){
+			foreach( $val["BASKET_ITEMS"] as $vval ) {
 				$summ += $vval["PRICE"] * $vval["QUANTITY"];
 			}?>
 
@@ -101,7 +97,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?foreach( $val["BASKET_ITEMS"] as $vval ):?>
+									<?foreach( $val["BASKET_ITEMS"] as $vval ){?>
 										<tr>
 											<td  class="name-cell">
 												<a href="<?=$vval["DETAIL_PAGE_URL"]?>"><?=$vval["NAME"]?></a>
@@ -117,7 +113,7 @@
 												<?=formatPrice($vval["PRICE"]*$vval["QUANTITY"], $vval["CURRENCY"]);?>
 											</td>
 										</tr>
-									<?endforeach;?>
+									<?};?>
 								</tbody>
 							</table>
 							<div class="result-row">
@@ -141,6 +137,33 @@
 								<!--noindex-->
 									<a href="<?=$val["ORDER"]["URL_TO_DETAIL"]?>" class="button22"><span><?=GetMessage("SPOL_T_DETAIL")?></span></a>
 									<a href="<?=$val["ORDER"]["URL_TO_COPY"]?>" class="button22"><span><?=GetMessage("SPOL_T_COPY_ORDER_DESCR")?></span></a>
+                                    <?         // подключение оплаты яндекс кассы
+                                    CSalePaySystemAction::InitParamArrays($val["ORDER"], $val["ORDER"]["ID"], $arResult["PAY_SYSTEM"]["PARAMS"]);
+
+                                    $pathToAction = $_SERVER["DOCUMENT_ROOT"].$arPaySysAction["ACTION_FILE"];
+                                    $pathToAction = str_replace("\\", "/", $pathToAction);
+                                    while (substr($pathToAction, strlen($pathToAction) - 1, 1) == "/"){
+                                        $pathToAction = substr($pathToAction, 0, strlen($pathToAction) - 1);
+                                    }
+                                    if (file_exists($pathToAction)){
+                                        if (is_dir($pathToAction) && file_exists($pathToAction."/payment.php")){
+                                            $pathToAction .= "/payment.php";
+                                        }
+                                        $val["PAY_SYSTEM"]["PSA_ACTION_FILE"] = $pathToAction;
+
+                                    }
+                                    try{
+                                        include($val["PAY_SYSTEM"]["PSA_ACTION_FILE"]);
+                                    }
+                                    catch(\Bitrix\Main\SystemException $e){
+                                        if($e->getCode() == CSalePaySystemAction::GET_PARAM_VALUE){
+                                            $message = GetMessage("SOA_TEMPL_ORDER_PS_ERROR");
+                                        }else{
+                                            $message = $e->getMessage();
+                                        }
+                                        ShowError($message);
+                                    }   // подключение оплаты яндекс кассы
+                                    ?>
 									<?if( $val["ORDER"]["CAN_CANCEL"] == "Y"  && ($val["ORDER"]["STATUS_ID"] == "N" || $val["ORDER"]["STATUS_ID"] == "P")){?>
 										<a href="<?=$val["ORDER"]["URL_TO_CANCEL"]?>" class="button22 grey"><span><?=GetMessage("SPOL_T_DELETE_DESCR")?></span></a>
 									<?}?>
@@ -158,8 +181,7 @@
 	<?endif;?>
 
 	<script>
-		$('.tr-d td').on('click', function(e)
-		{
+		$('.tr-d td').on('click', function(e){
 			e.preventDefault();
 			$(this).parents("tr").toggleClass("opened").next("tr.drop").find(".drop-cell").slideToggle(200).find(".drop-container").slideToggle(200);
 		});

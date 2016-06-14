@@ -104,7 +104,6 @@
                         $arFields['DELIVERY_PRICE']=0;
                     }
 
-
                 }
             }
         }

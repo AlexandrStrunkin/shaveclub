@@ -26,7 +26,7 @@
                 <div class="right-data">
                     <div class="item-title"><a href="<?=$arItem["DETAIL_PAGE_URL"]?>"><span><?= $arItem["NAME"] ?></span></a></div>
                     <div class="preview-text"><?=$arItem["PREVIEW_TEXT"]?></div>
-                    <div class="date_small"><?=$arItem["DISPLAY_ACTIVE_FROM"]?></div>
+                    <div class="date_small"><?//=$arItem["DISPLAY_ACTIVE_FROM"]?></div>
                     <div class="news_date_time_detail"><?=$arItem["PROPERTIES"]["PERIOD"]["VALUE"]?></div>
                 </div>
             </section>

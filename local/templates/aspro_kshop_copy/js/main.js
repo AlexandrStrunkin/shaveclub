@@ -18,7 +18,7 @@ $.fn.equalizeHeights = function(){
     $.fn.animateNumbers = function(stop, duration, formatPrice, start, ease, callback){	
         return this.each(function() {
             var $this = $(this);
-            var start = (start === undefined) ? parseInt(delSpaces($this.text()).replace(/,/g, "")) : start;			
+            var start = (start === undefined) ? parseFloat(delSpaces($this.text()).replace(",", ".")).toFixed(2) : start;			
 			formatPrice = (formatPrice === undefined) ? false : formatPrice;
             $({value: start}).animate({value: stop}, {
             	duration: duration == undefined ? 1000 : duration,
@@ -32,7 +32,7 @@ $.fn.equalizeHeights = function(){
 					}
             	},
             	complete: function(){ 
-					if(parseInt(delSpaces($this.text())) !== stop){
+					if(parseFloat(delSpaces($this.text()).replace(",", ".")).toFixed(2) !== stop){
 						if(formatPrice){
 							$this.text(jsPriceFormat(stop));
 						}
@@ -522,12 +522,12 @@ if(!isFunction("deleteFromBasketPopup"))
 						$(basketWindow).find("input[name=total_price]").attr("value", $(newBasket).find("input[name=total_price]").attr("value"));
 						
 						$(basketWindow).find(".total_wrapp .total .price").animateNumbers(newSummPrice, (speed*3), true); 	
-						
+						// анимация кол-ва товара в дополнительных строках плавающей корзины
 						if ($(newBasket).find(".total_wrapp .more_row").length)
 						{
 							if ($(basketWindow).find(".total_wrapp .more_row").length) {
 								$(basketWindow).find(".total_wrapp .more_row .count_message").html($(newBasket).find(".total_wrapp .more_row .count_message").html());
-								$(basketWindow).find(".total_wrapp .more_row .count").animateNumbers(parseInt(delSpaces($(newBasket).find(".total_wrapp .more_row .count").text()).replace(/,/g, "")), speed, false);
+								$(basketWindow).find(".total_wrapp .more_row .count").animateNumbers(parseInt(delSpaces($(newBasket).find(".total_wrapp .more_row .count").text()).replace(/,/g, "")), speed, false));
 							}	
 						} 
 						else
@@ -679,8 +679,8 @@ if(!isFunction("postAnimateBasketFly"))
 				{
 					if($(oldBasket).find("tr[data-id=total_row] .row_values div[data-type="+$(element).attr("data-type")+"]").length)
 					{	
-						var newPrice = parseInt(delSpaces($(element).find("span.price").text()).replace(/,/g, ""));
-						var newDiscountPrice = parseInt(delSpaces($(element).find("div.price.discount strike").text()).replace(/,/g, ""));	
+						var newPrice = parseFloat(delSpaces($(element).find("span.price").text()).replace(",", ".")).toFixed(2);
+						var newDiscountPrice = parseFloat(delSpaces($(element).find("div.price.discount strike").text()).replace(",", ".")).toFixed(2);	
 						var dataBlock = $(oldBasket).find("tr[data-id=total_row] .row_values div[data-type="+$(element).attr("data-type")+"]");
 						if($(element).attr("data-type")=="price_discount")
 							{
@@ -837,7 +837,8 @@ if(!isFunction("preAnimateBasketPopup"))
 								$(element).find(".cost-cell .price").html("0");			
 								$(element).find(".cost-cell .price").animateNumbers($(newBasket).find("input[name=item_price_"+$(element).attr("product-id")+"]").attr("value"), (speed*2), true, 0, "", function () { $(element).removeAttr("animated"); });
 							});
-
+                            // анимация кол-ва товара в дополнительных строках плавающей корзины
+                            
 							if ($(newBasket).find(".total_wrapp .more_row").length)
 							{
 								if ($(basketWindow).find(".total_wrapp .more_row").length)
