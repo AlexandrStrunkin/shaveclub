@@ -133,9 +133,12 @@
                     phone = $("#ORDER_PROP_3").val();
                     address = $("#ORDER_PROP_7").val();
                     comment = $("#ORDER_PROP_69").val();
-                $.post('/ajax/checkEmail.php',{email:email, name:name ,phone:phone, address:address, comment:comment},
+                    zip = $("#ORDER_PROP_4").val();
+                    city = $("#ORDER_PROP_6").val();
+                $.post('/ajax/checkEmail.php',{email:email, name:name ,phone:phone, address:address, comment:comment, zip:zip, city:city},
                     function(data){
                         if (data == "Y") {
+                            console.log(data);
                             $("#auth_form_link").click();
                             $("#auth_form .form_error").css("display","block").html("Ваш email уже зарегистрирован в системе. Пожалуйста, авторизуйтесь!");
                             $("#auth_email").val(email);

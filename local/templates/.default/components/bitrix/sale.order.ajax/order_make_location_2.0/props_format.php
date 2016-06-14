@@ -13,6 +13,8 @@
             phone = '<?=$_SESSION["PHONE"]?>';
             address = '<?=$_SESSION["ADDRESS"]?>';
             comment = '<?=$_SESSION["COMMENT"]?>';
+            zip = '<?=$_SESSION["ZIP"]?>';
+            city = '<?=$_SESSION["CITY"]?>';
             if (phone != '') {
                 $("#ORDER_PROP_3").val(phone);
             }
@@ -28,8 +30,12 @@
             if (comment != '') {
                 $("#ORDER_PROP_69").val(comment);
             }
-
-
+            if (zip != '') {
+                $("#ORDER_PROP_4").val(zip);
+            }
+            if (city != '') {
+                $("#ORDER_PROP_6").val(city);
+            }
             $(".bx-ui-sls-fake").attr("placeholder", "Введите название населенного пункта для выбора способа доставки...");
 
         });
@@ -126,8 +132,21 @@
                     ?>
 
                     <label>
-                        <input type="text" placeholder="<?=$arProperties["NAME"]?>" class="<?if($arProperties["CODE"] != "KOMMENT"){?>input<?}?> koment" size="<?=$arProperties["SIZE1"]?>" value="<?=$arProperties["VALUE"]?>" name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>" autocomplete="off">
+
+                        <input type="text"
+                        placeholder="<?=$arProperties["NAME"]?>"
+                        class="<?if($arProperties["CODE"] != "COMMENT"){?>input<?}?> koment" size="<?=$arProperties["SIZE1"]?>"
+                        value="<?if($_SESSION[$arProperties["CODE"]] != ''){
+                            echo $_SESSION[$arProperties["CODE"]];
+                        } else{
+                            echo $arProperties["VALUE"];
+                        }?>"
+                        name="<?=$arProperties["FIELD_NAME"]?>"
+                        id="<?=$arProperties["FIELD_NAME"]?>"
+                        autocomplete="off">
+
                     </label>
+                    <?arshow($arProperties["CODE"])?>
                     <?
                     }
                     elseif ($arProperties["TYPE"] == "SELECT")
@@ -177,7 +196,11 @@
                             {
                                 if ($arVariant["SELECTED"] == "Y")
                                 {
-                                    $value = $arVariant["ID"];
+                                    if($_SESSION["CITY"] != ''){
+                                        $value = $_SESSION["CITY"];
+                                    } else{
+                                        $value = $arVariant["ID"];
+                                    }
                                     break;
                                 }
                             }
