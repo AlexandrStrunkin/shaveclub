@@ -8,13 +8,13 @@
     ?>
     <script type="text/javascript">
         $(document).ready(function () {
-            email = '<?=$arUserProps["EMAIL"]?>';
-            name = '<?=$_SESSION["FIO"]?>';
-            phone = '<?=$_SESSION["PHONE"]?>';
-            address = '<?=$_SESSION["ADDRESS"]?>';
-            comment = '<?=$_SESSION["COMMENT"]?>';
-            zip = '<?=$_SESSION["ZIP"]?>';
-            city = '<?=$_SESSION["CITY"]?>';
+            email = '<?= $arUserProps["EMAIL"] ?>';
+            name = '<?= $_SESSION["FIO"] ?>';
+            phone = '<?= $_SESSION["PHONE"] ?>';
+            address = '<?= $_SESSION["ADDRESS"] ?>';
+            comment = '<?= $_SESSION["COMMENT"] ?>';
+            zip = '<?= $_SESSION["ZIP"] ?>';
+            city = '<?= $_SESSION["CITY"] ?>';
             if (phone != '') {
                 $("#ORDER_PROP_3").val(phone);
             }
