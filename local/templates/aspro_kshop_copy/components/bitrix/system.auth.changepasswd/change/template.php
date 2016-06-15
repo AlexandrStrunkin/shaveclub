@@ -40,7 +40,7 @@
 		ShowMessage($arResult['ERROR_MESSAGE']);?>
 		<p><font class="errortext"><?=GetMessage("WRONG_LOGIN_OR_PASSWORD")?></font></p>
 	<?}?>
-	<?if( $arResult["ERROR_MESSAGE"]["TYPE"] != "ERROR" && !empty( $_POST["change_pwd"] ) ){?>
+	<?if ($arResult["ERROR_MESSAGE"]["TYPE"] != "ERROR" && !empty( $_POST["change_pwd"])){?>
 		<p><?=GetMessage("CHANGE_SUCCESS")?></p>
 		<div class="but-r"><a href="/auth/" class="button-30"><span><?=GetMessage("LOGIN")?></span></a></div>
 	<?}else{?>
