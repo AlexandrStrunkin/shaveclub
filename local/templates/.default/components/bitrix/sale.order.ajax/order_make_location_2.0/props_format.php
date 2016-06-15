@@ -146,7 +146,6 @@
                         autocomplete="off">
 
                     </label>
-                    <?arshow($arProperties["CODE"])?>
                     <?
                     }
                     elseif ($arProperties["TYPE"] == "SELECT")
