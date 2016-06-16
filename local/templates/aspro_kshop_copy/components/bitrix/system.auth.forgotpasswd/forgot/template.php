@@ -14,7 +14,6 @@ if(isset($APPLICATION->arAuthResult))
 		ShowMessage($arResult['ERROR_MESSAGE']);
 	?>
 
-
 		<div class="form-block">
 			<form name="bform" method="post" target="_top" class="bf" action="<?=SITE_DIR?>auth/forgot-password/">
 				<?if (strlen($arResult["BACKURL"]) > 0){?><input type="hidden" name="backurl" value="<?=$arResult["BACKURL"]?>" /><?}?>
