@@ -31,7 +31,7 @@
                 { if ($arElement["ID"]=="DelDelCanBuy") $arMenu[$key]["SELECTED"]=true;  else $arMenu[$key]["SELECTED"]=false; } 
         }
 
-    ?>	
+    ?>    
 
     <form method="post" action="<?=POST_FORM_ACTION_URI?>" name="basket_form" id="basket_form" class="basket_wrapp">
         <div id="basket_sort" class="basket_sort">
@@ -71,7 +71,7 @@
 
                     $("#basket_form .tabs_content.basket li.cur tfoot .delay-cell").width($("#basket_form .tabs_content.basket li.cur tbody td.delay-cell").first().width());
                     $("#basket_form .tabs_content.basket li.cur tfoot .row_values").width($("#basket_form .tabs_content.basket li.cur tbody td.summ-cell").first().width());
-                }	
+                }    
         });
 
         $(".tabs > li").live("click", function()
@@ -106,7 +106,7 @@
                             $.post( arKShopOptions['SITE_DIR']+'basket/', $("form[name^=basket_form]").serialize(), $.proxy(
                                 function( data)
                                 {
-                                    console.log($("form[name^=basket_form]").serialize());					
+                                    console.log($("form[name^=basket_form]").serialize());                    
                                     $('form[name^=basket_form] input[name=BasketRefresh]').remove();
                                     animateBasketLine();
                                     postAnimateResult(data, 333, 'update');
