@@ -186,18 +186,14 @@
                     <div style="clear: both;"></div>
                     <?
                     }
-                    elseif ($arProperties["TYPE"] == "LOCATION")
-                    {
+                    elseif ($arProperties["TYPE"] == "LOCATION") {
                         $value = 0;
-                        if (is_array($arProperties["VARIANTS"]) && count($arProperties["VARIANTS"]) > 0)
-                        {
-                            foreach ($arProperties["VARIANTS"] as $arVariant)
-                            {
-                                if ($arVariant["SELECTED"] == "Y")
-                                {
-                                    if($_SESSION["CITY"] != ''){
+                        if (is_array($arProperties["VARIANTS"]) && count($arProperties["VARIANTS"]) > 0) {
+                            foreach ($arProperties["VARIANTS"] as $arVariant) {
+                                if ($arVariant["SELECTED"] == "Y") {
+                                    if ($_SESSION["CITY"] != '') {
                                         $value = $_SESSION["CITY"];
-                                    } else{
+                                    } else {
                                         $value = $arVariant["ID"];
                                     }
                                     break;
