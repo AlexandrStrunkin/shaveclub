@@ -130,17 +130,17 @@
                     elseif ($arProperties["TYPE"] == "TEXT")
                     {
                     ?>
-
+                    <?if($_SESSION[$arProperties["CODE"]] != ''){
+                        $propValue = $_SESSION[$arProperties["CODE"]];
+                    } else{
+                        $propValue = $arProperties["VALUE"];
+                    }?>
                     <label>
 
                         <input type="text"
                         placeholder="<?=$arProperties["NAME"]?>"
                         class="<?if($arProperties["CODE"] != "COMMENT"){?>input<?}?> koment" size="<?=$arProperties["SIZE1"]?>"
-                        value="<?if($_SESSION[$arProperties["CODE"]] != ''){
-                            echo $_SESSION[$arProperties["CODE"]];
-                        } else{
-                            echo $arProperties["VALUE"];
-                        }?>"
+                        value="<?=$propValue?>"
                         name="<?=$arProperties["FIELD_NAME"]?>"
                         id="<?=$arProperties["FIELD_NAME"]?>"
                         autocomplete="off">
