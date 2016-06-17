@@ -2,6 +2,8 @@
 <?
     $_SESSION["FIO"] = utf8win1251($_POST["name"]);
     $_SESSION["PHONE"] = $_POST["phone"];
+    $_SESSION["ZIP"] = $_POST["zip"];
+    $_SESSION["CITY"] = $_POST["city"];
     $_SESSION["ADDRESS"] = utf8win1251($_POST["address"]);
     $_SESSION["COMMENT"] = utf8win1251($_POST["comment"]);
     if(strlen($_POST["email"]) > 5) {
@@ -17,4 +19,5 @@
     else {
         echo "N";
     }
+
 ?>
