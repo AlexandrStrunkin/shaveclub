@@ -130,9 +130,9 @@
                     elseif ($arProperties["TYPE"] == "TEXT")
                     {
                     ?>
-                    <?if($_SESSION[$arProperties["CODE"]] != ''){
+                    <?if ($_SESSION[$arProperties["CODE"]] != '') {
                         $propValue = $_SESSION[$arProperties["CODE"]];
-                    } else{
+                    } else {
                         $propValue = $arProperties["VALUE"];
                     }?>
                     <label>
