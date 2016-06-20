@@ -3,16 +3,18 @@
     <div class="title summary"><?= GetMessage("SOA_TEMPL_SUM_TITLE") ?></div>
     <?foreach ($arResult["DELIVERY"] as $arDelivery) {
         if ($arDelivery["CHECKED"] == "Y") {
-            $delivery_name = $arDelivery["NAME"];
+            $delivery_name = GetMessage("DELIVERY_MESS") . " (" . $arDelivery["NAME"];
         }        
     }
     if ($_POST["DELIVERY_ID"] == PVZ_MSK_DELIVERY_FOR_EXPENSIVE_ORDERS or $_POST["DELIVERY_ID"] == PVZ_MSK_DELIVERY_FOR_CHEAP_ORDERS 
         or $_POST["DELIVERY_ID"] == PVZ_SPB_DELIVERY_FOR_CHEAP_ORDERS or $_POST["DELIVERY_ID"] == PVZ_SPB_DELIVERY_FOR_EXPENSIVE_ORDERS) {
-            $delivery_name .= " (" . htmlspecialcharsbx($arResult["STORE_LIST"][$arResult["BUYER_STORE"]]["TITLE"]) . ")";
+            $delivery_name .= " (" . htmlspecialcharsbx($arResult["STORE_LIST"][$arResult["BUYER_STORE"]]["TITLE"]) . ")):";
+    } else {
+        $delivery_name .= "):";
     }
     foreach ($arResult["PAY_SYSTEM"] as $arPaySystem) {
         if ($arPaySystem["CHECKED"] == "Y") {
-            $paysystem_name = $arPaySystem["NAME"];
+            $paysystem_name = $arPaySystem["NAME"] . ": ";
         }        
     }?>
     <table class="colored summary">
@@ -91,7 +93,7 @@
                 <?
             }
         }
-        if (doubleval($arResult["DELIVERY_PRICE"]) > 0) {
+        if (doubleval($arResult["DELIVERY_PRICE"]) >= 0) {
             ?>
             <tr>
                 <td class="name-cell"></td>
