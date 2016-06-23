@@ -226,4 +226,53 @@
             return false;
         }
     }
+    
+    AddEventHandler('sale', 'OnSaleStatusOrder', 'UpdatingDeducting');
+    
+    function UpdatingDeducting ($ID, $val) {
+        if ($val == "R") {
+            $arOrderNewFields = array (
+                "ALLOW_DELIVERY" => "Y"    
+            );
+            CSaleOrder::Update($ID, $arOrderNewFields);    
+        }
+    }
+    
+    AddEventHandler('sale', 'OnSaleStatusOrder', 'UpdatingPaymentProp');
+    
+    function UpdatingPaymentProp ($ID, $arFields) {
+        if ($arFields["STATUS_ID"] == "F") {
+            $order = CSaleOrder::GetById($ID);
+            //если флаг оплаты не стоит - ставим
+            if ($order["PAYED"] != "Y") {
+                CSaleOrder::PayOrder($ID, "Y", false, false, 0);
+            }    
+        }
+    }
+    
+    //обработка статусов заказа при получении оплаты
+    AddEventHandler('sale', 'OnSalePayOrder', "UpdOrderStatus");
+    function UpdOrderStatus ($ID, $val) {
+        //при получении оплаты
+        if ($val == "Y") {
+            $order = CSaleOrder::GetById($ID);
+            //если текущий статус закана - не "Выполнен", ставим статус "новый, оплачен"
+            if ($order["STATUS_ID"] != "F") {
+                CSaleOrder::StatusOrder($ID, "P");
+            }
+        }
+    }
+    
+    AddEventHandler('sale', 'OnSaleStatusOrder', 'ReturnedItem');
+    
+    function ReturnedItem ($ID, $val) {
+        if ($val == "V") {
+            $arOrderNewFields = array (
+                "ALLOW_DELIVERY" => "Y"    
+            );
+            CSaleOrder::Update($ID, $arOrderNewFields);    
+        }
+    }
+    
+    
 ?>

@@ -5,7 +5,7 @@
     header("location: /");
     }*/
 ?><?
-    $arDeliv = CSaleDelivery::GetList(array(), array("ID" => 37));
+    /*$arDeliv = CSaleDelivery::GetList(array(), array("ID" => 37));
 
     $arDeliv = $arDeliv->Fetch();
     arshow($arDeliv);
@@ -21,6 +21,10 @@
 
     use Bitrix\Sale\Delivery\Services;
     $test = Services\Manager::getById(56);
-    arshow ($test);
+    arshow ($test);*/
+    
+   // $order = CSaleOrderPropsValue::GetByID(2186);
+    //arshow($order);
+    
 ?>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
