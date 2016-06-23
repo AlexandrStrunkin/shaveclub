@@ -39,14 +39,14 @@
     <script type="text/javascript" src="/js/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="/js/jquery.jscrollpane.min.js"></script>
 
-    <script type="text/javascript" src="/js/jquery.fancybox.js"></script>      
+    <script type="text/javascript" src="/js/jquery.fancybox.js"></script>
     <link type="text/css" href="/css/jquery.fancybox.css" rel="stylesheet" media="all"/>
 
 
-    <script src="/js/inputmask.js"></script>   
+    <script src="/js/inputmask.js"></script>
     <script>
         $(function() {
-            //создаем маску ввода для поля активации сертификата   
+            //создаем маску ввода для поля активации сертификата
             $(".sertActivate").inputmask("****-****-****-****",{ "placeholder": "xxxx-xxxx-xxxx-xxxx", greedy: false });
         })
     </script>
@@ -78,7 +78,7 @@
         $(document).ready(function(){
 
             $(".plus").click(function () {
-                calculation_stock() 
+                calculation_stock()
             });
 
             $(".minus").click(function () {
@@ -95,16 +95,16 @@
                 var $count = $(".count").val();
                 var $quant = $(".stock-hide").val();
                 var $stock_q= $count*$quant;
-                //перевод количества недель в месяца 
+                //перевод количества недель в месяца
                 var $countWeek = $stock_q%$week;
                 var $countMonth =($stock_q-$countWeek)/$week;
                 var $str;
                 if ($countMonth != 0) {
                     $str = "" + $countMonth + " " + declOfNum($countMonth, ['месяц', 'месяца', 'месяцев']);
-                }  
+                }
                 if ($countWeek != 0) {
                     if ($countMonth == 0 ) {
-                        $str = "" + $countWeek + " " + declOfNum($countWeek, ['неделя', 'недели', 'недель']);   
+                        $str = "" + $countWeek + " " + declOfNum($countWeek, ['неделя', 'недели', 'недель']);
                     } else {
                         $str = $str + " " + $countWeek + " " + declOfNum($countWeek, ['неделя', 'недели', 'недель']);
                     }
@@ -112,7 +112,7 @@
                 if ($countWeek == 0 && $countMonth == 0) {
                     $str = " ";
                 }
-                $(".stock-quant").html($str);  
+                $(".stock-quant").html($str);
             }
         });
 
@@ -129,7 +129,7 @@
 
     <div class="main-container">
 
-        <?include($_SERVER["DOCUMENT_ROOT"]."/include/mobile_top.php");?> 
+        <?include($_SERVER["DOCUMENT_ROOT"]."/include/mobile_top.php");?>
 
         <?
             //получем изображения для данного раздела
@@ -138,7 +138,7 @@
             $arSection = $section->Fetch();
 
             //arshow($arSection["IBLOCK_SECTION_ID"]);
-            //получаем другие бритвы из раздела 
+            //получаем другие бритвы из раздела
 
             $arFilter = array(
                 "SECTION_ID"=>$arSection["IBLOCK_SECTION_ID"],
@@ -176,9 +176,9 @@
                     <?if ($url[1] != "gift"){?>
                         <strong>ВЫБЕРИТЕ</strong> ПОДХОДЯЩИЙ ПЛАН БРИТЬЯ<br/>
                         ИЛИ <strong>СОЗДАЙТЕ</strong> СВОЙ
-                        <?} else {?> 
+                        <?} else {?>
                         ВЫБЕРИТЕ <strong>ПЕРИОД</strong>, В ТЕЧЕНИЕ КОТОРОГО<br>
-                        ВЫ ХОТИТЕ <strong>РАДОВАТЬ</strong> 
+                        ВЫ ХОТИТЕ <strong>РАДОВАТЬ</strong>
                         БЛИЗКОГО ЧЕЛОВЕКА
                         <?}?>
                 </span>
@@ -195,8 +195,8 @@
                     while($arRazorProps = $razorProps->Fetch()) {
                         $rIds[$arRazorProps["ID"]][] = $arRazorProps["PROPERTY_PROPERTIES_VALUE"];
                         $rProps[$arRazorProps["ID"]] = $arRazorProps;
-                        $rProps[$arRazorProps["ID"]]["PROPERTY_PROPERTIES"]= $rIds[$arRazorProps["ID"]]; 
-                    } 
+                        $rProps[$arRazorProps["ID"]]["PROPERTY_PROPERTIES"]= $rIds[$arRazorProps["ID"]];
+                    }
 
                     if ($arSection["ID"]){?>
                     <div class="img">
@@ -234,19 +234,19 @@
                                     <p>
                                         <span>
                                             <span>
-                                                <?=$arGroupProps["PREVIEW_TEXT"]?>     
+                                                <?=$arGroupProps["PREVIEW_TEXT"]?>
                                             </span>
                                         </span>
                                     </p>
-                                </li> 
-                                <?}?> 
-                            <?$k++;}?> 
+                                </li>
+                                <?}?>
+                            <?$k++;}?>
                     </ul>
                     <?}?>
 
                 <?//получаем директорию для смены бритвы
                     $otherSection = CIBlockSection::GetList(array(),array("SECTION_ID"=>$arSection["IBLOCK_SECTION_ID"],"!ID"=>$arSection["ID"]));
-                    $arOtherSection = $otherSection->Fetch();                  
+                    $arOtherSection = $otherSection->Fetch();
                 ?>
                 <a href="<?="/".$url[1]."/".$arOtherSection["CODE"]."/"?>" class="btn change-product">СМЕНИТЬ БРИТВУ</a>
 
@@ -272,15 +272,15 @@
                 <ul>
                     <?
                         $i = 1;
-                        while($arPlan = $plans->Fetch()){?>     
+                        while($arPlan = $plans->Fetch()){?>
                         <?
-                            if (!$arPlan["PROPERTY_ECONOMY_VALUE"]) {$arPlan["PROPERTY_ECONOMY_VALUE"] = 0;}      
+                            if (!$arPlan["PROPERTY_ECONOMY_VALUE"]) {$arPlan["PROPERTY_ECONOMY_VALUE"] = 0;}
 
                             $product = CPrice::GetList( array(), array("PRODUCT_ID"=>$arPlan["ID"]),false, false,array());
-                            while($arProduct = $product->Fetch()) {                
+                            while($arProduct = $product->Fetch()) {
                                 if ($arProduct["PRICE"] > 0 && $arProduct["CAN_ACCESS"] == "Y") {
-                                    $price = intval($arProduct["PRICE"]); 
-                                    break;  
+                                    $price = intval($arProduct["PRICE"]);
+                                    break;
                                 }
                             }
                         ?>
@@ -314,12 +314,12 @@
 
                                 <a class="btn" href="javascript:void(0)" onclick="addToBasket(<?=$arPlan["ID"]?>)">выбрать</a>
                             </div>
-                        </li>     
-                        <?$i++;}?>   
+                        </li>
+                        <?$i++;}?>
                 </ul>
 
 
-            </div>  
+            </div>
 
             <?if ($url[1] != "gift"){?>
 
@@ -328,7 +328,7 @@
                         <img src="/images/inside/plans-bg.jpg" class="plans-create-img" alt="" />
                         <a href="javascript:void(0)" class="btn" onclick="makePlan()">создать</a>
                         <span class="plans-create-title">для себя</span>
-                        <p>Не подходит ни один план бритья – создай свой!</p>  
+                        <p>Не подходит ни один план бритья – создай свой!</p>
                     </div>
                 </div>
                 <?} else {?>
@@ -339,10 +339,10 @@
                     <input class="sertInput sertActivate" value="" size="19" autocomplete="off" placeholder="xxxx-xxxx-xxxx-xxxx" type="text"/>
                     <a class="btn" href="javascript:void(0)" onclick="sertSubmit()">активировать</a>
                 </div>
-                <?}?>   
+                <?}?>
             <?
                 //собираем цены для станка и кассеты данного типа бритвы
-                $britvaParts = array("cassette_".$url[2],"razor_".$url[2]);                  
+                $britvaParts = array("cassette_".$url[2],"razor_".$url[2]);
                 $britva = CIBlockElement::GetList(array(), array("=CODE"=>$britvaParts),false, false, array("ID","CODE"));
                 $britvaPartsData = array();
                 while($arBritva = $britva->Fetch()) {
@@ -368,10 +368,10 @@
                             <input type="text" class="count" value="1" id="cassette_count"/>
                             <span class="plus">+</span>
 
-                            <div class="sum-container">  
+                            <div class="sum-container">
                                 <input type="hidden" class="price" value="<?=$britvaPartsData["cassette_".$url[2]]?>" id="cassette_price"/>
                                 <span class="price"><span><?=$britvaPartsData["cassette_".$url[2]]?></span> <img src="/images/inside/rub3.png" alt=""/> / шт.</span>
-                                <span class="sum"><span><?=$britvaPartsData["cassette_".$url[2]]?></span> 
+                                <span class="sum"><span><?=$britvaPartsData["cassette_".$url[2]]?></span>
                                     <span class="rub"></span>
                                 </span>
                             </div>
@@ -386,7 +386,7 @@
                             <div class="sum-container">
                                 <input type="hidden" class="price" value="<?=$britvaPartsData["razor_".$url[2]]?>" id="razor_price"/>
                                 <span class="price"><span><?=$britvaPartsData["razor_".$url[2]]?></span> <img src="/images/inside/rub3.png" alt=""/> / шт.</span>
-                                <span class="sum"><span><?=$britvaPartsData["razor_".$url[2]]?></span> 
+                                <span class="sum"><span><?=$britvaPartsData["razor_".$url[2]]?></span>
                                     <span class="rub"></span>
                                 </span>
                             </div>
@@ -395,7 +395,7 @@
                     </ul>
 
                     <?
-                        while($arAll_zap = $all_zap->Fetch()) {    
+                        while($arAll_zap = $all_zap->Fetch()) {
                             $stock = $arAll_zap["UF_ZAPAS"]  ;
                         }
                     ?>
@@ -434,7 +434,7 @@
                         <div class="col-container"><span class="arr"></span><span class="close"></span>
                             <?
                                 while($arAll_sal = $all_sal->Fetch()) {
-                                    //                arshow($arAll_raz); 
+                                    //                arshow($arAll_raz);
                                 ?>
 
                                 <div class="col-sales"><?=$arAll_sal['UF_SALES']?></div>
@@ -477,22 +477,16 @@
                     <div class="div">
                         <a href="javascript:void(0)" onclick="planCreate()" class="btn">заказать</a>
                         <div>
-                            итого: <span class="gen-sum"><?=$britvaPartsData["cassette_".$url[2]]+$britvaPartsData["razor_".$url[2]]?></span> 
+                            итого: <span class="gen-sum"><?=$britvaPartsData["cassette_".$url[2]]+$britvaPartsData["razor_".$url[2]]?></span>
                             <img src="/images/inside/rub6.png" alt=""/>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
 
-        </div>    
-
-        <!-- .content -->
-        <div class="clear"></div>
-    </div>
+        </div>
 
 
-    <!-- .footer -->
-</div>
 
 
-               
+

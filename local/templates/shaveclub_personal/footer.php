@@ -1,5 +1,37 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
- 
+
+ <footer class="footer">
+    <div>
+        <div class="footer-soc">
+           <?include($_SERVER["DOCUMENT_ROOT"]."/include/footer_soc.php");?>
+        </div>
+
+        <?$APPLICATION->IncludeComponent(
+            "bitrix:menu",
+            "bottom_menu_overall",
+            array(
+                "ALLOW_MULTI_SELECT" => "N",
+                "CHILD_MENU_TYPE" => "bottom",
+                "DELAY" => "N",
+                "MAX_LEVEL" => "1",
+                "MENU_CACHE_GET_VARS" => array(
+                ),
+                "MENU_CACHE_TIME" => "3600",
+                "MENU_CACHE_TYPE" => "N",
+                "MENU_CACHE_USE_GROUPS" => "Y",
+                "ROOT_MENU_TYPE" => "bottom",
+                "USE_EXT" => "N",
+                "COMPONENT_TEMPLATE" => "bottom_menu"
+            ),
+            false
+        );?>
+        <div class="clear"></div>
+        <div class="link-container">
+            <a href="#">© <?=date("Y")?> ООО“Шейвклаб”</a>
+            <a href="/about/privacy-policy/">Политика конфиденциальности</a>
+            <a href="/about/delivery/">Условия доставки и оплаты</a></div>
+    </div>
+</footer>
                 <!-- .content -->
                 <div class="clear"></div>
 

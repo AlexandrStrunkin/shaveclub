@@ -10,7 +10,7 @@
 
         <?$APPLICATION->IncludeComponent(
             "bitrix:menu",
-            "bottom_menu",
+            "bottom_menu_overall",
             array(
                 "ALLOW_MULTI_SELECT" => "N",
                 "CHILD_MENU_TYPE" => "bottom",
@@ -27,6 +27,7 @@
             ),
             false
         );?>
+        <div class="clear"></div>
         <div class="link-container">
             <a href="#">© <?=date("Y")?> ООО“Шейвклаб”</a>
             <a href="/about/privacy-policy/">Политика конфиденциальности</a>
