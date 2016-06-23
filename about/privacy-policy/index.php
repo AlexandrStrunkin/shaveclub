@@ -4,8 +4,8 @@ $APPLICATION->SetTitle("Политика конфиденциальности");
 ?>
 
 <?$APPLICATION->IncludeComponent(
-	"bitrix:support.faq.element.list", 
-	"about", 
+	"bitrix:support.faq.element.list",
+	"about",
 	array(
 		"IBLOCK_TYPE" => "content",
 		"IBLOCK_ID" => "30",
@@ -25,3 +25,5 @@ $APPLICATION->SetTitle("Политика конфиденциальности");
 	),
 	false
 );?>
+
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
