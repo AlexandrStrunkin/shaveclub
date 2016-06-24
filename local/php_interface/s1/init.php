@@ -335,4 +335,36 @@
         );
         $user->Update($arFields["ID"], $fields);
     }
+    
+    // очистка корзины после авторизации (кроме последнего добавленного комплекта)
+    AddEventHandler("main", "OnAfterUserAuthorize", "CleaningBasket");
+    function CleaningBasket($arUser){
+        $fuser_id = CSaleUser::GetList(array("USER_ID" => $arUser["user_fields"]["ID"]));
+        $dbBasketItems = CSaleBasket::GetList(
+            array(
+                "NAME" => "ASC",
+                "ID" => "ASC"
+            ),
+            array(
+                "FUSER_ID" => $fuser_id["ID"],
+                "LID" => SITE_ID,
+                "ORDER_ID" => "NULL"
+            ),
+            false,
+            false,
+            array()
+        );
+        while ($basket_items = $dbBasketItems -> Fetch()) {
+            $items_IDs[] = $basket_items["ID"];          
+        }
+        sort($items_IDs);
+        // извлечение ID последнего добавленного комлпекта и его составл€ющих
+        // из массива ID элементов корзины 
+        for ($j = 0; $j < 3; $j++) {
+            array_pop($items_IDs);
+        }
+        for ($i = 0; $i < (count($items_IDs) - 1); $i++) {
+            CSaleBasket::Delete(intval($items_IDs[$i]));
+        }
+    }
 ?>
