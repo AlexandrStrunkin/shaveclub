@@ -2,33 +2,33 @@
     use Bitrix\Sale\Delivery\Services;
 
 
-    //склонение слова "месяц"
+    //СЃРєР»РѕРЅРµРЅРёРµ СЃР»РѕРІР° "РјРµСЃСЏС†"
     function month_name($num) {
         $month = "";
         $forms = array(
-            0 => "месяц",
-            1 => "месяца",
-            2 => "месяцев",
+            0 => "РјРµСЃСЏС†",
+            1 => "РјРµСЃСЏС†Р°",
+            2 => "РјРµСЃСЏС†РµРІ",
         );
 
         if (substr($num,-1) == 1) {
-            $month = "месяц";
+            $month = "РјРµСЃСЏС†";
         }
         else if ($num > 4 && $num <= 20) {
-            $month = "месяцев";
+            $month = "РјРµСЃСЏС†РµРІ";
         }
         else if (in_array(substr($num,-1),array(2,3,4))) {
-            $month = "месяца";
+            $month = "РјРµСЃСЏС†Р°";
         }
         else {
-            $month = "месяцев";
+            $month = "РјРµСЃСЏС†РµРІ";
         }
 
         return $month;
     }
 
 
-    //функция генерации кода для подарочного сертификата
+    //С„СѓРЅРєС†РёСЏ РіРµРЅРµСЂР°С†РёРё РєРѕРґР° РґР»СЏ РїРѕРґР°СЂРѕС‡РЅРѕРіРѕ СЃРµСЂС‚РёС„РёРєР°С‚Р°
     function generateSertificate(){
 
         $allchars = 'ABCDEFGHIJKLNMOPQRSTUVWXYZ0123456789';
@@ -45,7 +45,7 @@
     }
 
 
-    // ---- Класс для работы с разными стоимостями доставки для разных наборов бритв
+    // ---- РљР»Р°СЃСЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ СЂР°Р·РЅС‹РјРё СЃС‚РѕРёРјРѕСЃС‚СЏРјРё РґРѕСЃС‚Р°РІРєРё РґР»СЏ СЂР°Р·РЅС‹С… РЅР°Р±РѕСЂРѕРІ Р±СЂРёС‚РІ
     class bundlePrice {
 
         /********************
@@ -71,9 +71,9 @@
 
         /********************
         *
-        * Функция для поиска CODE для стартового набора,
-        * исходной строкой будет что-то типа razor_norma_4,
-        * вырезаем все после первого подчеркивания и приклеиваем _start
+        * Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїРѕРёСЃРєР° CODE РґР»СЏ СЃС‚Р°СЂС‚РѕРІРѕРіРѕ РЅР°Р±РѕСЂР°,
+        * РёСЃС…РѕРґРЅРѕР№ СЃС‚СЂРѕРєРѕР№ Р±СѓРґРµС‚ С‡С‚Рѕ-С‚Рѕ С‚РёРїР° razor_norma_4,
+        * РІС‹СЂРµР·Р°РµРј РІСЃРµ РїРѕСЃР»Рµ РїРµСЂРІРѕРіРѕ РїРѕРґС‡РµСЂРєРёРІР°РЅРёСЏ Рё РїСЂРёРєР»РµРёРІР°РµРј _start
         *
         * @param string $code
         * @return string
@@ -101,7 +101,7 @@
 
     }
 
-    //меняем логин пользователя на email при создании пользователя
+    //РјРµРЅСЏРµРј Р»РѕРіРёРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РЅР° email РїСЂРё СЃРѕР·РґР°РЅРёРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
     AddEventHandler("main", "OnBeforeUserAdd","setUserFields");
     function setUserFields(&$arFields) {
         $arFields["LOGIN"] = $arFields["EMAIL"];
@@ -109,32 +109,32 @@
     }
 
 
-    //генерация подарочного сертификата при его покупке
+    //РіРµРЅРµСЂР°С†РёСЏ РїРѕРґР°СЂРѕС‡РЅРѕРіРѕ СЃРµСЂС‚РёС„РёРєР°С‚Р° РїСЂРё РµРіРѕ РїРѕРєСѓРїРєРµ
     AddEventHandler("sale", "OnOrderAdd", Array("AfterOrderAdd", "addSertificate"));
     class AfterOrderAdd{
         function addSertificate($ID, $arFields){
             if ($ID > 0) {
-                //собираем корзину заказа
+                //СЃРѕР±РёСЂР°РµРј РєРѕСЂР·РёРЅСѓ Р·Р°РєР°Р·Р°
                 $dbBasketItems = CSaleBasket::GetList(array(),array("FUSER_ID" => CSaleBasket::GetBasketUserID(),"LID" => SITE_ID,"ORDER_ID" => "NULL"),false,false,array());
                 $arItems = $dbBasketItems->Fetch();
-                //проверяем элемент корзины. если куплен сертификат, то добавляем сертифиакт в инфоблок
+                //РїСЂРѕРІРµСЂСЏРµРј СЌР»РµРјРµРЅС‚ РєРѕСЂР·РёРЅС‹. РµСЃР»Рё РєСѓРїР»РµРЅ СЃРµСЂС‚РёС„РёРєР°С‚, С‚Рѕ РґРѕР±Р°РІР»СЏРµРј СЃРµСЂС‚РёС„РёР°РєС‚ РІ РёРЅС„РѕР±Р»РѕРє
                 $basketItemProps = CSaleBasket::GetPropsList(array(),array("BASKET_ID"=>$arItems["ID"]),false,false,array());
                 while($arBasketItemProps = $basketItemProps->Fetch()) {
-                    //если нашли свойство "подарочный сертификат", добавляем его в массив
+                    //РµСЃР»Рё РЅР°С€Р»Рё СЃРІРѕР№СЃС‚РІРѕ "РїРѕРґР°СЂРѕС‡РЅС‹Р№ СЃРµСЂС‚РёС„РёРєР°С‚", РґРѕР±Р°РІР»СЏРµРј РµРіРѕ РІ РјР°СЃСЃРёРІ
                     if ($arBasketItemProps["CODE"] == "GIFT") {
                         $sertificate = $arBasketItemProps;
                     }
                 }
 
                 if (is_array($sertificate) && $sertificate["VALUE"]) {
-                    //получаем код сертификата, чтобы получить по нему ID плана, который нужно привязать к сертификату
+                    //РїРѕР»СѓС‡Р°РµРј РєРѕРґ СЃРµСЂС‚РёС„РёРєР°С‚Р°, С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ РїРѕ РЅРµРјСѓ ID РїР»Р°РЅР°, РєРѕС‚РѕСЂС‹Р№ РЅСѓР¶РЅРѕ РїСЂРёРІСЏР·Р°С‚СЊ Рє СЃРµСЂС‚РёС„РёРєР°С‚Сѓ
                     $arPlanGift = CIBlockElement::GetList(array(), array("ID"=>$arItems["PRODUCT_ID"]),false, false, array("CODE"))->Fetch();
                     $arPlanGift["CODE"] = str_replace("gift_","",$arPlanGift["CODE"]);
 
                     $arPlan = CIBlockElement::GetList(array(), array("CODE"=>$arPlanGift["CODE"]), false, false, array("ID"))->Fetch();
 
 
-                    //генерируем скидочный купон
+                    //РіРµРЅРµСЂРёСЂСѓРµРј СЃРєРёРґРѕС‡РЅС‹Р№ РєСѓРїРѕРЅ
                     $COUPON = CatalogGenerateCoupon();
 
                     $arCouponFields = array(
@@ -147,19 +147,19 @@
 
                     $CID = CCatalogDiscountCoupon::Add($arCouponFields);
 
-                    //непосредственно добавляем сертификат в инфоблок
+                    //РЅРµРїРѕСЃСЂРµРґСЃС‚РІРµРЅРЅРѕ РґРѕР±Р°РІР»СЏРµРј СЃРµСЂС‚РёС„РёРєР°С‚ РІ РёРЅС„РѕР±Р»РѕРє
                     $el = new CIBlockElement;
 
                     $PROP = array();
-                    $PROP["PLAN"] = $arPlan["ID"];  // план
-                    $PROP["ORDER_ID"] = $ID;        // ID заказа, к которому привязывается купон
+                    $PROP["PLAN"] = $arPlan["ID"];  // РїР»Р°РЅ
+                    $PROP["ORDER_ID"] = $ID;        // ID Р·Р°РєР°Р·Р°, Рє РєРѕС‚РѕСЂРѕРјСѓ РїСЂРёРІСЏР·С‹РІР°РµС‚СЃСЏ РєСѓРїРѕРЅ
                     $PROP["COUPON"] = $COUPON;
 
                     $arLoadProductArray = Array(
                         "IBLOCK_ID"      => 27,
                         "PROPERTY_VALUES"=> $PROP,
                         "NAME"           => $sertificate["VALUE"],
-                        "ACTIVE"         => "Y",            // активен
+                        "ACTIVE"         => "Y",            // Р°РєС‚РёРІРµРЅ
                     );
 
                     $el->Add($arLoadProductArray);
@@ -167,11 +167,11 @@
                 }
 
 
-                //проверяем. присутствует ли в заказе купон на скидку. если есть, проверяем, не привязан ли к нему сертификат. если сертификат найден - обновляем его
+                //РїСЂРѕРІРµСЂСЏРµРј. РїСЂРёСЃСѓС‚СЃС‚РІСѓРµС‚ Р»Рё РІ Р·Р°РєР°Р·Рµ РєСѓРїРѕРЅ РЅР° СЃРєРёРґРєСѓ. РµСЃР»Рё РµСЃС‚СЊ, РїСЂРѕРІРµСЂСЏРµРј, РЅРµ РїСЂРёРІСЏР·Р°РЅ Р»Рё Рє РЅРµРјСѓ СЃРµСЂС‚РёС„РёРєР°С‚. РµСЃР»Рё СЃРµСЂС‚РёС„РёРєР°С‚ РЅР°Р№РґРµРЅ - РѕР±РЅРѕРІР»СЏРµРј РµРіРѕ
                 if ($arItems["DISCOUNT_COUPON"])  {
                     $arCoupon = CCatalogDiscountCoupon::GetList(array(),array("COUPON"=>$arItems["DISCOUNT_COUPON"]),false,false,array())->Fetch();
                     $arSertificate = CIBLockElement::GetList(array(), array("PROPERTY_COUPON"=>$arItems["DISCOUNT_COUPON"]), false,false, array("ID", "NAME", "PROPERTY_USER"))->Fetch();
-                    //обновляем информацию о сертификате
+                    //РѕР±РЅРѕРІР»СЏРµРј РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ СЃРµСЂС‚РёС„РёРєР°С‚Рµ
                     $USER = new CUser;
                     $PROP = array(
                         "USER" => $USER->GetId(),
@@ -192,12 +192,12 @@
     }
 
 
-    //добавление плана в корзину. если $PRICE = "N" - то у добавляемого товара ставим цену 0 (это нужно для подарочных сертификатов)
+    //РґРѕР±Р°РІР»РµРЅРёРµ РїР»Р°РЅР° РІ РєРѕСЂР·РёРЅСѓ. РµСЃР»Рё $PRICE = "N" - С‚Рѕ Сѓ РґРѕР±Р°РІР»СЏРµРјРѕРіРѕ С‚РѕРІР°СЂР° СЃС‚Р°РІРёРј С†РµРЅСѓ 0 (СЌС‚Рѕ РЅСѓР¶РЅРѕ РґР»СЏ РїРѕРґР°СЂРѕС‡РЅС‹С… СЃРµСЂС‚РёС„РёРєР°С‚РѕРІ)
     function addPlanToBasket($ID, $PRICE = false) {
-        //очищаем корзину
+        //РѕС‡РёС‰Р°РµРј РєРѕСЂР·РёРЅСѓ
         CSaleBasket::DeleteAll(CSaleBasket::GetBasketUserID());
 
-        //проверяем ID элемента
+        //РїСЂРѕРІРµСЂСЏРµРј ID СЌР»РµРјРµРЅС‚Р°
         $product = CCatalogProduct::GetList(array(),array("ID"=>$ID));
         $arProduct = $product->Fetch();
 
@@ -206,9 +206,9 @@
             $element = CIBlockElement::GetList(array(), array("IBLOCK_ID"=> 12,"ID"=>$arProduct["ID"]), false, false, array("PROPERTY_ECONOMY", "PROPERTY_LENGTH", "PROPERTY_CASSETTE", "PROPERTY_RAZOR", "PROPERTY_DELIVERY", "CODE"));
             $arElement = $element->Fetch();
 
-            //если кладем сертификат, то добавляем дополнительное свойство
+            //РµСЃР»Рё РєР»Р°РґРµРј СЃРµСЂС‚РёС„РёРєР°С‚, С‚Рѕ РґРѕР±Р°РІР»СЏРµРј РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРµ СЃРІРѕР№СЃС‚РІРѕ
             if (substr_count($arElement["CODE"], "gift") > 0) {
-                $PROPS[] = array("NAME" => "Подарочный сертификат",
+                $PROPS[] = array("NAME" => "РџРѕРґР°СЂРѕС‡РЅС‹Р№ СЃРµСЂС‚РёС„РёРєР°С‚",
                     "CODE" => "GIFT",
                     "VALUE" => generateSertificate(),
                     "SORT" => "100"
@@ -216,7 +216,7 @@
             }
 
             if ($PRICE != "N") {
-                //получаем цену товара
+                //РїРѕР»СѓС‡Р°РµРј С†РµРЅСѓ С‚РѕРІР°СЂР°
                 $productPrice = CPrice::GetList( array(), array("PRODUCT_ID"=>$arProduct["ID"]),false, false,array());
                 while($arProductPrice = $productPrice->Fetch()) {
                     if ($arProductPrice["PRICE"] > 0 && $arProductPrice["CAN_ACCESS"] == "Y") {
@@ -230,7 +230,7 @@
                 $price = 0;
             }
 
-            //получаем внешний код каталога
+            //РїРѕР»СѓС‡Р°РµРј РІРЅРµС€РЅРёР№ РєРѕРґ РєР°С‚Р°Р»РѕРіР°
             $iblock = CIBlock::GetById($arProduct["ELEMENT_IBLOCK_ID"]);
             $arIblock = $iblock->Fetch();
 
@@ -268,17 +268,17 @@
     }
 
 
-    //добавляем в письмо о заказе дополнительную информацию
+    //РґРѕР±Р°РІР»СЏРµРј РІ РїРёСЃСЊРјРѕ Рѕ Р·Р°РєР°Р·Рµ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ
     AddEventHandler('main', 'OnBeforeEventSend', Array("newOrder", "orderDataChange"));
 
     class newOrder{
         function orderDataChange(&$arFields, &$arTemplate){
 
             if ($arFields["ORDER_ID"] > 0) {
-                //общая инфо о зказе
+                //РѕР±С‰Р°СЏ РёРЅС„Рѕ Рѕ Р·РєР°Р·Рµ
                 $order = CSaleOrder::GetById($arFields["ORDER_ID"]);
 
-                //служба доставки
+                //СЃР»СѓР¶Р±Р° РґРѕСЃС‚Р°РІРєРё
                 if ($order["DELIVERY_ID"]=='pickpoint:postamat') {
                     $order["DELIVERY_ID"]=37;
                     $delivery = Services\Manager::getById($order["DELIVERY_ID"]);
@@ -288,9 +288,9 @@
                 }
 
 
-                //платежная система
+                //РїР»Р°С‚РµР¶РЅР°СЏ СЃРёСЃС‚РµРјР°
                 $paysystem = CSalePaysystem::GetById($order["PAY_SYSTEM_ID"]);
-                //убираем лишние символы в цене
+                //СѓР±РёСЂР°РµРј Р»РёС€РЅРёРµ СЃРёРјРІРѕР»С‹ РІ С†РµРЅРµ
                 $pattern = "/(\D)/";
                 $price = preg_replace($pattern,'',$arFields["PRICE"]);
 
@@ -300,33 +300,33 @@
 
                 $arFields["PRICE"] = $price;
 
-                //свойства заказа
+                //СЃРІРѕР№СЃС‚РІР° Р·Р°РєР°Р·Р°
                 $orderProps = array();
                 $db_props = CSaleOrderPropsValue::GetList(array(),array("ORDER_ID" => $order["ID"]));
                 while($orderProp = $db_props->Fetch()) {
                     $orderProps[$orderProp["CODE"]] = $orderProp["VALUE"];
                 }
-                //местоположение
+                //РјРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёРµ
                 $location = CSaleLocation::GetByID($orderProps["LOCATION"]);
 
-                //состав заказа
+                //СЃРѕСЃС‚Р°РІ Р·Р°РєР°Р·Р°
                 $basket =  CSaleBasket::GetList(array(), array("ORDER_ID"=>$order["ID"]));
                 $basketItem = $basket->Fetch();
                 $arIblockItem = CIBlockElement::GetList(array(), array("ID"=>$basketItem["PRODUCT_ID"]))->Fetch();
                 $arSection =  CIBlockSection::GetList(array(), array("ID"=>$arIblockItem["IBLOCK_SECTION_ID"]))->Fetch();
 
-                //собираем полученные данные
+                //СЃРѕР±РёСЂР°РµРј РїРѕР»СѓС‡РµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ
                 $arFields["DELIVERY_TYPE"] = $delivery["NAME"];
                 $arFields["PHONE"] = $orderProps["PHONE"];
                 $arFields["ZIP"] = $orderProps["ZIP"];
                 $arFields["ADDRESS"] = $location["COUNTRY_NAME"].", ".$location["CITY_NAME"].", ".$orderProps["ADDRESS"];
-                $arFields["ORDER_LIST"] = str_replace(".00 шт.", " шт.", $arFields["ORDER_LIST"]);
+                $arFields["ORDER_LIST"] = str_replace(".00 С€С‚.", " С€С‚.", $arFields["ORDER_LIST"]);
             }
 
         }
     }
 
-    //добавляем в письмо о заказе дополнительную информацию
+    //РґРѕР±Р°РІР»СЏРµРј РІ РїРёСЃСЊРјРѕ Рѕ Р·Р°РєР°Р·Рµ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ
     AddEventHandler("main", "OnAfterUserAdd", "OnAfterUserAddHandler");
     function OnAfterUserAddHandler(&$arFields){
         $user = new CUser;
@@ -336,7 +336,7 @@
         $user->Update($arFields["ID"], $fields);
     }
     
-    // очистка корзины после авторизации (кроме последнего добавленного комплекта)
+    // РѕС‡РёСЃС‚РєР° РєРѕСЂР·РёРЅС‹ РїРѕСЃР»Рµ Р°РІС‚РѕСЂРёР·Р°С†РёРё (РєСЂРѕРјРµ РїРѕСЃР»РµРґРЅРµРіРѕ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РєРѕРјРїР»РµРєС‚Р°)
     AddEventHandler("main", "OnAfterUserAuthorize", "CleaningBasket");
     function CleaningBasket($arUser){
         $fuser_id = CSaleUser::GetList(array("USER_ID" => $arUser["user_fields"]["ID"]));
@@ -358,8 +358,8 @@
             $items_IDs[] = $basket_items["ID"];          
         }
         sort($items_IDs);
-        // извлечение ID последнего добавленного комлпекта и его составляющих
-        // из массива ID элементов корзины 
+        // РёР·РІР»РµС‡РµРЅРёРµ ID РїРѕСЃР»РµРґРЅРµРіРѕ РґРѕР±Р°РІР»РµРЅРЅРѕРіРѕ РєРѕРјР»РїРµРєС‚Р° Рё РµРіРѕ СЃРѕСЃС‚Р°РІР»СЏСЋС‰РёС…
+        // РёР· РјР°СЃСЃРёРІР° ID СЌР»РµРјРµРЅС‚РѕРІ РєРѕСЂР·РёРЅС‹ 
         for ($j = 0; $j < 3; $j++) {
             array_pop($items_IDs);
         }
