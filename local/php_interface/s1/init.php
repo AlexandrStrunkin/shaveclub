@@ -366,13 +366,9 @@
         
         while ($basket_items = $basket_items_list -> Fetch()) {
             if ($i > 2) {
-                $items_IDs[] = $basket_items["ID"];
+                CSaleBasket::Delete($basket_items["ID"]);
             }
             $i++;          
-        }
-        
-        for ($j = 0; $j < (count($items_IDs) - 1); $j++) {
-            CSaleBasket::Delete(intval($items_IDs[$j]));
         }
     }
 ?>
