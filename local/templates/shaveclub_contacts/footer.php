@@ -27,9 +27,9 @@
         );?>
          <div class="clear"></div>
         <div class="link-container">
-            <a href="#">© <?=date("Y")?> ООО“Шейвклаб”</a>
-            <a href="/about/privacy-policy/">Политика конфиденциальности</a>
-            <a href="/about/delivery/">Условия доставки и оплаты</a></div>
+            <a href="#">© <?=date("Y")?> <?=GetMessage("SHAVECLUB");?></a>
+            <a href="/about/privacy-policy/"><?=GetMessage("PRIVACY_POLICY");?></a>
+            <a href="/about/delivery/"><?=GetMessage("DELIVERY");?></a></div>
     </div>
 </footer>
                 <!-- .content -->

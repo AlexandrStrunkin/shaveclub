@@ -137,7 +137,6 @@
 
             $arSection = $section->Fetch();
 
-            //arshow($arSection["IBLOCK_SECTION_ID"]);
             //получаем другие бритвы из раздела
 
             $arFilter = array(
@@ -160,7 +159,7 @@
 
             while ($arSales = $sales->Fetch())
             {
-                //                arshow($arSales);
+
             }
 
             //получаем значение свойства "количество лезвий"
@@ -434,7 +433,7 @@
                         <div class="col-container"><span class="arr"></span><span class="close"></span>
                             <?
                                 while($arAll_sal = $all_sal->Fetch()) {
-                                    //                arshow($arAll_raz);
+
                                 ?>
 
                                 <div class="col-sales"><?=$arAll_sal['UF_SALES']?></div>
