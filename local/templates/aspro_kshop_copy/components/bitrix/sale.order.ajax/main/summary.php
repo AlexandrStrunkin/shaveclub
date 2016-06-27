@@ -8,7 +8,7 @@
     }
     if ($_POST["DELIVERY_ID"] == PVZ_MSK_DELIVERY_FOR_EXPENSIVE_ORDERS or $_POST["DELIVERY_ID"] == PVZ_MSK_DELIVERY_FOR_CHEAP_ORDERS 
         or $_POST["DELIVERY_ID"] == PVZ_SPB_DELIVERY_FOR_CHEAP_ORDERS or $_POST["DELIVERY_ID"] == PVZ_SPB_DELIVERY_FOR_EXPENSIVE_ORDERS) {
-            $delivery_name .= " (" . htmlspecialcharsbx($arResult["STORE_LIST"][$arResult["BUYER_STORE"]]["TITLE"]) . ")):";
+            $delivery_name .= " - " . htmlspecialcharsbx($arResult["STORE_LIST"][$arResult["BUYER_STORE"]]["TITLE"]) . "):";
     } else {
         $delivery_name .= "):";
     }
@@ -135,7 +135,7 @@
                 <td class="order_item_discount"></td>
                 <td class="order_item_weight"></td>
                 <td class="order_item_quantity"></td>
-                <td style="text-align: right;"><b><?= GetMessage('SOA_TEMPL_PAY_SYSTEM') . ": "?></b></td>
+                <td style="text-align: right;"><b><?= GetMessage('SOA_TEMPL_PAY_SYSTEM') . ":"?></b></td>
                 <td align="right"><?= $paysystem_name ?></td>
             </tr>
         <? } ?>
