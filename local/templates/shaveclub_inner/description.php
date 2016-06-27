@@ -1,6 +1,6 @@
 <?
 $arTemplate = array (
-  'NAME' => 'Shaveclub - aboutus',
+  'NAME' => 'shaveclub_inner',
   'DESCRIPTION' => '',
   'SORT' => '',
   'TYPE' => '',

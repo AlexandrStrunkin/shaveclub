@@ -14,7 +14,7 @@
     }
     foreach ($arResult["PAY_SYSTEM"] as $arPaySystem) {
         if ($arPaySystem["CHECKED"] == "Y") {
-            $paysystem_name = $arPaySystem["NAME"] . ": ";
+            $paysystem_name = $arPaySystem["NAME"];
         }        
     }?>
     <table class="colored summary">
@@ -135,7 +135,7 @@
                 <td class="order_item_discount"></td>
                 <td class="order_item_weight"></td>
                 <td class="order_item_quantity"></td>
-                <td style="text-align: right;"><b><?= GetMessage('SOA_TEMPL_PAY_SYSTEM') ?></b></td>
+                <td style="text-align: right;"><b><?= GetMessage('SOA_TEMPL_PAY_SYSTEM') . ": "?></b></td>
                 <td align="right"><?= $paysystem_name ?></td>
             </tr>
         <? } ?>
