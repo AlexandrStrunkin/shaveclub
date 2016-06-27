@@ -25,12 +25,12 @@
     ?>
     <title><?$APPLICATION->ShowTitle()?></title>
 
-    <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.8.0.min.js"></script>
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/animate.css">
     <link rel="stylesheet" href="/css/index.css">
-    <link href='http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&subset=latin,cyrillic,latin-ext,cyrillic-ext' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&subset=latin,cyrillic,latin-ext,cyrillic-ext' rel='stylesheet' type='text/css'>
     <script src="/js/wow.js"></script>
 
     <link type="text/css" href="/css/jquery.jscrollpane.css" rel="stylesheet" media="all"/>
@@ -295,7 +295,7 @@
 
 
 
-    <div class="main-block1" >
+    <div class="main-block1">
 
         <?//получаем баннер для текущего раздела
             $banner = CIBlockElement::GetList(array(), array("IBLOCK_CODE"=>"middle_banner", "PROPERTY_RAZOR"=>$arSection["ID"]),false, false, array("ID","NAME","PREVIEW_PICTURE","PREVIEW_TEXT","DETAIL_TEXT"));
@@ -428,7 +428,7 @@
         $reviews = CIBlockElement::GetList(array("SORT"=>"DESC"), $arFilter,false, false, array("ID","NAME","PREVIEW_PICTURE","PREVIEW_TEXT","PROPERTY_PROF","DETAIL_PICTURE"));
         if ($reviews->SelectedRowsCount() > 0) {
         ?>
-        <div class="main-block2" id="reviews">
+        <div class="main-block2">
             <div class="main-block2-col">
                 <div class="scroll-slider">
                     <div>
@@ -554,7 +554,7 @@
 
 
             ?>
-            <div class="main-block3" id="press">
+            <div class="main-block3">
                 <div>
                     <div class="scroll-slider"><span class="arrow-left"></span><span class="arrow-right"></span>
 

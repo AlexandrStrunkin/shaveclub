@@ -335,4 +335,40 @@
         );
         $user->Update($arFields["ID"], $fields);
     }
+    
+    /*** 
+    * очистка корзины после авторизации (кроме последнего добавленного комплекта)
+    * 
+    * @var array $items_IDs - массив ID товаров корзины текущего пользовател€
+    * 
+    ***/
+    
+    AddEventHandler("main", "OnAfterUserAuthorize", "cleaningBasket");
+    function cleaningBasket($arUser){
+        $fuser_id = CSaleUser::GetList(array("USER_ID" => $arUser["user_fields"]["ID"]));
+        $items_IDs = array();
+        $i = 0;
+        $basket_items_list = CSaleBasket::GetList(
+            array(
+                "ID" => "DESC"
+            ),
+            array(
+                "FUSER_ID" => $fuser_id["ID"],
+                "LID" => SITE_ID,
+                "ORDER_ID" => "NULL"
+            ),
+            false,
+            false,
+            array()
+        );
+        // извлечение ID последнего добавленного комлпекта и его составл€ющих (кассеты и станок)
+        // из массива ID элементов корзины 
+        
+        while ($basket_items = $basket_items_list -> Fetch()) {
+            if ($i > 2) {
+                CSaleBasket::Delete($basket_items["ID"]);
+            }
+            $i++;          
+        }
+    }
 ?>
