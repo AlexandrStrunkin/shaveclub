@@ -433,9 +433,7 @@
                         <div class="col-container"><span class="arr"></span><span class="close"></span>
                             <?
                                 while($arAll_sal = $all_sal->Fetch()) {
-
                                 ?>
-
                                 <div class="col-sales"><?=$arAll_sal['UF_SALES']?></div>
 
                                 <?}
