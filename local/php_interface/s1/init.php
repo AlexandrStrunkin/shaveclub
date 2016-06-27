@@ -347,10 +347,10 @@
     function cleaningBasket($arUser){
         $fuser_id = CSaleUser::GetList(array("USER_ID" => $arUser["user_fields"]["ID"]));
         $items_IDs = array();
+        $i = 0;
         $basket_items_list = CSaleBasket::GetList(
             array(
-                "NAME" => "ASC",
-                "ID" => "ASC"
+                "ID" => "DESC"
             ),
             array(
                 "FUSER_ID" => $fuser_id["ID"],
@@ -361,17 +361,18 @@
             false,
             array()
         );
-        while ($basket_items = $basket_items_list -> Fetch()) {
-            $items_IDs[] = $basket_items["ID"];          
-        }
-        sort($items_IDs);
         // извлечение ID последнего добавленного комлпекта и его составл€ющих (кассеты и станок)
         // из массива ID элементов корзины 
-        for ($j = 0; $j < 3; $j++) {
-            array_pop($items_IDs);
+        
+        while ($basket_items = $basket_items_list -> Fetch()) {
+            if ($i > 2) {
+                $items_IDs[] = $basket_items["ID"];
+            }
+            $i++;          
         }
-        for ($i = 0; $i < (count($items_IDs) - 1); $i++) {
-            CSaleBasket::Delete(intval($items_IDs[$i]));
+        
+        for ($j = 0; $j < (count($items_IDs) - 1); $j++) {
+            CSaleBasket::Delete(intval($items_IDs[$j]));
         }
     }
 ?>
