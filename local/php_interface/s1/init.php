@@ -346,6 +346,7 @@
     AddEventHandler("main", "OnAfterUserAuthorize", "cleaningBasket");
     function cleaningBasket($arUser){
         $fuser_id = CSaleUser::GetList(array("USER_ID" => $arUser["user_fields"]["ID"]));
+        CSaleBasket::DeleteAll($fuser_id["ID"]);
         $items_IDs = array();
         $i = 0;
         $basket_items_list = CSaleBasket::GetList(
@@ -353,7 +354,7 @@
                 "ID" => "DESC"
             ),
             array(
-                "FUSER_ID" => $fuser_id["ID"],
+                "FUSER_ID" => CSaleBasket::GetBasketUserID(),
                 "LID" => SITE_ID,
                 "ORDER_ID" => "NULL"
             ),
