@@ -80,4 +80,5 @@ $MESS['FULL_ORDER'] = "Полный заказ";
 $MESS['SOA_LOCATION_NOT_FOUND_PROMPT'] = "Нажмите #ANCHOR#добавить местоположение#ANCHOR_END#, чтобы мы узнали, куда нам доставить ваш заказ";
 $MESS['SOA_NOT_SELECTED_ALT'] = "При необходимости уточнить местоположение";
 $MESS["DELIVERY_MESS"] = "Доставка";
+$MESS["CHOOSE"] = "Выбрать";
 ?>
