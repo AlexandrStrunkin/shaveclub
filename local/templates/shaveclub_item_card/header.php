@@ -154,13 +154,6 @@
             $all_sal = CIBlockSection::GetList(array("SORT"=>"ASC"), $arFil_sal, false, array("UF_DETAIL_PICTURE","UF_RAZOR_NUMBER","UF_FULL_DESCRIPTION","UF_ZAPAS", "UF_SALES"));
             $all_zap = CIBlockSection::GetList(array("SORT"=>"ASC"), $arFil_sal, false, array("UF_DETAIL_PICTURE","UF_RAZOR_NUMBER","UF_FULL_DESCRIPTION","UF_ZAPAS", "UF_SALES"));
 
-            //получаем скидки
-            $sales = CSaleDiscount::GetList(array(),array(), false, array());
-
-            while ($arSales = $sales->Fetch())
-            {
-
-            }
 
             //получаем значение свойства "количество лезвий"
             $razorNumber = CUserFieldEnum::GetList(array(),array("ID"=>$arSection["UF_RAZOR_NUMBER"]));
