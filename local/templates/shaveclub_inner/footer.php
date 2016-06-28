@@ -1,7 +1,5 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 </div>
-</main>
-
 <footer class="footer">
     <div>
         <div class="footer-soc">
@@ -33,7 +31,11 @@
             <a href="/about/privacy-policy/"><?=GetMessage("PRIVACY_POLICY");?></a>
             <a href="/about/delivery/"><?=GetMessage("DELIVERY");?></a></div>
     </div>
-                </footer>
+</footer>
+
+</main>
+
+
                 <!-- .content -->
                 <div class="clear"></div>
 
