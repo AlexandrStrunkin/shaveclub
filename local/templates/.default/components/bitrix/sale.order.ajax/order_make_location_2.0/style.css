@@ -530,7 +530,7 @@ div#order_form_content .errortext {
     cursor: default !important;
 }
 .info-final-step p {
-    padding-right:120px;
+
 }
 
 .pay-block {
@@ -548,4 +548,33 @@ div#order_form_content .errortext {
     font: 15px/23px Arial, sans-serif;
     border: 2px solid #dbd9d2;
     color: #000;
+}
+.payment_button {
+    text-align: center;
+    margin-top: 20px;
+}
+.payment_button input[type=submit] {
+    width: 136px;
+    height: 47px;
+    padding: 2px 0 0;
+    text-align: center;
+    font: 14px/41px 'PFDinTextCondPro-Bold', sans-serif;
+    text-transform: uppercase;
+    display: inline-block;
+    border: 2px solid #34282d;
+    color: #34282d;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #fca713;
+    border-color: #fca713;
+    color: #000;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.payment_button input[type=submit]:hover {
+    background: #fff;
+    border-color: #fff;
+}
+.tablebodytext {
+    line-height: 22px;
 }
