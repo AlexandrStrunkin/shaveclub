@@ -254,13 +254,34 @@
 </div>
 <div class="inside-page-col info-final-step">
     <!--    <div><span class="inside-page-col-shadow-faq"></span></div>-->
-    <img class="smile-image" src="/images/smile-shave.png" alt="">
+    <img class="smile-image" src="/images/smile-shave.png" alt="" <?if ($order["PAY_SYSTEM_ID"] == 48) {?>style="margin-top:100px;"<?}?>>
     <div class="title-info-final">спасибо за заказ</div>
     <div class="note-info-final">Осталось совсем немного и Ваши бритвы приедут к Вам домой!</div>
     <?
      //arshow($arResult["PAY_SYSTEM"]);    include($arResult["PAY_SYSTEM"]["PATH_TO_ACTION"]);
    //  arshow($arResult);                    //bitrix/php_interface/include/sale_payment/uniteller.sale/payment.php
-    if($order["PAY_SYSTEM_ID"]==26){ ?>
+   ?>
+   <div class="payment_button">
+       <?
+       if ($order["PAY_SYSTEM_ID"] == 48) { 
+        if (!empty($arResult["PAYMENT"])) {
+            foreach ($arResult["PAYMENT"] as $payment) {
+                if ($payment["PAID"] != 'Y') {
+                    if (!empty($arResult['PAY_SYSTEM_LIST'])
+                        && array_key_exists($payment["PAY_SYSTEM_ID"], $arResult['PAY_SYSTEM_LIST'])) {
+                            $arPaySystem = $arResult['PAY_SYSTEM_LIST'][$payment["PAY_SYSTEM_ID"]];
+
+                            if (empty($arPaySystem["ERROR"])) {
+                            ?>
+                                <?= $arPaySystem["BUFFERED_OUTPUT"] ?>
+                            <?}
+                    }
+                }
+            }
+           }
+       }?>
+   </div>
+    <?if($order["PAY_SYSTEM_ID"]==26){ ?>
            <div class="pay-block"><?php
 /**
  * Формирует пакет данных для отправки в систему Uniteller.
