@@ -346,7 +346,6 @@
     AddEventHandler("main", "OnAfterUserAuthorize", "cleaningBasket");
     function cleaningBasket($arUser){
         $fuser_id = CSaleUser::GetList(array("USER_ID" => $arUser["user_fields"]["ID"]));
-        CSaleBasket::DeleteAll($fuser_id["ID"]);
         $items_IDs = array();
         $i = 0;
         $basket_items_list = CSaleBasket::GetList(
@@ -364,7 +363,9 @@
         );
         // извлечение ID последнего добавленного комлпекта и его составл€ющих (кассеты и станок)
         // из массива ID элементов корзины 
-        
+        if ($basket_items_list -> SelectedRowsCount() > 0) {
+            CSaleBasket::DeleteAll($fuser_id["ID"]);    
+        }
         while ($basket_items = $basket_items_list -> Fetch()) {
             if ($i > 2) {
                 CSaleBasket::Delete($basket_items["ID"]);
