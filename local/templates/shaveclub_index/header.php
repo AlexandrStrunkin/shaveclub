@@ -37,7 +37,7 @@
     <script type="text/javascript" src="/js/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="/js/jquery.jscrollpane.min.js"></script>
 
-    <script type="text/javascript" src="/js/jquery.fancybox.js"></script>      
+    <script type="text/javascript" src="/js/jquery.fancybox.js"></script>
     <link type="text/css" href="/css/jquery.fancybox.css" rel="stylesheet" media="all"/>
 
 
@@ -55,11 +55,11 @@
         }
     </script>
 
-    <script src="/js/inputmask.js"></script>  
+    <script src="/js/inputmask.js"></script>
 
     <script>
         $(function() {
-            //создаем маску ввода для поля активации сертификата   
+            //создаем маску ввода для поля активации сертификата
             $(".sertActivate").inputmask("****-****-****-****",{ "placeholder": "xxxx-xxxx-xxxx-xxxx", greedy: false });
         })
     </script>
@@ -68,7 +68,7 @@
     <?
         //получаем ID нужного баннера
         if ($APPLICATION->GetCurPage() == "/") {
-            $banner_code = "man"; 
+            $banner_code = "man";
         }
         else {
 
@@ -81,7 +81,7 @@
             <link href="/css/<?=$banner_code?>.css" rel="stylesheet">
             <?
             }
-        }   
+        }
 
         $mainBanner = CIBlockElement::GetList(array(),array("IBLOCK_ID"=>13,"CODE"=>$banner_code),false, false, array("ID"));
         $arMainBanner = $mainBanner->Fetch();
@@ -100,15 +100,15 @@
 
 <div class="main-container">
 
-<?include($_SERVER["DOCUMENT_ROOT"]."/include/mobile_top.php");?> 
+<?include($_SERVER["DOCUMENT_ROOT"]."/include/mobile_top.php");?>
 
 
 <?
 
 ?>
 <?$APPLICATION->IncludeComponent(
-        "bitrix:news.detail", 
-        "main_banner", 
+        "bitrix:news.detail",
+        "main_banner",
         array(
             "IBLOCK_TYPE" => "content",
             "IBLOCK_ID" => "13",
@@ -178,23 +178,23 @@
 
     <?//получаем товары для данного раздела
         if ($banner_code == "gift") {
-            $postfix = "_half_year";  
+            $postfix = "_half_year";
         }
         else {
-            $postfix = "_start";  
+            $postfix = "_start";
         }
 
         //получаем главный раздел
         $section = CIBlockSection::GetList(array(), array("CODE"=>$banner_code));
-        $arSection = $section->Fetch();    
+        $arSection = $section->Fetch();
 
         $subsection = CIBlockSection::GetList(array("SORT"=>"ASC"), array("SECTION_ID"=>$arSection["ID"]));
 
         $i = 1;
-        while($arSubsection = $subsection->Fetch()) { 
+        while($arSubsection = $subsection->Fetch()) {
 
             //arshow($arSubsection);
-            //получаем для раздела стоимость комплекта СТАРТ    
+            //получаем для раздела стоимость комплекта СТАРТ
 
             $element = CIBlockElement::GetList(array(),array("CODE"=>$arSubsection["CODE"].$postfix),false, false, array("ID","CODE"));
             $arElement = $element->Fetch();
@@ -202,10 +202,10 @@
             //получаем цену
             $price = "";
             $product = CPrice::GetList( array(), array("PRODUCT_ID"=>$arElement["ID"]),false, false,array());
-            while($arProduct = $product->Fetch()) {                
+            while($arProduct = $product->Fetch()) {
                 if ($arProduct["PRICE"] > 0 && $arProduct["CAN_ACCESS"] == "Y") {
-                    $price = intval($arProduct["PRICE"]); 
-                    break;  
+                    $price = intval($arProduct["PRICE"]);
+                    break;
                 }
             }
 
@@ -225,7 +225,7 @@
                         </p>
                         <span class="line wow fadeInLeft" data-wow-delay="500ms"></span>
                         <?
-                            if ($banner_code == "gift") {    
+                            if ($banner_code == "gift") {
                             ?>
                             <p class="p2 wow fadeInLeft" data-wow-delay="500ms"><span class="bold"><?if ($price > 0){?><?=$price?> <span class="rouble">i</span><?}?> </span><span class="gray">/ 9 кассет </span>+ станок!</p>
                             <?
@@ -233,7 +233,7 @@
                             ?>
                             <p class="p2 wow fadeInLeft" data-wow-delay="500ms"><span class="bold"><?if ($price > 0){?><?=$price?> <span class="rouble">i</span><?}?> </span><span class="gray">/ 2 кассеты + станок!</span></p>
 
-                            <?  
+                            <?
                             }
                         ?>
                         <a href="/<?=$banner_code?>/<?=$arSubsection["CODE"]?>/" class="btn wow fadeInUp" data-wow-delay="1500ms">выбрать</a>
@@ -252,7 +252,7 @@
                         </p>
                         <span class="line wow fadeInRight" data-wow-delay="500ms"></span>
                         <?
-                            if ($banner_code == "gift") {    
+                            if ($banner_code == "gift") {
                             ?>
                             <p class="p2 wow fadeInLeft" data-wow-delay="500ms"><span class="bold"><?if ($price > 0){?><?=$price?> <span class="rouble">i</span><?}?> </span><span class="gray">/ 9 кассет </span>+ станок!</p>
                             <?
@@ -260,17 +260,17 @@
                             ?>
                             <p class="p2 wow fadeInLeft" data-wow-delay="500ms"><span class="bold"><?if ($price > 0){?><?=$price?> <span class="rouble">i</span><?}?> </span><span class="gray">/ 2 кассеты + станок!</span></p>
 
-                            <?  
+                            <?
                             }
                         ?>
                         <a href="/<?=$banner_code?>/<?=$arSubsection["CODE"]?>/" class="btn wow fadeInUp" data-wow-delay="1500ms">выбрать</a>
                     </div>
-                </div> 
+                </div>
 
-                <?}?> 
+                <?}?>
 
 
-            <?} else {?> 
+            <?} else {?>
             <?if ($i == 1){?>
                 <div class="main-shave1"><span class="main-shave1-arr"></span>
                     <div>
@@ -291,7 +291,7 @@
                 <?}?>
             <?}?>
 
-        <?$i++;}?> 
+        <?$i++;}?>
 
 
 
@@ -302,12 +302,12 @@
             $arBanner = $banner->Fetch();
 
         ?>
-        <?if (is_array($arBanner)){?> 
+        <?if (is_array($arBanner)){?>
 
             <div class="main-block1-col">
                 <img class="img" src="<?=CFile::GetPath($arBanner["PREVIEW_PICTURE"])?>" alt=""/>
 
-                <div> 
+                <div>
                     <span class="quotes wow fadeInLeft">
                         <img src="/images/quotes.png" alt=""/>
                     </span>
@@ -320,7 +320,7 @@
 
                 </div>
             </div>
-            <?if(!empty($arBanner["DETAIL_TEXT"])):?>  
+            <?if(!empty($arBanner["DETAIL_TEXT"])):?>
                 <script>
                     $(function(){
 
@@ -334,10 +334,10 @@
                             showArrows: true,
                             arrowScrollOnHover: true
 
-                        }); 
-                        var api = element.data('jsp'); 
+                        });
+                        var api = element.data('jsp');
                         var etalon = parseInt($(".question_text").children().children(".jspPane").css("top"));
-                        $('.question_text').scroll(function(){                      
+                        $('.question_text').scroll(function(){
 
                             if(etalon !== parseInt($(".question_text").children().children(".jspPane").css("top")) || etalon ==0){
                                 etalon = parseInt($(".question_text").children().children(".jspPane").css("top"));
@@ -353,28 +353,28 @@
                         });
                     })
                 </script>
-                <div id="question_form">               
+                <div id="question_form">
                     <div class="form_title title_question"><?=$arBanner["PREVIEW_TEXT"]?></div>
                     <div class="form_title_separator"></div>
                     <div class="question_text">
-                        <?=$arBanner["DETAIL_TEXT"]?> 
-                    </div> 
+                        <?=$arBanner["DETAIL_TEXT"]?>
+                    </div>
                     <div class="form_line_question form_line_left"></div>
                     <div class="form_line_question form_line_right"></div>
-                    <div class="form_bottom_text"><img src="/images/question_form_arrow.png"></div> 
+                    <div class="form_bottom_text"><img src="/images/question_form_arrow.png"></div>
 
-                </div>            
-                <?          
+                </div>
+                <?
                     endif;
 
             ?>
 
             <?} else {
                 //баннер по умолчанию
-            ?>           
+            ?>
             <div class="main-block1-col"><img class="img" src="/images/bg1.jpg" alt=""/>
 
-                <div>                                                                     
+                <div>
                     <span class="quotes wow fadeInLeft">
                         <img src="/images/quotes.png" alt=""/>
                     </span>
@@ -383,9 +383,9 @@
                         выбирают <span>нас и наши<br/>
                             <span>бритвы?</span></span></h2>
 
-                    <p class="p wow fadeInLeft">Владимир Мохте, CEO ShaveClub</p>    
+                    <p class="p wow fadeInLeft">Владимир Мохте, CEO ShaveClub</p>
                 </div>
-            </div>   
+            </div>
 
             <?}?>
 
@@ -398,21 +398,21 @@
                 //собираем преимущества бритв
                 $razorPro = CIBlockElement::GetList(array("SORT"=>"ASC"), array("IBLOCK_CODE"=>"our_advantages","PROPERTY_SECTION"=>$arSection["ID"]),false,false,array("ID","NAME","PREVIEW_PICTURE","PREVIEW_TEXT"));
 
-            ?>       
+            ?>
             <ul>
                 <?
                     $i = 1;
                     while($arRazorPro = $razorPro->Fetch()){?>
                     <li class="desc">
                         <a href="#">
-                            <img class="wow fadeInDown" data-wow-delay="500ms" src="/images/icon<?=$i?>.png" alt=""/>   
+                            <img class="wow fadeInDown" data-wow-delay="500ms" src="/images/icon<?=$i?>.png" alt=""/>
                             <span class="wow fadeInDown" data-wow-delay="500ms">
                             <?=$arRazorPro["NAME"]?></span>
-                            <span class="line"></span> 
+                            <span class="line"></span>
                             <p><?=$arRazorPro["PREVIEW_TEXT"]?></p>
                         </a>
                     </li>
-                    <?$i++;}?> 
+                    <?$i++;}?>
             </ul>
 
 
@@ -423,7 +423,7 @@
     <?//получаем отзывы
         $arFilter = array("IBLOCK_CODE"=>"reviews");
         if ($banner_code != "gift") {
-            $arFilter["PROPERTY_RAZOR"] = $arSection["ID"];  
+            $arFilter["PROPERTY_RAZOR"] = $arSection["ID"];
         }
         $reviews = CIBlockElement::GetList(array("SORT"=>"DESC"), $arFilter,false, false, array("ID","NAME","PREVIEW_PICTURE","PREVIEW_TEXT","PROPERTY_PROF","DETAIL_PICTURE"));
         if ($reviews->SelectedRowsCount() > 0) {
@@ -435,9 +435,9 @@
                         <ul>
 
                             <li>
-                                <?   
+                                <?
                                     $i = 0;
-                                    while ($arReview = $reviews->Fetch()) {?>                            
+                                    while ($arReview = $reviews->Fetch()) {?>
 
                                     <?if ($i%2 == 0 && $i > 0){?>
                                     </li><li>
@@ -445,7 +445,7 @@
 
                                     <?if ($i%2 != 0){?>
                                         <div class="review">
-                                            <?if ($arReview["DETAIL_PICTURE"] > 0){?>  
+                                            <?if ($arReview["DETAIL_PICTURE"] > 0){?>
                                                 <img src="<?=CFile::GetPath($arReview["DETAIL_PICTURE"])?>" class="imgForReviews" title="<?=$arReview["NAME"]?>"/>
                                                 <?} else {?>
 
@@ -459,17 +459,17 @@
                                                 <div class="review-center"><span class="review-center-arr"></span>
 
                                                     <div class="quotes wow fadeInRight">“</div>
-                                                    <p class=" wow fadeInRight"><?=$arReview["PREVIEW_TEXT"]?></p>   
+                                                    <p class=" wow fadeInRight"><?=$arReview["PREVIEW_TEXT"]?></p>
 
                                                     <span class="number wow fadeInRight">Побритый клиент №<?=$arReview["ID"]?></span>
                                                 </div>
                                             </div>
                                             <?}?>
-                                        <?} else {?>  
+                                        <?} else {?>
 
                                         <div class="review1">
 
-                                            <?if ($arReview["DETAIL_PICTURE"] > 0){?>  
+                                            <?if ($arReview["DETAIL_PICTURE"] > 0){?>
                                                 <img src="<?=CFile::GetPath($arReview["DETAIL_PICTURE"])?>" class="imgForReviews" title="<?=$arReview["NAME"]?>"/>
                                                 <?} else {?>
 
@@ -488,8 +488,8 @@
 
                                                 <?}?>
 
-                                        </div>      
-                                        <?}?>       
+                                        </div>
+                                        <?}?>
                                     <?$i++;}?>
 
                             </li>
@@ -505,7 +505,7 @@
                     <?} else if ($banner_code != "woman"){?>
                     <img class="img" src="/images/bg2.jpg" alt=""/>
                     <?} else {?>
-                    <img class="img" src="/images/girl/bg2.jpg" alt=""/>                    
+                    <img class="img" src="/images/girl/bg2.jpg" alt=""/>
                     <?}?>
 
                 <span class="text wow fadeIn"><span class="title"> отзывы</span>
@@ -535,21 +535,21 @@
                 $k=2; //счетчик для четных новостей
                 $newNews = array(); //новый массив новостей
 
-                while($arNews = $news->Fetch()) 
+                while($arNews = $news->Fetch())
                 {
                     //arshow($arNews);
                     if ($arNews["PROPERTY_TYPE_VALUE"] == "big") {
                         $newNews[$i] = $arNews;
-                        $i = $i + 2;  
+                        $i = $i + 2;
                     }
                     else  if ($arNews["PROPERTY_TYPE_VALUE"] == "small") {
                         $newNews[$k] = $arNews;
-                        $k = $k + 2;  
+                        $k = $k + 2;
                     }
 
-                }   
+                }
 
-                ksort($newNews); 
+                ksort($newNews);
                 //arshow($newNews);
 
 
@@ -559,15 +559,15 @@
                     <div class="scroll-slider"><span class="arrow-left"></span><span class="arrow-right"></span>
 
                         <div>
-                            <ul>     
+                            <ul>
 
-                                <li>      
+                                <li>
                                     <?
-                                        foreach ($newNews as $id=>$new) { 
-                                        ?>      
+                                        foreach ($newNews as $id=>$new) {
+                                        ?>
                                         <?if (($id-1)%2 == 0 && $id-1 > 0){?>
                                         </li><li>
-                                            <?}?>   
+                                            <?}?>
                                         <?if ($id%2 != 0){?>
                                             <div class="main-block3-col overlook">
                                                 <?if ($new["DETAIL_PICTURE"] > 0) {?>
@@ -584,7 +584,7 @@
                                                 </div>
                                             </div>
 
-                                            <?} else {?>            
+                                            <?} else {?>
 
                                             <div class="main-block3-col">
 
@@ -595,10 +595,10 @@
                                                         <?=$new["PREVIEW_TEXT"]?>
                                                     </p>
                                                 </div>
-                                                <?if ($newNews[$id-1]["PROPERTY_LOGO_VALUE"] > 0){?>                                                    
+                                                <?if ($newNews[$id-1]["PROPERTY_LOGO_VALUE"] > 0){?>
                                                     <div class="times" style="background-image: url(<?=CFile::GetPath($newNews[$id-1]["PROPERTY_LOGO_VALUE"])?>); background-repeat:  no-repeat; background-position:  center center ;">
                                                         <span class="times-arr"></span>
-                                                    </div>                                                   
+                                                    </div>
                                                     <?}?>
                                                 <?if ($new["PREVIEW_PICTURE"] > 0){?>
                                                     <a href="<?=$new["CODE"]?>" target="_blank">
@@ -606,13 +606,13 @@
                                                             <span class="triangle-arr"></span>
                                                         </div>
                                                     </a>
-                                                    <?}?>   
+                                                    <?}?>
                                             </div>
 
                                             <?}?>
 
                                         <?}?>
-                                </li>   
+                                </li>
 
                             </ul>
                         </div>
@@ -651,7 +651,7 @@
             <div class="main-block4-col">
                 <img class="img" src="/images/bg4.jpg" alt=""/>
             </div>
-        </div>         
+        </div>
 
         <?} else {?>
         <div class="main-block6">
@@ -672,7 +672,7 @@
             <div class="sertInputDesc">
                 Активируйте полученный сертификат и начните получать новые и свежие бритвы!
             </div>
-            <input class="sertInput sertActivate" value="" size="19" autocomplete="off" placeholder="xxxx-xxxx-xxxx-xxxx" type="text"/>    
+            <input class="sertInput sertActivate" value="" size="19" autocomplete="off" placeholder="xxxx-xxxx-xxxx-xxxx" type="text"/>
             <a class="btn" href="javascript:void(0)" onclick="sertSubmit()">активировать</a>
         </div>
         <?}?>

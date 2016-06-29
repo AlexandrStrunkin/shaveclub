@@ -30,15 +30,16 @@
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/animate.css">
-    <link href="/css/inside.css" rel="stylesheet">     
+    <link href="/css/inside.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&subset=latin,cyrillic,latin-ext,cyrillic-ext' rel='stylesheet' type='text/css'>
+
     <script src="/js/wow.js"></script>
 
     <link type="text/css" href="/css/jquery.jscrollpane.css" rel="stylesheet" media="all"/>
     <script type="text/javascript" src="/js/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="/js/jquery.jscrollpane.min.js"></script>
 
-    <script type="text/javascript" src="/js/jquery.fancybox.js"></script>      
+    <script type="text/javascript" src="/js/jquery.fancybox.js"></script>
     <link type="text/css" href="/css/jquery.fancybox.css" rel="stylesheet" media="all"/>
 
     <script src="/js/index.js"></script>
@@ -65,7 +66,7 @@
 
 <div class="main-container">
 
-<?include($_SERVER["DOCUMENT_ROOT"]."/include/mobile_top.php");?> 
+<?include($_SERVER["DOCUMENT_ROOT"]."/include/mobile_top.php");?>
 
 
 <?
@@ -77,4 +78,3 @@
 <main class="content">
     <div class="inner_page_content">
             <h1 class="h1"><?=$APPLICATION->ShowTitle()?></h1>
-    

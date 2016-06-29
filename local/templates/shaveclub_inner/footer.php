@@ -1,28 +1,41 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-</div> 
-</main>
-
+</div>
 <footer class="footer">
     <div>
         <div class="footer-soc">
            <?include($_SERVER["DOCUMENT_ROOT"]."/include/footer_soc.php");?>
         </div>
 
-        <ul class="nav">
-            <li><a href="/about/aboutus/">О НАС</a></li>
-            <li><a href="#">ПРЕССА</a></li>
-            <li><a href="/about/terms-of-use/">ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ</a></li>
-            <li><a href="#">КОНТАКТЫ</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">ОТЗЫВЫ</a></li>
-        </ul>
-
+        <?$APPLICATION->IncludeComponent(
+            "bitrix:menu",
+            "bottom_menu_overall",
+            array(
+                "ALLOW_MULTI_SELECT" => "N",
+                "CHILD_MENU_TYPE" => "bottom",
+                "DELAY" => "N",
+                "MAX_LEVEL" => "1",
+                "MENU_CACHE_GET_VARS" => array(
+                ),
+                "MENU_CACHE_TIME" => "3600",
+                "MENU_CACHE_TYPE" => "N",
+                "MENU_CACHE_USE_GROUPS" => "Y",
+                "ROOT_MENU_TYPE" => "bottom",
+                "USE_EXT" => "N",
+                "COMPONENT_TEMPLATE" => "bottom_menu"
+            ),
+            false
+        );?>
+        <div class="clear"></div>
         <div class="link-container">
-            <a href="#">© <?=date("Y")?> ООО“Шейвклаб”</a>
-            <a href="/about/privacy-policy/">Политика конфиденциальности</a>
-            <a href="#">Условия доставки</a></div>
+            <a href="#">© <?=date("Y")?> <?=GetMessage("SHAVECLUB");?></a>
+            <a href="/about/privacy-policy/"><?=GetMessage("PRIVACY_POLICY");?></a>
+            <a href="/about/delivery/"><?=GetMessage("DELIVERY");?></a></div>
     </div>
-                </footer>
+</footer>
+
+</main>
+
+
                 <!-- .content -->
                 <div class="clear"></div>
 
