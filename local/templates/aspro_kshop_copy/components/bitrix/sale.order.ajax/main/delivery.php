@@ -50,6 +50,7 @@
 		BX('BUYER_STORE').value = BX('POPUP_STORE_ID').value;
 		//BX('ORDER_DESCRIPTION').value = '<?=GetMessage("SOA_ORDER_GIVE_TITLE")?>: '+BX('POPUP_STORE_NAME').value;
 		BX('store_desc').innerHTML = BX('POPUP_STORE_NAME').value;
+        BX('pvz_name').innerHTML = BX('POPUP_STORE_NAME').value;
         BX('store_pickup').setAttribute("value", BX('POPUP_STORE_ID').value);
         BX('store_off').innerHTML = '';
 		BX.show(BX('select_store'));

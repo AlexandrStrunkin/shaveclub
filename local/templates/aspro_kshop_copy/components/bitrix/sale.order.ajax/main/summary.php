@@ -8,7 +8,7 @@
     }
     if ($_POST["DELIVERY_ID"] == PVZ_MSK_DELIVERY_FOR_EXPENSIVE_ORDERS or $_POST["DELIVERY_ID"] == PVZ_MSK_DELIVERY_FOR_CHEAP_ORDERS 
         or $_POST["DELIVERY_ID"] == PVZ_SPB_DELIVERY_FOR_CHEAP_ORDERS or $_POST["DELIVERY_ID"] == PVZ_SPB_DELIVERY_FOR_EXPENSIVE_ORDERS) {
-            $delivery_name .= " - " . htmlspecialcharsbx($arResult["STORE_LIST"][$arResult["BUYER_STORE"]]["TITLE"]) . "):";
+            $delivery_name .= " - <span id='pvz_name'>" . htmlspecialcharsbx($arResult["STORE_LIST"][$arResult["BUYER_STORE"]]["TITLE"]) . "</span>):";
     } else {
         $delivery_name .= "):";
     }
