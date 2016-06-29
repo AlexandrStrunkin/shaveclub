@@ -139,7 +139,7 @@
 
                         <input type="text"
                         placeholder="<?=$arProperties["NAME"]?>"
-                        class="<?if($arProperties["CODE"] != "COMMENT"){?>input<?}?> koment" size="<?=$arProperties["SIZE1"]?>"
+                        class="<?if($arProperties["CODE"] != "KOMMENT"){?>input<?}?> koment" size="<?=$arProperties["SIZE1"]?>"
                         value="<?=$propValue?>"
                         name="<?=$arProperties["FIELD_NAME"]?>"
                         id="<?=$arProperties["FIELD_NAME"]?>"
