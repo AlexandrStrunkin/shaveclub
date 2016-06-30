@@ -381,6 +381,7 @@
                     $link = "/".$obParentSection["CODE"]."/".$obSection["CODE"]."/";
                     $picture = CFile::GetPath($obSection["UF_DETAIL_PICTURE"]);
                 ?>
+
                 <div class="order-composition">
                     <?if($resBasketProps -> SelectedRowsCount() > 0):?>
                         <img alt="" src="/images/gift_label.png" class="img label">
@@ -397,46 +398,9 @@
                         </table>
 
                     </div>
-                    <?
-                        include(GetLangFileName(dirname(__FILE__) . '/', '/uniteller.php'));
-                        if (!class_exists('ps_uniteller')) {
-                            include(dirname(__FILE__) . '/tools.php');
-                        }
 
-                        $arOrder = CSaleOrder::GetByID($obOrder["ID"]);
-                        $aCheckData = array();
-                        ps_uniteller::doSyncStatus($arOrder, $aCheckData);
 
-                        // Получаем данные из констант
-                        ps_uniteller::setMerchantData($obOrder["ID"]);
 
-                        // Если есть платёж, то выводим статус заказа.
-                        if ($aCheckData['response_code'] !== '') {
-                            $arCurrentStatus = CSaleStatus::GetByID($arOrder['STATUS_ID']);
-                            echo '<br><strong>' . $arCurrentStatus['NAME'] . '</strong>';
-                        } else {
-                            // Если оплата еще не была произведена, то выводим форму для оплаты заказа.
-                            $sDateInsert = (strlen(CSalePaySystemAction::GetParamValue('DATE_INSERT')) > 0) ? CSalePaySystemAction::GetParamValue('DATE_INSERT') : $GLOBALS['SALE_INPUT_PARAMS']['ORDER']['DATE_INSERT'];
-                            $sDateInsert = trim($sDateInsert);
-                            $fHouldPay = (strlen(CSalePaySystemAction::GetParamValue('SHOULD_PAY')) > 0) ? CSalePaySystemAction::GetParamValue('SHOULD_PAY') : $GLOBALS['SALE_INPUT_PARAMS']['ORDER']['SHOULD_PAY'];
-                            $sHouldPay = sprintf('%01.2f', $fHouldPay);
-                            $sCurrency = (strlen(CSalePaySystemAction::GetParamValue('CURRENCY')) > 0) ? CSalePaySystemAction::GetParamValue('CURRENCY') : $GLOBALS['SALE_INPUT_PARAMS']['ORDER']['CURRENCY'];
-                            $sCurrency = trim($sCurrency);
-
-                            $iLiftime = (int)CSalePaySystemAction::GetParamValue('LIFE_TIME');
-                            $URL_RETURN_OK = trim(CSalePaySystemAction::GetParamValue('SUCCESS_URL'));
-                            $URL_RETURN_NO = trim(CSalePaySystemAction::GetParamValue('FAIL_URL'));
-
-                            if ($iLiftime > 0) {
-                                $sLiftime = (string)$iLiftime;
-                            } else {
-                                $sLiftime = '';
-                            }
-                            $signature = strtoupper(md5(md5(ps_uniteller::$Shop_ID) . '&' . md5($obOrder["ID"]) . '&' . md5($sHouldPay)
-                                . '&' . md5('0') . '&' . md5('0') . '&' . md5($sLiftime) . '&' . md5('') . '&' . md5('') . '&' . md5('')
-                                . '&' . md5('') . '&' . md5(ps_uniteller::$Password)));
-                        }
-                    ?>
                     <span class="sum"><?=number_format($obOrder["PRICE"], 2)?>&nbsp;<img src="/images/inside/rub.png" alt=""/></span>
                     <?if($cancel == "Y"):?>
                         <span class="not-paid">Отменен</span>

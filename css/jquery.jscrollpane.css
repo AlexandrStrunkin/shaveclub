@@ -124,7 +124,7 @@
 	margin: 0 -3px 0 0;
 }
 .menu .jspContainer, .jspScrollable {
-  overflow: visible !important;
+  /*overflow: visible !important;*/
 
 }
 .menu .jspContainer {
