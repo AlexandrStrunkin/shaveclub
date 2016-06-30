@@ -381,6 +381,7 @@
                     $link = "/".$obParentSection["CODE"]."/".$obSection["CODE"]."/";
                     $picture = CFile::GetPath($obSection["UF_DETAIL_PICTURE"]);
                 ?>
+
                 <div class="order-composition">
                     <?if($resBasketProps -> SelectedRowsCount() > 0):?>
                         <img alt="" src="/images/gift_label.png" class="img label">
@@ -397,13 +398,15 @@
                         </table>
 
                     </div>
-                    <?
-                        include(GetLangFileName(dirname(__FILE__) . '/', '/uniteller.php'));
+
+                    <?      // код приводящий к ошибке в истории заказов
+                      /*  include(GetLangFileName(dirname(__FILE__) . '/', '/uniteller.php'));
                         if (!class_exists('ps_uniteller')) {
                             include(dirname(__FILE__) . '/tools.php');
                         }
 
                         $arOrder = CSaleOrder::GetByID($obOrder["ID"]);
+                        arshow($arOrder);
                         $aCheckData = array();
                         ps_uniteller::doSyncStatus($arOrder, $aCheckData);
 
@@ -436,7 +439,9 @@
                                 . '&' . md5('0') . '&' . md5('0') . '&' . md5($sLiftime) . '&' . md5('') . '&' . md5('') . '&' . md5('')
                                 . '&' . md5('') . '&' . md5(ps_uniteller::$Password)));
                         }
+                                             */
                     ?>
+
                     <span class="sum"><?=number_format($obOrder["PRICE"], 2)?>&nbsp;<img src="/images/inside/rub.png" alt=""/></span>
                     <?if($cancel == "Y"):?>
                         <span class="not-paid">Отменен</span>
