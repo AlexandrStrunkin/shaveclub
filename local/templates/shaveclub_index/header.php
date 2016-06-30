@@ -428,7 +428,7 @@
         $reviews = CIBlockElement::GetList(array("SORT"=>"DESC"), $arFilter,false, false, array("ID","NAME","PREVIEW_PICTURE","PREVIEW_TEXT","PROPERTY_PROF","DETAIL_PICTURE"));
         if ($reviews->SelectedRowsCount() > 0) {
         ?>
-        <div class="main-block2">
+        <div class="main-block2" id="reviews">
             <div class="main-block2-col">
                 <div class="scroll-slider">
                     <div>
@@ -554,7 +554,7 @@
 
 
             ?>
-            <div class="main-block3">
+            <div class="main-block3" id="press">
                 <div>
                     <div class="scroll-slider"><span class="arrow-left"></span><span class="arrow-right"></span>
 
