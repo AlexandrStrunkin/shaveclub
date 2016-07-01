@@ -375,7 +375,7 @@
     }
      //Handlers for PickPoint improvements
     AddEventHandler("sale", "OnOrderSave", Array("CustomPickPoint", "RewriteOrderDescription"));
-    AddEventHandler("sale", "OnOrderAdd", Array("CustomPickPoint", "OnOrderAdd"));
+    AddEventHandler("sale", "OnOrderAdd", Array("CustomPickPoint", "AddToSessionOrder"));
     //Class for PickPoint improvements
     class CustomPickPoint {
 
@@ -405,23 +405,24 @@
                 }
             }
         }
-        function OnOrderAdd($orderId, $arFields) {
+        function AddToSessionOrder($orderId, $arFields) {  // передаем адреса из модуля picpoint и запись их в сессию
         GLOBAL $arParams;
-
         if($arFields["DELIVERY_ID"] == $arParams["PICKPOINT"]["DELIVERY_ID"]) {
-            $arToAdd = array(
-                "ORDER_ID" => $orderId,
-                "POSTAMAT_ID" => $_REQUEST["PP_ID"],
-                "ADDRESS" => $_REQUEST["PP_ADDRESS"],
-                "SMS_PHONE" => $_REQUEST["PP_SMS_PHONE"]
-            );
-            CPickpoint::AddOrderPostamat($arToAdd);
-            if(COption::GetOptionString($arParams["PICKPOINT"]["MODULE_ID"], $arParams["PICKPOINT"]["ADD_INFO_NAME"], "")) {
-                $_SESSION["PICKPOINT_ADDRESS"] = "{$_REQUEST["PP_ID"]}\n{$_REQUEST["PP_ADDRESS"]}\n{$_REQUEST["PP_SMS_PHONE"]}";
+            if(!empty($_POST["PP_ADDRESS"])){
+                $arToAdd = array(
+                    "ORDER_ID" => $orderId,
+                    "POSTAMAT_ID" => $_POST["PP_ID"],
+                    "ADDRESS" => $_POST["PP_ADDRESS"],
+                    "SMS_PHONE" => $_POST["PP_SMS_PHONE"]
+                );
+                CPickpoint::AddOrderPostamat($arToAdd);
+                if(COption::GetOptionString($arParams["PICKPOINT"]["MODULE_ID"], $arParams["PICKPOINT"]["ADD_INFO_NAME"], "")) {
+                    $_SESSION["PICKPOINT_ADDRESS"] = "{$_POST["PP_ID"]}\n{$_POST["PP_ADDRESS"]}\n{$_POST["PP_SMS_PHONE"]}";
+                }
             }
-
+            return false;
         }
-        unset($_SESSION["PICKPOINT"]);
+
     }
     }
 
