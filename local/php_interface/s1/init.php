@@ -375,7 +375,7 @@
     }
      //Handlers for PickPoint improvements
     AddEventHandler("sale", "OnOrderSave", Array("CustomPickPoint", "RewriteOrderDescription"));
-
+    AddEventHandler("sale", "OnOrderAdd", Array("CustomPickPoint", "OnOrderAdd"));
     //Class for PickPoint improvements
     class CustomPickPoint {
 
@@ -383,6 +383,7 @@
         function RewriteOrderDescription($id, $arFields) {
             GLOBAL $arParams;
             if($arFields["DELIVERY_ID"] == $arParams["PICKPOINT"]["DELIVERY_ID"]) {
+
                 if(COption::GetOptionString($arParams["PICKPOINT"]["MODULE_ID"], $arParams["PICKPOINT"]["ADD_INFO_NAME"], "")) {
                     $arPropFields = array("ORDER_ID" => $id, "NAME" => $arParams["PICKPOINT"]["ADDRESS_TITLE_PROP"], "VALUE" => $_SESSION["PICKPOINT_ADDRESS"]);
                     if($arFields["PERSON_TYPE_ID"] == $arParams["PICKPOINT"]["LEGAL_PERSON_ID"]) {
@@ -392,26 +393,38 @@
                         $arPropFields["ORDER_PROPS_ID"] = $arParams["PICKPOINT"]["NATURAL_ADDRESS_ID"];
                         $arPropFields["CODE"] = $arParams["PICKPOINT"]["NATURAL_ADDRESS_CODE"];
                     }
-                    CSaleOrderPropsValue::Add($arPropFields);
+
+                $db_order = CSaleOrderPropsValue::GetList(
+                    array("DATE_UPDATE" => "DESC"),
+                    array("ORDER_PROPS_ID" => $arPropFields["ORDER_PROPS_ID"], "ORDER_ID" => $arPropFields["ORDER_ID"])
+                );
+                if ($arOrder = $db_order->Fetch()) {
+                    CSaleOrderPropsValue::Update($arOrder["ID"], $arPropFields);
+                }
                     unset($_SESSION["PICKPOINT_ADDRESS"]);
                 }
             }
         }
-    }
-    function OnOrderAdd($orderId, $arFields) {
+        function OnOrderAdd($orderId, $arFields) {
         GLOBAL $arParams;
+
         if($arFields["DELIVERY_ID"] == $arParams["PICKPOINT"]["DELIVERY_ID"]) {
             $arToAdd = array(
                 "ORDER_ID" => $orderId,
-                "POSTAMAT_ID" => $_SESSION["PICKPOINT"]["PP_ID"],
-                "ADDRESS" => $_SESSION["PICKPOINT"]["PP_ADDRESS"],
-                "SMS_PHONE" => $_SESSION["PICKPOINT"]["PP_SMS_PHONE"]
+                "POSTAMAT_ID" => $_REQUEST["PP_ID"],
+                "ADDRESS" => $_REQUEST["PP_ADDRESS"],
+                "SMS_PHONE" => $_REQUEST["PP_SMS_PHONE"]
             );
             CPickpoint::AddOrderPostamat($arToAdd);
             if(COption::GetOptionString($arParams["PICKPOINT"]["MODULE_ID"], $arParams["PICKPOINT"]["ADD_INFO_NAME"], "")) {
-                $_SESSION["PICKPOINT_ADDRESS"] = "{$_SESSION["PICKPOINT"]["PP_ID"]}\n{$_SESSION["PICKPOINT"]["PP_ADDRESS"]}\n{$_SESSION["PICKPOINT"]["PP_SMS_PHONE"]}";
+                $_SESSION["PICKPOINT_ADDRESS"] = "{$_REQUEST["PP_ID"]}\n{$_REQUEST["PP_ADDRESS"]}\n{$_REQUEST["PP_SMS_PHONE"]}";
             }
+
         }
         unset($_SESSION["PICKPOINT"]);
     }
+    }
+
+
+
 ?>
