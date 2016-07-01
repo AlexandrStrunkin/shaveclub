@@ -407,6 +407,7 @@
 
                                 include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/person_type.php");
                                 include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/props.php");
+                                include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/related_props.php");
                                 if ($arParams["DELIVERY_TO_PAYSYSTEM"] == "p2d")
                                 {
                                     include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/paysystem.php");
@@ -424,11 +425,6 @@
                                 echo "<script>localStorage.setItem('isAStartBundle','".$_SESSION['startBundle']."');</script>"
                             ?>
 
-
-                            <?
-
-                                include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/related_props.php");
-                            ?>
 
                             <div id="summary_ajax" style="display: none !important;">
                                 <?
