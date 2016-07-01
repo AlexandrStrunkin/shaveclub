@@ -1,4 +1,5 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+IncludeTemplateLangFile('__FILE__');?>
 </div>
 </main>
 
@@ -25,11 +26,11 @@
 );?>
 
         <div class="link-container">
-            <a href="#">© <?=date("Y")?> <?=GetMessage("SHAVECLUB");?></a>
-            <a href="/about/privacy-policy/"><?=GetMessage("PRIVACY_POLICY");?></a>
-            <a href="/about/delivery/"><?=GetMessage("DELIVERY");?></a></div>
+            <a href="#">© <?=date("Y")?> ООО“Шейвклаб"</a>
+            <a href="/about/privacy-policy/">Политика конфиденциальности</a>
+            <a href="/about/delivery/">Условия доставки и оплаты</a></div>
     </div>
-                </footer>
+</footer>
                 <!-- .content -->
                 <div class="clear"></div>
 
