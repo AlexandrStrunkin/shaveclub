@@ -378,12 +378,10 @@
     AddEventHandler("sale", "OnOrderAdd", Array("CustomPickPoint", "AddToSessionOrder"));
     //Class for PickPoint improvements
     class CustomPickPoint {
-
         //Rewriting user description in ordres with PickPoint delivery
         function RewriteOrderDescription($id, $arFields) {
             GLOBAL $arParams;
             if($arFields["DELIVERY_ID"] == $arParams["PICKPOINT"]["DELIVERY_ID"]) {
-
                 if(COption::GetOptionString($arParams["PICKPOINT"]["MODULE_ID"], $arParams["PICKPOINT"]["ADD_INFO_NAME"], "")) {
                     $arPropFields = array("ORDER_ID" => $id, "NAME" => $arParams["PICKPOINT"]["ADDRESS_TITLE_PROP"], "VALUE" => $_SESSION["PICKPOINT_ADDRESS"]);
                     if($arFields["PERSON_TYPE_ID"] == $arParams["PICKPOINT"]["LEGAL_PERSON_ID"]) {
@@ -393,7 +391,6 @@
                         $arPropFields["ORDER_PROPS_ID"] = $arParams["PICKPOINT"]["NATURAL_ADDRESS_ID"];
                         $arPropFields["CODE"] = $arParams["PICKPOINT"]["NATURAL_ADDRESS_CODE"];
                     }
-
                 $db_order = CSaleOrderPropsValue::GetList(
                     array("DATE_UPDATE" => "DESC"),
                     array("ORDER_PROPS_ID" => $arPropFields["ORDER_PROPS_ID"], "ORDER_ID" => $arPropFields["ORDER_ID"])
@@ -422,10 +419,6 @@
             }
             return false;
         }
-
     }
     }
-
-
-
 ?>
