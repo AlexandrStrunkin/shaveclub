@@ -137,15 +137,7 @@
                         $propValue = $arProperties["VALUE"];
                     }?>
 
-                    <? /*
-                    if ($arProperties["CODE"] == "ZIP" && $_POST["DELIVERY_ID"] != 8){
-                         $tipeZIP = 'hidden';
-                    }elseif($arProperties["CODE"] == "ZIP" && $_POST["DELIVERY_ID"] != 56){
-                         $tipeZIP = 'hidden';
-                    }else{
-                         $tipeZIP = '';
-                    }    */
-                    ?>
+
 
                     <label class="<?=$tipeZIP?>">
 

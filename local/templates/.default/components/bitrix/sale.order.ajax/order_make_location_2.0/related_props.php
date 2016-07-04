@@ -5,6 +5,6 @@ $style = (is_array($arResult["ORDER_PROP"]["RELATED"]) && count($arResult["ORDER
 ?>
 <div class="contacts-block" style="<?=$style?>">
     <div class="input-container">
-	<?=PrintPropsForm($arResult["ORDER_PROP"]["RELATED"], $arParams["TEMPLATE_LOCATION"])?>
+	    <?=PrintPropsForm($arResult["ORDER_PROP"]["RELATED"], $arParams["TEMPLATE_LOCATION"])?>
     </div>
 </div>
