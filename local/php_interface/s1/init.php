@@ -402,10 +402,11 @@
                 }
             }
         }
-        function AddToSessionOrder($orderId, $arFields) {  // передаем адреса из модуля picpoint и запись их в сессию
-        GLOBAL $arParams;
+        // передаем адреса из модуля picpoint и запись их в сессию
+        function addPickpointDataToSession($orderId, $arFields) {
+        GLOBAL $arParams;    // берем данные из config.php
         if($arFields["DELIVERY_ID"] == $arParams["PICKPOINT"]["DELIVERY_ID"]) {
-            if(!empty($_POST["PP_ADDRESS"])){
+            if(!empty($_POST["PP_ADDRESS"]) && !empty($_POST["PP_ID"]) && !empty($_POST["PP_SMS_PHONE"])){
                 $arToAdd = array(
                     "ORDER_ID" => $orderId,
                     "POSTAMAT_ID" => $_POST["PP_ID"],
@@ -414,6 +415,7 @@
                 );
                 CPickpoint::AddOrderPostamat($arToAdd);
                 if(COption::GetOptionString($arParams["PICKPOINT"]["MODULE_ID"], $arParams["PICKPOINT"]["ADD_INFO_NAME"], "")) {
+                    // записываем все в сессию
                     $_SESSION["PICKPOINT_ADDRESS"] = "{$_POST["PP_ID"]}\n{$_POST["PP_ADDRESS"]}\n{$_POST["PP_SMS_PHONE"]}";
                 }
             }
