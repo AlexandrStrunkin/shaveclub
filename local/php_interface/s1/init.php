@@ -375,10 +375,9 @@
     }
      //Handlers for PickPoint improvements
     AddEventHandler("sale", "OnOrderSave", Array("CustomPickPoint", "RewriteOrderDescription"));
-
+    AddEventHandler("sale", "OnOrderAdd", Array("CustomPickPoint", "AddToSessionOrder"));
     //Class for PickPoint improvements
     class CustomPickPoint {
-
         //Rewriting user description in ordres with PickPoint delivery
         function RewriteOrderDescription($id, $arFields) {
             GLOBAL $arParams;
@@ -392,26 +391,36 @@
                         $arPropFields["ORDER_PROPS_ID"] = $arParams["PICKPOINT"]["NATURAL_ADDRESS_ID"];
                         $arPropFields["CODE"] = $arParams["PICKPOINT"]["NATURAL_ADDRESS_CODE"];
                     }
-                    CSaleOrderPropsValue::Add($arPropFields);
+                $db_order = CSaleOrderPropsValue::GetList(
+                    array("DATE_UPDATE" => "DESC"),
+                    array("ORDER_PROPS_ID" => $arPropFields["ORDER_PROPS_ID"], "ORDER_ID" => $arPropFields["ORDER_ID"])
+                );
+                if ($arOrder = $db_order->Fetch()) {
+                    CSaleOrderPropsValue::Update($arOrder["ID"], $arPropFields);
+                }
                     unset($_SESSION["PICKPOINT_ADDRESS"]);
                 }
             }
         }
-    }
-    function OnOrderAdd($orderId, $arFields) {
-        GLOBAL $arParams;
+        // передаем адреса из модуля picpoint и запись их в сессию
+        function addPickpointDataToSession($orderId, $arFields) {
+        GLOBAL $arParams;    // берем данные из config.php
         if($arFields["DELIVERY_ID"] == $arParams["PICKPOINT"]["DELIVERY_ID"]) {
-            $arToAdd = array(
-                "ORDER_ID" => $orderId,
-                "POSTAMAT_ID" => $_SESSION["PICKPOINT"]["PP_ID"],
-                "ADDRESS" => $_SESSION["PICKPOINT"]["PP_ADDRESS"],
-                "SMS_PHONE" => $_SESSION["PICKPOINT"]["PP_SMS_PHONE"]
-            );
-            CPickpoint::AddOrderPostamat($arToAdd);
-            if(COption::GetOptionString($arParams["PICKPOINT"]["MODULE_ID"], $arParams["PICKPOINT"]["ADD_INFO_NAME"], "")) {
-                $_SESSION["PICKPOINT_ADDRESS"] = "{$_SESSION["PICKPOINT"]["PP_ID"]}\n{$_SESSION["PICKPOINT"]["PP_ADDRESS"]}\n{$_SESSION["PICKPOINT"]["PP_SMS_PHONE"]}";
+            if(!empty($_POST["PP_ADDRESS"]) && !empty($_POST["PP_ID"]) && !empty($_POST["PP_SMS_PHONE"])){
+                $arToAdd = array(
+                    "ORDER_ID" => $orderId,
+                    "POSTAMAT_ID" => $_POST["PP_ID"],
+                    "ADDRESS" => $_POST["PP_ADDRESS"],
+                    "SMS_PHONE" => $_POST["PP_SMS_PHONE"]
+                );
+                CPickpoint::AddOrderPostamat($arToAdd);
+                if(COption::GetOptionString($arParams["PICKPOINT"]["MODULE_ID"], $arParams["PICKPOINT"]["ADD_INFO_NAME"], "")) {
+                    // записываем все в сессию
+                    $_SESSION["PICKPOINT_ADDRESS"] = "{$_POST["PP_ID"]}\n{$_POST["PP_ADDRESS"]}\n{$_POST["PP_SMS_PHONE"]}";
+                }
             }
+            return false;
         }
-        unset($_SESSION["PICKPOINT"]);
+    }
     }
 ?>

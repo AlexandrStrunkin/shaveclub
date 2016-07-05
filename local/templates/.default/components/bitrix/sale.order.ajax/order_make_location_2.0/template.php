@@ -341,7 +341,7 @@
                     $(".inside-page-col").jScrollPane({showArrows: true, scrollbarMargin: 0});
                     $('.bx-ui-sls-pane').click(function(){
                         $(".active").click();
-                        //        alert(123)
+
                     });
 
 
