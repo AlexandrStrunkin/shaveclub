@@ -60,8 +60,8 @@
         if ($("#discountVal").val()=='100%') {
             $('#ID_PAY_SYSTEM_ID_17').click();
         }
-
-        $('.submitCoupon').unbind('click').click(function(e){
+        
+        $('.submitCoupon').live("click", function(e){
             e.preventDefault();
             var coupon = $(".couponCode")[1].value;
             $.post("/ajax/coupon.php",{coupon:coupon},function(data){
@@ -69,7 +69,7 @@
                 $('.tableDiscountPerc').html(price[0]);
                 $('.tableSum').html(price[1]+' Ð');
                 $('.finalSumYellow').html(price[1]+' P');
-                if (price[2]=='Y' && price[0]!=0) {
+                if ((price[2] == 'Y' && price[0] != 0) || (price[2] == 'Y' && price[4] == "Y"))  {
                     $('.form_discount').html(price[3]);
                     $.fancybox.open({href: '#success_form'});
 

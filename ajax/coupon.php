@@ -2,7 +2,14 @@
     require_once ($_SERVER['DOCUMENT_ROOT'] . "/bitrix/modules/main/include/prolog_before.php");
 ?>
 <? //arshow($_POST['coupon']);
-    $couponStatus = CCatalogDiscountCoupon::SetCoupon($_POST['coupon']); 
+    if ($_POST["coupon"] == "") {
+        $couponStatus = CCatalogDiscountCoupon::ClearCoupon();
+        $couponsCleaning = "Y";
+        $strCouponStatus = "Y";    
+    } else {
+        $couponStatus = CCatalogDiscountCoupon::SetCoupon($_POST['coupon']);
+        $couponsCleaning = "N";
+    } 
     
     if ($couponStatus==true) {
         $strCouponStatus="Y";
@@ -35,6 +42,6 @@
 
   //  $array = array($arBasketItems[0]['DISCOUNT_VALUE'],$arBasketItems[0]['PRICE'], $couponStatus,  $couponDescription);
 //    echo json_encode($array);
-    $string = $arBasketItems[0]['DISCOUNT_VALUE']."#".$arBasketItems[0]['PRICE']."#".$strCouponStatus."#".$couponDescription ; 
+    $string = $arBasketItems[2]['DISCOUNT_VALUE']."#".$arBasketItems[2]['PRICE']."#".$strCouponStatus."#".$couponDescription."#".$couponsCleaning; 
     echo ($string);
 ?>
