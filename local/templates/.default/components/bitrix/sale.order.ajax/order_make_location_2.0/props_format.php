@@ -40,6 +40,7 @@
 
         });
     </script>
+
     <?   }
 
     if (!function_exists("showFilePropertyField"))
@@ -135,7 +136,10 @@
                     } else {
                         $propValue = $arProperties["VALUE"];
                     }?>
-                    <label>
+
+
+
+                    <label class="<?= $tipeZIP ?>">
 
                         <input type="text"
                         placeholder="<?=$arProperties["NAME"]?>"
@@ -146,6 +150,7 @@
                         autocomplete="off">
 
                     </label>
+
                     <?
                     }
                     elseif ($arProperties["TYPE"] == "SELECT")
@@ -287,6 +292,7 @@
                                 endforeach;
                         }
                     ?>
+
                     <div style="clear: both;"></div>
                     <?
                     }
