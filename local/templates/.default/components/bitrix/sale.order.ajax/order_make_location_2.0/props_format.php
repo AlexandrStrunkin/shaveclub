@@ -139,7 +139,7 @@
 
 
 
-                    <label class="<?=$tipeZIP?>">
+                    <label class="<?= $tipeZIP ?>">
 
                         <input type="text"
                         placeholder="<?=$arProperties["NAME"]?>"
