@@ -221,8 +221,8 @@
                                     <span class="rouble">i</span></div>
                                 <span class="item-title"><?=$arDelivery["TITLE"]?></span>
 
-                                 <?if (strlen($arProfile["DESCRIPTION"]) > 0):?>
-                                    <p>
+                                    <?if (strlen($arProfile["DESCRIPTION"]) > 0):?>
+                                     <p>
                                         <?=nl2br($arProfile["DESCRIPTION"])?>
                                     </p>
                                         <?else:?>
