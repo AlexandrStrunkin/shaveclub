@@ -12,7 +12,9 @@
     label > div{
         height:165px !important;
     }
-
+    .delivery_<?=DELIVERY_ID_PICKPOINT?> > p:last-child{
+        display:none;
+    }
 
 
 </style>
@@ -267,7 +269,7 @@
                             />
                         <label for="ID_DELIVERY_ID_<?=$arDelivery["ID"]?>" <?=$clickHandler?>>
 
-                            <div class="item <?if($arDelivery["CHECKED"] == "Y"){?>active<?}?>">
+                            <div class="item <?if($arDelivery["CHECKED"] == "Y"){?>active<?}?> delivery_<?=$arDelivery["ID"]?>">
                                 <?
                                     $clearedPriceForItems = (int)preg_replace('/\s/','',$arResult['PRICE_WITHOUT_DISCOUNT']) /*- (int)preg_replace('/\s/','',$arResult['DELIVERY_PRICE_FORMATED'])*/;
                                 ?>
