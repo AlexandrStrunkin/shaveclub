@@ -1,6 +1,7 @@
 <?
     use Bitrix\Sale\Delivery\Services;
 
+    define("DELIVERY_ID_PICKPOINT", 41);
 
     //склонение слова "мес€ц"
     function month_name($num) {

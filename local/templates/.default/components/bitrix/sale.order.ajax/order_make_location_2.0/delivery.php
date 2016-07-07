@@ -12,7 +12,9 @@
     label > div{
         height:165px !important;
     }
-
+    .delivery_<?=DELIVERY_ID_PICKPOINT?> > p:last-child{
+        display:none;
+    }
 
 
 </style>
@@ -219,14 +221,15 @@
                                     <span class="rouble">i</span></div>
                                 <span class="item-title"><?=$arDelivery["TITLE"]?></span>
 
-                                <p>
                                     <?if (strlen($arProfile["DESCRIPTION"]) > 0):?>
+                                     <p>
                                         <?=nl2br($arProfile["DESCRIPTION"])?>
+                                    </p>
                                         <?else:?>
+                                    <p>
                                         <?=nl2br($arDelivery["DESCRIPTION"])?>
-                                        <?endif;?>
-                                </p>
-
+                                    </p>
+                                 <?endif;?>
 
 
 
@@ -266,7 +269,7 @@
                             />
                         <label for="ID_DELIVERY_ID_<?=$arDelivery["ID"]?>" <?=$clickHandler?>>
 
-                            <div class="item <?if($arDelivery["CHECKED"] == "Y"){?>active<?}?>">
+                            <div class="item <?if($arDelivery["CHECKED"] == "Y"){?>active<?}?> delivery_<?=$arDelivery["ID"]?>">
                                 <?
                                     $clearedPriceForItems = (int)preg_replace('/\s/','',$arResult['PRICE_WITHOUT_DISCOUNT']) /*- (int)preg_replace('/\s/','',$arResult['DELIVERY_PRICE_FORMATED'])*/;
                                 ?>
@@ -283,11 +286,11 @@
                                     <span class="rouble">i</span></div>
                                 <span class="item-title"><?=$arDelivery["NAME"]?></span>
 
-                                <p>
-                                    <?if (strlen($arDelivery["DESCRIPTION"]) > 0):?>
+                                <?if (strlen($arDelivery["DESCRIPTION"]) > 0):?>
+                                    <p>
                                         <?=nl2br($arDelivery["DESCRIPTION"])?>
-                                        <?endif;?>
-                                </p>
+                                    </p>
+                                <?endif;?>
                             </div>
                             <?
                                 if (count($arDelivery["LOGOTIP"]) > 0):
