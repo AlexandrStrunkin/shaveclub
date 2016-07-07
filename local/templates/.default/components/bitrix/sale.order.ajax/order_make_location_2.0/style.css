@@ -578,6 +578,10 @@ div#order_form_content .errortext {
 .tablebodytext {
     line-height: 22px;
 }
+
 .bx_element .item > p br{
+    display:none;
+}
+#sale_order_props .hidden{
     display:none;
 }
