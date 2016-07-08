@@ -131,15 +131,18 @@
                     elseif ($arProperties["TYPE"] == "TEXT")
                     {
                     ?>
+                     <??>
+                    <?if($_POST["ORDER_PROP_4"]){
+                         $_SESSION['ZIP'] = $_POST["ORDER_PROP_4"];
+                    }?>
+
                     <?if ($_SESSION[$arProperties["CODE"]] != '') {
                         $propValue = $_SESSION[$arProperties["CODE"]];
                     } else {
                         $propValue = $arProperties["VALUE"];
                     }?>
 
-
-
-                    <label class="<?= $tipeZIP ?>">
+                    <label >
 
                         <input type="text"
                         placeholder="<?=$arProperties["NAME"]?>"
