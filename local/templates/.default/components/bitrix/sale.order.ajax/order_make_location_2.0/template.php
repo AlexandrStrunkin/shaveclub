@@ -60,8 +60,8 @@
         if ($("#discountVal").val()=='100%') {
             $('#ID_PAY_SYSTEM_ID_17').click();
         }
-
-        $('.submitCoupon').unbind('click').click(function(e){
+        
+        $('.submitCoupon').live("click", function(e){
             e.preventDefault();
             var coupon = $(".couponCode")[1].value;
             $.post("/ajax/coupon.php",{coupon:coupon},function(data){
@@ -69,7 +69,7 @@
                 $('.tableDiscountPerc').html(price[0]);
                 $('.tableSum').html(price[1]+' Ð');
                 $('.finalSumYellow').html(price[1]+' P');
-                if (price[2]=='Y' && price[0]!=0) {
+                if ((price[2] == 'Y' && price[0] != 0) || (price[2] == 'Y' && price[4] == "Y"))  {
                     $('.form_discount').html(price[3]);
                     $.fancybox.open({href: '#success_form'});
 
@@ -133,7 +133,9 @@
                     phone = $("#ORDER_PROP_3").val();
                     address = $("#ORDER_PROP_7").val();
                     comment = $("#ORDER_PROP_69").val();
-                $.post('/ajax/checkEmail.php',{email:email, name:name ,phone:phone, address:address, comment:comment},
+                    zip = $("#ORDER_PROP_4").val();
+                    city = $("#ORDER_PROP_6").val();
+                $.post('/ajax/checkEmail.php',{email:email, name:name, phone:phone, address:address, comment:comment, zip:zip, city:city},
                     function(data){
                         if (data == "Y") {
                             $("#auth_form_link").click();
@@ -339,7 +341,7 @@
                     $(".inside-page-col").jScrollPane({showArrows: true, scrollbarMargin: 0});
                     $('.bx-ui-sls-pane').click(function(){
                         $(".active").click();
-                        //        alert(123)
+
                     });
 
 
@@ -405,6 +407,7 @@
 
                                 include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/person_type.php");
                                 include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/props.php");
+                                include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/related_props.php");
                                 if ($arParams["DELIVERY_TO_PAYSYSTEM"] == "p2d")
                                 {
                                     include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/paysystem.php");
@@ -422,11 +425,6 @@
                                 echo "<script>localStorage.setItem('isAStartBundle','".$_SESSION['startBundle']."');</script>"
                             ?>
 
-
-                            <?
-
-                                include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/related_props.php");
-                            ?>
 
                             <div id="summary_ajax" style="display: none !important;">
                                 <?

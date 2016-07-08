@@ -184,8 +184,8 @@ BX.saleOrderAjax = { // bad solution, actually, a singleton at the page
 									if(typeof controlInApater.vars.cache.nodes['other'] == 'undefined')
 									{
 										controlInApater.fillCache([{
-											CODE:		'other', 
-											DISPLAY:	ctx.options.messages.otherLocation, 
+											CODE:		'other',
+											DISPLAY:	ctx.options.messages.otherLocation,
 											IS_PARENT:	false,
 											VALUE:		'other'
 										}], {

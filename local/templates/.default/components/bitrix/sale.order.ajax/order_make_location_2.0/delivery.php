@@ -10,9 +10,11 @@
     }
 
     label > div{
-        height:165px !important;      
+        height:165px !important;
     }
-
+    .delivery_<?=DELIVERY_ID_PICKPOINT?> > p:last-child{
+        display:none;
+    }
 
 
 </style>
@@ -25,17 +27,17 @@
             display:none !important;
         }
     </style>
-    <?} 
+    <?}
     if ($_POST["DELIVERY_ID"]=='pickpoint:postamat'){?>
     <style>
         .pickpoint .item {
-            height:235px !important;      
+            height:235px !important;
         }
         .payment-select {
             margin-bottom: 200px;
         }
     </style>
-    <?} 
+    <?}
 ?>
 
 
@@ -164,7 +166,7 @@
         }
     </script>
 
-    <input type="hidden" name="BUYER_STORE" id="BUYER_STORE" value="<?=$arResult["BUYER_STORE"]?>" />      
+    <input type="hidden" name="BUYER_STORE" id="BUYER_STORE" value="<?=$arResult["BUYER_STORE"]?>" />
 
 
     <div class="bx_section">
@@ -173,7 +175,7 @@
             {
                 $width = ($arParams["SHOW_STORES_IMAGES"] == "Y") ? 850 : 700;
             ?>
-            
+
 
             <?
 
@@ -182,8 +184,8 @@
                     if ($delivery_id !== 0 && intval($delivery_id) <= 0)
                     { // ----- pickpoint
                         foreach ($arDelivery["PROFILES"] as $profile_id => $arProfile)
-                        {  
-                        ?>        
+                        {
+                        ?>
                         <div class="bx_element">
 
                             <input
@@ -219,20 +221,21 @@
                                     <span class="rouble">i</span></div>
                                 <span class="item-title"><?=$arDelivery["TITLE"]?></span>
 
-                                <p> 
                                     <?if (strlen($arProfile["DESCRIPTION"]) > 0):?>
+                                     <p>
                                         <?=nl2br($arProfile["DESCRIPTION"])?>
+                                    </p>
                                         <?else:?>
+                                    <p>
                                         <?=nl2br($arDelivery["DESCRIPTION"])?>
-                                        <?endif;?>
-                                </p>
-
+                                    </p>
+                                 <?endif;?>
 
 
 
 
                                 <p style="display:none" onclick="BX('ID_DELIVERY_<?=$delivery_id?>_<?=$profile_id?>').checked=true;submitForm();">
-                            </div>  
+                            </div>
 
                             </p>
 
@@ -251,44 +254,44 @@
                         if (count($arDelivery["STORE"]) > 0)
                             $clickHandler = "onClick = \"fShowStore('".$arDelivery["ID"]."','".$arParams["SHOW_STORES_IMAGES"]."','".$width."','".SITE_ID."')\";";
                         //For correct work pickpoint
-                        else if ($arDelivery["ID"]==41) 
+                        else if ($arDelivery["ID"]==41)
                             $clickHandler = "";
                         else
                             $clickHandler = "onClick = \"BX('ID_DELIVERY_ID_".$arDelivery["ID"]."').checked=true;submitForm();\"";
-                    ?>      
-                    <div class="bx_element"> 
-  
+                    ?>
+                    <div class="bx_element">
+
                         <input type="radio"
                             id="ID_DELIVERY_ID_<?= $arDelivery["ID"] ?>"
                             name="<?=htmlspecialcharsbx($arDelivery["FIELD_NAME"])?>"
                             value="<?= $arDelivery["ID"] ?>"<?if ($arDelivery["CHECKED"]=="Y") echo " checked";?>
                             onclick="submitForm();"
-                            />                   
-                        <label for="ID_DELIVERY_ID_<?=$arDelivery["ID"]?>" <?=$clickHandler?>>  
+                            />
+                        <label for="ID_DELIVERY_ID_<?=$arDelivery["ID"]?>" <?=$clickHandler?>>
 
-                            <div class="item <?if($arDelivery["CHECKED"] == "Y"){?>active<?}?>">
+                            <div class="item <?if($arDelivery["CHECKED"] == "Y"){?>active<?}?> delivery_<?=$arDelivery["ID"]?>">
                                 <?
-                                    $clearedPriceForItems = (int)preg_replace('/\s/','',$arResult['PRICE_WITHOUT_DISCOUNT']) /*- (int)preg_replace('/\s/','',$arResult['DELIVERY_PRICE_FORMATED'])*/; 
+                                    $clearedPriceForItems = (int)preg_replace('/\s/','',$arResult['PRICE_WITHOUT_DISCOUNT']) /*- (int)preg_replace('/\s/','',$arResult['DELIVERY_PRICE_FORMATED'])*/;
                                 ?>
                                 <div class="price">
                                     <?/*if(!bundlePrice::isAStartBundle($arResult['BASKET_ITEMS'],$clearedPriceForItems)){
-                                            if ($delivery_id==6){?>    
+                                            if ($delivery_id==6){?>
                                             80
                                             <?} else {?>
                                             0 <?} ?>
                                         <?} else {*/?>
                                         <?echo $arDelivery["PRICE"];
-                                    //}?> 
+                                    //}?>
 
                                     <span class="rouble">i</span></div>
                                 <span class="item-title"><?=$arDelivery["NAME"]?></span>
 
-                                <p> 
-                                    <?if (strlen($arDelivery["DESCRIPTION"]) > 0):?>     
+                                <?if (strlen($arDelivery["DESCRIPTION"]) > 0):?>
+                                    <p>
                                         <?=nl2br($arDelivery["DESCRIPTION"])?>
-                                        <?endif;?>
-                                </p>
-                            </div>            
+                                    </p>
+                                <?endif;?>
+                            </div>
                             <?
                                 if (count($arDelivery["LOGOTIP"]) > 0):
 
@@ -303,7 +306,7 @@
                                     else:
                                     $deliveryImgURL = $templateFolder."/images/logo-default-d.gif";
                                     endif;
-                            ?>                             
+                            ?>
 
                         </label>
 

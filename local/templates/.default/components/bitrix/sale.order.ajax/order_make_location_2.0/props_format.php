@@ -8,11 +8,13 @@
     ?>
     <script type="text/javascript">
         $(document).ready(function () {
-            email = '<?=$arUserProps["EMAIL"]?>';
-            name = '<?=$_SESSION["FIO"]?>';
-            phone = '<?=$_SESSION["PHONE"]?>';
-            address = '<?=$_SESSION["ADDRESS"]?>';
-            comment = '<?=$_SESSION["COMMENT"]?>';
+            email = '<?= $arUserProps["EMAIL"] ?>';
+            name = '<?= $_SESSION["FIO"] ?>';
+            phone = '<?= $_SESSION["PHONE"] ?>';
+            address = '<?= $_SESSION["ADDRESS"] ?>';
+            comment = '<?= $_SESSION["COMMENT"] ?>';
+            zip = '<?= $_SESSION["ZIP"] ?>';
+            city = '<?= $_SESSION["CITY"] ?>';
             if (phone != '') {
                 $("#ORDER_PROP_3").val(phone);
             }
@@ -28,12 +30,17 @@
             if (comment != '') {
                 $("#ORDER_PROP_69").val(comment);
             }
-
-
+            if (zip != '') {
+                $("#ORDER_PROP_4").val(zip);
+            }
+            if (city != '') {
+                $("#ORDER_PROP_6").val(city);
+            }
             $(".bx-ui-sls-fake").attr("placeholder", "Введите название населенного пункта для выбора способа доставки...");
 
         });
     </script>
+
     <?   }
 
     if (!function_exists("showFilePropertyField"))
@@ -124,10 +131,26 @@
                     elseif ($arProperties["TYPE"] == "TEXT")
                     {
                     ?>
+                    <?if ($_SESSION[$arProperties["CODE"]] != '') {
+                        $propValue = $_SESSION[$arProperties["CODE"]];
+                    } else {
+                        $propValue = $arProperties["VALUE"];
+                    }?>
 
-                    <label>
-                        <input type="text" placeholder="<?=$arProperties["NAME"]?>" class="<?if($arProperties["CODE"] != "KOMMENT"){?>input<?}?> koment" size="<?=$arProperties["SIZE1"]?>" value="<?=$arProperties["VALUE"]?>" name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>" autocomplete="off">
+
+
+                    <label class="<?= $tipeZIP ?>">
+
+                        <input type="text"
+                        placeholder="<?=$arProperties["NAME"]?>"
+                        class="<?if($arProperties["CODE"] != "KOMMENT"){?>input<?}?> koment" size="<?=$arProperties["SIZE1"]?>"
+                        value="<?=$propValue?>"
+                        name="<?=$arProperties["FIELD_NAME"]?>"
+                        id="<?=$arProperties["FIELD_NAME"]?>"
+                        autocomplete="off">
+
                     </label>
+
                     <?
                     }
                     elseif ($arProperties["TYPE"] == "SELECT")
@@ -168,16 +191,16 @@
                     <div style="clear: both;"></div>
                     <?
                     }
-                    elseif ($arProperties["TYPE"] == "LOCATION")
-                    {
+                    elseif ($arProperties["TYPE"] == "LOCATION") {
                         $value = 0;
-                        if (is_array($arProperties["VARIANTS"]) && count($arProperties["VARIANTS"]) > 0)
-                        {
-                            foreach ($arProperties["VARIANTS"] as $arVariant)
-                            {
-                                if ($arVariant["SELECTED"] == "Y")
-                                {
-                                    $value = $arVariant["ID"];
+                        if (is_array($arProperties["VARIANTS"]) && count($arProperties["VARIANTS"]) > 0) {
+                            foreach ($arProperties["VARIANTS"] as $arVariant) {
+                                if ($arVariant["SELECTED"] == "Y") {
+                                    if ($_SESSION["CITY"] != '') {
+                                        $value = $_SESSION["CITY"];
+                                    } else {
+                                        $value = $arVariant["ID"];
+                                    }
                                     break;
                                 }
                             }
@@ -269,6 +292,7 @@
                                 endforeach;
                         }
                     ?>
+
                     <div style="clear: both;"></div>
                     <?
                     }

@@ -18,7 +18,7 @@ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 
     <?$APPLICATION->ShowMeta("SKYPE_TOOLBAR");?>
     <?$APPLICATION->ShowHead();?>
 
-    <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css" />    <?if(CModule::IncludeModule("aspro.kshop")) {CKShop::Start(SITE_ID);}?>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css" />    <?if(CModule::IncludeModule("aspro.kshop")) {CKShop::Start(SITE_ID);}?>
     <!--[if gte IE 9]><style type="text/css">.basket_button, .button30, .icon {filter: none;}</style><![endif]-->
     <script type="text/javascript">
         //                alert(screen.width) ;

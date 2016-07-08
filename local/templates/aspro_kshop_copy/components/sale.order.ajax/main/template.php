@@ -110,7 +110,7 @@ if (!function_exists("cmpBySort"))
 			try{
 				$(document).ready(function(){
 					<?if(trim(COption::GetOptionString("aspro.kshop", "PHONE_MASK", "+9 (999) 999-99-99", SITE_ID))){?>
-						$('input[code="PHONE"]').mask('<?=trim(COption::GetOptionString("aspro.kshop", "PHONE_MASK", "+9 (999) 999-99-99", SITE_ID));?>'); 
+						$('input[code="PHONE"]').mask('<?=trim(COption::GetOptionString("aspro.kshop", "PHONE_MASK", "+9 (999) 999-99-99", SITE_ID));?>');
 					<?}?>
 				});
 			}
@@ -199,13 +199,13 @@ if (!function_exists("cmpBySort"))
 				BX("profile_change").value = "Y";
 				submitForm();
 			}
-			
+
 			BX.addCustomEvent('onAjaxSuccess', function(){
 			   try{
 					$(document).ready(function(){
 						<?if(trim(COption::GetOptionString("aspro.kshop", "PHONE_MASK", "+9 (999) 999-99-99", SITE_ID))){?>
 							$('input[code="PHONE"]').mask('<?=trim(COption::GetOptionString("aspro.kshop", "PHONE_MASK", "+9 (999) 999-99-99", SITE_ID));?>');
-						<?}?> 
+						<?}?>
 					});
 				}
 				catch(e){}
@@ -240,7 +240,7 @@ if (!function_exists("cmpBySort"))
 				</script>
 				<?
 			}
-			
+
 			// field personal phone
 			if($USER->IsAuthorized()){
 				foreach($arResult["ORDER_PROP"]["USER_PROPS_Y"] as $i => $arProp){
@@ -309,15 +309,15 @@ if (!function_exists("cmpBySort"))
 
 	<div style="display: none">
 		<?// we need to have all styles for sale.location.selector.steps, but RestartBuffer() cuts off document head with styles in it?>
-		<? 
+		<?
         $APPLICATION->IncludeComponent("bitrix:sale.location.selector.steps", "location_selector_kshop", Array(
-	
+
 	),
 	false
 );?>
 		<?$APPLICATION->IncludeComponent(
-			"bitrix:sale.location.selector.search", 
-			".default", 
+			"bitrix:sale.location.selector.search",
+			".default",
 			array(
 			),
 			false

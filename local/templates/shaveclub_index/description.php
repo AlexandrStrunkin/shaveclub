@@ -1,6 +1,8 @@
-<?$arTemplate = array(
-	"NAME" => "Shaveclub - главная",
-	"DESCRIPTION" => "",
-	"SORT" => "",
+<?
+$arTemplate = array (
+  'NAME' => 'Shaveclub - главная',
+  'DESCRIPTION' => '',
+  'SORT' => '',
+  'TYPE' => '',
 );
 ?>

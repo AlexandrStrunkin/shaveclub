@@ -1,46 +1,46 @@
 <?
 $aMenuLinks = Array(
 	Array(
-		"О нас", 
-		"/about/aboutus/", 
-		Array(), 
-		Array(), 
-		"" 
+		"О нас",
+		"/about/aboutus/",
+		Array(),
+		Array(),
+		""
 	),
 	Array(
-		"Пресса", 
-		"", 
-		Array(), 
-		Array(), 
-		"" 
+		"Пресса",
+		"#press",
+		Array(),
+		Array(),
+		""
 	),
 	Array(
-		"Пользовательское соглашение", 
-		"/about/terms-of-use/", 
-		Array(), 
-		Array(), 
-		"" 
+		"Пользовательское соглашение",
+		"/about/terms-of-use/",
+		Array(),
+		Array(),
+		""
 	),
 	Array(
-		"Контакты", 
-		"/contacts/", 
-		Array(), 
-		Array(), 
-		"" 
+		"Контакты",
+		"/contacts/",
+		Array(),
+		Array(),
+		""
 	),
 	Array(
-		"FAQ", 
-		"/faq/", 
-		Array(), 
-		Array(), 
-		"" 
+		"FAQ",
+		"/faq/",
+		Array(),
+		Array(),
+		""
 	),
 	Array(
-		"Отзывы", 
-		"", 
-		Array(), 
-		Array(), 
-		"" 
+		"Отзывы",
+		"#reviews",
+		Array(),
+		Array(),
+		""
 	)
 );
 ?>

@@ -1,4 +1,9 @@
 <?
+    define("PVZ_MSK_DELIVERY_FOR_CHEAP_ORDERS", 48);
+    define("PVZ_MSK_DELIVERY_FOR_EXPENSIVE_ORDERS", 47);
+    define("PVZ_SPB_DELIVERY_FOR_CHEAP_ORDERS", 50);
+    define("PVZ_SPB_DELIVERY_FOR_EXPENSIVE_ORDERS", 51);
+
     CModule::IncludeModule("forum");
     AddEventHandler("forum", "onAfterMessageAdd", "notifyNewItemFeedback");
     function notifyNewItemFeedback($ID, $arFields) {
@@ -56,8 +61,7 @@
                 $arOrder_new["quick_order"] = $item["VALUE"];
             }
         }
-
-        if ($arOrder_new["quick_order"] != "Y") {
+        if ($arOrder_new["quick_order"] && $arOrder_new["quick_order"] != "Y") {
             $ORDER_ID = $arFields["ORDER_ID"];
             $arOrderProps = array();
             $order_props = CSaleOrderPropsValue::GetOrderProps($ORDER_ID);//Свойства заказа
@@ -139,7 +143,9 @@
                     $tmp = explode('#',$arBasketTmp['PRODUCT_XML_ID']);
                     $id = (int)$tmp[1];
                     $res = CIblockElement::GetById($id)->GetNextElement();
-                    $props = $res->GetProperties();
+                    if ($res) {
+                        $props = $res->GetProperties();
+                    }
                     foreach ($props as $val) {
                         if (!strstr($val['CODE'],'CML2_') && !empty($val['VALUE'])) {
                             $arVals[] = $val['NAME'].': '.$val['VALUE'];
