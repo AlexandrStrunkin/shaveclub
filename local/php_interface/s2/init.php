@@ -29,8 +29,7 @@
 
     AddEventHandler("main", "OnAfterUserAdd", "OnAfterUserAddHandler");
 
-    function OnAfterUserAddHandler(&$arFields)
-    {
+    function OnAfterUserAddHandler(&$arFields) {
         $user = new CUser;
         $fields = Array(
             "UF_SITE" => 23,
@@ -47,7 +46,7 @@
         $path = $_SERVER["HTTP_HOST"] ;
         $arItems = CSaleOrderPropsValue::GetList(array(), array("ORDER_ID" => $arFields["ORDER_ID"]));
 
-        while($item = $arItems -> Fetch()){
+        while($item = $arItems -> Fetch()) {
             if($item["CODE"] == "store_pickup"){
                 $store = CCatalogStore::GetList(array(),array("ID"=>$item["VALUE"]))->Fetch();
                 $arOrder_new["pickup"] = ' <a href="http://'.$path.'/store/'.$item["VALUE"].'/">'.$store["TITLE"].'</a>';
@@ -56,7 +55,6 @@
             } elseif ($item["CODE"] == "quick_order") {
                 $arOrder_new["quick_order"] = $item["VALUE"];
             }
-
         }
 
         if ($arOrder_new["quick_order"] != "Y") {
@@ -88,8 +86,6 @@
             );
             $arOrder = $dbOrder -> Fetch();
             //email из настроек юзера
-
-
 
             $arFields["EMAIL"] = $arOrder_new["email"];
             $arFields["ORDER_PRICE"] = round($arOrder["PRICE"], 0);
@@ -215,7 +211,7 @@
                 $arFields["BASKET_COUNT"] = count($arBasketValue);
             }
             $arFields["ORDER_LIST"] = $BasketListStr;
-        }else{
+        } else {
             return false;
         }
     }
