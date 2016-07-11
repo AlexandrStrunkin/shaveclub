@@ -132,7 +132,7 @@
                     {
                     ?>
                      <??>
-                    <?if($_POST["ORDER_PROP_4"]){
+                    <? if ($_POST["ORDER_PROP_4"]) {
                          $_SESSION['ZIP'] = $_POST["ORDER_PROP_4"];
                     }?>
 
@@ -140,7 +140,7 @@
                         $propValue = $_SESSION[$arProperties["CODE"]];
                     } else {
                         $propValue = $arProperties["VALUE"];
-                    }?>
+                    } ?>
 
                     <label >
 
