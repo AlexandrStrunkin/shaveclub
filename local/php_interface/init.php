@@ -124,8 +124,12 @@
 
         while($item = $arItems -> Fetch()) {
             if($item["CODE"] == "store_pickup"){
-                $store = CCatalogStore::GetList(array(),array("ID"=>$item["VALUE"]))->Fetch();
-                $arOrder_new["pickup"] = ' <a href="http://'.$path.'/store/'.$item["VALUE"].'/">'.$store["TITLE"].'</a>';
+                if(is_numeric($item["VALUE"])){
+                    $store = CCatalogStore::GetList(array(),array("ID"=>$item["VALUE"]))->Fetch();
+                } else {
+                    $store = CCatalogStore::GetList(array(),array("TITLE"=>$item["VALUE"]))->Fetch();
+                }
+                $arOrder_new["pickup"] = ' <a href="http://'.$path.'/store/'.$store["ID"].'/">'.$store["TITLE"].'</a>';
             } elseif ($item["CODE"] == "EMAIL") {
                 $arOrder_new["email"] = $item["VALUE"];
             } elseif ($item["CODE"] == "quick_order") {
