@@ -274,5 +274,13 @@
         }
     }
     
+    AddEventHandler('sale', 'OnSaleStatusOrder', 'DeductingItem');
+    
+    function DeductingItem ($ID, $val) {
+        if ($val == "R") {
+            CSaleOrder::DeductOrder($ID, "Y");    
+        }
+    }
+    
     
 ?>

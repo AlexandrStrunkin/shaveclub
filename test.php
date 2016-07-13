@@ -25,6 +25,7 @@
     
    // $order = CSaleOrderPropsValue::GetByID(2186);
     //arshow($order);
-    
+    $order = CSaleOrder::GetByID(2190);
+    arshow($order);
 ?>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
