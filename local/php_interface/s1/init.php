@@ -1,6 +1,7 @@
 <?
     use Bitrix\Sale\Delivery\Services;
 
+    define("DELIVERY_ID_PICKPOINT", 41);
 
     //склонение слова "месяц"
     function month_name($num) {
@@ -343,42 +344,38 @@
     *
     ***/
 
-    AddEventHandler("main", "OnAfterUserAuthorize", "cleaningBasket");
+    AddEventHandler("main", "OnAfterUserLogin", "cleaningBasket");
     function cleaningBasket($arUser){
-        $fuser_id = CSaleUser::GetList(array("USER_ID" => $arUser["user_fields"]["ID"]));
-        $items_IDs = array();
-        $i = 0;
-        $basket_items_list = CSaleBasket::GetList(
-            array(
-                "ID" => "DESC"
-            ),
-            array(
-                "FUSER_ID" => CSaleBasket::GetBasketUserID(),
-                "LID" => SITE_ID,
-                "ORDER_ID" => "NULL"
-            ),
-            false,
-            false,
-            array()
-        );
-        // извлечение ID последнего добавленного комлпекта и его составляющих (кассеты и станок)
-        // из массива ID элементов корзины
-        if ($basket_items_list -> SelectedRowsCount() > 0) {
-            CSaleBasket::DeleteAll($fuser_id["ID"]);
-        }
-        while ($basket_items = $basket_items_list -> Fetch()) {
-            if ($i > 2) {
-                CSaleBasket::Delete($basket_items["ID"]);
+        if ($arUser["USER_ID"] > 0) {
+            $i = 0;
+            $basket_items_list = CSaleBasket::GetList(
+                array(
+                    "ID" => "DESC"
+                ),
+                array(
+                    "FUSER_ID" => CSaleBasket::GetBasketUserID(),
+                    "LID" => SITE_ID,
+                    "ORDER_ID" => "NULL"
+                ),
+                false,
+                false,
+                array()
+            );
+            // извлечение ID последнего добавленного комлпекта и его составляющих (кассеты и станок)
+            // из массива ID элементов корзины
+            while ($basket_items = $basket_items_list -> Fetch()) {
+                if ($i > 2) {
+                    CSaleBasket::Delete($basket_items["ID"]);
+                }
+                $i++;
             }
-            $i++;
         }
     }
      //Handlers for PickPoint improvements
     AddEventHandler("sale", "OnOrderSave", Array("CustomPickPoint", "RewriteOrderDescription"));
-
+    AddEventHandler("sale", "OnOrderAdd", Array("CustomPickPoint", "AddToSessionOrder"));
     //Class for PickPoint improvements
     class CustomPickPoint {
-
         //Rewriting user description in ordres with PickPoint delivery
         function RewriteOrderDescription($id, $arFields) {
             GLOBAL $arParams;
@@ -392,26 +389,36 @@
                         $arPropFields["ORDER_PROPS_ID"] = $arParams["PICKPOINT"]["NATURAL_ADDRESS_ID"];
                         $arPropFields["CODE"] = $arParams["PICKPOINT"]["NATURAL_ADDRESS_CODE"];
                     }
-                    CSaleOrderPropsValue::Add($arPropFields);
+                $db_order = CSaleOrderPropsValue::GetList(
+                    array("DATE_UPDATE" => "DESC"),
+                    array("ORDER_PROPS_ID" => $arPropFields["ORDER_PROPS_ID"], "ORDER_ID" => $arPropFields["ORDER_ID"])
+                );
+                if ($arOrder = $db_order->Fetch()) {
+                    CSaleOrderPropsValue::Update($arOrder["ID"], $arPropFields);
+                }
                     unset($_SESSION["PICKPOINT_ADDRESS"]);
                 }
             }
         }
-    }
-    function OnOrderAdd($orderId, $arFields) {
-        GLOBAL $arParams;
+        // передаем адреса из модуля picpoint и запись их в сессию
+        function addPickpointDataToSession($orderId, $arFields) {
+        GLOBAL $arParams;    // берем данные из config.php
         if($arFields["DELIVERY_ID"] == $arParams["PICKPOINT"]["DELIVERY_ID"]) {
-            $arToAdd = array(
-                "ORDER_ID" => $orderId,
-                "POSTAMAT_ID" => $_SESSION["PICKPOINT"]["PP_ID"],
-                "ADDRESS" => $_SESSION["PICKPOINT"]["PP_ADDRESS"],
-                "SMS_PHONE" => $_SESSION["PICKPOINT"]["PP_SMS_PHONE"]
-            );
-            CPickpoint::AddOrderPostamat($arToAdd);
-            if(COption::GetOptionString($arParams["PICKPOINT"]["MODULE_ID"], $arParams["PICKPOINT"]["ADD_INFO_NAME"], "")) {
-                $_SESSION["PICKPOINT_ADDRESS"] = "{$_SESSION["PICKPOINT"]["PP_ID"]}\n{$_SESSION["PICKPOINT"]["PP_ADDRESS"]}\n{$_SESSION["PICKPOINT"]["PP_SMS_PHONE"]}";
+            if(!empty($_POST["PP_ADDRESS"]) && !empty($_POST["PP_ID"]) && !empty($_POST["PP_SMS_PHONE"])){
+                $arToAdd = array(
+                    "ORDER_ID" => $orderId,
+                    "POSTAMAT_ID" => $_POST["PP_ID"],
+                    "ADDRESS" => $_POST["PP_ADDRESS"],
+                    "SMS_PHONE" => $_POST["PP_SMS_PHONE"]
+                );
+                CPickpoint::AddOrderPostamat($arToAdd);
+                if(COption::GetOptionString($arParams["PICKPOINT"]["MODULE_ID"], $arParams["PICKPOINT"]["ADD_INFO_NAME"], "")) {
+                    // записываем все в сессию
+                    $_SESSION["PICKPOINT_ADDRESS"] = "{$_POST["PP_ID"]}\n{$_POST["PP_ADDRESS"]}\n{$_POST["PP_SMS_PHONE"]}";
+                }
             }
+            return false;
         }
-        unset($_SESSION["PICKPOINT"]);
+    }
     }
 ?>
