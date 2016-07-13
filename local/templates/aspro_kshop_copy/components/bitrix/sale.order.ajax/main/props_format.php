@@ -78,7 +78,13 @@
                                 $propertyAttributes['isZip'] = true;
                         }
                     ?>
-                    <div data-property-id-row="<?=intval(intval($arProperties["ID"]))?>">
+                    <?if ($arProperties["CODE"] == "ZIP" && $_POST["DELIVERY_ID"] != 44){
+                         $tipeZIP = 'hidden';
+                    }else{
+                         $tipeZIP = '';
+                    }
+                    ?>
+                    <div data-property-id-row="<?=intval(intval($arProperties["ID"]))?>" class="<?=$tipeZIP?>">
 
                         <?
                             if ($arProperties["TYPE"] == "CHECKBOX")
@@ -120,6 +126,11 @@
                                         <input class="ora-store" for="" code="<?=$arProperties["CODE"]?>" type="hidden" id="store_pickup" name="<?=$arProperties["FIELD_NAME"]?>" value="<?=htmlspecialcharsbx($arResult["STORE_LIST"][$arResult["BUYER_STORE"]]["ID"])?>">
                               <?  }else{
                                     ?>
+                                    <?if ($arProperties["CODE"] == "ZIP" && !empty($_POST["ORDER_PROP_42"])){
+                                         $arProperties["VALUE"] =  $_POST["ORDER_PROP_42"];
+                                    }
+                                    ?>
+
                                     <div class="bx_block r1x3 pt8">
                                         <?=$arProperties["NAME"]?>
                                         <?if ($arProperties["REQUIED_FORMATED"]=="Y"):?>
@@ -128,7 +139,18 @@
                                     </div>
 
                                     <div class="bx_block r3x1">
-                                        <input type="text" code="<?=$arProperties["CODE"]?>" size="<?=$arProperties["SIZE1"]?>" value="<?=$arProperties["VALUE"]?>" name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>" />
+
+                                        <input type="text"
+                                        <?if($arProperties["CODE"] == "ZIP"){?>
+                                            minlength="6"
+                                            maxlength="6"
+                                        <?}?>
+                                            code="<?=$arProperties["CODE"]?>"
+                                            size="<?=$arProperties["SIZE1"]?>"
+                                            value="<?=$arProperties["VALUE"]?>"
+                                            name="<?=$arProperties["FIELD_NAME"]?>"
+                                            id="<?=$arProperties["FIELD_NAME"]?>"
+                                        />
 
                                         <?
                                             if (strlen(trim($arProperties["DESCRIPTION"])) > 0):

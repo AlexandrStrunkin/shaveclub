@@ -431,3 +431,6 @@ div#order_form_content .errortext {
     cursor: pointer;
     text-align: left;
 }
+.sale_order_table .hidden{
+    display: none;
+}

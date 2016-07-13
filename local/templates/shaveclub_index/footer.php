@@ -1,5 +1,6 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-</div> 
+<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+IncludeTemplateLangFile(__FILE__);?>
+</div>
 </main>
 
 <footer class="footer">
@@ -8,21 +9,29 @@
            <?include($_SERVER["DOCUMENT_ROOT"]."/include/footer_soc.php");?>
         </div>
 
-        <ul class="nav">
-            <li><a href="/about/aboutus/">О НАС</a></li>
-            <li><a href="#">ПРЕССА</a></li>
-            <li><a href="/about/terms-of-use/">ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ</a></li>
-            <li><a href="#">КОНТАКТЫ</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">ОТЗЫВЫ</a></li>
-        </ul>
+        <?$APPLICATION->IncludeComponent("bitrix:menu", "bottom_menu_overall", Array(
+	        "ALLOW_MULTI_SELECT" => "N",	// Разрешить несколько активных пунктов одновременно
+		    "CHILD_MENU_TYPE" => "bottom",	// Тип меню для остальных уровней
+		    "DELAY" => "N",	// Откладывать выполнение шаблона меню
+		    "MAX_LEVEL" => "1",	// Уровень вложенности меню
+		    "MENU_CACHE_GET_VARS" => "",	// Значимые переменные запроса
+		    "MENU_CACHE_TIME" => "3600",	// Время кеширования (сек.)
+		    "MENU_CACHE_TYPE" => "N",	// Тип кеширования
+		    "MENU_CACHE_USE_GROUPS" => "Y",	// Учитывать права доступа
+		    "ROOT_MENU_TYPE" => "bottom",	// Тип меню для первого уровня
+		    "USE_EXT" => "N",	// Подключать файлы с именами вида .тип_меню.menu_ext.php
+		    "COMPONENT_TEMPLATE" => "bottom_menu"
+	        ),
+	        false
+        );?>
 
         <div class="link-container">
-            <a href="#">© <?=date("Y")?> ООО“Шейвклаб”</a>
-            <a href="/about/privacy-policy/">Политика конфиденциальности</a>
-            <a href="/about/delivery/">Условия доставки и оплаты</a></div>
+            <a href="#">© <?=date("Y")?> <?=GetMessage('SHAVECLUB')?></a>
+            <a href="/about/privacy-policy/"><?=GetMessage('PRIVACY_POLICY')?></a>
+            <a href="/about/delivery/"><?=GetMessage('DELIVERY')?></a>
+        </div>
     </div>
-                </footer>
+</footer>
                 <!-- .content -->
                 <div class="clear"></div>
 
@@ -72,5 +81,10 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
     </script>
+<!-- BEGIN JIVOSITE CODE {literal} -->
+<script type='text/javascript'>
+(function(){ var widget_id = 'f1Iok7TX2M';var d=document;var w=window;function l(){
+var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
+<!-- {/literal} END JIVOSITE CODE -->
 </body>
 </html>

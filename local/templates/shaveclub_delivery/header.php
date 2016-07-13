@@ -26,13 +26,13 @@
     ?>
     <title><?$APPLICATION->ShowTitle()?></title>
 
-    <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.8.0.min.js"></script>
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/animate.css">
     <link href="/css/inside.css" rel="stylesheet">   
     <link href="/css/delivery.css" rel="stylesheet">  
-    <link href='http://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&subset=latin,cyrillic,latin-ext,cyrillic-ext' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic&subset=latin,cyrillic,latin-ext,cyrillic-ext' rel='stylesheet' type='text/css'>
     <script src="/js/wow.js"></script>
 
     <link type="text/css" href="/css/jquery.jscrollpane.css" rel="stylesheet" media="all"/>

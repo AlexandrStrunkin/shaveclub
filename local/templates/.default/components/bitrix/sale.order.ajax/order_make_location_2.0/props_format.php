@@ -40,6 +40,7 @@
 
         });
     </script>
+
     <?   }
 
     if (!function_exists("showFilePropertyField"))
@@ -130,22 +131,28 @@
                     elseif ($arProperties["TYPE"] == "TEXT")
                     {
                     ?>
+                    <? if ($_POST["ORDER_PROP_4"]) {
+                         $_SESSION['ZIP'] = $_POST["ORDER_PROP_4"];
+                    } ?>
+
                     <?if ($_SESSION[$arProperties["CODE"]] != '') {
                         $propValue = $_SESSION[$arProperties["CODE"]];
                     } else {
                         $propValue = $arProperties["VALUE"];
-                    }?>
-                    <label>
+                    } ?>
+
+                    <label >
 
                         <input type="text"
                         placeholder="<?=$arProperties["NAME"]?>"
-                        class="<?if($arProperties["CODE"] != "COMMENT"){?>input<?}?> koment" size="<?=$arProperties["SIZE1"]?>"
+                        class="<?if($arProperties["CODE"] != "KOMMENT"){?>input<?}?> koment" size="<?=$arProperties["SIZE1"]?>"
                         value="<?=$propValue?>"
                         name="<?=$arProperties["FIELD_NAME"]?>"
                         id="<?=$arProperties["FIELD_NAME"]?>"
                         autocomplete="off">
 
                     </label>
+
                     <?
                     }
                     elseif ($arProperties["TYPE"] == "SELECT")
@@ -287,6 +294,7 @@
                                 endforeach;
                         }
                     ?>
+
                     <div style="clear: both;"></div>
                     <?
                     }

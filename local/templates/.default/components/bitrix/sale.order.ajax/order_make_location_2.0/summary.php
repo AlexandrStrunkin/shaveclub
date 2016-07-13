@@ -331,7 +331,7 @@
 
 
 <div class="payment">
-    <?if ($arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 25 || $arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 27){?>
+    <?if ($arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 25 || $arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 27 || $arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 48) {?>
         <img class="img" src="/images/inside/payment2.png" alt="" />
         <div class="cash active"><div>
                 <span class="title"> итого <img alt="" src="/images/inside/icon1.png"></span>
@@ -341,8 +341,11 @@
 
                             if($arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 27){
                                 echo "Оплата картой или наличными в постамате при получении заказа. ";
+                            } else if($arResult["USER_VALS"]["PAY_SYSTEM_ID"] == 25) {
+                                echo "Оплата наличными при получении заказа. ";
+                            } else {
+                                echo "Оплата электронными средствами платежей. ";
                             }
-                            else echo "Оплата наличными при получении заказа. ";
                         } else {?>
                         <br><br>
                         <input type="hidden" id="sertGift" name="sertGift" value="Y">
