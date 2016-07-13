@@ -77,10 +77,6 @@
                             </tr>
                             <tr>
                                 <td>телефон</td>
-                                <td><?=$propOrder[3]['VALUE']?></td>
-                            </tr>
-                            <tr>
-                                <td>почта</td>
                                 <td><?=$propOrder[2]['VALUE']?></td>
                             </tr>
                         </table>
