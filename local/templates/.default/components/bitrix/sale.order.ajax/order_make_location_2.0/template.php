@@ -95,7 +95,7 @@
             $(".bx-ui-sls-input-block").addClass('errorCity');
         }
 
-        $("#sale_order_props .input").each(function(){
+        $("#sale_order_props .input ,#sale_order_props_excl .input").each(function(){
             //проверяем валидность email
 
             if ($(this).attr("placeholder") == "E-Mail" && $(this).val() != "") {
