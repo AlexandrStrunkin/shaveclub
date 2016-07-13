@@ -77,11 +77,11 @@
                             </tr>
                             <tr>
                                 <td>телефон</td>
-                                <td><?=$propOrder[3]['VALUE']?></td>
+                                <td><?=$propOrder[2]['VALUE']?></td>
                             </tr>
                             <tr>
                                 <td>почта</td>
-                                <td><?=$propOrder[2]['VALUE']?></td>
+                                <td><?=$propOrder[1]['VALUE']?></td>
                             </tr>
                         </table>
                         <br><br>
@@ -263,7 +263,7 @@
    ?>
    <div class="payment_button">
        <?
-       if ($order["PAY_SYSTEM_ID"] == 48) { 
+       if ($order["PAY_SYSTEM_ID"] == 48) {
         if (!empty($arResult["PAYMENT"])) {
             foreach ($arResult["PAYMENT"] as $payment) {
                 if ($payment["PAID"] != 'Y') {
