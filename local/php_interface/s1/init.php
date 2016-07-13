@@ -344,34 +344,31 @@
     *
     ***/
 
-    AddEventHandler("main", "OnAfterUserAuthorize", "cleaningBasket");
+    AddEventHandler("main", "OnAfterUserLogin", "cleaningBasket");
     function cleaningBasket($arUser){
-        $fuser_id = CSaleUser::GetList(array("USER_ID" => $arUser["user_fields"]["ID"]));
-        $items_IDs = array();
-        $i = 0;
-        $basket_items_list = CSaleBasket::GetList(
-            array(
-                "ID" => "DESC"
-            ),
-            array(
-                "FUSER_ID" => CSaleBasket::GetBasketUserID(),
-                "LID" => SITE_ID,
-                "ORDER_ID" => "NULL"
-            ),
-            false,
-            false,
-            array()
-        );
-        // извлечение ID последнего добавленного комлпекта и его составл€ющих (кассеты и станок)
-        // из массива ID элементов корзины
-        if ($basket_items_list -> SelectedRowsCount() > 0) {
-            CSaleBasket::DeleteAll($fuser_id["ID"]);
-        }
-        while ($basket_items = $basket_items_list -> Fetch()) {
-            if ($i > 2) {
-                CSaleBasket::Delete($basket_items["ID"]);
+        if ($arUser["USER_ID"] > 0) {
+            $i = 0;
+            $basket_items_list = CSaleBasket::GetList(
+                array(
+                    "ID" => "DESC"
+                ),
+                array(
+                    "FUSER_ID" => CSaleBasket::GetBasketUserID(),
+                    "LID" => SITE_ID,
+                    "ORDER_ID" => "NULL"
+                ),
+                false,
+                false,
+                array()
+            );
+            // извлечение ID последнего добавленного комлпекта и его составл€ющих (кассеты и станок)
+            // из массива ID элементов корзины
+            while ($basket_items = $basket_items_list -> Fetch()) {
+                if ($i > 2) {
+                    CSaleBasket::Delete($basket_items["ID"]);
+                }
+                $i++;
             }
-            $i++;
         }
     }
      //Handlers for PickPoint improvements
