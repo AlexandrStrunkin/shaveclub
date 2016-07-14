@@ -124,7 +124,6 @@
 
         while ($item = $arItems -> Fetch()) {
             if ($item["CODE"] == "store_pickup") {
-
                 $ar_filter = is_numeric($item["VALUE"]) ? array("ID" => $item["VALUE"]) : array("TITLE" => $item["VALUE"]);
                 $store = CCatalogStore::GetList(array(), $ar_filter)->Fetch();
                 $arOrder_new["pickup"] = ' <a href="http://' . $path . '/store/' . $store["ID"] . '/">' . $store["TITLE"] . '</a>';
