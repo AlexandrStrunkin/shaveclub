@@ -2,7 +2,7 @@
     use Bitrix\Sale\Delivery\Services;
 
     define("DELIVERY_ID_PICKPOINT", 41);
-    define("PAY_SYSTEM_ID", 48);
+    define("PAY_SYSTEM_ELECTRONIC_PAYMENT", 48);
 
 
     //склонение слова "мес€ц"

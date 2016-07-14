@@ -263,7 +263,7 @@
    ?>
    <div class="payment_button">
        <?
-       if ($order["PAY_SYSTEM_ID"] == PAY_SYSTEM_ID) {
+       if ($order["PAY_SYSTEM_ID"] == PAY_SYSTEM_ELECTRONIC_PAYMENT) {
         if (!empty($arResult["PAYMENT"])) {
             foreach ($arResult["PAYMENT"] as $payment) {
                 if ($payment["PAID"] != 'Y') {
