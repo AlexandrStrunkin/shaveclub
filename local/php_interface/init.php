@@ -122,10 +122,11 @@
         $path = $_SERVER["HTTP_HOST"] ;
         $arItems = CSaleOrderPropsValue::GetList(array(), array("ORDER_ID" => $arFields["ORDER_ID"]));
 
-        while($item = $arItems -> Fetch()) {
-            if($item["CODE"] == "store_pickup"){
-                $store = CCatalogStore::GetList(array(),array("ID"=>$item["VALUE"]))->Fetch();
-                $arOrder_new["pickup"] = ' <a href="http://'.$path.'/store/'.$item["VALUE"].'/">'.$store["TITLE"].'</a>';
+        while ($item = $arItems -> Fetch()) {
+            if ($item["CODE"] == "store_pickup") {
+                $ar_filter = is_numeric($item["VALUE"]) ? array("ID" => $item["VALUE"]) : array("TITLE" => $item["VALUE"]);
+                $store = CCatalogStore::GetList(array(), $ar_filter)->Fetch();
+                $arOrder_new["pickup"] = ' <a href="http://' . $path . '/store/' . $store["ID"] . '/">' . $store["TITLE"] . '</a>';
             } elseif ($item["CODE"] == "EMAIL") {
                 $arOrder_new["email"] = $item["VALUE"];
             } elseif ($item["CODE"] == "quick_order") {
