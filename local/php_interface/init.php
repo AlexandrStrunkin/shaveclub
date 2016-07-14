@@ -124,12 +124,9 @@
 
         while ($item = $arItems -> Fetch()) {
             if ($item["CODE"] == "store_pickup") {
-                if (is_numeric($item["VALUE"]) ){
-                    $arFilt = array("ID"=>$item["VALUE"]);
-                } else {
-                    $arFilt = array("TITLE"=>$item["VALUE"]);
-                }
-                $store = CCatalogStore::GetList(array(), $arFilt)->Fetch();
+
+                $ar_filter = is_numeric($item["VALUE"]) ? array("ID" => $item["VALUE"]) : array("TITLE" => $item["VALUE"]);
+                $store = CCatalogStore::GetList(array(), $ar_filter)->Fetch();
                 $arOrder_new["pickup"] = ' <a href="http://' . $path . '/store/' . $store["ID"] . '/">' . $store["TITLE"] . '</a>';
             } elseif ($item["CODE"] == "EMAIL") {
                 $arOrder_new["email"] = $item["VALUE"];
