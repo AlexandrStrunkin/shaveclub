@@ -95,7 +95,7 @@
             $(".bx-ui-sls-input-block").addClass('errorCity');
         }
 
-        $("#sale_order_props .input").each(function(){
+        $("#sale_order_props .input ,#sale_order_props_excl .input").each(function(){
             //проверяем валидность email
 
             if ($(this).attr("placeholder") == "E-Mail" && $(this).val() != "") {
@@ -407,15 +407,17 @@
 
                                 include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/person_type.php");
                                 include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/props.php");
-                                include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/related_props.php");
+
                                 if ($arParams["DELIVERY_TO_PAYSYSTEM"] == "p2d")
                                 {
                                     include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/paysystem.php");
                                     include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/delivery.php");
+                                    include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/related_props.php");
                                 }
                                 else
                                 {
                                     include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/delivery.php");
+                                    include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/related_props.php");
                                     include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/paysystem.php");
                                 }
 
