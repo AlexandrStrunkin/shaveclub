@@ -73,7 +73,7 @@
                             </tr>
                             <tr>
                                 <td>адрес доставки</td>
-                                <td><?= $propOrder[5]['VALUE'] ?></td>
+                                <td><?= $propOrder[4]['VALUE'] ?></td>
                             </tr>
                             <tr>
                                 <td>телефон</td>
