@@ -49,10 +49,10 @@
     
     function UpdatingDeducting ($ID, $val) {
         if ($val == "R" || $val == "V") {
-            $arOrderNewFields = array (
+            $ar_order_new_fields = array (
                 "ALLOW_DELIVERY" => "Y"    
             );
-            CSaleOrder::Update($ID, $arOrderNewFields);    
+            CSaleOrder::Update($ID, $ar_order_new_fields);    
         }
     }
     
@@ -61,8 +61,8 @@
     */
     AddEventHandler('sale', 'OnSaleStatusOrder', 'UpdatingPaymentProp');
     
-    function UpdatingPaymentProp ($ID, $arFields) {
-        if ($arFields["STATUS_ID"] == "F") {
+    function UpdatingPaymentProp ($ID, $ar_fields) {
+        if ($ar_fields["STATUS_ID"] == "F") {
             $order = CSaleOrder::GetById($ID);
             //если флаг оплаты не стоит - ставим
             if ($order["PAYED"] != "Y") {
