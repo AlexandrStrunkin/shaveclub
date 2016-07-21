@@ -1,6 +1,6 @@
-<span class="title">Заказ товара</span> <span class="delivery-title">По телефону</span>
+<span class="title">Заказ товара</span> <span class="delivery-title">По телефону</span> <br>
 <p class="i">
-	 8 (499) 707 71 07 в рабочие дни с 11:00 до 20:00
+	 +7 (495) 649-23-29&nbsp;в рабочие дни с 10:00 до 21:00
 </p>
  <span class="delivery-title">На сайте&nbsp;</span>
 <p class="i">

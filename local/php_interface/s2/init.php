@@ -94,7 +94,21 @@
     
     function deductingItem ($ID, $val) {
         if ($val == "R") {
-            CSaleOrder::DeductOrder($ID, "Y");    
+            CSaleOrder::DeductOrder($ID, "Y");
+            
+            \Bitrix\Main\Loader::includeModule('sale'); 
+
+            $order = \Bitrix\Sale\Order::load($ID); 
+
+            /** @var \Bitrix\Sale\ShipmentCollection $shipmentCollection */ 
+            $shipmentCollection = $order->getShipmentCollection(); 
+            /** @var \Bitrix\Sale\Shipment $shipment */ 
+            foreach ($shipmentCollection as $shipment) { 
+
+                echo $shipment->setStoreId("1"); 
+            } 
+
+            $order->save();    
         }
     }
 ?>
