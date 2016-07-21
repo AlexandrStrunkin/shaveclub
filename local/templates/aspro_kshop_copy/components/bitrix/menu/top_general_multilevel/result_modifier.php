@@ -1,0 +1,1 @@
+<?$arResult = CKShop::getChilds($arResult);?>
