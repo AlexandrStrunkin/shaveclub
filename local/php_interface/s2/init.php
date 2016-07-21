@@ -45,9 +45,9 @@
    /**
    * Разрешение доставки при смене статуса заказа на "Передан в СД" или "Возврат"
    */
-    AddEventHandler('sale', 'OnSaleStatusOrder', 'UpdatingDeducting');
+    AddEventHandler('sale', 'OnSaleStatusOrder', 'updatingDeducting');
     
-    function UpdatingDeducting ($ID, $val) {
+    function updatingDeducting ($ID, $val) {
         if ($val == "R" || $val == "V") {
             $ar_order_new_fields = array (
                 "ALLOW_DELIVERY" => "Y"    
@@ -59,9 +59,9 @@
     /**
     * Переключение флага оплаты заказа в значение "Да" при смене статуса заказа на "Выполнен"
     */
-    AddEventHandler('sale', 'OnSaleStatusOrder', 'UpdatingPaymentProp');
+    AddEventHandler('sale', 'OnSaleStatusOrder', 'updatingPaymentProp');
     
-    function UpdatingPaymentProp ($ID, $ar_fields) {
+    function updatingPaymentProp ($ID, $ar_fields) {
         if ($ar_fields["STATUS_ID"] == "F") {
             $order = CSaleOrder::GetById($ID);
             //если флаг оплаты не стоит - ставим
@@ -71,9 +71,12 @@
         }
     }
     
-    //обработка статусов заказа при получении оплаты
-    AddEventHandler('sale', 'OnSalePayOrder', "UpdOrderStatus");
-    function UpdOrderStatus ($ID, $val) {
+    /**
+    * обработка статусов заказа при получении оплаты
+    */
+    AddEventHandler('sale', 'OnSalePayOrder', "updOrderStatus");
+    
+    function updOrderStatus ($ID, $val) {
         //при получении оплаты
         if ($val == "Y") {
             $order = CSaleOrder::GetById($ID);
@@ -87,9 +90,9 @@
     /**
     * Переключение флага отгрузки в значение "Да" при смене статуса заказа на "Выполнен"
     */
-    AddEventHandler('sale', 'OnSaleStatusOrder', 'DeductingItem');
+    AddEventHandler('sale', 'OnSaleStatusOrder', 'deductingItem');
     
-    function DeductingItem ($ID, $val) {
+    function deductingItem ($ID, $val) {
         if ($val == "R") {
             CSaleOrder::DeductOrder($ID, "Y");    
         }
