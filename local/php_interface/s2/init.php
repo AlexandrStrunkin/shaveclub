@@ -42,10 +42,13 @@
         $user->Update($arFields["ID"], $fields);
     }
    
+   /**
+   * Разрешение доставки при смене статуса заказа на "Передан в СД" или "Возврат"
+   */
     AddEventHandler('sale', 'OnSaleStatusOrder', 'UpdatingDeducting');
     
     function UpdatingDeducting ($ID, $val) {
-        if ($val == "R") {
+        if ($val == "R" || $val == "V") {
             $arOrderNewFields = array (
                 "ALLOW_DELIVERY" => "Y"    
             );
@@ -53,6 +56,9 @@
         }
     }
     
+    /**
+    * Переключение флага оплаты заказа в значение "Да" при смене статуса заказа на "Выполнен"
+    */
     AddEventHandler('sale', 'OnSaleStatusOrder', 'UpdatingPaymentProp');
     
     function UpdatingPaymentProp ($ID, $arFields) {
@@ -78,17 +84,9 @@
         }
     }
     
-    AddEventHandler('sale', 'OnSaleStatusOrder', 'ReturnedItem');
-    
-    function ReturnedItem ($ID, $val) {
-        if ($val == "V") {
-            $arOrderNewFields = array (
-                "ALLOW_DELIVERY" => "Y"    
-            );
-            CSaleOrder::Update($ID, $arOrderNewFields);    
-        }
-    }
-    
+    /**
+    * Переключение флага отгрузки в значение "Да" при смене статуса заказа на "Выполнен"
+    */
     AddEventHandler('sale', 'OnSaleStatusOrder', 'DeductingItem');
     
     function DeductingItem ($ID, $val) {
