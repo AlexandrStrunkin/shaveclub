@@ -41,10 +41,7 @@
         );
         $user->Update($arFields["ID"], $fields);
     }
-    
-
-
-    
+   
     AddEventHandler('sale', 'OnSaleStatusOrder', 'UpdatingDeducting');
     
     function UpdatingDeducting ($ID, $val) {
