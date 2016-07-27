@@ -1,4 +1,4 @@
 <?
-	$MESS["PP_TITLE"] = "PickPoint ÑÐºÑÐ¿Ð¾Ñ€Ñ‚";
+    $MESS["PP_TITLE"] = "PickPoint ýêñïîðò";
 
 ?>

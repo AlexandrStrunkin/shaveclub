@@ -1,6 +1,6 @@
 <?
-$MESS["PP_IKN_NUMBER"] = "РРљРќ РјР°РіР°Р·РёРЅР°<br/><small>(РёРЅРґРёРІРёРґСѓР°Р»СЊРЅС‹Р№ РєР»РёРµРЅС‚СЃРєРёР№ РЅРѕРјРµСЂ, СѓРєР°Р·Р°РЅ РІ Р”РѕРіРѕРІРѕСЂРµ СЃ PickPoint)</small>";
-$MESS["PP_ENCLOSURE"] = "РЎС‚Р°РЅРґР°СЂС‚РЅРѕРµ РѕРїРёСЃР°РЅРёРµ РІР»РѕР¶РµРЅРёСЏ";
-$MESS["PP_SERVICE_TYPES_SELECTED"] = "Р”РѕРїСѓСЃС‚РёРјС‹Рµ С‚РёРїС‹ СѓСЃР»СѓРіРё:<br/><small>(СѓРєР°Р·Р°РЅС‹ РІ Р”РѕРіРѕРІРѕСЂРµ СЃ PickPoint)</small>";
-$MESS["PP_ENCLOSING_TYPES_SELECTED"] = "Р”РѕРїСѓСЃС‚РёРјС‹Рµ РІРёРґС‹ РїСЂРёРµРјР°:<br/><small>(СѓРєР°Р·Р°РЅС‹ РІ Р”РѕРіРѕРІРѕСЂРµ СЃ PickPoint)</small>";
+$MESS["PP_IKN_NUMBER"] = "ИКН магазина<br/><small>(индивидуальный клиентский номер, указан в Договоре с PickPoint)</small>";
+$MESS["PP_ENCLOSURE"] = "Стандартное описание вложения";
+$MESS["PP_SERVICE_TYPES_SELECTED"] = "Допустимые типы услуги:<br/><small>(указаны в Договоре с PickPoint)</small>";
+$MESS["PP_ENCLOSING_TYPES_SELECTED"] = "Допустимые виды приема:<br/><small>(указаны в Договоре с PickPoint)</small>";
 ?>
