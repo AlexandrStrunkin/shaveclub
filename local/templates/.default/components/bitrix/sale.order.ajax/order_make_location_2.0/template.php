@@ -60,7 +60,7 @@
         if ($("#discountVal").val()=='100%') {
             $('#ID_PAY_SYSTEM_ID_17').click();
         }
-        
+
         $('.submitCoupon').live("click", function(e){
             e.preventDefault();
             var coupon = $(".couponCode")[1].value;

@@ -1,24 +1,24 @@
 <?
     require_once ($_SERVER['DOCUMENT_ROOT'] . "/bitrix/modules/main/include/prolog_before.php");
 ?>
-<? //arshow($_POST['coupon']);
+<?
     if ($_POST["coupon"] == "") {
         $couponStatus = CCatalogDiscountCoupon::ClearCoupon();
         $couponsCleaning = "Y";
-        $strCouponStatus = "Y";    
+        $strCouponStatus = "Y";
     } else {
         $couponStatus = CCatalogDiscountCoupon::SetCoupon($_POST['coupon']);
         $couponsCleaning = "N";
-    } 
-    
+    }
+
     if ($couponStatus==true) {
         $strCouponStatus="Y";
     } else {
         $strCouponStatus="N";
     };
-    
+
 ?>
-<?  
+<?
     $arID = array();
     $arBasketItems = array();
     $dbBasketItems = CSaleBasket::GetList(array("NAME" => "ASC", "ID" => "ASC"), array("FUSER_ID" => CSaleBasket::GetBasketUserID(), "LID" => SITE_ID, "ORDER_ID" => "NULL"), false, false, array());
@@ -27,21 +27,18 @@
         $res = CSaleBasket::GetByID($arItems["ID"]);
         $arBasketItems[] = $res;
     }
-    //arshow($arBasketItems);
-    
-    //ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ ÐºÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸Ð¹ Ðº Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ð¾Ð½Ð½Ð¾Ð¼Ñƒ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸ÑŽ Ð¿Ð¾ ÐºÑƒÐ¿Ð¾Ð½Ñƒ
-    $arFilter = array('COUPON' => $arBasketItems[0]['DISCOUNT_COUPON']); 
-    $dbCoupon = CCatalogDiscountCoupon::GetList (array(), $arFilter); 
-    if($arCoupon = $dbCoupon->Fetch()) 
-    { 
-        $couponDescription=$arCoupon['DESCRIPTION'];
-    }
+    //Ïîëó÷àåì êîììåíòàðèé ê èíôîðìàöèîííîìó ñîîáùåíèþ ïî êóïîíó
+    $arFilter = array('COUPON' => $arBasketItems[0]['DISCOUNT_COUPON']);
+    $dbCoupon = CCatalogDiscountCoupon::GetList (array(), $arFilter);
+    if($arCoupon = $dbCoupon->Fetch()) {
 
-    // ÐŸÐµÑ‡Ð°Ñ‚Ð°ÐµÐ¼ Ð¼Ð°ÑÑÐ¸Ð², ÑÐ¾Ð´ÐµÑ€Ð¶Ð°Ñ‰Ð¸Ð¹ Ð°ÐºÑ‚ÑƒÐ°Ð»ÑŒÐ½ÑƒÑŽ Ð½Ð° Ñ‚ÐµÐºÑƒÑ‰Ð¸Ð¹ Ð¼Ð¾Ð¼ÐµÐ½Ñ‚ ÐºÐ¾Ñ€Ð·Ð¸Ð½Ñƒ
+        $couponDescription = $arCoupon['DESCRIPTION'];
+    }
+    // Ïå÷àòàåì ìàññèâ, ñîäåðæàùèé àêòóàëüíóþ íà òåêóùèé ìîìåíò êîðçèíó
     //return json_encode($arBasketItems);
 
   //  $array = array($arBasketItems[0]['DISCOUNT_VALUE'],$arBasketItems[0]['PRICE'], $couponStatus,  $couponDescription);
 //    echo json_encode($array);
-    $string = $arBasketItems[2]['DISCOUNT_VALUE']."#".$arBasketItems[2]['PRICE']."#".$strCouponStatus."#".$couponDescription."#".$couponsCleaning; 
+    $string = $arBasketItems[0]['DISCOUNT_VALUE']."#".($arBasketItems[2]['PRICE'] * 1)."#".$strCouponStatus."#".$couponDescription."#".$couponsCleaning;
     echo ($string);
 ?>
