@@ -1,19 +1,19 @@
 <?
-	$MESS["PP_USER_ID"] = "ID Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ";
-	$MESS["PP_FIO"] = "Ð¤Ð˜Ðž Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ (3 Ð¿Ð¾Ð»Ñ)";
-	$MESS["PP_LOGIN"] = "Ð›Ð¾Ð³Ð¸Ð½";
-	$MESS["PP_NAME"] = "Ð˜Ð¼Ñ";
-	$MESS["PP_SECOND_NAME"] = "ÐžÑ‚Ñ‡ÐµÑÑ‚Ð²Ð¾";
-	$MESS["PP_LAST_NAME"] = "Ð¤Ð°Ð¼Ð¸Ð»Ð¸Ñ";
+	$MESS["PP_USER_ID"] = "ID ïîëüçîâàòåëÿ";
+	$MESS["PP_FIO"] = "ÔÈÎ ïîëüçîâàòåëÿ (3 ïîëÿ)";
+	$MESS["PP_LOGIN"] = "Ëîãèí";
+	$MESS["PP_NAME"] = "Èìÿ";
+	$MESS["PP_SECOND_NAME"] = "Îò÷åñòâî";
+	$MESS["PP_LAST_NAME"] = "Ôàìèëèÿ";
 	$MESS["PP_EMAIL"] = "Email";
-	$MESS["PP_PERSONAL_MOBILE"] = "ÐœÐ¾Ð±Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½";
-	$MESS["PP_WORK_PHONE"] = "Ð Ð°Ð±Ð¾Ñ‡Ð¸Ð¹ Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½";
-	$MESS["PP_ORDER_ID"] = "ID Ð·Ð°ÐºÐ°Ð·Ð°";
-	$MESS["PP_ORDER_USER_ID"] = "ID Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ";
-	$MESS["PP_PERSONAL_PHONE"] = "Ð›Ð¸Ñ‡Ð½Ñ‹Ð¹ Ñ‚ÐµÐ»ÐµÑ„Ð¾Ð½";
-	
-	$MESS["PP_ANOTHER"] = "Ð”Ñ€ÑƒÐ³Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ";
-	$MESS["PP_USER"] = "ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ";
-	$MESS["PP_ORDER"] = "ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€ Ð·Ð°ÐºÐ°Ð·Ð°";
-	$MESS["PP_PROPERTY"] = "Ð¡Ð²Ð¾Ð¹ÑÑ‚Ð²Ð¾ Ð·Ð°ÐºÐ°Ð·Ð°";
+	$MESS["PP_PERSONAL_MOBILE"] = "Ìîáèëüíûé òåëåôîí";
+	$MESS["PP_WORK_PHONE"] = "Ðàáî÷èé òåëåôîí";
+	$MESS["PP_ORDER_ID"] = "ID çàêàçà";
+	$MESS["PP_ORDER_USER_ID"] = "ID ïîëüçîâàòåëÿ";
+	$MESS["PP_PERSONAL_PHONE"] = "Ëè÷íûé òåëåôîí";
+
+	$MESS["PP_ANOTHER"] = "Äðóãîå çíà÷åíèå";
+	$MESS["PP_USER"] = "Ïàðàìåòð ïîëüçîâàòåëÿ";
+	$MESS["PP_ORDER"] = "Ïàðàìåòð çàêàçà";
+	$MESS["PP_PROPERTY"] = "Ñâîéñòâî çàêàçà";
 ?>
