@@ -248,6 +248,7 @@
 
                         <?
                         } // endforeach
+
                     }
                     else // stores and courier
                     {
@@ -314,6 +315,9 @@
                     </div>
 
                     <?
+                    }
+                    if($arDelivery["ID"] == DELIVERY_ID_POST_RUSSIA){
+                        include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/related_props.php");
                     }
                 }
             }
