@@ -399,7 +399,7 @@
 /********svoy plan************/
 .svoy-plan-title  {
     float: none;
-    padding: 0 0 60px;
+    padding: 0 0 20px;
 }
 .svoy-plan-ul .title {
     color: #807c73;
@@ -440,7 +440,7 @@
     background: #fca713;
 }
 .svoy-plan-ul li {
-    height: 160px;
+    height: 150px;
 }
 .sum-container {
     height: 50px;
@@ -508,17 +508,17 @@
 }
 .calc-shaving-stock {
     /*padding-bottom: 90px;*/
-    padding-bottom: 25px;
+    padding-bottom: 10px;
 }
 
 .calc-shaving-stock .quest {
     font: 15px/25px Arial, sans-serif;
     color: #fca713;
-    padding: 20px 50px 20px 0;
+    padding: 15px 50px 15px 0;
     display: inline-block;
     cursor: pointer;
     text-decoration: underline;
-    background: url(/images/inside/quest.png) no-repeat 100% 20px;
+    background: url(/images/inside/quest.png) no-repeat 100% 15px;
 }
 .calc-shaving-stock .quest:hover {
     text-decoration: none;
@@ -590,8 +590,8 @@
     /*margin-right: 150px;*/
 
     text-align: left;
-    padding-top: 110px !important;
-    padding-bottom: 100px !important;
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
 }
 .gen-sum-block .gen-sum {
     font: bold 30px/1 'PT Serif', sans-serif;
