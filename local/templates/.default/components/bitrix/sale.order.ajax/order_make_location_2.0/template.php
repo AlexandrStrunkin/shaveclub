@@ -271,7 +271,7 @@
                         $('.finalSumYellow').html(parseInt($('.finalSumYellow').text())+finalPrice+' Р');
                     }
                     // проверка поля индекса
-                    if($('#ORDER_PROP_4').val('')){
+                    if($('#ORDER_PROP_4').val()){
                         if (!$('#ORDER_PROP_4').siblings("span").hasClass("error")) {
                             $('#ORDER_PROP_4').parent().append("<span class='error'>Заполните поле '" + $('#ORDER_PROP_4').attr("placeholder") + "'! <span>!</span></span>");
                         }
