@@ -3,6 +3,8 @@
 
     define("DELIVERY_ID_PICKPOINT", 41);
     define("PAY_SYSTEM_ELECTRONIC_PAYMENT", 48);
+    define("DELIVERY_ID_POST_RUSSIA", 8);
+    define("DELIVERY_ID_POST_RUSSIA_NULL", 56);
 
 
     //склонение слова "мес€ц"

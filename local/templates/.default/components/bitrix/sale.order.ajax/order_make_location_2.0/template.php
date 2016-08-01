@@ -54,13 +54,14 @@
                 $(this).children().children(".bx-ui-sls-input-block").removeClass("errorCity"); }
         })
 
+
     })
 
     $(document).ready(function(){
         if ($("#discountVal").val()=='100%') {
             $('#ID_PAY_SYSTEM_ID_17').click();
         }
-        
+
         $('.submitCoupon').live("click", function(e){
             e.preventDefault();
             var coupon = $(".couponCode")[1].value;
@@ -79,8 +80,6 @@
             })
         })
     });
-
-
 
     //валидация формы заказа
     function checkFormData() {
@@ -271,6 +270,13 @@
                         $('.tableSum').html(parseInt($('.tableSum').text())+finalPrice+' Р');
                         $('.finalSumYellow').html(parseInt($('.finalSumYellow').text())+finalPrice+' Р');
                     }
+                    // проверка поля индекса
+                    if($('#ORDER_PROP_4').val()){
+                        if (!$('#ORDER_PROP_4').siblings("span").hasClass("error")) {
+                            $('#ORDER_PROP_4').parent().append("<span class='error'>Заполните поле '" + $('#ORDER_PROP_4').attr("placeholder") + "'! <span>!</span></span>");
+                        }
+                    }
+
                 }
 
 
@@ -365,6 +371,7 @@
                     ))?>);
 
 
+
                 }
 
                 function SetContact(profileId)
@@ -417,7 +424,6 @@
                                 else
                                 {
                                     include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/delivery.php");
-                                    include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/related_props.php");
                                     include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/paysystem.php");
                                 }
 
@@ -500,4 +506,5 @@
 $(function(){
     $("input[name=DELIVERY_ID]:checked").click();
 })
+
 </script>

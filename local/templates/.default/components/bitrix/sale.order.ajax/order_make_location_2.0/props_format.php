@@ -143,7 +143,12 @@
 
                     <label >
 
-                        <input type="text"
+                        <input
+                        <?if($arProperties["CODE"] == 'ZIP'){?>
+                            type="number"
+                        <?} else {?>
+                            type="text"
+                        <?}?>
                         placeholder="<?=$arProperties["NAME"]?>"
                         class="<?if($arProperties["CODE"] != "KOMMENT"){?>input<?}?> koment" size="<?=$arProperties["SIZE1"]?>"
                         value="<?=$propValue?>"
