@@ -77,7 +77,9 @@ $APPLICATION->SetTitle("Заказы");
 		"SHOW_DELIVERY_INFO_NAME" => "Y",
 		"SKIP_USELESS_BLOCK" => "Y",
 		"SERVICES_IMAGES_SCALING" => "standard",
-		"USE_YM_GOALS" => "N"
+		"USE_YM_GOALS" => "N",
+		"COMPOSITE_FRAME_MODE" => "A",
+		"COMPOSITE_FRAME_TYPE" => "AUTO"
 	),
 	false
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

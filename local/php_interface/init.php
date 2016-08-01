@@ -54,7 +54,7 @@
         {
 
             if ($arFields["ORDER_ID"] > 0) {
-                if ($_SERVER["HTTP_HOST"]=="shaveclub.ru"){
+               /*  if ($_SERVER["HTTP_HOST"]=="shaveclub.ru"){
                     //общая инфо о зказе
                     $order = CSaleOrder::GetById($arFields["ORDER_ID"]);
 
@@ -99,12 +99,12 @@
                     $arFields["ZIP"] = $orderProps["ZIP"];
                     $arFields["ADDRESS"] = $location["COUNTRY_NAME"].", ".$location["CITY_NAME"].", ".$orderProps["ADDRESS"];
 
-                    $arFields["ORDER_LIST"] = $basketItem["NAME"].' - '.round($basketItem["QUANTITY"]).' шт.: '.round($basketItem["PRICE"]).' руб.';
+                    //$arFields["ORDER_LIST"] = $basketItem["NAME"].' - '.round($basketItem["QUANTITY"]).' шт.: '.round($basketItem["PRICE"]).' руб.';
                     if ($arFields['DELIVERY_PRICE']=='Бесплатно') {
                         $arFields['DELIVERY_PRICE']=0;
                     }
 
-                }
+                } */
             }
         }
     }
