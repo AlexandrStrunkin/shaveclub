@@ -582,3 +582,17 @@ div#order_form_content .errortext {
 #sale_order_props .hidden{
     display:none;
 }
+.contacts-block .input-container label input{
+    display: block
+}
+.inside-page .contacts-block label .error{
+    top: -30px;
+}
+#sale_order_props_excl{
+    height: 85px;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin:0;
+}
