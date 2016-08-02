@@ -2,13 +2,9 @@
 $APPLICATION->SetTitle("Забыли пароль");?>
 <?
 	if(!$USER->IsAuthorized()){
-        $APPLICATION->IncludeComponent("bitrix:system.auth.forgotpasswd", "forgot-pass", Array(
-	
-	),
-	false
-);
-    }
-	elseif( !empty( $_REQUEST["backurl"] ) ){ LocalRedirect( $_REQUEST["backurl"] );}
+        $APPLICATION->IncludeComponent("bitrix:system.auth.forgotpasswd", "forgot-pass", Array(), false);
+    } elseif ( !empty( $_REQUEST["backurl"] ) ){
+        LocalRedirect( $_REQUEST["backurl"] );}
 	else{ LocalRedirect(SITE_DIR.'personal/');}
 ?>
 

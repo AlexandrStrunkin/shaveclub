@@ -15,7 +15,7 @@ if(isset($APPLICATION->arAuthResult))
 	?>
 
 		<div class="form-block">
-			<form name="bform" method="post" target="_top" class="bf" action="<?=SITE_DIR?>auth/forgot-password/">
+			<form name="bform" method="post" target="_top" class="bf" action="<?=$arResult["AUTH_URL"]?>">
 				<?if (strlen($arResult["BACKURL"]) > 0){?><input type="hidden" name="backurl" value="<?=$arResult["BACKURL"]?>" /><?}?>
 				<input type="hidden" name="AUTH_FORM" value="Y">
 				<input type="hidden" name="TYPE" value="SEND_PWD">
