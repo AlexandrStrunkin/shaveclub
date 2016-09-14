@@ -73,7 +73,11 @@
                             </tr>
                             <tr>
                                 <td>адрес доставки</td>
-                                <td><?= $propOrder[5]['VALUE'] ?></td>
+                                <?if($propOrder[4]['CODE'] == "LOCATION"){?>
+                                    <td><?= $propOrder[5]['VALUE'] ?></td>
+                                <?}else{?>
+                                    <td><?= $propOrder[4]['VALUE'] ?></td>
+                                <?}?>
                             </tr>
                             <tr>
                                 <td>телефон</td>
@@ -95,8 +99,8 @@
                             <tr>
                                 <td>план брить€</td>
                                 <? //ѕроверка выбран созданный план и создан свой план брить€
-                                    if (count($arBasketItems) > 2) {
-                                        $shavePlan = $arBasketItems[1]["NAME"];
+                                    if (count($arBasketItems)==1) {
+                                        $shavePlan = $arBasketItems[0]["NAME"];
                                         //ѕолучаем количество кассет дл€ выбранного плана
                                         $casseteQuantity = $casseteProp[0];
                                         $machineQuantity = 1;
