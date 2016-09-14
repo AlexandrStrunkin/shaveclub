@@ -139,7 +139,6 @@
                                     </div>
 
                                     <div class="bx_block r3x1">
-
                                         <input type="text"
                                         <?if($arProperties["CODE"] == "ZIP"){?>
                                             minlength="6"

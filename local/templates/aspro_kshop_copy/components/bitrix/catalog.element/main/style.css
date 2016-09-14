@@ -48,3 +48,6 @@
     top: 409px;
     width: 310px;   
  }
+ .catalog_detail .basket_button.one_click {
+     display: none;
+ }

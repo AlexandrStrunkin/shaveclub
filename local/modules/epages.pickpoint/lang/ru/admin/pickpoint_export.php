@@ -1,20 +1,20 @@
 <?
-	$MESS["PP_EXPORT"] = "Ð­ÐºÑÐ¿Ð¾Ñ€Ñ‚ Ð·Ð°ÐºÐ°Ð·Ð¾Ð²";
-	$MESS["PP_SAVE"] = "Ð¡Ð¾Ñ…Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ";
-	$MESS["PP_ORDER_NUMBER"] = "â„– Ð·Ð°ÐºÐ°Ð·Ð°";
-	$MESS["PP_PAYED_BY_PP"] = "ÐžÐ¿Ð»Ð°Ñ‚Ð° Ñ‡ÐµÑ€ÐµÐ· PickPoint";
-	$MESS["PP_ADDRESS"] = "ÐŸÑƒÐ½ÐºÑ‚ Ð²Ñ‹Ð´Ð°Ñ‡Ð¸";
-	$MESS["PP_SERVICE_TYPE"] = "Ð¢Ð¸Ð¿ ÑƒÑÐ»ÑƒÐ³Ð¸";
-	$MESS["PP_RECEPTION_TYPE"] = "Ð’Ð¸Ð´ Ð¿Ñ€Ð¸ÐµÐ¼Ð°";
-	$MESS["PP_SIZE"] = "Ð“Ð°Ð±Ð°Ñ€Ð¸Ñ‚Ñ‹";
-	$MESS["PP_FROM"] = "Ð¾Ñ‚";
-	$MESS["PP_NO"] = "Ð½ÐµÑ‚";
-	$MESS["PP_SUMM"] = "Ð¡ÑƒÐ¼Ð¼Ð°";
-	$MESS["PP_N"] = "â„–";
-	$MESS["NO_ORDER"] = "ÐÐµ Ð½Ð°Ð¹Ð´ÐµÐ½ Ð·Ð°ÐºÐ°Ð· â„–#ORDER_ID#";
-	$MESS["PP_PRICE_ERROR"] = "Ð—Ð°ÐºÐ°Ð· â„–#ORDER_ID#: Ð¾Ð¿Ð»Ð°Ñ‚Ð° Ñ‡ÐµÑ€ÐµÐ· PickPoint Ð´Ð¾Ð»Ð¶Ð½Ð° Ð±Ñ‹Ñ‚ÑŒ Ð±Ð¾Ð»ÐµÐµ 0 Ð¸ Ð½Ðµ Ð±Ð¾Ð»ÐµÐµ #PRICE# Ñ€ÑƒÐ±.";
-	$MESS["PP_NEW_INVOICE"] = "ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÑÐ¾Ð·Ð´Ð°Ð½Ð¾";
-	$MESS["PP_SAVE_SETTINGS"] = "ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½Ñ‹";
-	$MESS["PP_INVOICE_ID"] = "ÐÐ¾Ð¼ÐµÑ€ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð² PickPoint";
+    $MESS["PP_EXPORT"] = "Ýêñïîðò çàêàçîâ";
+    $MESS["PP_SAVE"] = "Ñîõðàíèòü";
+    $MESS["PP_ORDER_NUMBER"] = "¹ çàêàçà";
+    $MESS["PP_PAYED_BY_PP"] = "Îïëàòà ÷åðåç PickPoint";
+    $MESS["PP_ADDRESS"] = "Ïóíêò âûäà÷è";
+    $MESS["PP_SERVICE_TYPE"] = "Òèï óñëóãè";
+    $MESS["PP_RECEPTION_TYPE"] = "Âèä ïðèåìà";
+    $MESS["PP_SIZE"] = "Ãàáàðèòû";
+    $MESS["PP_FROM"] = "îò";
+    $MESS["PP_NO"] = "íåò";
+    $MESS["PP_SUMM"] = "Ñóììà";
+    $MESS["PP_N"] = "¹";
+    $MESS["NO_ORDER"] = "Íå íàéäåí çàêàç ¹#ORDER_ID#";
+    $MESS["PP_PRICE_ERROR"] = "Çàêàç ¹#ORDER_ID#: îïëàòà ÷åðåç PickPoint äîëæíà áûòü áîëåå 0 è íå áîëåå #PRICE# ðóá.";
+    $MESS["PP_NEW_INVOICE"] = "Îòïðàâëåíèå ñîçäàíî";
+    $MESS["PP_SAVE_SETTINGS"] = "Íàñòðîéêè ñîõðàíåíû";
+    $MESS["PP_INVOICE_ID"] = "Íîìåð îòïðàâëåíèÿ â PickPoint";
 
 ?>
