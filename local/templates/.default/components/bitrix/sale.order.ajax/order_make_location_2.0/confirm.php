@@ -99,8 +99,9 @@
                             <tr>
                                 <td>план бритья</td>
                                 <? //Проверка выбран созданный план и создан свой план бритья
-                                    if (count($arBasketItems)==1) {
-                                        $shavePlan = $arBasketItems[0]["NAME"];
+                                    if (count($arBasketItems) > 2) {
+                                        $arPlan = end($arBasketItems);
+                                        $shavePlan = $arPlan["NAME"];
                                         //Получаем количество кассет для выбранного плана
                                         $casseteQuantity = $casseteProp[0];
                                         $machineQuantity = 1;
