@@ -19,17 +19,17 @@
         echo "</pre>";
     }
 
-    //Создали событие
+    //РЎРѕР·РґР°Р»Рё СЃРѕР±С‹С‚РёРµ
     AddEventHandler("iblock", "OnAfterIBlockElementAdd", Array("AfterElementAdd", "AfterElementAddSendMail"));
     class AfterElementAdd
     {
         function AfterElementAddSendMail(&$arFields)
         {
-            //Проверили номер инфоблока
+            //РџСЂРѕРІРµСЂРёР»Рё РЅРѕРјРµСЂ РёРЅС„РѕР±Р»РѕРєР°
             if($arFields["IBLOCK_ID"] == 24)
             {
 
-                //Выбрали нужные свойства
+                //Р’С‹Р±СЂР°Р»Рё РЅСѓР¶РЅС‹Рµ СЃРІРѕР№СЃС‚РІР°
                 $arEventFields = array(
                     "AUTHOR"         => $arFields["NAME"],
                     "AUTHOR_EMAIL"        => $arFields["PROPERTY_VALUES"]["168"],
@@ -37,14 +37,14 @@
                     "FEED_ID" => $arFields["ID"]
                 );
 
-                //Отправили нужное письмо с вышеуказанными данными
+                //РћС‚РїСЂР°РІРёР»Рё РЅСѓР¶РЅРѕРµ РїРёСЃСЊРјРѕ СЃ РІС‹С€РµСѓРєР°Р·Р°РЅРЅС‹РјРё РґР°РЅРЅС‹РјРё
                 CEvent::Send("FEEDBACK_FORM", SITE_ID, $arEventFields);
             }
 
 
         }
     }
-    //добавляем в письмо о заказе дополнительную информацию
+    //РґРѕР±Р°РІР»СЏРµРј РІ РїРёСЃСЊРјРѕ Рѕ Р·Р°РєР°Р·Рµ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ
     AddEventHandler('main', 'OnBeforeEventSend', Array("newOrderAdmin", "orderDataChange"));
 
     class newOrderAdmin
@@ -54,12 +54,12 @@
         {
 
             if ($arFields["ORDER_ID"] > 0) {
-               /*  if ($_SERVER["HTTP_HOST"]=="shaveclub.ru"){
-                    //общая инфо о зказе
+                if ($_SERVER["HTTP_HOST"]=="shaveclub.ru"){
+                    //РѕР±С‰Р°СЏ РёРЅС„Рѕ Рѕ Р·РєР°Р·Рµ
                     $order = CSaleOrder::GetById($arFields["ORDER_ID"]);
 
 
-                    //служба доставки
+                    //СЃР»СѓР¶Р±Р° РґРѕСЃС‚Р°РІРєРё
                     //$delivery = CSaleDelivery::GetById($order["DELIVERY_ID"]);
                     if ($order["DELIVERY_ID"]=='pickpoint:postamat') {
                         $order["DELIVERY_ID"]=37;
@@ -70,9 +70,9 @@
                     }
 
 
-                    //платежная система
+                    //РїР»Р°С‚РµР¶РЅР°СЏ СЃРёСЃС‚РµРјР°
                     $paysystem = CSalePaysystem::GetById($order["PAY_SYSTEM_ID"]);
-                    //убираем лишние символы в цене
+                    //СѓР±РёСЂР°РµРј Р»РёС€РЅРёРµ СЃРёРјРІРѕР»С‹ РІ С†РµРЅРµ
                     $pattern = "/(\D)/";
                     $price = preg_replace($pattern,'',$arFields["PRICE"]);
                     $arFields["PAYSYSTEM"] = $paysystem['NAME'];
@@ -80,16 +80,16 @@
 
                     $arFields["PRICE"] = $price;
 
-                    //свойства заказа
+                    //СЃРІРѕР№СЃС‚РІР° Р·Р°РєР°Р·Р°
                     $orderProps = array();
                     $db_props = CSaleOrderPropsValue::GetList(array(),array("ORDER_ID" => $order["ID"]));
                     while($orderProp = $db_props->Fetch()) {
                         $orderProps[$orderProp["CODE"]] = $orderProp["VALUE"];
                     }
-                    //местоположение
+                    //РјРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёРµ
                     $location = CSaleLocation::GetByID($orderProps["LOCATION"]);
 
-                    //состав заказа
+                    //СЃРѕСЃС‚Р°РІ Р·Р°РєР°Р·Р°
                     $basket =  CSaleBasket::GetList(array(), array("ORDER_ID"=>$order["ID"]));
                     $basketItem = $basket->Fetch();
                     $arIblockItem = CIBlockElement::GetList(array(), array("ID"=>$basketItem["PRODUCT_ID"]))->Fetch();
@@ -99,12 +99,12 @@
                     $arFields["ZIP"] = $orderProps["ZIP"];
                     $arFields["ADDRESS"] = $location["COUNTRY_NAME"].", ".$location["CITY_NAME"].", ".$orderProps["ADDRESS"];
 
-                    //$arFields["ORDER_LIST"] = $basketItem["NAME"].' - '.round($basketItem["QUANTITY"]).' шт.: '.round($basketItem["PRICE"]).' руб.';
-                    if ($arFields['DELIVERY_PRICE']=='Бесплатно') {
+                    $arFields["ORDER_LIST"] = $basketItem["NAME"].' - '.round($basketItem["QUANTITY"]).' С€С‚.: '.round($basketItem["PRICE"]).' СЂСѓР±.';
+                    if ($arFields['DELIVERY_PRICE']=='Р‘РµСЃРїР»Р°С‚РЅРѕ') {
                         $arFields['DELIVERY_PRICE']=0;
                     }
 
-                } */
+                }
             }
         }
     }
@@ -113,6 +113,113 @@
     $site = SITE_ID;
 
     if($site == 's2' || $site == 'ru'){
+            AddEventHandler("forum", "onAfterMessageAdd", "notifyNewItemFeedback");
+    function notifyNewItemFeedback($ID, $arFields) {
+        $res = CIBlockElement::GetList(
+            array(),
+            array(
+                'IBLOCK_ID' => 9,
+                'PROPERTY_FORUM_TOPIC_ID' => $arFields["TOPIC_ID"]
+            ),
+            false,
+            false,
+            array('*', 'IBLOCK_ID', 'ID', 'NAME', 'PROPERTY_FORUM_TOPIC_ID', 'CODE', 'SECTION', 'SECTIONS')
+        );
+        if($ar_res = $res->GetNext()) {
+            $TYPE_MAIL_EVENT = 'NEW_ITEM_REVIEW';
+            $arMail = array(
+                'ITEM_NAME' => $ar_res['NAME'],
+                'AUTHOR_NAME' => $arFields['AUTHOR_NAME'],
+                'POST_DATE' => date('d.m.Y H:i:s'),
+                'POST_MESSAGE' => $arFields['POST_MESSAGE'],
+                'PATH2ITEM' => '/catalog/' . $ar_res["IBLOCK_SECTION_ID"] . '/' . $ar_res['ID'],
+            );
+            $ID_MAIL_EVENT = "NEW_ITEM_REVIEW";
+            print_r($arFields);
+            $ok = CEvent::Send($TYPE_MAIL_EVENT, "s2", $arMail,"N");
+        }
+    }
+
+    AddEventHandler("main", "OnAfterUserAdd", "OnAfterUserAddHandler");
+
+    function OnAfterUserAddHandler(&$arFields) {
+        $user = new CUser;
+        $fields = Array(
+            "UF_SITE" => 23,
+        );
+        $user->Update($arFields["ID"], $fields);
+    }
+   
+   /**
+   * Разрешение доставки при смене статуса заказа на "Передан в СД" или "Возврат"
+   */
+    AddEventHandler('sale', 'OnSaleStatusOrder', 'updatingDeducting');
+    
+    function updatingDeducting ($ID, $val) {
+        if ($val == "R" || $val == "V") {
+            $ar_order_new_fields = array (
+                "ALLOW_DELIVERY" => "Y"    
+            );
+            CSaleOrder::Update($ID, $ar_order_new_fields);    
+        }
+    }
+    
+    /**
+    * Переключение флага оплаты заказа в значение "Да" при смене статуса заказа на "Выполнен"
+    */
+    AddEventHandler('sale', 'OnSaleStatusOrder', 'updatingPaymentProp');
+    
+    function updatingPaymentProp ($ID, $ar_fields) {
+        if ($ar_fields["STATUS_ID"] == "F") {
+            $order = CSaleOrder::GetById($ID);
+            //если флаг оплаты не стоит - ставим
+            if ($order["PAYED"] != "Y") {
+                CSaleOrder::PayOrder($ID, "Y", false, false, 0);
+            }    
+        }
+    }
+    
+    /**
+    * обработка статусов заказа при получении оплаты
+    */
+    AddEventHandler('sale', 'OnSalePayOrder', "updOrderStatus");
+    
+    function updOrderStatus ($ID, $val) {
+        //при получении оплаты
+        if ($val == "Y") {
+            $order = CSaleOrder::GetById($ID);
+            //если текущий статус закана - не "Выполнен", ставим статус "новый, оплачен"
+            if ($order["STATUS_ID"] != "F") {
+                CSaleOrder::StatusOrder($ID, "P");
+            }
+        }
+    }
+    
+    /**
+    * Переключение флага отгрузки в значение "Да" при смене статуса заказа на "Выполнен"
+    */
+    AddEventHandler('sale', 'OnSaleStatusOrder', 'deductingItem');
+    
+    function deductingItem ($ID, $val) {
+        if ($val == "R") {
+            mail('raulschokino@yandex.ru', '123', '456');
+            CSaleOrder::DeductOrder($ID, "Y");
+            
+            \Bitrix\Main\Loader::includeModule('sale'); 
+
+            $order = \Bitrix\Sale\Order::load($ID); 
+
+            /** @var \Bitrix\Sale\ShipmentCollection $shipmentCollection */ 
+            $shipmentCollection = $order->getShipmentCollection(); 
+            /** @var \Bitrix\Sale\Shipment $shipment */ 
+            foreach ($shipmentCollection as $shipment) { 
+
+                echo $shipment->setStoreId("1"); 
+            } 
+
+            $order->save();    
+        }
+    }
     AddEventHandler('main', 'OnBeforeEventSend', 'SentMail');
 
     function SentMail(&$arFields, &$arTemplate) {
@@ -137,7 +244,7 @@
         if ($arOrder_new["quick_order"] && $arOrder_new["quick_order"] != "Y") {
             $ORDER_ID = $arFields["ORDER_ID"];
             $arOrderProps = array();
-            $order_props = CSaleOrderPropsValue::GetOrderProps($ORDER_ID);//Свойства заказа
+            $order_props = CSaleOrderPropsValue::GetOrderProps($ORDER_ID);//РЎРІРѕР№СЃС‚РІР° Р·Р°РєР°Р·Р°
             while ($arProps = $order_props->Fetch()) {
                 if (!empty($arProps["CODE"])){
                     $arOrderProps[$arProps["CODE"]] = $arProps;
@@ -162,7 +269,7 @@
                 false
             );
             $arOrder = $dbOrder -> Fetch();
-            //email из настроек юзера
+            //email РёР· РЅР°СЃС‚СЂРѕРµРє СЋР·РµСЂР°
 
             $arFields["EMAIL"] = $arOrder_new["email"];
             $arFields["ORDER_PRICE"] = round($arOrder["PRICE"], 0);
@@ -187,7 +294,7 @@
             $arFields["DELIVERY_NAME"] = $DELIVERY_NAME.'<br>'.$arOrder_new["pickup"];
             $arFields["DELIVERY_PRICE"] = round($arOrder["PRICE_DELIVERY"], 0);
             if (IntVal($arFields["DELIVERY_PRICE"]) <= 0) {
-                $arFields["DELIVERY_PRICE"] = 'Бесплатно';
+                $arFields["DELIVERY_PRICE"] = 'Р‘РµСЃРїР»Р°С‚РЅРѕ';
             }
 
             if (IntVal($arOrder["PAY_SYSTEM_ID"]) > 0) {
@@ -256,7 +363,7 @@
                     $arFile = CFile::ResizeImageGet($arPictures[$arBasket["PRODUCT_ID"]], array('width' => 130, 'height' => 200), BX_RESIZE_IMAGE_PROPORTIONAL, true);
                     $ItemPrice = round($arBasket["PRICE"], 0) . '<span></span>';
                     if ($arBasket["QUANTITY"] > 1) {
-                        $ItemPrice = round($arBasket["QUANTITY"] * $arBasket["PRICE"], 0) . ' (' . round($arBasket["PRICE"], 0) . '/шт.)';
+                        $ItemPrice = round($arBasket["QUANTITY"] * $arBasket["PRICE"], 0) . ' (' . round($arBasket["PRICE"], 0) . '/С€С‚.)';
                     }
 
                     $BasketListStr .= "
@@ -273,7 +380,7 @@
                     </td>
                     <td width=\"100px\">
                     <div class=\"count\" style=\"margin-top: 40px; font-family: HelveticaBold; font-size: 16px !important;\">
-                    <span style=\"font-family: HelveticaBold; font-size: 16px !important;\">".round($arBasket["QUANTITY"], 0)." шт.</span>
+                    <span style=\"font-family: HelveticaBold; font-size: 16px !important;\">".round($arBasket["QUANTITY"], 0)." С€С‚.</span>
                     </div>
                     </td>
                     <td width=\"230px\">
@@ -295,7 +402,7 @@
         }
     }
     }
-    //для каждого сайта init.php свой и находится в папке, соответствующей ID сайта (s1 или s2) и весь уникальный для сайта код писать туда
+    //РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃР°Р№С‚Р° init.php СЃРІРѕР№ Рё РЅР°С…РѕРґРёС‚СЃСЏ РІ РїР°РїРєРµ, СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РµР№ ID СЃР°Р№С‚Р° (s1 РёР»Рё s2) Рё РІРµСЃСЊ СѓРЅРёРєР°Р»СЊРЅС‹Р№ РґР»СЏ СЃР°Р№С‚Р° РєРѕРґ РїРёСЃР°С‚СЊ С‚СѓРґР°
     include ($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/".$site."/init.php");
     include ($_SERVER["DOCUMENT_ROOT"]."/local/php_interface/include/.config.php");
 
