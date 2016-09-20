@@ -94,7 +94,7 @@
     
     function deductingItem ($ID, $val) {
         if ($val == "R") {
-            mail('raulschokino@yandex.ru', '123', '456');
+    
             CSaleOrder::DeductOrder($ID, "Y");
             
             \Bitrix\Main\Loader::includeModule('sale'); 
