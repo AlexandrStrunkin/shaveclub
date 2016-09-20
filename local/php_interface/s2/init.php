@@ -94,6 +94,7 @@
     
     function deductingItem ($ID, $val) {
         if ($val == "R") {
+    
             CSaleOrder::DeductOrder($ID, "Y");
             
             \Bitrix\Main\Loader::includeModule('sale'); 
