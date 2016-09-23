@@ -104,7 +104,6 @@
                                         $shavePlan = $arPlan["NAME"];
                                         //ѕолучаем количество кассет дл€ выбранного плана
                                         $casseteQuantity = $casseteProp[0];
-                                        arshow($arBasketItems);
                                         $machineQuantity = 1;
                                     } else if (count($arBasketItems) == 1) {
                                         $arPlan = end($arBasketItems);
