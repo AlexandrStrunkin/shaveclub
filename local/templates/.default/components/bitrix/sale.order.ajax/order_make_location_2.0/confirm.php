@@ -105,6 +105,12 @@
                                         //Получаем количество кассет для выбранного плана
                                         $casseteQuantity = $casseteProp[0];
                                         $machineQuantity = 1;
+                                    } else if (count($arBasketItems) == 1) {
+                                        $arPlan = end($arBasketItems);
+                                        $shavePlan = $arPlan["NAME"];
+                                        //Получаем количество кассет для выбранного плана
+                                        $casseteQuantity = $casseteProp[0];
+                                        $machineQuantity = 1;
                                     } else {
                                         $shavePlan = 'Свой';
                                         $casseteQuantity = (float)$arBasketItems[0]["QUANTITY"];
