@@ -44,9 +44,9 @@
                                 {  $arBasketItems[] = $arItems;
                                 }
                             }
-                            $bascet_end = end($arBasketItems);
+                            $basket_end = end($arBasketItems);
                             //получаем картинку бритвы
-                            $prosuct = CIBlockElement::GetList(array(), array("ID"=>$bascet_end["PRODUCT_ID"]), false, false, array("IBLOCK_SECTION_ID"));
+                            $prosuct = CIBlockElement::GetList(array(), array("ID"=>$basket_end["PRODUCT_ID"]), false, false, array("IBLOCK_SECTION_ID"));
                             $arProduct = $prosuct->Fetch();
                             $photo = CIBlockSection::GetList(array(), array("IBLOCK_ID"=>12,"ID"=>$arProduct["IBLOCK_SECTION_ID"]),false,array("UF_DETAIL_PICTURE"));
                             $arPhoto = $photo->Fetch();
@@ -58,7 +58,7 @@
                             //Выбранная платежная система
                             $payment = CSalePaySystem::GetByID($order["PAY_SYSTEM_ID"]);
                             //Свойства товара
-                            $db_itype = CIBlockElement::GetList( array(), array( "ID" => $bascet_end["PRODUCT_ID"]), false, false, array("IBLOCK_SECTION_ID", "PROPERTY_CASSETTE"));
+                            $db_itype = CIBlockElement::GetList( array(), array( "ID" => $basket_end["PRODUCT_ID"]), false, false, array("IBLOCK_SECTION_ID", "PROPERTY_CASSETTE"));
                             $item = $db_itype->Fetch();
                             $casseteProp = explode(" ", $item["PROPERTY_CASSETTE_VALUE"]);
                             //Свойства секции
