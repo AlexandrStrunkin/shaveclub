@@ -157,7 +157,7 @@
         AddEventHandler('sale', 'OnSaleStatusOrder', 'updatingDeducting');
 
         function updatingDeducting ($ID, $val) {
-            if ($val == "R" || $val == "V") {
+            if ($val == "R" || $val == "V" || $val == "S") {
                 $ar_order_new_fields = array (
                     "ALLOW_DELIVERY" => "Y"    
                 );
@@ -202,7 +202,7 @@
         AddEventHandler('sale', 'OnSaleStatusOrder', 'deductingItem');
 
         function deductingItem ($ID, $val) {
-            if ($val == "R") {
+            if ($val == "R" || $val == "S") {
                 CSaleOrder::DeductOrder($ID, "Y");
 
                 \Bitrix\Main\Loader::includeModule('sale'); 
