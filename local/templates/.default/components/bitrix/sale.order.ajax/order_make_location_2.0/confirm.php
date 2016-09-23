@@ -44,9 +44,9 @@
                                 {  $arBasketItems[] = $arItems;
                                 }
                             }
-
+                            $bascet_end = end($arBasketItems);
                             //получаем картинку бритвы
-                            $prosuct = CIBlockElement::GetList(array(), array("ID"=>$arBasketItems[0]["PRODUCT_ID"]), false, false, array("IBLOCK_SECTION_ID"));
+                            $prosuct = CIBlockElement::GetList(array(), array("ID"=>$bascet_end["PRODUCT_ID"]), false, false, array("IBLOCK_SECTION_ID"));
                             $arProduct = $prosuct->Fetch();
                             $photo = CIBlockSection::GetList(array(), array("IBLOCK_ID"=>12,"ID"=>$arProduct["IBLOCK_SECTION_ID"]),false,array("UF_DETAIL_PICTURE"));
                             $arPhoto = $photo->Fetch();
@@ -58,7 +58,7 @@
                             //Выбранная платежная система
                             $payment = CSalePaySystem::GetByID($order["PAY_SYSTEM_ID"]);
                             //Свойства товара
-                            $db_itype = CIBlockElement::GetList( array(), array( "ID" => $arBasketItems[0]["PRODUCT_ID"]), false, false, array("IBLOCK_SECTION_ID", "PROPERTY_CASSETTE"));
+                            $db_itype = CIBlockElement::GetList( array(), array( "ID" => $bascet_end["PRODUCT_ID"]), false, false, array("IBLOCK_SECTION_ID", "PROPERTY_CASSETTE"));
                             $item = $db_itype->Fetch();
                             $casseteProp = explode(" ", $item["PROPERTY_CASSETTE_VALUE"]);
                             //Свойства секции
@@ -104,6 +104,7 @@
                                         $shavePlan = $arPlan["NAME"];
                                         //Получаем количество кассет для выбранного плана
                                         $casseteQuantity = $casseteProp[0];
+                                        arshow($arBasketItems);
                                         $machineQuantity = 1;
                                     } else if (count($arBasketItems) == 1) {
                                         $arPlan = end($arBasketItems);
