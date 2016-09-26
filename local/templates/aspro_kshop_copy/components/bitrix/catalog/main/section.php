@@ -52,7 +52,7 @@ else{
 }
 if($ishop_page_title){
 	$APPLICATION->SetPageProperty("title", $ishop_page_title);
-} 
+}
 if($values['SECTION_META_DESCRIPTION']){
 	$APPLICATION->SetPageProperty("description", $values['SECTION_META_DESCRIPTION']);
 }
@@ -269,119 +269,7 @@ if(CModule::IncludeModule('sale')){
 				$component, array('HIDE_ICONS' => 'Y'));
 			?>
 		<?endif;?>
-		<?if($arParams["SHOW_SECTION_SIBLINGS"] == "Y"):?>
-			<?$APPLICATION->IncludeComponent(
-				"bitrix:catalog.section.list",
-				"internal_sections_list",
-				Array(
-					"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
-					"IBLOCK_ID" => $arParams["IBLOCK_ID"],
-					//"SECTION_ID" => $arSection["IBLOCK_SECTION_ID"],
-					//"SECTION_CODE" => $arResult["VARIABLES"]["SECTION_CODE"],
-					"DISPLAY_PANEL" => $arParams["DISPLAY_PANEL"],
-					"CACHE_TYPE" => $arParams["CACHE_TYPE"],
-					"CACHE_TIME" => $arParams["CACHE_TIME"],
-					"CACHE_GROUPS" => $arParams["CACHE_GROUPS"],
-					"SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],
-					"COUNT_ELEMENTS" => $arParams["SECTION_COUNT_ELEMENTS"],
-					"ADD_SECTIONS_CHAIN" => "N",
-					"SHOW_SECTIONS_LIST_PREVIEW" => $arParams["SHOW_SECTIONS_LIST_PREVIEW"],
-					"TOP_DEPTH" => "3",
-				),$component
-			);?>
-		<?endif;?>
-		<?if($arViewedID):?>
-			<?global $viewedFilter;?>
-			<?$viewedFilter = array('ID' => $arViewedID);?>
-			<?$APPLICATION->IncludeComponent(
-				"bitrix:catalog.section",
-				"viewed",
-				Array(
-					"SHOW_ALL_WO_SECTION" => "Y",
-					"SEF_URL_TEMPLATES" => $arParams["SEF_URL_TEMPLATES"],
-					"IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
-					"IBLOCK_ID" => $arParams["IBLOCK_ID"],
-					"SECTION_ID" => "",
-					"SECTION_CODE" => "",
-					"ELEMENT_SORT_FIELD" => "ID",//"FILTER",
-					"ELEMENT_SORT_ORDER" => "ASC",
-					"FILTER_NAME" => 'viewedFilter',
-					"INCLUDE_SUBSECTIONS" => "Y",
-					"PAGE_ELEMENT_COUNT" => 3,
-					"LINE_ELEMENT_COUNT" => 1,
-					"SET_LAST_MODIFIED" => "Y",
-					"PROPERTY_CODE" => $arParams["LIST_PROPERTY_CODE"],
-					"OFFERS_FIELD_CODE" => $arParams["LIST_OFFERS_FIELD_CODE"],
-					"OFFERS_PROPERTY_CODE" => $arParams["LIST_OFFERS_PROPERTY_CODE"],
-					"OFFERS_SORT_FIELD" => $arParams["OFFERS_SORT_FIELD"],
-					"OFFERS_SORT_ORDER" => $arParams["OFFERS_SORT_ORDER"],
-					"SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],
-					"DETAIL_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["element"],
-					"BASKET_URL" => $arParams["BASKET_URL"],
-					"ACTION_VARIABLE" => $arParams["ACTION_VARIABLE"],
-					"PRODUCT_ID_VARIABLE" => $arParams["PRODUCT_ID_VARIABLE"],
-					"PRODUCT_QUANTITY_VARIABLE" => "quantity",
-					"PRODUCT_PROPS_VARIABLE" => "prop",
-					"SECTION_ID_VARIABLE" => $arParams["SECTION_ID_VARIABLE"],
-					"AJAX_MODE" => $arParams["AJAX_MODE"],
-					"AJAX_OPTION_JUMP" => $arParams["AJAX_OPTION_JUMP"],
-					"AJAX_OPTION_STYLE" => $arParams["AJAX_OPTION_STYLE"],
-					"AJAX_OPTION_HISTORY" => $arParams["AJAX_OPTION_HISTORY"],
-					"CACHE_TYPE" => $arParams["CACHE_TYPE"],
-					"CACHE_TIME" => $arParams["CACHE_TIME"],
-					"CACHE_GROUPS" => "Y",
-					"META_KEYWORDS" => "",
-					"META_DESCRIPTION" => "",
-					"BROWSER_TITLE" => "N",
-					"ADD_SECTIONS_CHAIN" => "N",
-					"HIDE_NOT_AVAILABLE" => $arParams["HIDE_NOT_AVAILABLE"],
-					"DISPLAY_COMPARE" => "N",
-					"SET_TITLE" => "N",
-					"SET_STATUS_404" => $arParams["SET_STATUS_404"],
-					"CACHE_FILTER" => "Y",
-					"PRICE_CODE" => $arParams["PRICE_CODE"],
-					"USE_PRICE_COUNT" => $arParams["USE_PRICE_COUNT"],
-					"SHOW_PRICE_COUNT" => $arParams["SHOW_PRICE_COUNT"],
-					"PRICE_VAT_INCLUDE" => $arParams["PRICE_VAT_INCLUDE"],
-					"USE_PRODUCT_QUANTITY" => $arParams["USE_PRODUCT_QUANTITY"],
-					"OFFERS_CART_PROPERTIES" => array(),
-					"DISPLAY_TOP_PAGER" => "N",
-					"DISPLAY_BOTTOM_PAGER" => "N",
-					"PAGER_TITLE" => $arParams["PAGER_TITLE"],
-					"PAGER_SHOW_ALWAYS" => "N",
-					"PAGER_TEMPLATE" => "",
-					"PAGER_DESC_NUMBERING" => "",
-					"PAGER_DESC_NUMBERING_CACHE_TIME" => $arParams["PAGER_DESC_NUMBERING_CACHE_TIME"],
-					"PAGER_SHOW_ALL" => "",
-					"AJAX_OPTION_ADDITIONAL" => "",
-					"ADD_CHAIN_ITEM" => "N",
-					"SHOW_QUANTITY" => "N",
-					"SHOW_QUANTITY_COUNT" => "",
-					"CONVERT_CURRENCY" => $arParams["CONVERT_CURRENCY"],
-					"CURRENCY_ID" => $arParams["CURRENCY_ID"],
-					"USE_STORE" => "",
-					"MAX_AMOUNT" => $arParams["MAX_AMOUNT"],
-					"MIN_AMOUNT" => $arParams["MIN_AMOUNT"],
-					"USE_MIN_AMOUNT" => $arParams["USE_MIN_AMOUNT"],
-					"USE_ONLY_MAX_AMOUNT" => $arParams["USE_ONLY_MAX_AMOUNT"],
-					"DISPLAY_WISH_BUTTONS" => "N",
-					"DEFAULT_COUNT" => $arParams["DEFAULT_COUNT"],
-					"LIST_DISPLAY_POPUP_IMAGE" => $arParams["LIST_DISPLAY_POPUP_IMAGE"],
-					"DEFAULT_COUNT" => $arParams["DEFAULT_COUNT"],
-					"SHOW_MEASURE" => $arParams["SHOW_MEASURE"],
-					"SHOW_HINTS" => $arParams["SHOW_HINTS"],
-					"SHOW_SECTIONS_LIST_PREVIEW" => $arParams["SHOW_SECTIONS_LIST_PREVIEW"],
-					"SECTIONS_LIST_PREVIEW_PROPERTY" => $arParams["SECTIONS_LIST_PREVIEW_PROPERTY"],
-					"SHOW_SECTION_LIST_PICTURES" => $arParams["SHOW_SECTION_LIST_PICTURES"],
-					"VIEWED_COUNT" => "3",
-					"VIEWED_NAME" => "Y",
-					"VIEWED_IMAGE" => "Y",
-					"VIEWED_PRICE" => "Y",
-					"VIEWED_CURRENCY" => "default",
-					"VIEWED_CANBUY" => "Y",
-				), $component
-			);?>
-		<?endif;?>
+
 		<?$APPLICATION->IncludeComponent("aspro:com.banners", "small_banners", array(
 			"IBLOCK_TYPE" => $arParams["IBLOCK_BANNERS_TYPE"],
 			"IBLOCK_ID" => $arParams["IBLOCK_BANNERS_ID"],
@@ -417,10 +305,11 @@ if(CModule::IncludeModule('sale')){
 			});
 			</script>
 		<?endif;?>
+
 		<div class="sort_header">
 			<!--noindex-->
 				<?
-				$arDisplays = array("block", "list", "table");					
+				$arDisplays = array("block", "list", "table");
 				if(array_key_exists("display", $_REQUEST) || (array_key_exists("display", $_SESSION)) || $arParams["DEFAULT_LIST_TEMPLATE"]){
 					if($_REQUEST["display"] && (in_array(trim($_REQUEST["display"]), $arDisplays))){
 						$display = trim($_REQUEST["display"]);
@@ -442,7 +331,7 @@ if(CModule::IncludeModule('sale')){
 				$template = "catalog_".$display;
 				?>
 				<div class="sort_filter">
-					<?	
+					<?
 					$arAvailableSort = array();
 					$arSorts = $arParams["SORT_BUTTONS"];
 					if(in_array("POPULARITY", $arSorts)){
@@ -451,24 +340,24 @@ if(CModule::IncludeModule('sale')){
 					if(in_array("NAME", $arSorts)){
 						$arAvailableSort["NAME"] = array("NAME", "asc");
 					}
-					if(in_array("PRICE", $arSorts)){ 
+					if(in_array("PRICE", $arSorts)){
 						$arSortPrices = $arParams["SORT_PRICES"];
 						if($arSortPrices == "MINIMUM_PRICE" || $arSortPrices == "MAXIMUM_PRICE"){
 							$arAvailableSort["PRICE"] = array("PROPERTY_".$arSortPrices, "desc");
 						}
 						else{
 							$price = CCatalogGroup::GetList(array(), array("NAME" => $arParams["SORT_PRICES"]), false, false, array("ID", "NAME"))->GetNext();
-							$arAvailableSort["PRICE"] = array("CATALOG_PRICE_".$price["ID"], "desc"); 
+							$arAvailableSort["PRICE"] = array("CATALOG_PRICE_".$price["ID"], "desc");
 						}
 					}
 					if(in_array("QUANTITY", $arSorts)){
 						$arAvailableSort["QUANTITY"] = array("QUANTITY", "desc");
 					}
-					
+
 					$sort = "SHOWS";
 					if((array_key_exists("sort", $_REQUEST) && array_key_exists(ToUpper($_REQUEST["sort"]), $arAvailableSort)) || (array_key_exists("sort", $_SESSION) && array_key_exists(ToUpper($_SESSION["sort"]), $arAvailableSort)) || $arParams["ELEMENT_SORT_FIELD"]){
 						if($_REQUEST["sort"]){
-							$sort = ToUpper($_REQUEST["sort"]); 
+							$sort = ToUpper($_REQUEST["sort"]);
 							$_SESSION["sort"] = ToUpper($_REQUEST["sort"]);
 						}
 						elseif($_SESSION["sort"]){
@@ -508,7 +397,7 @@ if(CModule::IncludeModule('sale')){
 					}
 					?>
 				</div>
-				<div class="sort_display">	
+				<div class="sort_display">
 					<?foreach($arDisplays as $displayType):?>
 						<a rel="nofollow" href="<?=$APPLICATION->GetCurPageParam('display='.$displayType, 	array('display'))?>" class="sort_btn <?=$displayType?> <?=($display == $displayType ? 'current' : '')?>"><i title="<?=GetMessage("SECT_DISPLAY_".strtoupper($displayType))?>"></i></a>
 					<?endforeach;?>
@@ -525,7 +414,7 @@ if(CModule::IncludeModule('sale')){
 				$show=intVal($_SESSION["show"]);
 			}
 		}
-		?>	
+		?>
 		<?$APPLICATION->IncludeComponent(
 			"bitrix:catalog.section",
 			$template,
@@ -609,6 +498,100 @@ if(CModule::IncludeModule('sale')){
 		);?>
 	</div>
 <?endif;?>
+<div class="viewed_wrap">
+<?if($arViewedID):?>
+    <?global $viewedFilter;?>
+    <?$viewedFilter = array('ID' => $arViewedID);?>
+    <?$APPLICATION->IncludeComponent(
+        "bitrix:catalog.section",
+        "viewed",
+        Array(
+            "SHOW_ALL_WO_SECTION" => "Y",
+            "SEF_URL_TEMPLATES" => $arParams["SEF_URL_TEMPLATES"],
+            "IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
+            "IBLOCK_ID" => $arParams["IBLOCK_ID"],
+            "SECTION_ID" => "",
+            "SECTION_CODE" => "",
+            "ELEMENT_SORT_FIELD" => "ID",//"FILTER",
+            "ELEMENT_SORT_ORDER" => "ASC",
+            "FILTER_NAME" => 'viewedFilter',
+            "INCLUDE_SUBSECTIONS" => "Y",
+            "PAGE_ELEMENT_COUNT" => 3,
+            "LINE_ELEMENT_COUNT" => 1,
+            "SET_LAST_MODIFIED" => "Y",
+            "PROPERTY_CODE" => $arParams["LIST_PROPERTY_CODE"],
+            "OFFERS_FIELD_CODE" => $arParams["LIST_OFFERS_FIELD_CODE"],
+            "OFFERS_PROPERTY_CODE" => $arParams["LIST_OFFERS_PROPERTY_CODE"],
+            "OFFERS_SORT_FIELD" => $arParams["OFFERS_SORT_FIELD"],
+            "OFFERS_SORT_ORDER" => $arParams["OFFERS_SORT_ORDER"],
+            "SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],
+            "DETAIL_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["element"],
+            "BASKET_URL" => $arParams["BASKET_URL"],
+            "ACTION_VARIABLE" => $arParams["ACTION_VARIABLE"],
+            "PRODUCT_ID_VARIABLE" => $arParams["PRODUCT_ID_VARIABLE"],
+            "PRODUCT_QUANTITY_VARIABLE" => "quantity",
+            "PRODUCT_PROPS_VARIABLE" => "prop",
+            "SECTION_ID_VARIABLE" => $arParams["SECTION_ID_VARIABLE"],
+            "AJAX_MODE" => $arParams["AJAX_MODE"],
+            "AJAX_OPTION_JUMP" => $arParams["AJAX_OPTION_JUMP"],
+            "AJAX_OPTION_STYLE" => $arParams["AJAX_OPTION_STYLE"],
+            "AJAX_OPTION_HISTORY" => $arParams["AJAX_OPTION_HISTORY"],
+            "CACHE_TYPE" => $arParams["CACHE_TYPE"],
+            "CACHE_TIME" => $arParams["CACHE_TIME"],
+            "CACHE_GROUPS" => "Y",
+            "META_KEYWORDS" => "",
+            "META_DESCRIPTION" => "",
+            "BROWSER_TITLE" => "N",
+            "ADD_SECTIONS_CHAIN" => "N",
+            "HIDE_NOT_AVAILABLE" => $arParams["HIDE_NOT_AVAILABLE"],
+            "DISPLAY_COMPARE" => "N",
+            "SET_TITLE" => "N",
+            "SET_STATUS_404" => $arParams["SET_STATUS_404"],
+            "CACHE_FILTER" => "Y",
+            "PRICE_CODE" => $arParams["PRICE_CODE"],
+            "USE_PRICE_COUNT" => $arParams["USE_PRICE_COUNT"],
+            "SHOW_PRICE_COUNT" => $arParams["SHOW_PRICE_COUNT"],
+            "PRICE_VAT_INCLUDE" => $arParams["PRICE_VAT_INCLUDE"],
+            "USE_PRODUCT_QUANTITY" => $arParams["USE_PRODUCT_QUANTITY"],
+            "OFFERS_CART_PROPERTIES" => array(),
+            "DISPLAY_TOP_PAGER" => "N",
+            "DISPLAY_BOTTOM_PAGER" => "N",
+            "PAGER_TITLE" => $arParams["PAGER_TITLE"],
+            "PAGER_SHOW_ALWAYS" => "N",
+            "PAGER_TEMPLATE" => "",
+            "PAGER_DESC_NUMBERING" => "",
+            "PAGER_DESC_NUMBERING_CACHE_TIME" => $arParams["PAGER_DESC_NUMBERING_CACHE_TIME"],
+            "PAGER_SHOW_ALL" => "",
+            "AJAX_OPTION_ADDITIONAL" => "",
+            "ADD_CHAIN_ITEM" => "N",
+            "SHOW_QUANTITY" => "N",
+            "SHOW_QUANTITY_COUNT" => "",
+            "CONVERT_CURRENCY" => $arParams["CONVERT_CURRENCY"],
+            "CURRENCY_ID" => $arParams["CURRENCY_ID"],
+            "USE_STORE" => "",
+            "MAX_AMOUNT" => $arParams["MAX_AMOUNT"],
+            "MIN_AMOUNT" => $arParams["MIN_AMOUNT"],
+            "USE_MIN_AMOUNT" => $arParams["USE_MIN_AMOUNT"],
+            "USE_ONLY_MAX_AMOUNT" => $arParams["USE_ONLY_MAX_AMOUNT"],
+            "DISPLAY_WISH_BUTTONS" => "N",
+            "DEFAULT_COUNT" => $arParams["DEFAULT_COUNT"],
+            "LIST_DISPLAY_POPUP_IMAGE" => $arParams["LIST_DISPLAY_POPUP_IMAGE"],
+            "DEFAULT_COUNT" => $arParams["DEFAULT_COUNT"],
+            "SHOW_MEASURE" => $arParams["SHOW_MEASURE"],
+            "SHOW_HINTS" => $arParams["SHOW_HINTS"],
+            "SHOW_SECTIONS_LIST_PREVIEW" => $arParams["SHOW_SECTIONS_LIST_PREVIEW"],
+            "SECTIONS_LIST_PREVIEW_PROPERTY" => $arParams["SECTIONS_LIST_PREVIEW_PROPERTY"],
+            "SHOW_SECTION_LIST_PICTURES" => $arParams["SHOW_SECTION_LIST_PICTURES"],
+            "VIEWED_COUNT" => "3",
+            "VIEWED_NAME" => "Y",
+            "VIEWED_IMAGE" => "Y",
+            "VIEWED_PRICE" => "Y",
+            "VIEWED_CURRENCY" => "default",
+            "VIEWED_CANBUY" => "Y",
+        ), $component
+    );?>
+<?endif;?>
+</div>
 <script type="text/javascript">
 $(".sort_filter a").on("click", function(){
 	if($(this).is(".current")){
