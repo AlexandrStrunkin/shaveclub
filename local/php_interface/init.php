@@ -99,8 +99,8 @@
                     $arFields["ZIP"] = $orderProps["ZIP"];
                     $arFields["ADDRESS"] = $location["COUNTRY_NAME"].", ".$location["CITY_NAME"].", ".$orderProps["ADDRESS"];
 
-                    $arFields["ORDER_LIST"] = $basketItem["NAME"].' - '.round($basketItem["QUANTITY"]).' С€С‚.: '.round($basketItem["PRICE"]).' СЂСѓР±.';
-                    if ($arFields['DELIVERY_PRICE']=='Р‘РµСЃРїР»Р°С‚РЅРѕ') {
+                    $arFields["ORDER_LIST"] = $basketItem["NAME"].' - '.round($basketItem["QUANTITY"]).' шт.: '.round($basketItem["PRICE"]).' СЂСѓР±.';
+                    if ($arFields['DELIVERY_PRICE']=='Бесплатно') {
                         $arFields['DELIVERY_PRICE']=0;
                     }
 
@@ -159,9 +159,9 @@
         function updatingDeducting ($ID, $val) {
             if ($val == "R" || $val == "V" || $val == "S") {
                 $ar_order_new_fields = array (
-                    "ALLOW_DELIVERY" => "Y"    
+                    "ALLOW_DELIVERY" => "Y"
                 );
-                CSaleOrder::Update($ID, $ar_order_new_fields);    
+                CSaleOrder::Update($ID, $ar_order_new_fields);
             }
         }
 
@@ -176,7 +176,7 @@
                 //если флаг оплаты не стоит - ставим
                 if ($order["PAYED"] != "Y") {
                     CSaleOrder::PayOrder($ID, "Y", false, false, 0);
-                }    
+                }
             }
         }
 
@@ -205,19 +205,19 @@
             if ($val == "R" || $val == "S") {
                 CSaleOrder::DeductOrder($ID, "Y");
 
-                \Bitrix\Main\Loader::includeModule('sale'); 
+                \Bitrix\Main\Loader::includeModule('sale');
 
-                $order = \Bitrix\Sale\Order::load($ID); 
+                $order = \Bitrix\Sale\Order::load($ID);
 
-                /** @var \Bitrix\Sale\ShipmentCollection $shipmentCollection */ 
-                $shipmentCollection = $order->getShipmentCollection(); 
-                /** @var \Bitrix\Sale\Shipment $shipment */ 
-                foreach ($shipmentCollection as $shipment) { 
+                /** @var \Bitrix\Sale\ShipmentCollection $shipmentCollection */
+                $shipmentCollection = $order->getShipmentCollection();
+                /** @var \Bitrix\Sale\Shipment $shipment */
+                foreach ($shipmentCollection as $shipment) {
 
-                    echo $shipment->setStoreId("1"); 
-                } 
+                    echo $shipment->setStoreId("1");
+                }
 
-                $order->save();    
+                $order->save();
             }
         }
         AddEventHandler('main', 'OnBeforeEventSend', 'SentMail');
