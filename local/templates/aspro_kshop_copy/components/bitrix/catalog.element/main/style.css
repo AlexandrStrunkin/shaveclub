@@ -1,5 +1,5 @@
 .left_side.catalog_detail .info_block > div {
-    width: 100%; 
+    width: 100%;
 }
 .left_side .props_block .char {
     width: 100%;
@@ -21,7 +21,7 @@
     white-space: normal;
     border: 1px solid #e7e7e7;
     margin-top: 20px;
-    min-height: 180px;
+    height: 190px;
 }
 .tabs_content .image_recomend{
     margin:20px 15px 0 15px;
@@ -36,7 +36,7 @@
 }
 
 .item_main_info{
-    overflow: hidden; 
+    overflow: hidden;
 }
 .right_info{
     float: right;
@@ -46,7 +46,7 @@
  .recommended{
     /*position: absolute;*/
     top: 409px;
-    width: 310px;   
+    width: 310px;
  }
  .catalog_detail .basket_button.one_click {
      display: none;
