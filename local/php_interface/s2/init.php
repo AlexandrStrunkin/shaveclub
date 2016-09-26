@@ -5,4 +5,5 @@
     define("PVZ_SPB_DELIVERY_FOR_EXPENSIVE_ORDERS", 51);
 
     CModule::IncludeModule("forum");
+
 ?>
