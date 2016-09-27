@@ -444,8 +444,7 @@ global $USER;
                         </div>
                         <div class="item_info">
                             <div class="item-title">
-                                <a href="<?='/'.$url[1].'/'.$url[2].'/'.$arFields["ID"].'/'?>"><span><?=$arFields["NAME"]?></span></a>  <!--'/'.$url[3]. -->
-
+                                <a href="<?='/'.$url[1].'/'.$url[2].'/'.$arFields["ID"].'/'?>"><span><?=mb_strimwidth($arFields["NAME"], 0, 35, "...")?></span></a>  <!--'/'.$url[3]. -->
                             </div>
                         </div>
 
