@@ -14,19 +14,19 @@ $countDefSetItems = count($arResult["SET_ITEMS"]["DEFAULT"]);
 					<a href="<?=$arResult["ELEMENT"]["DETAIL_PAGE_URL"]?>">
 						<?if ($arResult["ELEMENT"]["PREVIEW_PICTURE"]):?>
 							 <?$img = CFile::ResizeImageGet($arResult["ELEMENT"]["PREVIEW_PICTURE"], array( "width" => 140, "height" => 140 ), BX_RESIZE_IMAGE_PROPORTIONAL,true );?>
-							<img border="0" src="<?=$img["src"]?>" alt="<?=$arResult["ELEMENT"]["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />	
+							<img border="0" src="<?=$img["src"]?>" alt="<?=$arResult["ELEMENT"]["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />
 						<?elseif($arResult["ELEMENT"]["DETAIL_PICTURE"]["src"]):?>
 							<img border="0" src="'<?=$arResult["ELEMENT"]["DETAIL_PICTURE"]["src"]?>" alt="<?=$arResult["ELEMENT"]["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />
 						<?else:?>
 							<img border="0" src="<?=SITE_TEMPLATE_PATH?>/images/no_photo_small.png" alt="<?=$arSetItem["NAME"];?>" title="<?=$arResult["ELEMENT"]["NAME"];?>" />
 						<?endif;?>
-					</a>				
+					</a>
 				</div>
 				<div class="item_info">
 					<div class="item-title">
 						<a class="bx_item_set_linkitem" href="<?=$arResult["ELEMENT"]["DETAIL_PAGE_URL"]?>"><span><?=$arResult["ELEMENT"]["NAME"]?></span></a>
 					</div>
-					<div class="cost clearfix">	
+					<div class="cost clearfix">
 						<div class="price bx_item_set_price"><?=$arResult["ELEMENT"]["PRICE_PRINT_DISCOUNT_VALUE"]?></div>
 						<?if (!($arResult["ELEMENT"]["PRICE_VALUE"] == $arResult["ELEMENT"]["PRICE_DISCOUNT_VALUE"])):?>
 							<div class="price discount bx_item_set_price old"><strike><?=$arResult["ELEMENT"]["PRICE_PRINT_VALUE"]?></strike></div>
@@ -47,44 +47,44 @@ $countDefSetItems = count($arResult["SET_ITEMS"]["DEFAULT"]);
 						<a href="<?=$arItem["DETAIL_PAGE_URL"]?>">
 							<?if ($arItem["PREVIEW_PICTURE"]):?>
 								<?$img = CFile::ResizeImageGet($arItem["PREVIEW_PICTURE"], array( "width" => 140, "height" => 140 ), BX_RESIZE_IMAGE_PROPORTIONAL,true );?>
-								<img border="0" src="<?=$img["src"]?>" alt="<?=$arItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />	
+								<img border="0" src="<?=$img["src"]?>" alt="<?=$arItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />
 							<?elseif($arItem["DETAIL_PICTURE"]["src"]):?>
-								<img border="0" src="'<?=$arItem["DETAIL_PICTURE"]["src"]?>" alt="<?=$arItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />		
+								<img border="0" src="'<?=$arItem["DETAIL_PICTURE"]["src"]?>" alt="<?=$arItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />
 							<?else:?>
 								<img border="0" src="<?=SITE_TEMPLATE_PATH?>/images/no_photo_small.png" alt="<?=$arSetItem["NAME"];?>" title="<?=$arItem["NAME"];?>" />
 							<?endif;?>
 						</a>
-					</div>	
+					</div>
 					<div class="item_info">
 						<div class="item-title">
 							<a class="bx_item_set_linkitem" href="<?=$arItem["DETAIL_PAGE_URL"]?>"><span><?=$arItem["NAME"]?></span></a>
                             <?/*<p>Количество: <b><?=$arResult["BASKET_QUANTITY"][$arItem["ID"]];?> шт.</b></p>*/?>
 						</div>
-						<div class="cost clearfix">	
+						<div class="cost clearfix">
 							<div class="price bx_item_set_price"><?=$arItem["PRICE_PRINT_DISCOUNT_VALUE"]?></div>
 							<div  class="price discount bx_item_set_price old" <?if ($arItem["PRICE_VALUE"] == $arItem["PRICE_DISCOUNT_VALUE"]):?>style="display:none"<?endif?>><strike><?=$arItem["PRICE_PRINT_VALUE"]?></strike></div>
 						</div>
 					</div>
 					<div class="bx_item_set_del" title="<?=GetMessage("CATALOG_SET_DELETE")?>" onclick="catalogSetDefaultObj_<? echo $intElementID; ?>.DeleteItem(this.parentNode.parentNode, '<?=$arItem["ID"]?>')"></div>
-				</div>	
+				</div>
 				<?if ($key<$countDefSetItems-1):?><div class="item_plus"></div><?endif;?>
 			</li>
 		<?endforeach?>
 	</ul>
 	<div class="total_wrapp result">
 		<div class="total_price bx_item_set_result_block">
-			<span class="total_title"><?=GetMessage("CATALOG_SET_SUM")?>:</span> 
-			<span class="price_block">				
-				<div class="price bx_item_set_current_price"> <?=$arResult["SET_ITEMS"]["PRICE"]?></div>	
+			<span class="total_title"><?=GetMessage("CATALOG_SET_SUM")?>:</span>
+			<span class="price_block">
+				<div class="price bx_item_set_current_price"> <?=$arResult["SET_ITEMS"]["PRICE"]?></div>
 				<?if ($arResult["SET_ITEMS"]["OLD_PRICE"]):?>
 					<div class="price discount">
 						<?=GetMessage("CATALOG_SET_WITHOUT_DISCOUNT")?>: <strike class="bx_item_set_old_price"><?=$arResult["SET_ITEMS"]["OLD_PRICE"]?></strike>&nbsp;
 						<?if ($arResult["SET_ITEMS"]["PRICE_DISCOUNT_DIFFERENCE"]):?>
 							<div class="bx_item_set_economy_price"><?=GetMessage("CATALOG_SET_DISCOUNT_DIFF", array("#PRICE#" => $arResult["SET_ITEMS"]["PRICE_DISCOUNT_DIFFERENCE"]))?></div>
-						<?endif?>	
+						<?endif?>
 					</div>
-				<?endif?>	
-						
+				<?endif?>
+
 			</span>
 		</div>
 		<div class="total_buttons">
@@ -123,14 +123,14 @@ $popupParams["ITEMS_RATIO"] = $arResult["ITEMS_RATIO"];
 
 	$('.bx_item_set_hor_container_big').ready(function()
 	{
-		$('.bx_item_set_hor_container_big').equalize({children: '.bx_item_set_hor_item .cost', reset: true}); 
-		$('.bx_item_set_hor_container_big').equalize({children: '.bx_item_set_hor_item .item-title', reset: true}); 
+		$('.bx_item_set_hor_container_big').equalize({children: '.bx_item_set_hor_item .cost', reset: true});
+		$('.bx_item_set_hor_container_big').equalize({children: '.bx_item_set_hor_item .item-title', reset: true});
 		$('.bx_item_set_hor_container_big').equalize({children: 'bx_item_set_hor_item', reset: true});
 		$('.bx_item_set_hor_container_big .bx_item_set_hor_item .item_wrapp').hover(
 			function() { $(this).find(".bx_item_set_del").fadeIn(100); },
 			function() { $(this).find(".bx_item_set_del").stop().fadeOut(333); }
 		);
-		
+
 	});
 
 	BX.message({
