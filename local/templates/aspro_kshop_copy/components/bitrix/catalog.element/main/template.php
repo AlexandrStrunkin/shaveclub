@@ -534,7 +534,7 @@ global $USER;
             <span class="total_title"><?= GetMessage("CATALOG_SET_SUM") ?>:</span>
             <span class="price_block">
                 <div class="price bx_item_set_current_price"> <?= $arResult["SET_ITEM"]["PRICE"] ?></div>
-                <?if ($arResult["SET_ITEM"]):?>
+                <?if ($arResult["SET_ITEM"]["PRICE_DISCOUNT_VALUE"] < $arResult["SET_ITEM"]["PRICE"]):?>
                     <div class="price discount">
                         <?= GetMessage("CATALOG_SET_WITHOUT_DISCOUNT") ?>: <strike class="bx_item_set_old_price"><?= $arResult["SET_ITEM"]["PRICE_VALUE"] ?></strike>&nbsp;
                         <?if ($arResult["SET_ITEM"]["PRICE_DISCOUNT_VALUE"]):?>
