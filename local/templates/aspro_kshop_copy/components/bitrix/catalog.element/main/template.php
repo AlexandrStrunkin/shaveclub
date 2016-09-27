@@ -465,13 +465,13 @@ global $USER;
                         <div class="image">
                             <a href="<?=$arSetItem["DETAIL_PAGE_URL"]?>">
                                 <?if($arSetItem["PREVIEW_PICTURE"]):?>
-                                    <?$img = CFile::ResizeImageGet($arSetItem["PREVIEW_PICTURE"], array("width" => 140, "height" => 140), BX_RESIZE_IMAGE_PROPORTIONAL, true);?>
-                                    <img border="0" src="<?=$img["src"]?>" alt="<?=$arSetItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />
+                                    <?$img = CFile::ResizeImageGet($arSetItem["PREVIEW_PICTURE"], array("width" => 140, "height" => 140), BX_RESIZE_IMAGE_PROPORTIONAL, true); ?>
+                                        <img border="0" src="<?= $img["src"] ?>" alt="<?= $arSetItem["NAME"]; ?>" title="<?= $arSetItem["NAME"]; ?>" />
                                     <?elseif($arSetItem["DETAIL_PICTURE"]):?>
                                     <?$img = CFile::ResizeImageGet($arSetItem["DETAIL_PICTURE"], array("width" => 140, "height" => 140), BX_RESIZE_IMAGE_PROPORTIONAL, true);?>
-                                    <img border="0" src="<?=$img["src"]?>" alt="<?=$arSetItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />
+                                        <img border="0" src="<?= $img["src"] ?>" alt="<?= $arSetItem["NAME"]; ?>" title="<?= $arSetItem["NAME"]; ?>" />
                                     <?else:?>
-                                    <img border="0" src="<?=SITE_TEMPLATE_PATH?>/images/no_photo_small.png" alt="<?=$arSetItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />
+                                        <img border="0" src="<?= SITE_TEMPLATE_PATH ?>/images/no_photo_small.png" alt="<?= $arSetItem["NAME"]; ?>" title="<?= $arSetItem["NAME"]; ?>" />
                                     <?endif;?>
                             </a>
                         </div>
@@ -531,14 +531,14 @@ global $USER;
             </ul>
         <div class="total_wrapp result">
         <div class="total_price bx_item_set_result_block">
-            <span class="total_title"><?=GetMessage("CATALOG_SET_SUM")?>:</span>
+            <span class="total_title"><?= GetMessage("CATALOG_SET_SUM") ?>:</span>
             <span class="price_block">
-                <div class="price bx_item_set_current_price"> <?=$arResult["SET_ITEM"]["PRICE"]?></div>
+                <div class="price bx_item_set_current_price"> <?= $arResult["SET_ITEM"]["PRICE"] ?></div>
                 <?if ($arResult["SET_ITEM"]):?>
                     <div class="price discount">
-                        <?=GetMessage("CATALOG_SET_WITHOUT_DISCOUNT")?>: <strike class="bx_item_set_old_price"><?=$arResult["SET_ITEM"]["PRICE_VALUE"]?></strike>&nbsp;
+                        <?= GetMessage("CATALOG_SET_WITHOUT_DISCOUNT") ?>: <strike class="bx_item_set_old_price"><?= $arResult["SET_ITEM"]["PRICE_VALUE"] ?></strike>&nbsp;
                         <?if ($arResult["SET_ITEM"]["PRICE_DISCOUNT_VALUE"]):?>
-                            <div class="bx_item_set_economy_price"><?=GetMessage("CATALOG_SET_DISCOUNT_DIFF", array("#PRICE#" => $arResult["SET_ITEM"]["SAVING"]))?></div>
+                            <div class="bx_item_set_economy_price"><?= GetMessage("CATALOG_SET_DISCOUNT_DIFF", array("#PRICE#" => $arResult["SET_ITEM"]["SAVING"])) ?></div>
                         <?endif?>
                     </div>
                 <?endif?>
