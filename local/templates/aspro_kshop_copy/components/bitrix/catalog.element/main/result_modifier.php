@@ -283,5 +283,21 @@
             }
         }
     }
-    //arshow($arResult, true);
+
+    foreach ($arResult["SET_ITEMS"] as $key=>$arItem)
+    {
+        $price += $arItem["MIN_PRICE"]["VALUE"] * $arItem["QUANTITY"];
+        $discount_price += $arItem["MIN_PRICE"]["DISCOUNT_VALUE"] * $arItem["QUANTITY"];
+        $saving =  $price - $discount_price;
+        if ($discount_price) {
+            $price_new = $discount_price;
+        }
+        $arElement = array(
+            "PRICE_DISCOUNT_VALUE" => $discount_price . ' руб.',
+            "PRICE_VALUE" => $price . ' руб.',
+            "PRICE" =>  $price_new . ' руб.',
+            "SAVING" =>  $saving . ' руб.'
+        );
+    }
+    $arResult["SET_ITEM"] = $arElement;
 ?>

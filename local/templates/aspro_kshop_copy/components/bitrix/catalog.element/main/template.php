@@ -56,8 +56,8 @@ global $USER;
                 <?if(in_array("HIT", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="ribon_hit"></span><?}?>
                 <?if(in_array("STOCK", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="ribon_action"></span><?}?>
                 <?if(in_array("NEW", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="ribon_new"></span><?}?>
-                <?if(in_array("RECOMMEND", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="ribon_recomend"></span><?}?>		
-                <?endif;?>				
+                <?if(in_array("RECOMMEND", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="ribon_recomend"></span><?}?>
+                <?endif;?>
         </div>
         <ul class="slides">
             <?foreach($arImages as $i => $arImage):?>
@@ -69,8 +69,8 @@ global $USER;
                                 <?if(in_array("HIT", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"]) ){?><span class="mark hit"></span><?}?>
                                 <?if(in_array("STOCK", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="mark share"></span><?}?>
                                 <?if(in_array("NEW", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="mark hit"></span><?}?>
-                                <?if(in_array("RECOMMEND", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="mark like"></span><?}?>	
-                                <?endif;?>								
+                                <?if(in_array("RECOMMEND", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="mark like"></span><?}?>
+                                <?endif;?>
                         </div>
                         <img border="0" src="<?=$arImage["SMALL"]["src"]?>" alt="<?=$arResult["NAME"]?>" title="<?=$arResult["NAME"]?>" />
                     </a>
@@ -84,7 +84,7 @@ global $USER;
                             <?if(in_array("HIT", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"]) ){?><span class="mark hit"></span><?}?>
                             <?if(in_array("RECOMMEND", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="mark like"></span><?}?>
                             <?if(in_array("NEW", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="mark new"></span><?}?>
-                            <?endif;?>	
+                            <?endif;?>
                     </div>
                     <img border="0" src="<?=SITE_TEMPLATE_PATH?>/images/no_photo_medium.png" alt="<?=$arResult["NAME"]?>" title="<?=$arResult["NAME"]?>" />
                 </li>
@@ -145,8 +145,8 @@ global $USER;
                     <img border="0" src="<?=SITE_TEMPLATE_PATH?>/images/no_photo_medium.png" alt="<?=$arResult["NAME"]?>" title="<?=$arResult["NAME"]?>" />
                 </li>
                 <?endif;?>
-        </ul>  
-    
+        </ul>
+
     </div>
 
     <script type="text/javascript">
@@ -158,7 +158,7 @@ global $USER;
             directionNav: true,
             controlNav: false,
             pauseOnHover: true,
-            itemWidth: 99, 
+            itemWidth: 99,
             animationLoop: false,
             controlsContainer: ".thumbs_navigation",
         });
@@ -185,11 +185,11 @@ global $USER;
             <tr><td>
                     <div class="info_block clearfix">
                     <?if($arParams["PROPERTIES_DISPLAY_TYPE"] != "TABLE"){?>
-                        <div class="props_block">        
+                        <div class="props_block">
                             <?foreach($arResult["PROPERTIES"] as $propCode => $arProp):?>
                                 <?if(isset($arResult["DISPLAY_PROPERTIES"][$propCode])):?>
                                     <?$arProp = $arResult["DISPLAY_PROPERTIES"][$propCode];?>
-                                    
+
                                     <?if(!in_array($arProp["CODE"], array("SERVICES", "BRAND", "HIT", "RECOMMEND", "NEW", "STOCK", "VIDEO", "VIDEO_YOUTUBE"))):?>
                                         <?if((!is_array($arProp["DISPLAY_VALUE"]) && strlen($arProp["DISPLAY_VALUE"])) || (is_array($arProp["DISPLAY_VALUE"]) && implode('', $arProp["DISPLAY_VALUE"]))):?>
                                             <div class="char <?if($arProp["CODE"] == "COMPATIBILITY"){?>_COMPATIBILITY_<?}?>">
@@ -207,7 +207,7 @@ global $USER;
                                             <?endif;?>
                                         <?endif;?>
                                     <?endif;?>
-                                <?endforeach;?>        
+                                <?endforeach;?>
                         </div>
                         <?};?>
                         <?if($arParams["USE_RATING"] == "Y"):?>
@@ -232,7 +232,7 @@ global $USER;
                             <?endif;?>
                         <?if(strlen($arResult["DISPLAY_PROPERTIES"]["CML2_ARTICLE"]["VALUE"])):?>
                             <div class="article">
-                                <b class="block_title"><?=GetMessage("ARTICLE");?>:</b> 
+                                <b class="block_title"><?=GetMessage("ARTICLE");?>:</b>
                                 <?=$arResult["DISPLAY_PROPERTIES"]["CML2_ARTICLE"]["VALUE"]?>
                             </div>
                             <?endif;?>
@@ -271,7 +271,7 @@ global $USER;
                                     }
                                 ?>
                                 <?foreach($arResult["PRICES"] as $key => $arPrice):?>
-                                    <div class="price_block">				
+                                    <div class="price_block">
                                         <?if($arPrice["CAN_ACCESS"]):?>
                                             <?$price = CPrice::GetByID($arPrice["ID"]); ?>
                                             <?if($arCountPricesCanAccess > 1):?>
@@ -279,7 +279,7 @@ global $USER;
                                                     <?=$price["CATALOG_GROUP_NAME"];?>
                                                 </div>
                                                 <?endif;?>
-                                            <?if($arPrice["VALUE"] > $arPrice["DISCOUNT_VALUE"]):?>									
+                                            <?if($arPrice["VALUE"] > $arPrice["DISCOUNT_VALUE"]):?>
                                                 <div class="price">
                                                     <?=$arPrice["PRINT_DISCOUNT_VALUE"]?>
                                                     <?if(($arParams["SHOW_MEASURE"] == "Y") && $arMeasure["SYMBOL_RUS"]):?>
@@ -301,7 +301,7 @@ global $USER;
                                     </div>
                                     <?endforeach;?>
                                 <?endif;?>
-                        </div>	
+                        </div>
                     </td></tr>
                 <?endif;?>
 
@@ -346,7 +346,7 @@ global $USER;
                                         <?$APPLICATION->IncludeFile(SITE_DIR."include/order_description.php", array(), array("MODE" => "text", "NAME" => GetMessage("ORDER_DESCRIPTION")));?>
                                     </td>
                                     <?endif;?>
-                                <!--/noindex-->	
+                                <!--/noindex-->
                             </tr></table>
                     </td></tr>
                 <?endif;?>
@@ -382,7 +382,7 @@ global $USER;
                             <div class="adaptive_extended_info">
                                 <?if(strlen($arResult["DISPLAY_PROPERTIES"]["CML2_ARTICLE"]["VALUE"])):?>
                                     <div class="article">
-                                        <b class="block_title"><?=GetMessage("ARTICLE");?>:</b> 
+                                        <b class="block_title"><?=GetMessage("ARTICLE");?>:</b>
                                         <?=$arResult["DISPLAY_PROPERTIES"]["CML2_ARTICLE"]["VALUE"]?>
                                     </div>
                                     <?endif;?>
@@ -405,21 +405,21 @@ global $USER;
                 </td></tr>
             <?if(strlen($arResult["PREVIEW_TEXT"])):?>
                 <!--<tr><td class="preview_text"><?=$arResult["PREVIEW_TEXT"]?></td></tr>  -->
-            <?endif;?>				
+            <?endif;?>
         </table>
-        <hr class="separator" />	
+        <hr class="separator" />
         <div class="element_detail_text">
             <?=$arResult["PREVIEW_TEXT"]?>
-            
+
 <!--            <script type="text/javascript" src="//yastatic.net/share/share.js" charset="utf-8"></script><div data-yashareType="button" data-yashareQuickServices="vkontakte,facebook,twitter,odnoklassniki,moimir" class="yashare-auto-init" data-limit="1" data-description="<?=$arResult["NAME"]?>" data-title="<?=$arResult["NAME"]?>" data-yashareL10n="ru" ></div>     -->
-            <?//$APPLICATION->IncludeFile(SITE_DIR."include/element_detail_text.php", Array(), Array("MODE" => "html",  "NAME" => GetMessage('CT_BCE_CATALOG_DOP_DESCR')));?>	
+            <?//$APPLICATION->IncludeFile(SITE_DIR."include/element_detail_text.php", Array(), Array("MODE" => "html",  "NAME" => GetMessage('CT_BCE_CATALOG_DOP_DESCR')));?>
             <?//$APPLICATION->IncludeFile(SITE_DIR."include/share_buttons.php", Array(), Array("MODE" => "html", "NAME" => GetMessage('CT_BCE_CATALOG_SOC_BUTTON')));?>
         </div>
-        <script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script> 
+        <script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
         <script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
         <div class="ya-share2"  data-title="<?=$arResult["NAME"]?>" data-services="vkontakte,facebook,odnoklassniki,moimir,twitter" data-limit="5"></div>
-    </div>   
-    <div class="clearleft"></div>	
+    </div>
+    <div class="clearleft"></div>
 
     <div class="recommended">
         <?if($arResult["PROPERTIES"]["RECOMMEND"]["VALUE"]){?>
@@ -432,11 +432,11 @@ global $USER;
                 while($ob = $res->GetNextElement())
                 {
                  $arFields = $ob->GetFields();
-                 
+
                  $url = explode('/', $arFields["DETAIL_PAGE_URL"]);
                  $url_image = CFile::GetPath($arFields["PREVIEW_PICTURE"]);?>
-        
-                 <div class="catalog_item image_recomend">                
+
+                 <div class="catalog_item image_recomend">
                         <div class="image">
                             <a href="<?='/'.$url[1].'/'.$url[2].'/'.$arFields["ID"].'/'?>" class="thumb">
                                 <img border="0" src="<?=$url_image?>">
@@ -445,32 +445,32 @@ global $USER;
                         <div class="item_info">
                             <div class="item-title">
                                 <a href="<?='/'.$url[1].'/'.$url[2].'/'.$arFields["ID"].'/'?>"><span><?=$arFields["NAME"]?></span></a>  <!--'/'.$url[3]. -->
-                            
+
                             </div>
                         </div>
 
-                    </div>  
-                <?}    
+                    </div>
+                <?}
             }?>
         <?}?>
-    </div>  
-    
+    </div>
+
     <?if($arParams["SHOW_KIT_PARTS"] == "Y" && $arResult["SET_ITEMS"]):?>
         <div class="set_wrapp">
             <div class="title"><?=GetMessage("GROUP_PARTS_TITLE")?></div>
             <ul>
                 <?
                 foreach($arResult["SET_ITEMS"] as $iii => $arSetItem):
-                ?>	
+                ?>
                     <li class="item">
                         <div class="image">
                             <a href="<?=$arSetItem["DETAIL_PAGE_URL"]?>">
                                 <?if($arSetItem["PREVIEW_PICTURE"]):?>
                                     <?$img = CFile::ResizeImageGet($arSetItem["PREVIEW_PICTURE"], array("width" => 140, "height" => 140), BX_RESIZE_IMAGE_PROPORTIONAL, true);?>
-                                    <img border="0" src="<?=$img["src"]?>" alt="<?=$arSetItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />	
+                                    <img border="0" src="<?=$img["src"]?>" alt="<?=$arSetItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />
                                     <?elseif($arSetItem["DETAIL_PICTURE"]):?>
                                     <?$img = CFile::ResizeImageGet($arSetItem["DETAIL_PICTURE"], array("width" => 140, "height" => 140), BX_RESIZE_IMAGE_PROPORTIONAL, true);?>
-                                    <img border="0" src="<?=$img["src"]?>" alt="<?=$arSetItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />		
+                                    <img border="0" src="<?=$img["src"]?>" alt="<?=$arSetItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />
                                     <?else:?>
                                     <img border="0" src="<?=SITE_TEMPLATE_PATH?>/images/no_photo_small.png" alt="<?=$arSetItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />
                                     <?endif;?>
@@ -481,8 +481,8 @@ global $USER;
                                 <a href="<?=$arSetItem["DETAIL_PAGE_URL"]?>"><span><?=$arSetItem["NAME"]?></span></a>
                                 <p>Количество: <b><?=$arSetItem["QUANTITY"];?> шт.</b></p>
                             </div>
-                            <?if($arParams["SHOW_KIT_PARTS_PRICES"] == "Y"):?>								
-                                <div class="cost clearfix">	
+                            <?if($arParams["SHOW_KIT_PARTS_PRICES"] == "Y"):?>
+                                <div class="cost clearfix">
                                     <?foreach($arSetItem["PRICES"] as $key => $arPrice):?>
                                         <?
                                             $arCountPricesCanAccess = 0;
@@ -530,16 +530,34 @@ global $USER;
                         <?endif;?>
                     <?endforeach;?>
             </ul>
+        <div class="total_wrapp result">
+        <div class="total_price bx_item_set_result_block">
+            <span class="total_title"><?=GetMessage("CATALOG_SET_SUM")?>:</span>
+            <span class="price_block">
+                <div class="price bx_item_set_current_price"> <?=$arResult["SET_ITEM"]["PRICE"]?></div>
+                <?if ($arResult["SET_ITEM"]):?>
+                    <div class="price discount">
+                        <?=GetMessage("CATALOG_SET_WITHOUT_DISCOUNT")?>: <strike class="bx_item_set_old_price"><?=$arResult["SET_ITEM"]["PRICE_VALUE"]?></strike>&nbsp;
+                        <?if ($arResult["SET_ITEM"]["PRICE_DISCOUNT_VALUE"]):?>
+                            <div class="bx_item_set_economy_price"><?=GetMessage("CATALOG_SET_DISCOUNT_DIFF", array("#PRICE#" => $arResult["SET_ITEM"]["SAVING"]))?></div>
+                        <?endif?>
+                    </div>
+                <?endif?>
+
+            </span>
+        </div>
+    </div>
+
         </div>
         <script type="text/javascript">
             $('.set_wrapp').ready(function(){
-                //$('.set_wrapp').equalize({children: '.item .cost', reset: true}); 
-                $('.set_wrapp').equalize({children: '.item .item-title', reset: true}); 
+                //$('.set_wrapp').equalize({children: '.item .cost', reset: true});
+                $('.set_wrapp').equalize({children: '.item .item-title', reset: true});
                 $('.set_wrapp').equalize({children: 'li', reset: true});
             });
         </script>
-        <?endif;?>	
-</div>	
+        <?endif;?>
+</div>
 
 <?if($arResult['OFFERS']):?>
     <?if($arResult['OFFER_GROUP']):?>
@@ -619,30 +637,30 @@ global $USER;
                 <span><?=GetMessage("REVIEW_TAB")?></span><span class="count empty"></span>
             </li>
             <?endif;*/?>
-           
+
         <?if($arResult["PROPERTIES"]["COMPATIBILITY"]["VALUE"]):?>
             <li class="<?=(!($iTab++) ? ' cur' : '')?>">
                 <span><?=GetMessage('COMPATIBILITY')?></span>
             </li>
-            <?endif;?> 
+            <?endif;?>
         <?if($arResult["PROPERTIES"]["compatibleManufacturer"]["VALUE"] and empty($arResult["PROPERTIES"]["COMPATIBILITY"]["VALUE"])):?>
             <li class="<?=(!($iTab++) ? ' cur' : '')?>">
                 <span><?=GetMessage('compatibleManufacturer')?></span>
             </li>
-            <?endif;?> 
+            <?endif;?>
         <?if(($arParams["SHOW_ASK_BLOCK"] == "Y") && (intVal($arParams["ASK_FORM_ID"]))):?>
             <li class="<?=(!($iTab++) ? ' cur' : '')?>">
                 <span><?=GetMessage('ASK_TAB')?></span>
             </li>
             <?endif;?>
-           
+
         <?if($arParams["USE_REVIEW"] == "Y"):?>
         <?if($USER->IsAuthorized()){?>
             <li class="<?=(!($iTab++) ? ' cur' : '')?>" id="product_reviews_tab">
                 <span><?=GetMessage("REVIEW_TAB")?></span><span class="count empty"></span>
             </li>
         <?}?>
-            <?endif;?> 
+            <?endif;?>
         <?/*if($useStores && !$arResult["OFFERS"]):?>
             <li class="stores_tab<?=(!($iTab++) ? ' cur' : '')?>">
                 <span><?=GetMessage("STORES_TAB");?></span>
@@ -679,7 +697,7 @@ global $USER;
                                 <?if(!$arProp["IS_EMPTY"]):?>
                                     <td class="property">
                                         <span><?if($arProp["HINT"] && $arParams["SHOW_HINTS"]=="Y"):?><div class="hint"><span class="icon"><i>?</i></span><div class="tooltip"><a class="tooltip_close">&times;</a><?=$arProp["HINT"]?></div></div><?endif;?><?=$arProp["NAME"]?></span>
-                                    </td> 
+                                    </td>
                                     <?endif;?>
                                 <?}?>
                             <td class="price_th"><?=GetMessage("CATALOG_PRICE")?></td>
@@ -704,13 +722,13 @@ global $USER;
                                 $arskuAddToBasketData = CKShop::GetAddToBasketArray($arSKU, $skutotalCount, $arParams["DEFAULT_COUNT"], $arParams["BASKET_URL"], false);
                             ?>
                             <?
-                                if(($arParams["SHOW_MEASURE"]=="Y")&&($arSKU["CATALOG_MEASURE"])){ 
+                                if(($arParams["SHOW_MEASURE"]=="Y")&&($arSKU["CATALOG_MEASURE"])){
                                     $symb = substr($arSKU["PRICE"], strrpos($arSKU["PRICE"], ' '));
-                                    $arSCUMeasure = CCatalogMeasure::getList(array(), array("ID"=>$arSKU["CATALOG_MEASURE"]), false, false, array())->GetNext(); 
+                                    $arSCUMeasure = CCatalogMeasure::getList(array(), array("ID"=>$arSKU["CATALOG_MEASURE"]), false, false, array())->GetNext();
                                 }
                             ?>
                             <?$collspan = 1;?>
-                            <tr> 
+                            <tr>
                                 <?if($useStores):?>
                                     <td class="opener">
                                         <?$collspan++;?>
@@ -805,7 +823,7 @@ global $USER;
                                             <span><?=GetMessage('ONE_CLICK_BUY')?></span>
                                         </a>
                                     </td>
-                                    <?endif;?>	
+                                    <?endif;?>
                                 <!--/noindex-->
                             </tr>
 
@@ -845,19 +863,19 @@ global $USER;
                     <?foreach($arResult["STOCK"] as $key => $arStockItem):?>
                         <div class="stock_board">
                             <div class="title"><?=GetMessage("CATALOG_STOCK_TITLE")?></div>
-                            <div class="txt"><?=$arStockItem["PREVIEW_TEXT"]?></div>	
-                            <a class="read_more" href="<?=$arStockItem["DETAIL_PAGE_URL"]?>"><?=GetMessage("CATALOG_STOCK_VIEW")?></a>							
+                            <div class="txt"><?=$arStockItem["PREVIEW_TEXT"]?></div>
+                            <a class="read_more" href="<?=$arStockItem["DETAIL_PAGE_URL"]?>"><?=GetMessage("CATALOG_STOCK_VIEW")?></a>
                         </div>
                         <?endforeach;?>
                     <?endif;?>
-  
+
                 <?if(strlen($arResult["DETAIL_TEXT"])):?>
                     <div class="detail_text"><?=$arResult["DETAIL_TEXT"]?></div>
                 <?endif;?>
 
                 <?if($showProps && $arParams["PROPERTIES_DISPLAY_LOCATION"] != "TAB"):?>
                     <?if($arParams["PROPERTIES_DISPLAY_TYPE"] != "TABLE"):?>
-                           
+
                         <?else:?>
                         <table class="props_table">
                             <?foreach($arResult["DISPLAY_PROPERTIES"] as $arProp):?>
@@ -895,8 +913,8 @@ global $USER;
                                 </a>
                             </span>
                             <?endforeach;?>
-                    </div>				
-                    <?endif;?>	
+                    </div>
+                    <?endif;?>
                 <?
                     $arFiles = array();
                     if($arResult["PROPERTIES"]["INSTRUCTIONS"]["VALUE"]){
@@ -912,14 +930,14 @@ global $USER;
                             }
                         }
                     }
-                ?>    
+                ?>
                 <?if($arFiles):?>
                     <img class="shadow" src="<?=SITE_TEMPLATE_PATH?>/images/shadow_bottom.png" />
                     <div class="files_block">
                         <h4><?=GetMessage("DOCUMENTS_TITLE")?></h4>
                         <?foreach($arFiles as $arItem):?>
                             <?$arItem = CFile::GetFileArray($arItem);?>
-                            <div class="file_type clearfix<? if( $arItem["CONTENT_TYPE"] == 'application/pdf' ){ echo " pdf"; } elseif( $arItem["CONTENT_TYPE"] == 'application/octet-stream' ){ echo " word"; } 
+                            <div class="file_type clearfix<? if( $arItem["CONTENT_TYPE"] == 'application/pdf' ){ echo " pdf"; } elseif( $arItem["CONTENT_TYPE"] == 'application/octet-stream' ){ echo " word"; }
                                     elseif( $arItem["CONTENT_TYPE"] == 'application/xls' ){ echo " excel"; } elseif( $arItem["CONTENT_TYPE"] == 'image/jpeg' ){ echo " jpg"; } elseif( $arItem["CONTENT_TYPE"] == 'image/tiff' ){ echo " tiff"; }?>">
                                 <i class="icon"></i>
                                 <div class="description">
@@ -936,7 +954,7 @@ global $USER;
                                                         $filesize = ($filesize / 1024);
                                                         $filesize = round($filesize, 1);
                                                         echo $filesize.GetMessage('CT_NAME_GB');
-                                                    } 
+                                                    }
                                                     else{
                                                         $filesize = round($filesize, 1);
                                                         echo $filesize.GetMessage('CT_NAME_MB');
@@ -964,7 +982,7 @@ global $USER;
         <?if($showProps && $arParams["PROPERTIES_DISPLAY_LOCATION"] == "TAB"):?>
             <li class="<?=(!($iTab++) ? ' cur' : '')?>">
                 <?if($arParams["PROPERTIES_DISPLAY_TYPE"] != "TABLE"):?>
-                    <div class="props_block">		
+                    <div class="props_block">
                         <?foreach($arResult["PROPERTIES"] as $propCode => $arProp):?>
                             <?if(isset($arResult["DISPLAY_PROPERTIES"][$propCode])):?>
                                 <?$arProp = $arResult["DISPLAY_PROPERTIES"][$propCode];?>
@@ -985,7 +1003,7 @@ global $USER;
                                         <?endif;?>
                                     <?endif;?>
                                 <?endif;?>
-                            <?endforeach;?>		
+                            <?endforeach;?>
                     </div>
                     <?else:?>
                     <table class="props_table">
@@ -1011,9 +1029,9 @@ global $USER;
                         <?endforeach;?>
                 </table>
                 <?endif;?>
-            </li>          
+            </li>
             <?endif;?>
-            
+
           <?if($arResult["PROPERTIES"]["COMPATIBILITY"]["VALUE"] ):?>
                <li class="<?=(!($iTab++) ? ' cur' : '')?>">
                    <? foreach($arResult["PROPERTIES"]["COMPATIBILITY"]["VALUE"] as $item_product){
@@ -1026,10 +1044,10 @@ global $USER;
                          $url = explode('/', $arFields["DETAIL_PAGE_URL"]);
                          $url_image = CFile::GetPath($arFields["PREVIEW_PICTURE"]);?>
                          <?// если товар неактивен, то выводить нет в наличии ?>
-                         <div class="catalog_item image_recomend" style=" width: 150px; ">                
+                         <div class="catalog_item image_recomend" style=" width: 150px; ">
                                 <div class="image">
                                 <? if($arFields["ACTIVE"] == "N") { ?>
-                                    
+
                                         <img border="0" src="<?=$url_image?>" >
                                                   <?} else {?>
                                      <a href="<?='/'.$url[1].'/'.$url[2].'/'.$arFields["ID"].'/'?>" class="thumb"> <!-- '/'.$url[3].-->
@@ -1037,7 +1055,7 @@ global $USER;
                                     </a>
                                     <?}?>
                                 </div>
-                                
+
                                 <div class="item_info">
                                     <div class="item-title">
                                     <? if($arFields["ACTIVE"] == "N") { ?>
@@ -1045,19 +1063,19 @@ global $USER;
                                         <a href="<?='/'.$url[1].'/'.$url[2].'/'.$arFields["ID"].'/'?>"><span><?=$arFields["NAME"];?></span></a>
                                              <?}?>
                                     </div>
-                                </div> 
+                                </div>
 
-                            </div>   
-                        <?}    
-                    }?> 
+                            </div>
+                        <?}
+                    }?>
                     <?
                        // if(empty($arResult["PROPERTIES"]["compatibleManufacturer"]["VALUE"])&&is_array($arResult["PROPERTIES"]["compatibleManufacturer"]["VALUE"])){
                             foreach($arResult["PROPERTIES"]["compatibleManufacturer"]["VALUE"] as $propValue){
                                 $resCompany = CIBlockElement::GetById($propValue);
-                                while($obComp = $resCompany->GetNext()){  
+                                while($obComp = $resCompany->GetNext()){
                                     $arPrevImage = CFile::GetPath($obComp['PREVIEW_PICTURE']);
                                     ?>
-                                    <div class="catalog_item image_recomend" style=" width: 150px; ">                
+                                    <div class="catalog_item image_recomend" style=" width: 150px; ">
                                     <div class="image">
                                         <img border="0" src="<?=$arPrevImage?>" >
                                     </div>
@@ -1067,22 +1085,22 @@ global $USER;
                                         </div>
                                     </div>
 
-                                    </div>  
+                                    </div>
                                 <?//}
                             }
                         }
                      ?>
-               </li>        
+               </li>
           <?endif;?>
-          
+
           <?if($arResult["PROPERTIES"]["compatibleManufacturer"]["VALUE"] ):?>
            <li class="<?=(!($iTab++) ? ' cur' : '')?>">
                 <?foreach($arResult["PROPERTIES"]["compatibleManufacturer"]["VALUE"] as $propValue){
                     $resCompany = CIBlockElement::GetById($propValue);
-                    while($obComp = $resCompany->GetNext()){  
+                    while($obComp = $resCompany->GetNext()){
                         $arPrevImage = CFile::GetPath($obComp['PREVIEW_PICTURE']);
                         ?>
-                        <div class="catalog_item image_recomend" style=" width: 150px; ">                
+                        <div class="catalog_item image_recomend" style=" width: 150px; ">
                         <div class="image">
                             <img border="0" src="<?=$arPrevImage?>" >
                         </div>
@@ -1092,11 +1110,11 @@ global $USER;
                             </div>
                         </div>
 
-                        </div>  
+                        </div>
                     <?
                     }
                 }?>
-           </li> 
+           </li>
            <?endif;?>
         <?/*if($arParams["USE_REVIEW"] == "Y"):?>
             <li class="<?=(!($iTab++) ? '' : '')?>">
@@ -1107,8 +1125,8 @@ global $USER;
                 <?//$APPLICATION->IncludeFile(SITE_DIR."include/ask_tab_detail_description.php", array(), array("MODE" => "html", "NAME" => GetMessage('CT_BCE_CATALOG_ASK_DESCRIPTION')));?>
                 <?
                 $APPLICATION->IncludeComponent(
-	                "bitrix:form.result.new", 
-	                "inline", 
+	                "bitrix:form.result.new",
+	                "inline",
 	                array(
 		                "SEF_MODE" => "Y",
 		                "WEB_FORM_ID" => "3",
@@ -1184,12 +1202,12 @@ global $USER;
 </div>
 
 <script type="text/javascript">
-    $(".open_stores .availability-row .value").click(function(){	
+    $(".open_stores .availability-row .value").click(function(){
         if($(".stores_tab").length){
             $(".stores_tab").addClass("cur").siblings().removeClass("cur");
         }
-        else{ 
-            $(".prices_tab").addClass("cur").siblings().removeClass("cur"); 
+        else{
+            $(".prices_tab").addClass("cur").siblings().removeClass("cur");
             if($(".prices_tab .property.opener").length && !$(".prices_tab .property.opener .opened").length){
                 var item = $(".prices_tab .property.opener").first();
                 item.find(".opener_icon").addClass("opened");
@@ -1201,7 +1219,7 @@ global $USER;
     $(".opener").click(function(){
         $(this).find(".opener_icon").toggleClass("opened");
         var showBlock = $(this).parents("tr").toggleClass("nb").next(".offer_stores").find(".stores_block_wrap");
-        showBlock.slideToggle(200); 
+        showBlock.slideToggle(200);
     });
 
     $(".tabs_section .tabs li").live("click", function(){
@@ -1224,7 +1242,7 @@ global $USER;
         var tooltipWrapp = $(this).parents(".hint");
         tooltipWrapp.click(function(e){e.stopPropagation();})
         if(tooltipWrapp.is(".active")){
-            tooltipWrapp.removeClass("active").find(".tooltip").slideUp(200); 
+            tooltipWrapp.removeClass("active").find(".tooltip").slideUp(200);
         }
         else{
             tooltipWrapp.addClass("active").find(".tooltip").slideDown(200);
@@ -1235,7 +1253,7 @@ global $USER;
                 tooltipWrapp.removeClass("active").find(".tooltip").slideUp(100);
             });
         }
-    });	
+    });
 </script>
 
 <?if(!empty($arResult["PROPERTIES"]["ASSOCIATED"]["VALUE"]) || (!empty($arResult["PROPERTIES"]["EXPANDABLES"]["VALUE"]))):?>
@@ -1251,7 +1269,7 @@ global $USER;
                 <?endif;?>
         </ul>
         <ul class="slider_navigation">
-            <?$show_tabs = false;?>	
+            <?$show_tabs = false;?>
             <li class="specials_slider_navigation expandables_nav<?if (!$show_tabs): $show_tabs=true;?> cur<?endif;?>"></li>
             <li class="specials_slider_navigation associated_nav<?if (!$show_tabs): $show_tabs=true;?> cur<?endif;?>"></li>
             <?/*if(!empty($arResult["PROPERTIES"]["EXPANDABLES"]["VALUE"])):?>
@@ -1263,7 +1281,7 @@ global $USER;
                 <?if(count($arResult["PROPERTIES"]["ASSOCIATED"]["VALUE"]) > 4):?>
                 <li class="specials_slider_navigation associated_nav<?if (!$show_tabs): $show_tabs=true;?> cur<?endif;?>"></li>
                 <?endif;?>
-            <?endif;*/?>			
+            <?endif;*/?>
         </ul>
         <ul class="tabs_content">
             <?$show_tabs = false;?>
@@ -1313,7 +1331,7 @@ global $USER;
                             "SHOW_MEASURE" => $arParams["SHOW_MEASURE"],
                             ),
                             false
-                        );?> 
+                        );?>
                 </li>
                 <?endif;?>
             <?if(!empty($arResult["PROPERTIES"]["ASSOCIATED"]["VALUE"])):?>
@@ -1362,7 +1380,7 @@ global $USER;
                             "SHOW_MEASURE" => $arParams["SHOW_MEASURE"],
                             ),
                             false
-                        );?> 
+                        );?>
                 </li>
                 <?endif;?>
         </ul>
@@ -1378,9 +1396,9 @@ global $USER;
                 directionNav: true,
                 controlNav: false,
                 pauseOnHover: true,
-                itemWidth: flexsliderItemWidth, 
+                itemWidth: flexsliderItemWidth,
                 itemMargin: flexsliderItemMargin,
-                animationLoop: false, 
+                animationLoop: false,
                 controlsContainer: ".specials_slider_navigation.cur",
                 start: function(slider){
                     if(slider.count<5){
@@ -1419,9 +1437,9 @@ global $USER;
                         directionNav: true,
                         controlNav: false,
                         pauseOnHover: true,
-                        itemWidth: flexsliderItemWidth, 
-                        itemMargin: flexsliderItemMargin, 
-                        animationLoop: false, 
+                        itemWidth: flexsliderItemWidth,
+                        itemMargin: flexsliderItemMargin,
+                        animationLoop: false,
                         controlsContainer: ".specials_slider_navigation.cur",
                         start: function(slider){
                             if(slider.count<5){
@@ -1429,7 +1447,7 @@ global $USER;
                             }
                         }
                     });
-                    $('.specials_slider_wrapp .tab.active').equalize({children: '.item-title'}); 
+                    $('.specials_slider_wrapp .tab.active').equalize({children: '.item-title'});
                     $('.specials_slider_wrapp .tab.active').equalize({children: '.item_info'});
                     $('.specials_slider_wrapp .tab.active').equalize({children: '.catalog_item'});
                     if($(".specials_slider_navigation.cur .flex-direction-nav .flex-disabled").length > 1){
@@ -1439,15 +1457,15 @@ global $USER;
             });
 
             $(".specials_slider_wrapp").ready(function(){
-                $('.specials_slider_wrapp .tab.cur').equalize({children: '.item-title'}); 
-                $('.specials_slider_wrapp .tab.cur').equalize({children: '.item_info'}); 
-                $('.specials_slider_wrapp .tab.cur').equalize({children: '.catalog_item'}); 
+                $('.specials_slider_wrapp .tab.cur').equalize({children: '.item-title'});
+                $('.specials_slider_wrapp .tab.cur').equalize({children: '.item_info'});
+                $('.specials_slider_wrapp .tab.cur').equalize({children: '.catalog_item'});
                 //$('.specials_tabs_section .tabs_content').equalize({children: 'li.tab'});
                 $('.specials_tabs_section .tabs_content .tab.cur').equalize({children: 'li.catalog_item'});
                 //$('.specials_tabs_section .tabs_content').height($('.specials_tabs_section .tabs_content li:first-child').outerHeight());
             });
 
-            if($(window).outerWidth() > 600 && $(window).outerWidth() < 768 && $(".catalog_detail .buy_buttons_wrapp a").length > 1){ 
+            if($(window).outerWidth() > 600 && $(window).outerWidth() < 768 && $(".catalog_detail .buy_buttons_wrapp a").length > 1){
                 var adapt = false;
                 var prev;
                 $(".catalog_detail .buy_buttons_wrapp a").each(function(i, element){
