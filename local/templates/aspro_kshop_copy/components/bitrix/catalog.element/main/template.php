@@ -493,33 +493,31 @@ global $USER;
                                             }
                                             }
                                         ?>
-                                        <?foreach($arSetItem["PRICES"] as $key => $arPrice):?>
-                                            <?if($arPrice["CAN_ACCESS"]):?>
-                                                <?$price = CPrice::GetByID($arPrice["ID"]);?>
+                                            <?if($arSetItem["MIN_PRICE"]["CAN_ACCESS"]):?>
+                                                <?$price = CPrice::GetByID($arSetItem["MIN_PRICE"]["ID"]);?>
                                                 <?if($arCountPricesCanAccess > 1):?>
                                                     <div class="price_name"><?=$price["CATALOG_GROUP_NAME"];?></div>
                                                     <?endif;?>
-                                                <?if($arPrice["VALUE"] > $arPrice["DISCOUNT_VALUE"]):?>
+                                                <?if($arSetItem["MIN_PRICE"]["VALUE"] > $arSetItem["MIN_PRICE"]["DISCOUNT_VALUE"]):?>
                                                     <div class="price">
-                                                        <?=$arPrice["PRINT_DISCOUNT_VALUE"];?>
+                                                        <?=$arSetItem["MIN_PRICE"]["PRINT_DISCOUNT_VALUE"];?>
                                                         <?if(($arParams["SHOW_MEASURE"] == "Y") && $arMeasure["SYMBOL_RUS"]):?>
                                                             <small>/<?=$arMeasure["SYMBOL_RUS"]?></small>
                                                             <?endif;?>
                                                     </div>
                                                     <div class="price discount">
-                                                        <?=GetMessage("WITHOUT_DISCOUNT")?>:&nbsp;<strike><?=$arPrice["VALUE"]?></strike>
+                                                        <?=GetMessage("WITHOUT_DISCOUNT")?>:&nbsp;<strike><?=$arSetItem["MIN_PRICE"]["VALUE"]?></strike>
                                                     </div>
                                                     <?else:?>
                                                     <div class="price">
-                                                        <?=$arPrice["PRINT_VALUE"];?>
+                                                        <?=$arSetItem["MIN_PRICE"]["PRINT_VALUE"];?>
                                                         <?if(($arParams["SHOW_MEASURE"] == "Y") && $arMeasure["SYMBOL_RUS"]):?>
                                                             <small>/<?=$arMeasure["SYMBOL_RUS"]?></small>
                                                             <?endif;?>
                                                 </div>
                                                 <?endif;?>
                                                 <?endif;?>
-                                            <?endforeach;?>
-                                        <?endforeach;?>
+                                    <?endforeach;?>
                                 </div>
                                 <?endif;?>
                         </div>
@@ -533,10 +531,10 @@ global $USER;
         <div class="total_price bx_item_set_result_block">
             <span class="total_title"><?= GetMessage("CATALOG_SET_SUM") ?>:</span>
             <span class="price_block">
-                <div class="price bx_item_set_current_price"> <?= $arResult["SET_ITEM"]["PRICE"] ?></div>
-                <?if ($arResult["SET_ITEM"]["PRICE_DISCOUNT_VALUE"] < $arResult["SET_ITEM"]["PRICE"]):?>
+                <div class="price bx_item_set_current_price"> <?= $arResult["SET_ITEM"]["PRICE"] ?> <?= GetMessage('PRICE_RUB') ?></div>
+                <?if ($arResult["SET_ITEM"]["PRICE_DISCOUNT_VALUE"] < $arResult["SET_ITEM"]["PRICE_VALUE"]):?>
                     <div class="price discount">
-                        <?= GetMessage("CATALOG_SET_WITHOUT_DISCOUNT") ?>: <strike class="bx_item_set_old_price"><?= $arResult["SET_ITEM"]["PRICE_VALUE"] ?></strike>&nbsp;
+                        <?= GetMessage("CATALOG_SET_WITHOUT_DISCOUNT") ?>: <strike class="bx_item_set_old_price"><?= $arResult["SET_ITEM"]["PRICE_VALUE"] ?> <?= GetMessage('PRICE_RUB') ?></strike>&nbsp;
                         <?if ($arResult["SET_ITEM"]["PRICE_DISCOUNT_VALUE"]):?>
                             <div class="bx_item_set_economy_price"><?= GetMessage("CATALOG_SET_DISCOUNT_DIFF", array("#PRICE#" => $arResult["SET_ITEM"]["SAVING"])) ?></div>
                         <?endif?>

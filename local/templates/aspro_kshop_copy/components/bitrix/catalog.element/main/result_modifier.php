@@ -284,8 +284,19 @@
         }
     }
 
-    foreach ($arResult["SET_ITEMS"] as $key=>$arItem)
+    foreach ($arResult["SET_ITEMS"] as $key=>$arItemElement)
     {
+        if($arResult["MIN_PRICE"]["DISCOUNT_VALUE"] > 0){
+            $price_discount = $arItemElement["MIN_PRICE"]["VALUE"] * (100 - $arResult["MIN_PRICE"]["DISCOUNT_DIFF_PERCENT"]) / 100;
+            $arItemElement["MIN_PRICE"]["DISCOUNT_VALUE"] = $arItemElement["MIN_PRICE"]["VALUE"] - $price_discount;
+            $arItemElement["MIN_PRICE"]["DISCOUNT_DIFF"] = $price_discount;
+            $arItemElement["MIN_PRICE"]["DISCOUNT_DIFF_PERCENT"] = $arResult["MIN_PRICE"]["DISCOUNT_DIFF_PERCENT"];
+            $arItemElement["MIN_PRICE"]["PRINT_DISCOUNT_VALUE"] =  $arItemElement["MIN_PRICE"]["VALUE"] - $price_discount . ' руб.';
+        }
+        $arResult["SET_ITEMS"][$key] =  $arItemElement;
+    }
+    foreach ($arResult["SET_ITEMS"] as $key=>$arItem)
+    {   arshow($arItem["MIN_PRICE"]["DISCOUNT_VALUE"]);
         $price += $arItem["MIN_PRICE"]["VALUE"] * $arItem["QUANTITY"];
         $discount_price += $arItem["MIN_PRICE"]["DISCOUNT_VALUE"] * $arItem["QUANTITY"];
         $saving =  $price - $discount_price;
@@ -293,11 +304,13 @@
             $price_new = $discount_price;
         }
         $arElement = array(
-            "PRICE_DISCOUNT_VALUE" => $discount_price . ' руб.',
-            "PRICE_VALUE" => $price . ' руб.',
-            "PRICE" =>  $price_new . ' руб.',
-            "SAVING" =>  $saving . ' руб.'
+            "PRICE_DISCOUNT_VALUE" => $discount_price ,
+            "PRICE_VALUE" => $price ,
+            "PRICE" =>  $price_new,
+            "SAVING" =>  $saving
         );
     }
     $arResult["SET_ITEM"] = $arElement;
+
+
 ?>
