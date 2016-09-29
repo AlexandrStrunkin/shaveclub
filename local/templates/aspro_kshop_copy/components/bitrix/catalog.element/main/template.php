@@ -493,7 +493,6 @@ global $USER;
                                             }
                                             }
                                         ?>
-                                        <?//foreach($arSetItem["MIN_PROCE"] as $key => $arPrice):?>
                                             <?if($arSetItem["MIN_PRICE"]["CAN_ACCESS"]):?>
                                                 <?$price = CPrice::GetByID($arSetItem["MIN_PRICE"]["ID"]);?>
                                                 <?if($arCountPricesCanAccess > 1):?>
@@ -518,7 +517,6 @@ global $USER;
                                                 </div>
                                                 <?endif;?>
                                                 <?endif;?>
-                                        <?//endforeach;?>
                                     <?endforeach;?>
                                 </div>
                                 <?endif;?>
