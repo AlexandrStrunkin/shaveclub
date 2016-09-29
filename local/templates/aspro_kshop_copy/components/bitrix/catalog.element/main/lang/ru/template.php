@@ -92,4 +92,5 @@ $MESS["CATALOG_SUBSCRIBE"] = "Подписаться";
 $MESS["CATALOG_IN_SUBSCRIBE"] = "Отписаться";
 $MESS["SUBSCRIBE_DESCRIPTION"] = "Подписка";
 $MESS["ORDER_DESCRIPTION"] = "Заказ";
+$MESS["PRICE_RUB"] = "руб.";
 ?>
