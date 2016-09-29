@@ -99,7 +99,7 @@
                     $arFields["ZIP"] = $orderProps["ZIP"];
                     $arFields["ADDRESS"] = $location["COUNTRY_NAME"].", ".$location["CITY_NAME"].", ".$orderProps["ADDRESS"];
 
-                    $arFields["ORDER_LIST"] = $basketItem["NAME"].' - '.round($basketItem["QUANTITY"]).' шт.: '.round($basketItem["PRICE"]).' СЂСѓР±.';
+                    $arFields["ORDER_LIST"] = $basketItem["NAME"].' - '.round($basketItem["QUANTITY"]).' шт.: '.round($basketItem["PRICE"]).' руб.';
                     if ($arFields['DELIVERY_PRICE']=='Бесплатно') {
                         $arFields['DELIVERY_PRICE']=0;
                     }
@@ -312,12 +312,13 @@
 
                     $dbBasketTmp = CSaleBasket::GetList(
                         array("NAME" => "ASC"),
-                        array("ORDER_ID" => $ORDER_ID),
+                        array("ORDER_ID" => $ORDER_ID, "SET_PARENT_ID" => false),
                         false,
                         false
                     );
                     $DISCOUNT_PRICE = $BASE_PRICE = 0;
                     while ($arBasketTmp = $dbBasketTmp->GetNext()) {
+
                         $arBasketId[] = $arBasketTmp["PRODUCT_ID"];
                         if(strstr($arBasketTmp['PRODUCT_XML_ID'],'#')) {
                             $arVals = array();
@@ -362,7 +363,7 @@
                         }
                         foreach ($arBasketValue as $arBasket) {
                             $arFile = CFile::ResizeImageGet($arPictures[$arBasket["PRODUCT_ID"]], array('width' => 130, 'height' => 200), BX_RESIZE_IMAGE_PROPORTIONAL, true);
-                            $ItemPrice = round($arBasket["PRICE"], 0) . '<span></span>';
+                            $ItemPrice = round($arBasket["PRICE"], 0) . ' руб.<span></span>';
                             if ($arBasket["QUANTITY"] > 1) {
                                 $ItemPrice = round($arBasket["QUANTITY"] * $arBasket["PRICE"], 0) . ' (' . round($arBasket["PRICE"], 0) . '/шт.)';
                             }
@@ -398,6 +399,7 @@
                         $arFields["BASKET_COUNT"] = count($arBasketValue);
                     }
                     $arFields["ORDER_LIST"] = $BasketListStr;
+
                 } else {
                     return false;
                 }
