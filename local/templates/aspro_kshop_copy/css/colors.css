@@ -1,34 +1,34 @@
 /* the most common styles are sorted for quick changes */
-h2, h3, h4, table.title-search-result .price, .card_popup_frame.popup .total_wrapp, .display_list .list_item .show_props a, .module_products_list .price-cell .price, 
-.bx_filter_vertical input[type="checkbox"] + label:hover, .compare_wrapp a.compare_link, .module-cart .colored tfoot td.row_values, .module-cart .summ-cell, 
-.module-cart .summ-cell *, .store_description .title, .jobs_wrapp .item .salary, .catalog_detail .availability-row .value a, .catalog_detail a.wish_item .value, 
-.catalog_detail a.compare_item  .value, .catalog_detail .price, .module-pagination .nums a.cur, ul.tabs li.cur:hover span, 
+h2, h3, h4, table.title-search-result .price, .card_popup_frame.popup .total_wrapp, .display_list .list_item .show_props a, .module_products_list .price-cell .price,
+.bx_filter_vertical input[type="checkbox"] + label:hover, .compare_wrapp a.compare_link, .module-cart .colored tfoot td.row_values, .module-cart .summ-cell,
+.module-cart .summ-cell *, .store_description .title, .jobs_wrapp .item .salary, .catalog_detail .availability-row .value a, .catalog_detail a.wish_item .value,
+.catalog_detail a.compare_item  .value, .catalog_detail .price, .module-pagination .nums a.cur, ul.tabs li.cur:hover span,
 ul.tabs li:active span, .module_products_list .basket_button.read_more span,
 ul.mini-menu li a, .top-h-row   .phone span, .top-h-row  .phone span a, ul.tabs li span,
-.char_name .hint .icon, .char_name .hint.active .icon , .char_name .hint.active .icon:hover, .bx_filter_container_title .hint .hint_icon, 
+.char_name .hint .icon, .char_name .hint.active .icon , .char_name .hint.active .icon:hover, .bx_filter_container_title .hint .hint_icon,
 .bx_filter_container_title .hint.active .hint_icon , .bx_filter_container_title .hint.active .hint_icon:hover, .module-order-history  .status.delivere , .module-order-history
-.tr-d.opened .item-name-cell  .item_name, .compare_button span, .left_block .internal_sections_list .title a, .btn_big, .catalog_detail .set_wrapp .title, .catalog_detail .bx_item_set_hor_container_big .title, .catalog_detail .bx_item_set_hor_container_big .total_wrapp .total_title .price, 
+.tr-d.opened .item-name-cell  .item_name, .compare_button span, .left_block .internal_sections_list .title a, .btn_big, .catalog_detail .set_wrapp .title, .catalog_detail .bx_item_set_hor_container_big .title, .catalog_detail .bx_item_set_hor_container_big .total_wrapp .total_title .price,
 .bx_modal_container .bx_modal_small_title, .bx_kit_result_two .price, .bx_kit_result_one .price, .bx_kit_result_tre .price, .bx_kit_result_two .price *, .bx_kit_result_one .price *, .bx_kit_result_tre .price *, .bx_kit_two_section .title, .card_popup_frame.popup .basket_empty *, .bx_modal_body .item_wrapp .item_block_title
 {
 	color: #000;
 }
-.display_list .price, .display_list .likes_icons *, .filter_button span, blockquote, .catalog_detail .stock_board .title, .module_products_list .basket_button.to-cart span, 
-.module_products_list .basket_button.to-subscribe span, .module_products_list .basket_button.to-order span, .catalog_detail .tabs_content table.colored td.property, .module-order-history .tr-d .price-cell, .module-order-history .result .order_property.price td, 
+.display_list .price, .display_list .likes_icons *, .filter_button span, blockquote, .catalog_detail .stock_board .title, .module_products_list .basket_button.to-cart span,
+.module_products_list .basket_button.to-subscribe span, .module_products_list .basket_button.to-order span, .catalog_detail .tabs_content table.colored td.property, .module-order-history .tr-d .price-cell, .module-order-history .result .order_property.price td,
 .module-order-history .status.delivered, .module-order-history .status.canceled, .left_block .internal_sections_list li a, #footer .phone span.phone_text,
- #footer .phone span.phone_text *, table.colored td.name, .catalog_item .price, .view-list .price, .front_slider .price, .left_menu a, .left_menu li.current a:hover, 
+ #footer .phone span.phone_text *, table.colored td.name, .catalog_item .price, .view-list .price, .front_slider .price, .left_menu a, .left_menu li.current a:hover,
  .left_block .internal_sections_list li a, .page_not_found td.description .title404,
- .catalog_detail .set_wrapp .item .price, .bx_item_set_hor .bx_item_set_hor_item .price, .catalog_detail .set_wrapp .item:hover .item-title a, .bx_item_set_hor .bx_item_set_hor_item .item_wrapp:hover .item-title a,  .popup-window-titlebar .popup-window-top-row .popup-window-center-column span div, 
+ .catalog_detail .set_wrapp .item .price, .bx_item_set_hor .bx_item_set_hor_item .price, .catalog_detail .set_wrapp .item:hover .item-title a, .bx_item_set_hor .bx_item_set_hor_item .item_wrapp:hover .item-title a,  .popup-window-titlebar .popup-window-top-row .popup-window-center-column span div,
  .bx_modal_body .bx_kit_item .price, .bx_modal_body .bx_kit_item:hover .item-title a, #header .basket_fly .opener .count
 {
 	color: #212121;
 }
-a:hover, .front_slider .read_more:hover, .front_slider .item-title a:hover span, .catalog_item .item-title a:hover, .catalog_item:hover .item-title a, 
-.view-item .item-title a:hover, .view-item:hover  a, .pseudo:hover, .news_block a:hover, .articles-list .item:hover .item-title a, 
+a:hover, .front_slider .read_more:hover, .front_slider .item-title a:hover span, .catalog_item .item-title a:hover, .catalog_item:hover .item-title a,
+.view-item .item-title a:hover, .view-item:hover  a, .pseudo:hover, .news_block a:hover, .articles-list .item:hover .item-title a,
 .catalog_section_list .section_item li.sect a:hover, .display_list .list_item_wrapp:hover .desc_name a span, .popup .item_name:hover span,
-.card_popup_frame.popup  .but_row a.to_basket:hover .text, .front_slider_wrapp .extended_pagination span, .catalog_detail .info_block a:hover, 
-div.reviews-post-reply-buttons a:hover, .services_block .item a:hover span.link, .avtorization-call.enter span:hover, .catalog_section_list .section_item li.name span, 
+.card_popup_frame.popup  .but_row a.to_basket:hover .text, .front_slider_wrapp .extended_pagination span, .catalog_detail .info_block a:hover,
+div.reviews-post-reply-buttons a:hover, .services_block .item a:hover span.link, .avtorization-call.enter span:hover, .catalog_section_list .section_item li.name span,
 .module-cart td.name-cell a:hover, .top-h-row .h-user-block .have-user a.reg, .top-h-row .h-user-block .have-user a.reg span, .articles-list .item .item-title a:hover,
-.catalog_detail .stock_board .read_more:hover, .module_products_list tr:hover td.item-name-cell a, .sort_header .sort_filter a span, .filter_opener, .compare_list_item:hover .name a, 
+.catalog_detail .stock_board .read_more:hover, .module_products_list tr:hover td.item-name-cell a, .sort_header .sort_filter a span, .filter_opener, .compare_list_item:hover .name a,
 .catalog_detail .tabs_section .tabs_content a:hover, .module-order-history .tr-d:hover .item_name, .btn_big, .page_not_found td.description .subtitle404,
 .card_popup_frame.popup .but_row a.to_delay:hover .text
 {
@@ -44,19 +44,19 @@ div.reviews-post-reply-buttons a:hover, .services_block .item a:hover span.link,
 {
 	color: #fff;
 }
-.basket_button:hover, .button30:hover, .button30.back_button:hover, .button30.grey:hover, .button30.fast_order:hover, .fancy:hover .zoom, .reviews-expanded .button30.add_review:hover, 
+.basket_button:hover, .button30:hover, .button30.back_button:hover, .button30.grey:hover, .button30.fast_order:hover, .fancy:hover .zoom, .reviews-expanded .button30.add_review:hover,
 .button30.ask_question.opened:hover, .question-list .q:hover .ic, .button22:hover, .button22.grey:hover, .filter_button.show:hover, .filter_button.clear_filter:hover,
 .display_list .list_item .show_props a:hover  .icon, .compare_button:hover, .catalog_block .catalog_item:hover .basket_button:hover,
 .card_popup_frame.popup  .but_row a.to_basket:hover .icon, .card_popup_frame.popup .but_row a.to_delay:hover .icon, .char_name .hint .icon:hover, .bx_filter_container_title .hint .hint_icon:hover, .authorization-cols  .soc-avt .row a:hover, .soc-serv-main .row a:hover, .module-order-history .tr-d:hover .item_name:hover .icon,
-.module-order-history .tr-d .item_name:hover .icon, .soc-avt .row a:hover, .popup .bx-auth-service-form input[type='submit']:hover, 
+.module-order-history .tr-d .item_name:hover .icon, .soc-avt .row a:hover, .popup .bx-auth-service-form input[type='submit']:hover,
 #bx_auth_servform input[type=submit]:hover, a i.arrow, a:hover i.arrow, table.title-search-result td.title-search-all a:hover .icon,
 .card_popup_frame.popup a.more_row:hover .icon, .basket_fly td.total_wrapp a.more_row:hover .icon, #header .catalog_menu  ul.menu.adaptive.opened li.menu_opener:hover, .filter_opener:hover
 {
 	border-bottom: 1px solid #3d3d3d;
 }
-.count-cell div.error, .ask_small_block, .jobs_wrapp .item, .staff_wrapp .section, .item_slider .thumbs li, .catalog_detail .item_main_info, .specials_slider li, 
-.catalog_block .catalog_item, .display_list .list_item_wrapp, ul.menu .child .child_wrapp, .breadcrumbs .dropdown, .ask_big_block, .news_detail_wrapp .price_block, .news_date_time_detail, 
-.tooltip, .form-block, .module-order-history .drop-container .item-shell thead td, .module-cart .cost-cell .price_name, #order_form_div .sale_order_table .ps_logo img, 
+.count-cell div.error, .ask_small_block, .jobs_wrapp .item, .staff_wrapp .section, .item_slider .thumbs li, .catalog_detail .item_main_info, .specials_slider li,
+.catalog_block .catalog_item, .display_list .list_item_wrapp, ul.menu .child .child_wrapp, .breadcrumbs .dropdown, .ask_big_block, .news_detail_wrapp .price_block, .news_date_time_detail,
+.tooltip, .form-block, .module-order-history .drop-container .item-shell thead td, .module-cart .cost-cell .price_name, #order_form_div .sale_order_table .ps_logo img,
 #order_form_div .sale_order_confirm img, #order_form_div .account img, .catalog_detail .set_wrapp .item, .bx_item_set_hor .bx_item_set_hor_item .item_wrapp, .catalog_detail .bx_item_set_hor_container_big,
 .bx_modal_body .bx_kit_item, .search-page form, #order_form_div .sale_order_table.delivery .prop img
 {
@@ -64,7 +64,7 @@ div.reviews-post-reply-buttons a:hover, .services_block .item a:hover span.link,
 }
 li.catalog_item, .jobs_wrapp .item, .staff_wrapp .section, .ask_small_block, .ask_big_block, .catalog_block .catalog_item, .display_list .list_item_wrapp,
 .catalog_detail .item_main_info, .viewed_products_column .view-list, .question-list .ans, .bx_filter_vertical, .news_detail_wrapp .price_block,
-.bx_filter_container #modef, .form-block, .module-order-history .module-orders-list .drop-container, .popup .form-description-wrapp, .popup .form_description, 
+.bx_filter_container #modef, .form-block, .module-order-history .module-orders-list .drop-container, .popup .form-description-wrapp, .popup .form_description,
 .left_block .internal_sections_list, .catalog_detail .set_wrapp .item, .bx_item_set_hor .bx_item_set_hor_item .item_wrapp, .bx_modal_body .bx_kit_item,
 .left_block .internal_sections_list .child_wrapp, .search-page form
 {
@@ -73,12 +73,12 @@ li.catalog_item, .jobs_wrapp .item, .staff_wrapp .section, .ask_small_block, .as
 	-o-box-shadow: 0 1px 2px #e7e7e7;
 	-webkit-box-shadow: 0 1px 2px #e7e7e7;
 }
-.catalog_detail a.compare_item:hover .icon, .catalog_detail a.compare_item.added .icon, .catalog_detail a.wish_item:hover .icon, .catalog_detail a.wish_item.added .icon, .button30:hover, .basket_button:hover, .fancy:hover .zoom, 
+.catalog_detail a.compare_item:hover .icon, .catalog_detail a.compare_item.added .icon, .catalog_detail a.wish_item:hover .icon, .catalog_detail a.wish_item.added .icon, .button30:hover, .basket_button:hover, .fancy:hover .zoom,
 .reviews-expanded .button30.add_review:hover, .services_block a:hover i.arrow, a:hover i.arrow, .button30.ask_question.opened:hover, .question-list .q:hover .ic,
-.button30.back_button:hover, .button30.grey:hover, .button30.fast_order:hover, .filter_button.show:hover, .filter_button.clear_filter:hover, 
+.button30.back_button:hover, .button30.grey:hover, .button30.fast_order:hover, .filter_button.show:hover, .filter_button.clear_filter:hover,
 .smartfilter .bx_ui_slider_track .bx_ui_slider_handle, .display_list .list_item .show_props a:hover .icon, .compare_button:hover,
 .catalog_block .catalog_item:hover .basket_button:hover, .card_popup_frame.popup  .but_row a.to_basket:hover .icon, .card_popup_frame.popup .but_row a.to_delay:hover .icon,
-.char_name .hint .icon:hover, .bx_filter_container_title .hint .hint_icon:hover, .soc-avt .row a:hover, .soc-serv-main .row a:hover, .module-order-history .tr-d:hover .item_name:hover .icon, 
+.char_name .hint .icon:hover, .bx_filter_container_title .hint .hint_icon:hover, .soc-avt .row a:hover, .soc-serv-main .row a:hover, .module-order-history .tr-d:hover .item_name:hover .icon,
 .module-order-history .tr-d .item_name:hover .icon, .button22:hover, .button22.grey:hover, .popup .bx-auth-service-form input[type='submit']:hover,
 #bx_auth_servform input[type=submit]:hover, table.title-search-result td.title-search-all a:hover .icon, .card_popup_frame.popup a.more_row:hover .icon, .basket_fly td.total_wrapp a.more_row:hover .icon,
 .button30.review_preview:hover, #header ul.menu.adaptive.opened li, #header .catalog_menu  ul.menu.adaptive.opened li.menu_opener:hover, #header ul.menu.full > li.search_row, .filter_opener.opened, .filter_opener:hover
@@ -97,8 +97,8 @@ li.catalog_item, .jobs_wrapp .item, .staff_wrapp .section, .ask_small_block, .as
 {
 	border-bottom: 3px solid #4a4a4a;
 }
-.basket_button.one_click, .reviews-expanded .button30.add_review, .button30.review_preview, .button30.ask_question.opened, .filter_button.clear_filter, 
-.module_products_list .basket_button.to-cart, .module_products_list .basket_button.to-subscribe,  .module_products_list .basket_button.to-order, .module_products_list .basket_button.read_more, .char_name .hint .icon, .bx_filter_container_title .hint .hint_icon, 
+.basket_button.one_click, .reviews-expanded .button30.add_review, .button30.review_preview, .button30.ask_question.opened, .filter_button.clear_filter,
+.module_products_list .basket_button.to-cart, .module_products_list .basket_button.to-subscribe,  .module_products_list .basket_button.to-order, .module_products_list .basket_button.read_more, .char_name .hint .icon, .bx_filter_container_title .hint .hint_icon,
 .soc-avt .row a, .soc-serv-main .row a, .button22.grey, .module-order-history .status.canceled
 {
 	background: #e0e0e0;
@@ -112,8 +112,8 @@ li.catalog_item, .jobs_wrapp .item, .staff_wrapp .section, .ask_small_block, .as
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0e0e0', endColorstr='#c6c6c6',GradientType=0 );
 	border-bottom: 1px solid #b1b1b1;
 }
-#footer .bottom_submenu  li a, .number_list a span, .sort_header .sort_filter a span, .filter_opener, .module-cart td.name-cell a:hover, .left_menu a span, 
-.catalog_item:hover .item-title a, .catalog_item .item-title a:hover, .view-item .item-title a:hover, .view-item:hover  a, 
+#footer .bottom_submenu  li a, .number_list a span, .sort_header .sort_filter a span, .filter_opener, .module-cart td.name-cell a:hover, .left_menu a span,
+.catalog_item:hover .item-title a, .catalog_item .item-title a:hover, .view-item .item-title a:hover, .view-item:hover  a,
 .catalog_section_list .section_item li.name a, .breadcrumbs a span, ul.left_menu > li.exit.current > a > span,
 .catalog_detail .set_wrapp .item:hover .item-title a, .bx_item_set_hor .bx_item_set_hor_item .item_wrapp:hover .item-title a,
 .bx_modal_body .bx_kit_item:hover .item-title a
@@ -144,7 +144,7 @@ h1, .header-cart-block .cart a
 {
 	color: #515151;
 }
-body, .display_list a.compare_item:hover span, .display_list a.wish_item:hover span, .catalog_detail .extended_info a:hover span, .catalog_detail .extended_info a:hover, 
+body, .display_list a.compare_item:hover span, .display_list a.wish_item:hover span, .catalog_detail .extended_info a:hover span, .catalog_detail .extended_info a:hover,
 .display_list .list_item .show_props a:hover span
 {
 	color: #555;
@@ -157,16 +157,16 @@ body, .display_list a.compare_item:hover span, .display_list a.wish_item:hover s
 {
 	color: #656565;
 }
-.front_slider .preview_text, table.title-search-result td.title-search-all a, .card_popup_frame.popup a.more_row, .basket_fly td.total_wrapp a.more_row, ul.menu .child li.menu_item a, 
-ul.menu .child .child_wrapp  a, .breadcrumbs a span, .breadcrumbs .dropdown > a, table.colored thead td, 
+.front_slider .preview_text, table.title-search-result td.title-search-all a, .card_popup_frame.popup a.more_row, .basket_fly td.total_wrapp a.more_row, ul.menu .child li.menu_item a,
+ul.menu .child .child_wrapp  a, .breadcrumbs a span, .breadcrumbs .dropdown > a, table.colored thead td,
 table.colored td.prop, .articles-list .date_small, .specials_slider.product_slider .basket_button span, .detail_picture_block .picture_description,
 .left_block .internal_sections_list .child_wrapp a
 {
 	color: #666;
 }
-.show_number, .show_number *, .module-cart [data-id="total_buttons"] .description, .catalog_detail .props_block .char_value, .catalog_detail .price.discount, 
+.show_number, .show_number *, .module-cart [data-id="total_buttons"] .description, .catalog_detail .props_block .char_value, .catalog_detail .price.discount,
 table.colored td.price .price.discount, .display_list .price.discount, .module-pagination .nums a, .module-order-history .item-shell .price-cell,
-.module-order-history .result .order_property td, .catalog_detail .bx_item_set_hor_container_big .total_wrapp .total_title, .catalog_detail .bx_item_set_hor_container_big .total_wrapp .total_price .price.discount, .catalog_detail .bx_item_set_hor_container_big .total_wrapp .total_price .price.discount *, 
+.module-order-history .result .order_property td, .catalog_detail .bx_item_set_hor_container_big .total_wrapp .total_title, .catalog_detail .bx_item_set_hor_container_big .total_wrapp .total_price .price.discount, .catalog_detail .bx_item_set_hor_container_big .total_wrapp .total_price .price.discount *,
 .bx_modal_container .bx_modal_description,  .bx_modal_body .bx_kit_item .price.discount, .bx_kit_result_two .total_title, .bx_kit_result_one .total_title, .display_list .availability-row .value
 {
 	color: #777;
@@ -190,7 +190,7 @@ table.colored td.price .price.discount, .display_list .price.discount, .module-p
 .price.discount, .module_products_list .price-cell .price.discount, .module-cart .cost-cell .discount, .module-cart .cost-cell .discount strike,
 .module-order-history .status, .module-cart .count-cell .measure, .catalog_detail .set_wrapp .item .price.detail, .bx_item_set_hor .bx_item_set_hor_item .price.detail
 {
-	color: #999;
+	color: #9b2d30;
 }
 .top-h-row .h-user-block .have-user a.exit, .top-h-row .h-user-block .have-user a.exit span, .top-h-row .menu li a
 {
@@ -208,8 +208,8 @@ form .star, form div.r div.error, form div.r label.error, label.error, .order-ch
 {
 	color: #cb0000;
 }
-.basket_button:hover, .button30:hover, .basket_button:hover span, .button22:hover span, .button30:hover span, .compare_button:hover span, .filter_button:hover span, 
-.button30.fast_order span, .button30.back_button span, .button30.grey span, .char_name .hint .icon:hover, .bx_filter_container_title .hint .hint_icon:hover, .popup .soc-avt .row a:hover, 
+.basket_button:hover, .button30:hover, .basket_button:hover span, .button22:hover span, .button30:hover span, .compare_button:hover span, .filter_button:hover span,
+.button30.fast_order span, .button30.back_button span, .button30.grey span, .char_name .hint .icon:hover, .bx_filter_container_title .hint .hint_icon:hover, .popup .soc-avt .row a:hover,
 .popup .bx-auth-service-form input[type='submit']:hover, #bx_auth_servform input[type=submit]:hover, .filter_opener.opened, .filter_opener:hover span
 {
 	color: #fff;
@@ -241,7 +241,7 @@ table.title-search-result td.title-search-all a span.text, a h3
 	border-bottom: 1px dotted #b4b4b4;
 }
 .staff_wrapp .item .contacts, .popup .cart_shell td, .module_products_list td, .question-list , .detail_picture_block .picture_description,
-.authorization-cols .col.authorization .soc-avt, .module-orders-list .drop-container .item-shell, ul.left_menu > li.exit, 
+.authorization-cols .col.authorization .soc-avt, .module-orders-list .drop-container .item-shell, ul.left_menu > li.exit,
 .popup .form-description-wrapp, .popup .soc-avt, .popup .bx-auth-service-form, .popup .form_description, .catalog_section_list .section_item .desc .desc_wrapp, .catalog_detail .set_wrapp,
 .basket_fly .module-cart table.colored tbody td, #header .middle-h-row form.basket_wrapp
 {
@@ -268,16 +268,16 @@ table.colored tr.nb td{border-bottom:none;}
 }
 .module-order-history .module-orders-list .tr-d:hover td
 {
-	border-top: 1px solid #e7e7e7; 
+	border-top: 1px solid #e7e7e7;
 }
 .module-order-history .module-orders-list .tr-d:hover td.item-name-cell, .module-order-history .module-orders-list .tr-d.opened td.item-name-cell
 {
-	border-left: 1px solid #e7e7e7; 
+	border-left: 1px solid #e7e7e7;
 }
-.module-order-history .module-orders-list .tr-d:hover td.order-status-cell, .module-order-history .module-orders-list .tr-d.opened td.order-status-cell, 
+.module-order-history .module-orders-list .tr-d:hover td.order-status-cell, .module-order-history .module-orders-list .tr-d.opened td.order-status-cell,
 .module-cart .colored tfoot tr[data-id="total_buttons"] td .basket_update
 {
-	border-right: 1px solid #e7e7e7; 
+	border-right: 1px solid #e7e7e7;
 }
 .flex-direction-nav li:first-child, .jobs_wrapp .item .icon, .staff_wrapp .section .icon
 {
@@ -294,7 +294,7 @@ table.colored tr.nb td{border-bottom:none;}
 }
 
 /* backgrounds */
-hr 
+hr
 {
 	background: #e4e4e4;
 }
@@ -311,7 +311,7 @@ hr
 	background: #f2f2f2;
 }
 .ask_small_block .ask_btn_block, .ask_big_block, .news_detail_wrapp .price_block, .news_date_time_detail, .bx_filter_vertical, .bx_filter_container #modef,
-.module-order-history .module-orders-list .tr-d:hover td, table.colored.item-shell thead td, .module-order-history .drop-cell .result-row, .popup .form-description-wrapp, 
+.module-order-history .module-orders-list .tr-d:hover td, table.colored.item-shell thead td, .module-order-history .drop-cell .result-row, .popup .form-description-wrapp,
 .differences tr.hovered:hover, .bx_kit_two_section, .left_block .internal_sections_list .child_wrapp, .search-page form
 {
 	background: #fafafa;
@@ -324,11 +324,11 @@ body, .adaptive_filter
 {
 	background: #fff;
 }
-.thumbs_navigation, .item_slider ul.slides li 
+.thumbs_navigation, .item_slider ul.slides li
 {
 	background: #fff;
 }
-.module-pagination .nums a.cur 
+.module-pagination .nums a.cur
 {
 	background: #fff;
 }
@@ -346,7 +346,7 @@ body, .adaptive_filter
 	-moz-box-shadow: rgba(44, 44, 44, 0.2) 0px 3px 9px;
 	-webkit-box-shadow: rgba(44, 44, 44, 0.2) 0px 3px 9px;
 }
-table.title-search-result td.title-search-all 
+table.title-search-result td.title-search-all
 {
 	background: #fff !important;
 }
@@ -529,7 +529,7 @@ ul.menu .child .child_wrapp, .breadcrumbs .dropdown, .tooltip
 	-o-box-shadow: 0 0 1px #eee inset;
 	-webkit-box-shadow: 0 0 1px #eee inset;
 }
-.basket_button:hover span, .button30:hover span, .button30.back_button:hover span, .button30.grey:hover span, .button30.fast_order:hover span, .compare_button:hover span, .char_name .hint .icon:hover i, 
+.basket_button:hover span, .button30:hover span, .button30.back_button:hover span, .button30.grey:hover span, .button30.fast_order:hover span, .compare_button:hover span, .char_name .hint .icon:hover i,
 .bx_filter_container_title .hint .hint_icon:hover i, .popup .soc-avt .row a:hover span, .popup .bx-auth-service-form input[type='submit']:hover, #bx_auth_servform input[type=submit]:hover
 {
 	text-shadow: 0 1px 0 rgba(0,0,0,.2);
@@ -537,15 +537,15 @@ ul.menu .child .child_wrapp, .breadcrumbs .dropdown, .tooltip
 	-o-text-shadow: 0 1px 0 rgba(0,0,0,.2);
 	-webkit-text-shadow: 0 1px 0 rgba(0,0,0,.2);
 }
-.basket_button.read_more:hover span 
+.basket_button.read_more:hover span
 {
 	background-position: 1px -448px !important;
 }
-.basket_button.add:hover span 
+.basket_button.add:hover span
 {
 	background-position: 0px -86px;
 }
-.basket_button.added:hover span 
+.basket_button.added:hover span
 {
 	background-position: 0px -126px
 }
@@ -569,7 +569,7 @@ ul.menu .child .child_wrapp, .breadcrumbs .dropdown, .tooltip
 {
 	border: 1px solid #cecece !important;
 }
-input[type="text"], input[type="password"], input[type="email"], textarea, select 
+input[type="text"], input[type="password"], input[type="email"], textarea, select
 {
 	border: 1px solid #cbcbcb;
 	box-shadow: 0 0 1px #cbcbcb inset;
@@ -601,7 +601,7 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 	background: #f2f2f2;
 	border-bottom: 1px solid #bdbdbd;
 }
-.question-list .ans .arr 
+.question-list .ans .arr
 {
 	border-bottom: 10px solid #f2f2f2;
 }
@@ -645,7 +645,7 @@ h2.feedback_title
 	background: -ms-linear-gradient(top,  #00b0d8 0%,#007db9 100%);
 	background: linear-gradient(to bottom,  #00b0d8 0%,#007db9 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00b0d8', endColorstr='#007db9',GradientType=0 );
-	border-bottom: 1px solid #00699d;	
+	border-bottom: 1px solid #00699d;
 }
 .button30.fast_order span
 {
@@ -675,7 +675,7 @@ h2.feedback_title
 	-webkit-text-shadow: 0 1px 1px #69808c;
 }
 .bx_filter_vertical, .bx_filter_container #modef, .left_block .internal_sections_list, .left_block .internal_sections_list .child_wrapp
-{	
+{
 	border: 1px solid #dadada;
 }
 .bx_filter_container_title > span.name span
@@ -691,7 +691,7 @@ h2.feedback_title
 {
 	background: #fafafa url("../images/arrows_small.png") -15px -21px no-repeat;
 }
-.bx_filter_vertical .for_button 
+.bx_filter_vertical .for_button
 {
 	border-top: 1px solid #dadada;
 }
@@ -843,11 +843,11 @@ h2.feedback_title
 }
 .flexslider .light a .banner_title span
 {
-	
+
 }
 .flexslider .dark a .banner_title span
 {
-	
+
 }
 .flexslider .dark  .banner_title
 {

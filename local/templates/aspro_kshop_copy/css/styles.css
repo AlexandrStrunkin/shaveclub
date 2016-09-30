@@ -8077,7 +8077,7 @@ p.no_staff{
 {
     margin-right: 15px;
     margin-bottom: 5px !important;
-    width: 150px !important;
+    width: 160px !important;
 }
 .catalog_detail .bx_item_set_hor_container_big .total_wrapp
 {
@@ -9135,4 +9135,11 @@ header ul.menu.adaptive > li.menu_opener i
 }
 .viewed_wrap .item_info .item-title{
     height: 30px;
+}
+.cost.clearfix .price.discount,
+.colored .cost-cell .price.discount{
+    color: #9b2d30!important;
+}
+.count-cell .measure{
+    color: #999!important;
 }

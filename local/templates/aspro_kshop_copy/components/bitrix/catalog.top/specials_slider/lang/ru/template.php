@@ -21,4 +21,5 @@
 	$MESS["CATALOG_READ_MORE"] = "Подробнее";
 	$MESS["CATALOG_SUBSCRIBE"] = "Подписаться";
 	$MESS["CATALOG_IN_SUBSCRIBE"] = "Отписаться";
+    $MESS["PRICE_RUB"] = "руб.";
 ?>
