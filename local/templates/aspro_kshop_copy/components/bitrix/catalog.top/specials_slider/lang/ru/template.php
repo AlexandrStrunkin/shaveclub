@@ -12,6 +12,7 @@
 	$MESS["CT_BCS_ELEMENT_DELETE_CONFIRM"] = "Будет удалена вся информация, связанная с этой записью. Продолжить?";
 	$MESS["STOCK_TITLE"] = "По акции";
 	$MESS["HIT_TITLE"] = "Хиты продаж";
+    $MESS["SPECIALOFFER_TITLE"] = "Спецпредложения";
 	$MESS["RECOMMEND_TITLE"] = "Мы советуем";
 	$MESS["NEW_TITLE"] = "Новинки";
 	$MESS["BY_ORDER"] = "На заказ";

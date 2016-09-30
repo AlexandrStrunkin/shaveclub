@@ -51,7 +51,7 @@ foreach($arResult["ITEMS"] as $cell => $arElement){
 						$minOfferPrice = $arPrice["VALUE"];
 						$minOfferPriceFormat = $arPrice["PRINT_VALUE"];
 					}
-					
+
 					if($minItemPrice > 0 && $minOfferPrice < $minItemPrice){
 						$minItemPrice = $minOfferPrice;
 						$minItemPriceFormat = $minOfferPriceFormat;
@@ -169,7 +169,7 @@ while($arSection = $rsSections->Fetch()){
 foreach($arResult["ITEMS"] as $key => $arElement_){
 	$this->__component->arResult["IDS"][] = $arElement_["ID"];
 	$this->__component->arResult["DELETE_COMPARE_URLS"][$arElement_["ID"]] = $arElement_["DELETE_COMPARE_URL"];
-		
+
 	if(is_array($arElement_["DETAIL_PICTURE"])){
 		$arFilter = '';
 		if($arParams["SHARPEN"] != 0){
@@ -178,7 +178,7 @@ foreach($arResult["ITEMS"] as $key => $arElement_){
 		$arFileTmp = CFile::ResizeImageGet($arElement_["DETAIL_PICTURE"], array("width" => $arParams["DISPLAY_IMG_WIDTH"], "height" => $arParams["DISPLAY_IMG_HEIGHT"]), BX_RESIZE_IMAGE_PROPORTIONAL, true, $arFilter);
 		$arResult["ITEMS"][$key]["PREVIEW_IMG"] = array("SRC" => $arFileTmp["src"], 'WIDTH' => $arFileTmp["width"], 'HEIGHT' => $arFileTmp["height"]);
 	}
-	
+
 	$section_id = $arElement_["~IBLOCK_SECTION_ID"];
 
 	if(array_key_exists($section_id, $arSections)){
@@ -205,17 +205,33 @@ if($arParams["SPECIALS_CODE3"]){
 if($arParams["SPECIALS_CODE4"]){
 	$arSpecialsCodes[] = trim($arParams["SPECIALS_CODE4"]);
 }
+foreach($arResult["ITEMS"] as $key => $arItem){
 
-foreach($arResult["ITEMS"] as $key => $arItem){ 
-	if(is_array($arItem["PROPERTIES"]["HIT"]["VALUE_XML_ID"]) && !empty($arItem["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){
-		foreach($arItem["PROPERTIES"]["HIT"]["VALUE_XML_ID"] as $xml_code){
+	if(is_array($arItem["PROPERTIES"][$arSpecialsCodes[0]]["VALUE_XML_ID"]) && !empty($arItem["PROPERTIES"][$arSpecialsCodes[0]]["VALUE_XML_ID"])){
+		foreach($arItem["PROPERTIES"][$arSpecialsCodes[0]]["VALUE_XML_ID"] as $xml_code){
 			if(in_array($xml_code, $arSpecialsCodes)){
-				$arTempResult[$xml_code][] = $arItem;
+                //$arTempResult[$xml_code][] = $arItem;
+                 if($xml_code == $arSpecialsCodes[1]){
+                      $arrElement_stock[] = $arItem;
+                 }
+                 if($xml_code == $arSpecialsCodes[3]){
+                      $arrElement_specialoffer[] = $arItem;
+                 }
+                 if($xml_code == $arSpecialsCodes[0]){
+                      $arrElement_hit[] = $arItem;
+                 }
 			}
 		}
 	}
 }
+     $Element_property[$arSpecialsCodes[1]] = $arrElement_stock;
+     $Element_property[$arSpecialsCodes[3]] = $arrElement_specialoffer;
+     $Element_property[$arSpecialsCodes[0]] = $arrElement_hit;
 
-$arResult["ITEMS"] = $arTempResult;
-unset($arTempResult);
+
+
+
+$arResult["ITEMS"] = $Element_property;
+
+unset($Element_property);
 ?>

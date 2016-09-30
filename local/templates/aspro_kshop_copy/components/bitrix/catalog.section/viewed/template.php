@@ -18,12 +18,12 @@ if($arResult['ITEMS'] > 0):?>
 				<div class="catalog_item view-item <?=(!$i ? 'first' : (!$arResult[$i + 1] ? 'last' : ''))?>" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
 					<?if($arParams["VIEWED_IMAGE"] == "Y"):?>
 						<div class="ribbons">
-							<?if (is_array($arItem["PROPERTIES"]["HIT"]["VALUE_XML_ID"])):?>
-								<?if( in_array("HIT", $arItem["PROPERTIES"]["HIT"]["VALUE_XML_ID"]) ):?><span class="ribon_hit"></span><?endif;?>
-								<?if( in_array("RECOMMEND", $arItem["PROPERTIES"]["HIT"]["VALUE_XML_ID"])):?><span class="ribon_recomend"></span><?endif;?>
-								<?if( in_array("NEW", $arItem["PROPERTIES"]["HIT"]["VALUE_XML_ID"])):?><span class="ribon_new"></span><?endif;?>
-								<?if( in_array("STOCK", $arItem["PROPERTIES"]["HIT"]["VALUE_XML_ID"])):?><span class="ribon_action"></span><?endif;?>
-							<?endif;?>
+                            <?foreach($arItem["PROPERTIES"] as $key_property => $property_item){?>
+								<?if( in_array("HIT", $arItem["PROPERTIES"][$key_property]["VALUE_XML_ID"]) ):?><span class="ribon_hit"></span><?endif;?>
+								<?if( in_array("SPECIALOFFER", $arItem["PROPERTIES"][$key_property]["VALUE_XML_ID"])):?><span class="ribon_recomend"></span><?endif;?>
+								<?if( in_array("NEW", $arItem["PROPERTIES"][$key_property]["VALUE_XML_ID"])):?><span class="ribon_new"></span><?endif;?>
+								<?if( in_array("STOCK", $arItem["PROPERTIES"][$key_property]["VALUE_XML_ID"])):?><span class="ribon_action"></span><?endif;?>
+							<?};?>
 						</div>
 						<div class="image">
 							<a href="<?=$arItem["DETAIL_PAGE_URL"]?>" class="thumb">
