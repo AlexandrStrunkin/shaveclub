@@ -224,9 +224,15 @@ foreach($arResult["ITEMS"] as $key => $arItem){
 		}
 	}
 }
-     $Element_property[$arSpecialsCodes[1]] = $arrElement_stock;
-     $Element_property[$arSpecialsCodes[3]] = $arrElement_specialoffer;
-     $Element_property[$arSpecialsCodes[0]] = $arrElement_hit;
+    if(!empty($arrElement_stock)){
+        $Element_property[$arSpecialsCodes[1]] = $arrElement_stock;
+    }
+    if(!empty($arrElement_specialoffer)){
+        $Element_property[$arSpecialsCodes[3]] = $arrElement_specialoffer;
+    }
+    if(!empty($arrElement_hit)){
+        $Element_property[$arSpecialsCodes[0]] = $arrElement_hit;
+    }
 
 
 
