@@ -14,7 +14,7 @@
 		</ul>
 		<ul class="tabs_content">
 			<?foreach($arResult["ITEMS"] as $specials_code => $arItems):?>
-				<?			
+				<?
 				if(($arParams["SHOW_MEASURE"] == "Y") && ($arItem["CATALOG_MEASURE"])){
 					$arMeasure = CCatalogMeasure::getList(array(), array("ID" => $arItem["CATALOG_MEASURE"]), false, false, array())->GetNext();
 				}
@@ -72,13 +72,13 @@
 													<?if($arPrice["VALUE"] > $arPrice["DISCOUNT_VALUE"]):?>
 														<div class="price"><?=$arPrice["PRINT_DISCOUNT_VALUE"];?></div>
 														<div class="price discount">
-															<strike><?=$arPrice["VALUE"];?></strike>
+															<strike><?=$arPrice["VALUE"];?> <?= GetMessage('PRICE_RUB') ?></strike>
 														</div>
 													<?else:?>
 														<div class="price"><?=$arPrice["PRINT_VALUE"];?></div>
 													<?endif;?>
 												<?endif;?>
-											<?endforeach;?>				
+											<?endforeach;?>
 										<?endif;?>
 										<?$frame->end();?>
 									</div>
@@ -86,7 +86,7 @@
 										<!--noindex-->
 										<?=$arAddToBasketData["HTML"]?>
 										<?if($arItem["CAN_BUY"] && ($arParams["DISPLAY_WISH_BUTTONS"] != "N" || $arParams["DISPLAY_COMPARE"] == "Y")):?>
-											<div class="like_icons">								
+											<div class="like_icons">
 												<?if(empty($arItem["OFFERS"]) && $arParams["DISPLAY_WISH_BUTTONS"] != "N"):?>
 													<a title="<?=GetMessage('CATALOG_WISH')?>" class="wish_item" rel="nofollow" data-item="<?=$arItem["ID"]?>"><i></i></a>
 												<?endif;?>
@@ -109,12 +109,12 @@
 			$('.specials_slider_wrapp .tabs > li').first().addClass('cur');
 			$('.specials_slider_wrapp .slider_navigation > li').first().addClass('cur');
 			$('.specials_slider_wrapp .tabs_content > li').first().addClass('cur');
-			
+
 			var flexsliderItemWidth = 184;
 			var flexsliderItemMargin = 15;
 			var sliderWidth = $('.specials_slider_wrapp').outerWidth();
 			var flexsliderMinItems = Math.floor(sliderWidth / (flexsliderItemWidth + flexsliderItemMargin));
-			
+
 			$('.specials_slider_wrapp .tabs_content > li.cur').flexslider({
 				animation: 'slide',
 				selector: '.specials_slider > li',
@@ -123,13 +123,13 @@
 				directionNav: true,
 				controlNav: false,
 				pauseOnHover: true,
-				animationLoop: false, 
+				animationLoop: false,
 				itemWidth: flexsliderItemWidth,
-				itemMargin: flexsliderItemMargin, 
+				itemMargin: flexsliderItemMargin,
 				minItems: flexsliderMinItems,
 				controlsContainer: '.specials_slider_navigation.cur',
 			});
-			
+
 			$('.specials_slider_wrapp .tabs > li').click(function(){
 				if(!$(this).hasClass('active')){
 					var sliderIndex = $(this).index();
@@ -145,9 +145,9 @@
 							directionNav: true,
 							controlNav: false,
 							pauseOnHover: true,
-							animationLoop: false, 
+							animationLoop: false,
 							itemWidth: flexsliderItemWidth,
-							itemMargin: flexsliderItemMargin, 
+							itemMargin: flexsliderItemMargin,
 							minItems: flexsliderMinItems,
 							controlsContainer: '.specials_slider_navigation.cur',
 						});
@@ -155,15 +155,15 @@
 					$(window).resize();
 				}
 			});
-			
+
 			$(window).resize(function(){
 				var sliderWidth = $('.specials_slider_wrapp').outerWidth();
 				$('.specials_slider_wrapp .tabs_content > li.cur').css('height', '');
 				$('.specials_slider_wrapp .tabs_content > li.cur .catalog_item').css('height', '');
 				$('.specials_slider_wrapp .tabs_content > li.cur .catalog_item .item-title').css('height', '');
 				$('.specials_slider_wrapp .tabs_content > li.cur .catalog_item .item_info').css('height', '');
-				$('.specials_slider_wrapp .tabs_content > li.cur').equalize({children: '.item-title'}); 
-				$('.specials_slider_wrapp .tabs_content > li.cur').equalize({children: '.item_info'}); 
+				$('.specials_slider_wrapp .tabs_content > li.cur').equalize({children: '.item-title'});
+				$('.specials_slider_wrapp .tabs_content > li.cur').equalize({children: '.item_info'});
 				$('.specials_slider_wrapp .tabs_content > li.cur').equalize({children: '.catalog_item'});
 				$('.specials_slider_wrapp .tabs_content .tab.cur .specials_slider .buttons_block').show();
 				var itemsButtonsHeight = $('.specials_slider_wrapp .tabs_content .tab.cur .specials_slider > li .buttons_block').height();
@@ -186,7 +186,7 @@
 					$('.specials_slider_wrapp .slider_navigation > li.cur > ul').hide();
 				}
 			});
-			
+
 			$(window).resize();
 		});
 		</script>

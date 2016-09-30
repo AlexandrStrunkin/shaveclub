@@ -31,7 +31,7 @@ if($arResult['ITEMS'] > 0):?>
 									<img border="0" src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" alt="<?=($arItem["PREVIEW_PICTURE"]["ALT"]?$arItem["PREVIEW_PICTURE"]["ALT"]:$arItem["NAME"]);?>" title="<?=($arItem["PREVIEW_PICTURE"]["TITLE"]?$arItem["PREVIEW_PICTURE"]["TITLE"]:$arItem["NAME"]);?>" />
 								<?elseif( !empty($arItem["DETAIL_PICTURE"])):?>
 									<?$img = CFile::ResizeImageGet($arItem["DETAIL_PICTURE"], array( "width" => 165, "height" => 165 ), BX_RESIZE_IMAGE_PROPORTIONAL,true );?>
-									<img border="0" src="<?=$img["src"]?>" alt="<?=($arItem["PREVIEW_PICTURE"]["ALT"]?$arItem["PREVIEW_PICTURE"]["ALT"]:$arItem["NAME"]);?>" title="<?=($arItem["PREVIEW_PICTURE"]["TITLE"]?$arItem["PREVIEW_PICTURE"]["TITLE"]:$arItem["NAME"]);?>" />		
+									<img border="0" src="<?=$img["src"]?>" alt="<?=($arItem["PREVIEW_PICTURE"]["ALT"]?$arItem["PREVIEW_PICTURE"]["ALT"]:$arItem["NAME"]);?>" title="<?=($arItem["PREVIEW_PICTURE"]["TITLE"]?$arItem["PREVIEW_PICTURE"]["TITLE"]:$arItem["NAME"]);?>" />
 								<?else:?>
 									<img border="0" src="<?=SITE_TEMPLATE_PATH?>/images/no_photo_medium.png" alt="<?=($arItem["PREVIEW_PICTURE"]["ALT"]?$arItem["PREVIEW_PICTURE"]["ALT"]:$arItem["NAME"]);?>" title="<?=($arItem["PREVIEW_PICTURE"]["TITLE"]?$arItem["PREVIEW_PICTURE"]["TITLE"]:$arItem["NAME"]);?>" />
 								<?endif;?>
@@ -46,7 +46,7 @@ if($arResult['ITEMS'] > 0):?>
 						<?endif;?>
 						<?if($arParams["VIEWED_PRICE"] == "Y"):?>
 							<div class="cost clearfix">
-							<?if($arItem["OFFERS"]){?> 
+							<?if($arItem["OFFERS"]){?>
 								<div class="price_block">
 										<div class="price"><?=GetMessage("CATALOG_FROM");?> <?=$arItem["MIN_PRODUCT_OFFER_PRICE_PRINT"]?></div>
 									</div>
@@ -58,10 +58,10 @@ if($arResult['ITEMS'] > 0):?>
 											<?if($arCountPricesCanAccess>1):?><div class="price_name"><?=$price["CATALOG_GROUP_NAME"];?></div><?endif;?>
 											<?if($arPrice["VALUE"] > $arPrice["DISCOUNT_VALUE"]){?>
 												<div class="price"><?=$arPrice["PRINT_DISCOUNT_VALUE"];?></div>
-												<div class="price discount"><strike><?=$arPrice["VALUE"]?></strike></div>
+												<div class="price discount"><strike><?=$arPrice["VALUE"]?> <?= GetMessage('PRICE_RUB') ?></strike></div>
 											<?}else{?><div class="price"><?=$arPrice["PRINT_VALUE"];?></div><?}?>
 										<?}?>
-									<?}?>				
+									<?}?>
 								<?}?>
 							</div>
 						<?endif;?>
@@ -71,7 +71,7 @@ if($arResult['ITEMS'] > 0):?>
 								<!--noindex-->
 									<?=$arAddToBasketData["HTML"]?>
 									<?if((!$arItem["OFFERS"] && $arParams["DISPLAY_WISH_BUTTONS"] != "N" && $arItem["CAN_BUY"]) || ($arParams["DISPLAY_COMPARE"] == "Y")):?>
-										<div class="like_icons">								
+										<div class="like_icons">
 											<?if(!$arItem["OFFERS"] && $arParams["DISPLAY_WISH_BUTTONS"] != "N" && $arItem["CAN_BUY"]):?>
 												<a title="<?=GetMessage('CATALOG_WISH')?>" class="wish_item" rel="nofollow" data-item="<?=$arItem["ID"]?>"><i></i></a>
 											<?endif;?>
@@ -81,7 +81,7 @@ if($arResult['ITEMS'] > 0):?>
 										</div>
 									<?endif;?>
 								<!--/noindex-->
-							</div>						
+							</div>
 						<?endif;?>
 					</div>
 				</div>

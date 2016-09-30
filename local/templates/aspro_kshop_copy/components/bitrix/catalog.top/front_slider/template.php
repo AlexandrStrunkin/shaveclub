@@ -10,7 +10,7 @@
 					$arMeasure = CCatalogMeasure::getList(array(), array("ID" => $arItem["CATALOG_MEASURE"]), false, false, array())->GetNext();
 				}
 				?>
-				<li id="<?=$this->GetEditAreaId($arItem['ID']);?>">	
+				<li id="<?=$this->GetEditAreaId($arItem['ID']);?>">
 					<table cellspacing="0" cellpadding="0" border="0" width="100%">
 						<tr>
 							<td class="info">
@@ -20,7 +20,7 @@
 								<?if($arItem["PREVIEW_TEXT"]):?>
 									<div class="preview_text"><?=$arItem["PREVIEW_TEXT"]?></div>
 								<?endif;?>
-								<div class="cost clearfix">   
+								<div class="cost clearfix">
 									<?
 									$frame = $this->createFrame()->begin('');
 									$frame->setBrowserStorage(true);
@@ -37,7 +37,7 @@
 												++$arCountPricesCanAccess;
 											}
 										}
-										?> 
+										?>
 										<?foreach($arItem["PRICES"] as $key => $arPrice):?>
 											<?if($arPrice["CAN_ACCESS"]):?>
 												<?$price = CPrice::GetByID($arPrice["ID"]);?>
@@ -47,18 +47,18 @@
 												<?if($arPrice["VALUE"] > $arPrice["DISCOUNT_VALUE"]):?>
 													<div class="price"><?=$arPrice["PRINT_DISCOUNT_VALUE"];?></div>
 													<div class="price discount">
-														<?=GetMessage("WITHOUT_DISCOUNT");?>&nbsp;<strike><?=$arPrice["VALUE"];?></strike>
+														<?=GetMessage("WITHOUT_DISCOUNT");?>&nbsp;<strike><?=$arPrice["VALUE"];?> <?= GetMessage('PRICE_RUB') ?></strike>
 													</div>
 												<?else:?>
 													<div class="price"><?=$arPrice["PRINT_VALUE"];?></div>
 												<?endif;?>
 											<?endif;?>
-										<?endforeach;?>				
-									<?else:?> 
+										<?endforeach;?>
+									<?else:?>
                                         <!--<span class="by_order"><?=GetMessage("BY_ORDER");?></span> -->
 									<?endif;?>
 									<?$frame->end();?>
-								</div>       
+								</div>
 								<a class="read_more" href="<?=$arItem["DETAIL_PAGE_URL"]?>"><?=GetMessage("READ_MORE")?></a>
 							</td>
 							<td class="image">
@@ -91,7 +91,7 @@
 				controlNav: true,
 				directionNav: false,
 				pauseOnHover: true,
-				animationLoop: false, 
+				animationLoop: false,
 				before: function(slider){
 					checkActive(slider);
 				},

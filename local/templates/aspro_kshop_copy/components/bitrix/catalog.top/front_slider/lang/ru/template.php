@@ -21,4 +21,5 @@
 	$MESS["READ_MORE"] = "Подробнее";
 	$MESS["WITHOUT_DISCOUNT"] = "Цена без скидки";
 	$MESS["FROM"] = "от";
+    $MESS["PRICE_RUB"] = "руб.";
 ?>
