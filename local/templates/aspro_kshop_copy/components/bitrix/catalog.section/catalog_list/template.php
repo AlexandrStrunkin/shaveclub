@@ -14,7 +14,7 @@ if( count( $arResult["ITEMS"] ) >= 1 ){?>
 			$arQuantityData = CKShop::GetQuantityArray($totalCount);
 			$arAddToBasketData = CKShop::GetAddToBasketArray($arItem, $totalCount, $arParams["DEFAULT_COUNT"], $arParams["BASKET_URL"]);
 			?>
-			<?			
+			<?
 			if (($arParams["SHOW_MEASURE"]=="Y")&&($arItem["CATALOG_MEASURE"]))
 			{ $arMeasure = CCatalogMeasure::getList(array(), array("ID"=>$arItem["CATALOG_MEASURE"]), false, false, array())->GetNext(); }
 			?>
@@ -40,13 +40,13 @@ if( count( $arResult["ITEMS"] ) >= 1 ){?>
 								<img border="0" src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" alt="<?=($arItem["PREVIEW_PICTURE"]["ALT"]?$arItem["PREVIEW_PICTURE"]["ALT"]:$arItem["NAME"]);?>" title="<?=($arItem["PREVIEW_PICTURE"]["TITLE"]?$arItem["PREVIEW_PICTURE"]["TITLE"]:$arItem["NAME"]);?>" />
 							<?elseif( !empty($arItem["DETAIL_PICTURE"])):?>
 								<?$img = CFile::ResizeImageGet($arItem["DETAIL_PICTURE"], array( "width" => 170, "height" => 170 ), BX_RESIZE_IMAGE_PROPORTIONAL,true );?>
-								<img border="0" src="<?=$img["src"]?>" alt="<?=($arItem["PREVIEW_PICTURE"]["ALT"]?$arItem["PREVIEW_PICTURE"]["ALT"]:$arItem["NAME"]);?>" title="<?=($arItem["PREVIEW_PICTURE"]["TITLE"]?$arItem["PREVIEW_PICTURE"]["TITLE"]:$arItem["NAME"]);?>" />		
+								<img border="0" src="<?=$img["src"]?>" alt="<?=($arItem["PREVIEW_PICTURE"]["ALT"]?$arItem["PREVIEW_PICTURE"]["ALT"]:$arItem["NAME"]);?>" title="<?=($arItem["PREVIEW_PICTURE"]["TITLE"]?$arItem["PREVIEW_PICTURE"]["TITLE"]:$arItem["NAME"]);?>" />
 							<?else:?>
 								<img border="0" src="<?=SITE_TEMPLATE_PATH?>/images/no_photo_medium.png" alt="<?=($arItem["PREVIEW_PICTURE"]["ALT"]?$arItem["PREVIEW_PICTURE"]["ALT"]:$arItem["NAME"]);?>" title="<?=($arItem["PREVIEW_PICTURE"]["TITLE"]?$arItem["PREVIEW_PICTURE"]["TITLE"]:$arItem["NAME"]);?>" />
 							<?endif;?>
 						</a>
 					</td>
-					
+
 					<td class="description_wrapp">
 						<div class="description">
 							<div class="desc_name">
@@ -81,7 +81,7 @@ if( count( $arResult["ITEMS"] ) >= 1 ){?>
 													<td><?=$arProp["NAME"]?>:</td>
 													<td>
 														<?
-														if(count($arProp["DISPLAY_VALUE"])>1) { foreach($arProp["DISPLAY_VALUE"] as $key => $value) { if ($arProp["DISPLAY_VALUE"][$key+1]) {echo $value.", ";} else {echo $value;} }} 
+														if(count($arProp["DISPLAY_VALUE"])>1) { foreach($arProp["DISPLAY_VALUE"] as $key => $value) { if ($arProp["DISPLAY_VALUE"][$key+1]) {echo $value.", ";} else {echo $value;} }}
 														else { echo $arProp["DISPLAY_VALUE"]; }
 														?>
 													</td>
@@ -118,7 +118,7 @@ if( count( $arResult["ITEMS"] ) >= 1 ){?>
 											<?endif;?>
 											<?if($arPrice["VALUE"] > $arPrice["DISCOUNT_VALUE"]){?>
 												<div class="price"><?=$prefix?><?=$arPrice["PRINT_DISCOUNT_VALUE"]?></div>
-												<div class="price discount"><?=GetMessage("WITHOUT_DISCOUNT")?>:&nbsp;<strike><?=$arPrice["VALUE"]?></strike></div>
+												<div class="price discount"><?=GetMessage("WITHOUT_DISCOUNT")?>:&nbsp;<strike><?=$arPrice["VALUE"]?> <?= GetMessage('PRICE_RUB') ?></strike></div>
 											<?}else{?>
 												<div class="price"><?=$prefix?><?=$arPrice["PRINT_VALUE"]?></div>
 											<?}?>
@@ -126,7 +126,7 @@ if( count( $arResult["ITEMS"] ) >= 1 ){?>
 									<?}?>
 								<?}?>
 							</div>
-							
+
 							<div class="counter_block" data-item="<?=$arItem["ID"];?>">
 								<?if($arAddToBasketData["OPTIONS"]["USE_PRODUCT_QUANTITY_LIST"] && !count($arItem["OFFERS"]) && $arAddToBasketData["ACTION"] == "ADD"):?>
 									<span class="minus">-</span>
@@ -134,17 +134,17 @@ if( count( $arResult["ITEMS"] ) >= 1 ){?>
 									<span class="plus">+</span>
 								<?endif;?>
 							</div>
-						
+
 							<?if(strlen($arQuantityData["TEXT"])):?>
 								<div class="availability-row"><?=$arQuantityData["HTML"]?></div>
 							<?endif;?>
-						
+
 							<div class="button_block">
 								<!--noindex-->
 									<?=$arAddToBasketData["HTML"]?>
 								<!--/noindex-->
 							</div>
-							
+
 							<?if((!$arItem["OFFERS"] && $arParams["DISPLAY_WISH_BUTTONS"] != "N" && $arItem["CAN_BUY"]) || ($arParams["DISPLAY_COMPARE"] == "Y")):?>
 								<div class="likes_icons">
 									<!--noindex-->

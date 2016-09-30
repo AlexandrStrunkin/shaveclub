@@ -506,11 +506,7 @@ global $USER;
                                                             <?endif;?>
                                                     </div>
                                                     <div class="price discount">
-<<<<<<< HEAD
                                                         <?=GetMessage("WITHOUT_DISCOUNT")?>:&nbsp;<strike><?=$arSetItem["MIN_PRICE"]["VALUE"]?> <?= GetMessage('PRICE_RUB') ?></strike>
-=======
-                                                        <?=GetMessage("WITHOUT_DISCOUNT")?>:&nbsp;<strike><?=$arSetItem["MIN_PRICE"]["VALUE"]?></strike>
->>>>>>> upstream/master
                                                     </div>
                                                     <?else:?>
                                                     <div class="price">

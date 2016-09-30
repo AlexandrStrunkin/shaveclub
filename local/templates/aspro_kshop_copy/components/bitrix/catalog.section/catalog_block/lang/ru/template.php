@@ -31,4 +31,6 @@
 	$MESS["FEW_GOODS"] = "Мало";
 	$MESS["NO_GOODS"] = "Под заказ";
 	$MESS["MEASURE_DEFAULT"] = "шт";
+    $MESS["PRICE_RUB"] = "руб.";
+
 ?>

@@ -113,3 +113,6 @@
 .catalog_detail .item_main_info .set_wrapp .total_wrapp .bx_item_set_economy_price {
     display: inline-block;
 }
+.price_block_wrapp .price_block .price.discount {
+    color: #9b2d30;
+}
