@@ -22,7 +22,7 @@
         $arSku = array();
         $arResult["OFFERS_CATALOG_QUANTITY"] = 0;
         foreach($arResult["OFFERS"] as $arOffer)
-        {		
+        {
             $arResult["OFFERS_CATALOG_QUANTITY"]  += $arOffer["CATALOG_QUANTITY"];
             foreach($arOffer["PRICES"] as $code=>$arPrice)
             {
@@ -163,7 +163,7 @@
 
     $db_res = CCatalogStore::GetList(array(), array("ACTIVE" => "Y"), false, false, array());
     $arStores = array();
-    while ($res = $db_res-> GetNext()) { $arStores[] = $res;}	
+    while ($res = $db_res-> GetNext()) { $arStores[] = $res;}
     $arResult["STORES_COUNT"] = count($arStores);
 
 
@@ -248,8 +248,8 @@
         }
     }
 
-    if (intVal($arParams["IBLOCK_STOCK_ID"])) 
-    { 
+    if (intVal($arParams["IBLOCK_STOCK_ID"]))
+    {
         $arSelect = array("ID", "IBLOCK_ID", "IBLOCK_SECTION_ID", "NAME", "PREVIEW_PICTURE", "PREVIEW_TEXT", "DETAIL_PAGE_URL");
         $dbRes = CIBlockElement::GetList(array(), array("ACTIVE" => "Y", "GLOBAL_ACTIVE" => "Y", "IBLOCK_ID" => $arParams["IBLOCK_STOCK_ID"], "PROPERTY_LINK" => $arResult["ID"]), false, false, $arSelect);
         while($res = $dbRes->GetNext()) { $arResult["STOCK"][] = $res; }
@@ -259,7 +259,7 @@
     {
         $arSelect = array("ID", "IBLOCK_ID", "IBLOCK_SECTION_ID", "NAME", "PREVIEW_PICTURE", "PREVIEW_TEXT", "DETAIL_PAGE_URL");
         $dbRes = CIBlockElement::GetList( array(), array("ACTIVE" => "Y", "GLOBAL_ACTIVE" => "Y", "IBLOCK_ID" => $arResult["PROPERTIES"]["SERVICES"]["LINK_IBLOCK_ID"], "ID" => $arResult["PROPERTIES"]["SERVICES"]["VALUE"] ), false, false, $arSelect);
-        while ($res = $dbRes->GetNext()) { 	
+        while ($res = $dbRes->GetNext()) {
             $arResult["SERVICES"][] = $res; }
     }
 ?>
@@ -267,10 +267,10 @@
     if($arResult["DETAIL_PICTURE"]["SRC"]){
         $APPLICATION->AddHeadString('<link rel="image_src" href="'.$arResult["DETAIL_PICTURE"]["SRC"].'"  />', true);
     }
-    //получение данных о комплекта 
+    //получение данных о комплекта
     $setItems = CCatalogProductSet::getAllSetsByProduct($arResult["ID"],CCatalogProductSet::TYPE_SET);
     if(!empty($setItems)){
-        //понижение вложенности 
+        //понижение вложенности
         $keys = array_keys($setItems);
         $setItems = $setItems[$keys[0]];
         //
@@ -278,10 +278,39 @@
             foreach($setItems["ITEMS"] as $setItem) {
                 if($setItem["ITEM_ID"] == $item['ID']){
                     $item["QUANTITY"] = $setItem["QUANTITY"];
-                    break;    
+                    break;
                 }
             }
         }
     }
-    //arshow($arResult, true);
+
+    foreach ($arResult["SET_ITEMS"] as $key=>$arItemElement)
+    {
+        if($arResult["MIN_PRICE"]["DISCOUNT_VALUE"] > 0){
+            $price_discount = $arItemElement["MIN_PRICE"]["VALUE"] * (100 - $arResult["MIN_PRICE"]["DISCOUNT_DIFF_PERCENT"]) / 100;
+            $arItemElement["MIN_PRICE"]["DISCOUNT_VALUE"] = $price_discount;
+            $arItemElement["MIN_PRICE"]["DISCOUNT_DIFF"] = $price_discount;
+            $arItemElement["MIN_PRICE"]["DISCOUNT_DIFF_PERCENT"] = $arResult["MIN_PRICE"]["DISCOUNT_DIFF_PERCENT"];
+            $arItemElement["MIN_PRICE"]["PRINT_DISCOUNT_VALUE"] =  $price_discount . ' руб.';
+        }
+        $arResult["SET_ITEMS"][$key] =  $arItemElement;
+    }
+    foreach ($arResult["SET_ITEMS"] as $key=>$arItem)
+    {
+        $price += $arItem["MIN_PRICE"]["VALUE"] * $arItem["QUANTITY"];
+        $discount_price += $arItem["MIN_PRICE"]["DISCOUNT_VALUE"] * $arItem["QUANTITY"];
+        $saving =  $price - $discount_price;
+        if ($discount_price) {
+            $price_new = $discount_price;
+        }
+        $arElement = array(
+            "PRICE_DISCOUNT_VALUE" => $discount_price ,
+            "PRICE_VALUE" => $price ,
+            "PRICE" =>  $price_new,
+            "SAVING" =>  $saving
+        );
+    }
+    $arResult["SET_ITEM"] = $arElement;
+
+
 ?>
