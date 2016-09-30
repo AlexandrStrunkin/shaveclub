@@ -9143,3 +9143,6 @@ header ul.menu.adaptive > li.menu_opener i
 .count-cell .measure{
     color: #999!important;
 }
+.price_block_wrapp .price_block .price.discount strike{
+    text-decoration: none;
+}
