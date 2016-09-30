@@ -3931,8 +3931,7 @@ div.reviews-collapse
     text-overflow: ellipsis;
     text-overflow: -o-ellipsis-lastline;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+
     white-space: normal;
 }
 .bx_item_set_hor_item .item_info .item-title, .bx_modal_body .item_wrapp .item-title, .bx_modal_body .bx_kit_item  .item-title
@@ -8067,7 +8066,7 @@ p.no_staff{
 }
 .catalog_detail .set_wrapp
 {
-    float:right;
+    clear: both;
     margin-top: 20px;
     padding: 15px 15px 0;
     margin-left: -15px;
@@ -8077,7 +8076,7 @@ p.no_staff{
 {
     margin-right: 15px;
     margin-bottom: 5px !important;
-    width: 150px !important;
+    width: 160px !important;
 }
 .catalog_detail .bx_item_set_hor_container_big .total_wrapp
 {
@@ -9133,6 +9132,10 @@ header ul.menu.adaptive > li.menu_opener i
 .viewed_wrap .viewed_products_column .view-item .image{
     height: 190px
 }
-.viewed_wrap .item_info .item-title{
-    height: 30px;
+.cost.clearfix .price.discount,
+.colored .cost-cell .price.discount{
+    color: #9b2d30!important;
+}
+.count-cell .measure{
+    color: #999!important;
 }

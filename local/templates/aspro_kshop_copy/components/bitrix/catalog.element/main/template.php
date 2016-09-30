@@ -287,7 +287,7 @@ global $USER;
                                                         <?endif;?>
                                                 </div>
                                                 <div class="price discount">
-                                                    <?=GetMessage("WITHOUT_DISCOUNT")?>:&nbsp;<strike><?=$arPrice["VALUE"]?></strike>
+                                                    <?=GetMessage("WITHOUT_DISCOUNT")?>:&nbsp;<strike><?=$arPrice["VALUE"]?> <?= GetMessage('PRICE_RUB') ?></strike>
                                                 </div>
                                                 <?else:?>
                                                 <div class="price">
@@ -444,8 +444,7 @@ global $USER;
                         </div>
                         <div class="item_info">
                             <div class="item-title">
-                                <a href="<?='/'.$url[1].'/'.$url[2].'/'.$arFields["ID"].'/'?>"><span><?=mb_strimwidth($arFields["NAME"], 0, 35, "...")?></span></a>  <!--'/'.$url[3]. -->
-
+                                <a href="<?='/'.$url[1].'/'.$url[2].'/'.$arFields["ID"].'/'?>"><span><?=mb_strimwidth($arFields["NAME"], 0, 50, "...")?></span></a>  <!--'/'.$url[3]. -->
                             </div>
                         </div>
 
@@ -466,13 +465,13 @@ global $USER;
                         <div class="image">
                             <a href="<?=$arSetItem["DETAIL_PAGE_URL"]?>">
                                 <?if($arSetItem["PREVIEW_PICTURE"]):?>
-                                    <?$img = CFile::ResizeImageGet($arSetItem["PREVIEW_PICTURE"], array("width" => 140, "height" => 140), BX_RESIZE_IMAGE_PROPORTIONAL, true);?>
-                                    <img border="0" src="<?=$img["src"]?>" alt="<?=$arSetItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />
+                                    <?$img = CFile::ResizeImageGet($arSetItem["PREVIEW_PICTURE"], array("width" => 140, "height" => 140), BX_RESIZE_IMAGE_PROPORTIONAL, true); ?>
+                                        <img border="0" src="<?= $img["src"] ?>" alt="<?= $arSetItem["NAME"]; ?>" title="<?= $arSetItem["NAME"]; ?>" />
                                     <?elseif($arSetItem["DETAIL_PICTURE"]):?>
                                     <?$img = CFile::ResizeImageGet($arSetItem["DETAIL_PICTURE"], array("width" => 140, "height" => 140), BX_RESIZE_IMAGE_PROPORTIONAL, true);?>
-                                    <img border="0" src="<?=$img["src"]?>" alt="<?=$arSetItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />
+                                        <img border="0" src="<?= $img["src"] ?>" alt="<?= $arSetItem["NAME"]; ?>" title="<?= $arSetItem["NAME"]; ?>" />
                                     <?else:?>
-                                    <img border="0" src="<?=SITE_TEMPLATE_PATH?>/images/no_photo_small.png" alt="<?=$arSetItem["NAME"];?>" title="<?=$arSetItem["NAME"];?>" />
+                                        <img border="0" src="<?= SITE_TEMPLATE_PATH ?>/images/no_photo_small.png" alt="<?= $arSetItem["NAME"]; ?>" title="<?= $arSetItem["NAME"]; ?>" />
                                     <?endif;?>
                             </a>
                         </div>
@@ -494,33 +493,31 @@ global $USER;
                                             }
                                             }
                                         ?>
-                                        <?foreach($arSetItem["PRICES"] as $key => $arPrice):?>
-                                            <?if($arPrice["CAN_ACCESS"]):?>
-                                                <?$price = CPrice::GetByID($arPrice["ID"]);?>
+                                            <?if($arSetItem["MIN_PRICE"]["CAN_ACCESS"]):?>
+                                                <?$price = CPrice::GetByID($arSetItem["MIN_PRICE"]["ID"]);?>
                                                 <?if($arCountPricesCanAccess > 1):?>
                                                     <div class="price_name"><?=$price["CATALOG_GROUP_NAME"];?></div>
                                                     <?endif;?>
-                                                <?if($arPrice["VALUE"] > $arPrice["DISCOUNT_VALUE"]):?>
+                                                <?if($arSetItem["MIN_PRICE"]["VALUE"] > $arSetItem["MIN_PRICE"]["DISCOUNT_VALUE"]):?>
                                                     <div class="price">
-                                                        <?=$arPrice["PRINT_DISCOUNT_VALUE"];?>
+                                                        <?=$arSetItem["MIN_PRICE"]["PRINT_DISCOUNT_VALUE"];?>
                                                         <?if(($arParams["SHOW_MEASURE"] == "Y") && $arMeasure["SYMBOL_RUS"]):?>
                                                             <small>/<?=$arMeasure["SYMBOL_RUS"]?></small>
                                                             <?endif;?>
                                                     </div>
                                                     <div class="price discount">
-                                                        <?=GetMessage("WITHOUT_DISCOUNT")?>:&nbsp;<strike><?=$arPrice["VALUE"]?></strike>
+                                                        <?=GetMessage("WITHOUT_DISCOUNT")?>:&nbsp;<strike><?=$arSetItem["MIN_PRICE"]["VALUE"]?> <?= GetMessage('PRICE_RUB') ?></strike>
                                                     </div>
                                                     <?else:?>
                                                     <div class="price">
-                                                        <?=$arPrice["PRINT_VALUE"];?>
+                                                        <?=$arSetItem["MIN_PRICE"]["PRINT_VALUE"];?>
                                                         <?if(($arParams["SHOW_MEASURE"] == "Y") && $arMeasure["SYMBOL_RUS"]):?>
                                                             <small>/<?=$arMeasure["SYMBOL_RUS"]?></small>
                                                             <?endif;?>
                                                 </div>
                                                 <?endif;?>
                                                 <?endif;?>
-                                            <?endforeach;?>
-                                        <?endforeach;?>
+                                    <?endforeach;?>
                                 </div>
                                 <?endif;?>
                         </div>
@@ -530,6 +527,24 @@ global $USER;
                         <?endif;?>
                     <?endforeach;?>
             </ul>
+        <div class="total_wrapp result">
+        <div class="total_price bx_item_set_result_block">
+            <span class="total_title"><?= GetMessage("CATALOG_SET_SUM") ?>:</span>
+            <span class="price_block">
+                <div class="price bx_item_set_current_price"> <?= $arResult["SET_ITEM"]["PRICE"] ?> <?= GetMessage('PRICE_RUB') ?></div>
+                <?if ($arResult["SET_ITEM"]["PRICE_DISCOUNT_VALUE"] < $arResult["SET_ITEM"]["PRICE_VALUE"]):?>
+                    <div class="price discount">
+                        <?= GetMessage("CATALOG_SET_WITHOUT_DISCOUNT") ?>: <strike class="bx_item_set_old_price"><?= $arResult["SET_ITEM"]["PRICE_VALUE"] ?> <?= GetMessage('PRICE_RUB') ?></strike>&nbsp;
+                        <?if ($arResult["SET_ITEM"]["PRICE_DISCOUNT_VALUE"]):?>
+                            <div class="bx_item_set_economy_price"><?= GetMessage("CATALOG_SET_DISCOUNT_DIFF", array("#PRICE#" => $arResult["SET_ITEM"]["SAVING"])) ?></div>
+                        <?endif?>
+                    </div>
+                <?endif?>
+
+            </span>
+        </div>
+    </div>
+
         </div>
         <script type="text/javascript">
             $('.set_wrapp').ready(function(){
