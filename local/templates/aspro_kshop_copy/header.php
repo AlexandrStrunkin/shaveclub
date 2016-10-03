@@ -35,36 +35,7 @@ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 
     <?/*<link rel="icon" href="/bitrix/templates/aspro_kshop_copy/themes/azure_grey/images/favicon.ico" type="image/x-icon">
       <link rel="shortcut icon" href="/bitrix/templates/aspro_kshop_copy/themes/azure_grey/images/favicon.ico" type="image/x-icon">*/?>
 </head>
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function (d, w, c) {
-        (w[c] = w[c] || []).push(function() {
-            try {
-                w.yaCounter28963520 = new Ya.Metrika({
-                    id:28963520,
-                    clickmap:true,
-                    trackLinks:true,
-                    accurateTrackBounce:true,
-                    webvisor:true,
-                    ecommerce:"dataLayer"
-                });
-            } catch(e) { }
-        });
 
-        var n = d.getElementsByTagName("script")[0],
-            s = d.createElement("script"),
-            f = function () { n.parentNode.insertBefore(s, n); };
-        s.type = "text/javascript";
-        s.async = true;
-        s.src = "https://mc.yandex.ru/metrika/watch.js";
-
-        if (w.opera == "[object Opera]") {
-            d.addEventListener("DOMContentLoaded", f, false);
-        } else { f(); }
-    })(document, window, "yandex_metrika_callbacks");
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/28963520" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
 <body id="main">
     <?if(!CModule::IncludeModule("aspro.kshop")){?><center><?$APPLICATION->IncludeFile(SITE_DIR."include/error_include_module.php");?></center></body></html><?die();?><?}?>
 <!--noindex-->
