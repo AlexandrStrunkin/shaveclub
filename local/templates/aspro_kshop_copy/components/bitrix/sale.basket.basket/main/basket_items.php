@@ -143,7 +143,7 @@
                                             $ratio = isset($arItem["MEASURE_RATIO"]) ? $arItem["MEASURE_RATIO"] : 0;
                                             $max = isset($arItem["AVAILABLE_QUANTITY"]) ? "max=\"".$arItem["AVAILABLE_QUANTITY"]."\"" : "";
                                         ?>
-                                        <?if (isset($arItem["MEASURE_RATIO"])&& floatval($arItem["MEASURE_RATIO"]) != 0&& !CSaleBasketHelper::isSetParent($arItem)):?><span onclick="setQuantity('<?=$arItem["ID"]?>', '<?=$ratio?>', 'down')" class="minus">-</span><?endif;?>
+                                        <?if (isset($arItem["MEASURE_RATIO"])&& floatval($arItem["MEASURE_RATIO"]) != 0):?><span onclick="setQuantity('<?=$arItem["ID"]?>', '<?=$ratio?>', 'down')" class="minus">-</span><?endif;?>
                                         <input
                                             type="text"
                                             class="text"
@@ -158,7 +158,7 @@
                                             value="<?=$arItem["QUANTITY"]?>"
                                             onchange="updateQuantity('QUANTITY_INPUT_<?=$arItem["ID"]?>', '<?=$arItem["ID"]?>', '<?=$ratio?>')"
                                             >
-                                        <?if (isset($arItem["MEASURE_RATIO"])&& floatval($arItem["MEASURE_RATIO"]) != 0&& !CSaleBasketHelper::isSetParent($arItem)):?><span onclick="setQuantity('<?=$arItem["ID"]?>', '<?=$ratio?>', 'up')" class="plus">+</span><?endif;?>
+                                        <?if (isset($arItem["MEASURE_RATIO"])&& floatval($arItem["MEASURE_RATIO"]) != 0):?><span onclick="setQuantity('<?=$arItem["ID"]?>', '<?=$ratio?>', 'up')" class="plus">+</span><?endif;?>
                                     </div>
                                     <?if (isset($arItem["MEASURE_TEXT"]) && $arParams["SHOW_MEASURE"]=="Y"):?><div class="measure"><?=$arItem["MEASURE_TEXT"];?></div><?endif;?>
                                     <input type="hidden" id="QUANTITY_<?=$arItem['ID']?>" name="QUANTITY_<?=$arItem['ID']?>" value="<?=$arItem["QUANTITY"]?>" />

@@ -28,15 +28,15 @@ function isRealValue(obj)
 
 function setQuantity(basketId, ratio, direction)
 {
-	var curVal = parseFloat(BX("QUANTITY_INPUT_" + basketId).value), newVal;	
+	var curVal = parseFloat(BX("QUANTITY_INPUT_" + basketId).value), newVal;
 	ratio = parseFloat(ratio);
 	newVal = (direction == 'up') ? curVal + ratio : curVal - ratio;
-	if (newVal < 0) newVal = 0;	
+	if (newVal < 0) newVal = 0;
 	//newVal = newVal.toFixed(2);
 	if (newVal>0)
 	{
 		//$("#basket_form").find("tr[data-id="+basketId+"] .minus").fadeTo(200, 1);
-		BX("QUANTITY_INPUT_" + basketId).value = newVal;		
+		BX("QUANTITY_INPUT_" + basketId).value = newVal;
 		BX("QUANTITY_INPUT_" + basketId).defaultValue = curVal;
 		updateQuantity('QUANTITY_INPUT_' + basketId, basketId, ratio);
 	}
@@ -49,7 +49,7 @@ function setQuantity(basketId, ratio, direction)
 function updateQuantity(controlId, basketId, ratio, animate)
 {
 	var oldVal = BX(controlId).defaultValue, newVal = parseFloat(BX(controlId).value) || 0; bValidChange = false; // if quantity is correct for this ratio
-	if (!newVal) 
+	if (!newVal)
 	{
 		bValidChange = false;
 		BX(controlId).value = oldVal;
@@ -58,8 +58,8 @@ function updateQuantity(controlId, basketId, ratio, animate)
 		var newValInt = newVal * 10000, ratioInt = ratio * 10000, reminder = newValInt % ratioInt;
 		if (reminder == 0) bValidChange = true;
 	}
-	
-	if (bValidChange) 
+
+	if (bValidChange)
 	{
 		newVal = (ratio == 0 || ratio == 1) ? parseInt(newVal) : parseFloat(newVal).toFixed(2);
 		//BX(controlId).defaultValue = newVal;
@@ -70,10 +70,10 @@ function updateQuantity(controlId, basketId, ratio, animate)
 			if (parseFloat(option.value).toFixed(2) == parseFloat(newVal).toFixed(2)) option.selected = true;
 	    }
 		BX("QUANTITY_" + basketId).value = newVal; // set hidden real quantity value (will be used in POST)
-		direction = (newVal>oldVal)?"up":"down";		
-		if (typeof animate == "undefined") {animate = true;} 		
+		direction = (newVal>oldVal)?"up":"down";
+		if (typeof animate == "undefined") {animate = true;}
 		if (animate) { preAnimateResult(basketId, "update", direction, "200"); }
-		
+
 	}
 	else
 	{
@@ -82,29 +82,29 @@ function updateQuantity(controlId, basketId, ratio, animate)
 }
 
 function deleteProduct(basketId, itemSection)
-{	
-	preAnimateResult(basketId,  "delete", false, 333, itemSection); 
+{
+	preAnimateResult(basketId,  "delete", false, 333, itemSection);
 }
 
 function delayProduct(basketId, itemSection)
-{		
-	preAnimateResult(basketId, "delay", false, 333, itemSection); 
+{
+	preAnimateResult(basketId, "delay", false, 333, itemSection);
 }
 
 function addProduct(basketId, itemSection)
-{	
-	preAnimateResult(basketId, "add", false, 333, itemSection); 
+{
+	preAnimateResult(basketId, "add", false, 333, itemSection);
 }
 
 function preAnimateResult(basketId, action, direction, correctSpeed, itemSection)
 {
-	
+
 	if (typeof correctSpeed == "undefined") {correctSpeed = 200; } else {correctSpeed = parseInt(correctSpeed);}
-	
+
 	if (typeof basketId != "undefinded")
 	{
 		if (BX("COUPON")) var coupon = BX("COUPON").value;
-		
+
 		var rowPrice = parseInt(delSpaces($(document).find("#basket_form [data-id="+basketId+"] .summ-cell").text()).replace(/,/g, ""));
 		var itemPrice = parseInt(delSpaces($(document).find("#basket_form [data-id="+basketId+"] .cost-cell .price:not(.discount)").text()).replace(/,/g, ""));
 		var itemPriceDiscount = parseInt(delSpaces($(document).find("#basket_form [data-id="+basketId+"] .cost-cell .price.discount strike").text()).replace(/,/g, ""));
@@ -112,25 +112,25 @@ function preAnimateResult(basketId, action, direction, correctSpeed, itemSection
 		if (typeof action != "undefined")
 		{
 			$(document).find("#basket_form tfoot tr[data-id=total_row] .row_values div[data-type]").each(function(i, element)
-			{			
+			{
 				if ($(this).attr("data-type")=="price_discount")
 				{
 					var resultSummAll = parseInt(delSpaces($(this).find("span.price").text()).replace(/,/g, ""));
 					var resultSummDiscount = parseInt(delSpaces($(this).find("div.price.discount strike").text()).replace(/,/g, ""));
 					if (action=="update")
-					{					
-						if (direction == 'up') 
+					{
+						if (direction == 'up')
 						{
-							resultSummAll += itemPrice; 
-							if (itemPriceDiscount) { resultSummDiscount += itemPriceDiscount; } else { resultSummDiscount += itemPrice; }		
-						} 
-						else  
+							resultSummAll += itemPrice;
+							if (itemPriceDiscount) { resultSummDiscount += itemPriceDiscount; } else { resultSummDiscount += itemPrice; }
+						}
+						else
 						{
 							resultSummAll -= itemPrice;
 							if (itemPriceDiscount) { resultSummDiscount -= itemPriceDiscount; } else { resultSummDiscount -= itemPrice; }
-						}	
+						}
 						$(document).find("#basket_form [data-id="+basketId+"] .summ-cell").stop().animateNumbers(itemPrice*BX("QUANTITY_"+basketId).value, correctSpeed, true);
-					} 
+					}
 					else if (action=="delete")
 					{
 						resultSummAll -= rowPrice;
@@ -140,7 +140,7 @@ function preAnimateResult(basketId, action, direction, correctSpeed, itemSection
 					{
 						resultSummAll -= rowPrice;
 						resultSummDiscount -= rowPrice;
-					}						
+					}
 					else if (action=="add")
 					{
 						resultSummAll += itemPrice*BX("QUANTITY_"+basketId).value;
@@ -148,11 +148,11 @@ function preAnimateResult(basketId, action, direction, correctSpeed, itemSection
 					}
 					if (resultSummAll) { $(this).find("span.price").animateNumbers(resultSummAll, correctSpeed, true); }
 					if (resultSummDiscount) { $(this).find("div.price.discount strike").animateNumbers(resultSummDiscount, correctSpeed, true); }
-				}	
+				}
 				else if ($(this).attr("data-type")=="price_normal")
 				{
 					var resultSummAll = parseInt(delSpaces($(this).find("span.price").text()).replace(/,/g, ""));
-					if (action=="update") 
+					if (action=="update")
 					{
 						$(document).find("#basket_form [data-id="+basketId+"] .summ-cell").stop().animateNumbers(itemPrice*BX("QUANTITY_"+basketId).value, correctSpeed, true);
 						if (direction == 'up') { resultSummAll += itemPrice} else { resultSummAll -= itemPrice;}
@@ -160,29 +160,29 @@ function preAnimateResult(basketId, action, direction, correctSpeed, itemSection
 					$(this).find("span.price").stop().animateNumbers(resultSummAll, correctSpeed, true);
 				}
 			});
-			
+
 			switch(action)
 			{
 				case 'delete':
 					$.post( arKShopOptions['SITE_DIR']+'basket/?action=delete&id='+basketId, $.proxy(function( data )
 					{
 						$.post( arKShopOptions['SITE_DIR']+"ajax/show_basket_fly.php", "PARAMS="+$("#basket_form").find("input#fly_basket_params").val(), $.proxy(function( data )
-						{			
+						{
 							animateBasketLine();
 							postAnimateResult(data, 50, 'delete', basketId);
 						}));
 					}));
 				break;
-				case 'update':	
+				case 'update':
 					clearTimeout(basketTimeout);
-					basketTimeout = setTimeout( function() 
-					{ 
+					basketTimeout = setTimeout( function()
+					{
 						$('form[name^=basket_form]').prepend('<input type="hidden" name="BasketRefresh" value="Y" />');
 						$.post( arKShopOptions['SITE_DIR']+'basket/', $("form[name^=basket_form]").serialize(), $.proxy(
 						function( data)
-						{	
+						{
 							$.post( arKShopOptions['SITE_DIR']+"ajax/show_basket_fly.php", "PARAMS="+$("#basket_form").find("input#fly_basket_params").val(), $.proxy(function( data )
-							{	
+							{
 								$('form[name^=basket_form] input[name=BasketRefresh]').remove();
 								animateBasketLine();
 								postAnimateResult(data, 50, 'update', basketId);
@@ -194,7 +194,7 @@ function preAnimateResult(basketId, action, direction, correctSpeed, itemSection
 					$.post( arKShopOptions['SITE_DIR']+'basket/?action=add&id='+basketId, $.proxy(function( data )
 					{
 						$.post( arKShopOptions['SITE_DIR']+"ajax/show_basket_fly.php", "PARAMS="+$("#basket_form").find("input#fly_basket_params").val(), $.proxy(function( data )
-						{			
+						{
 							animateBasketLine();
 							postAnimateResult(data, 50, 'add', basketId, itemSection);
 						}));
@@ -204,48 +204,48 @@ function preAnimateResult(basketId, action, direction, correctSpeed, itemSection
 					$.post( arKShopOptions['SITE_DIR']+'basket/?action=delay&id='+basketId, $.proxy(function( data )
 					{
 						$.post( arKShopOptions['SITE_DIR']+"ajax/show_basket_fly.php", "PARAMS="+$("#basket_form").find("input#fly_basket_params").val(), $.proxy(function( data )
-						{			
+						{
 							animateBasketLine();
 							postAnimateResult(data, 50, 'delay', basketId, itemSection);
 						}));
 					}));
 				break;
-			} 	
+			}
 		}
 	}
 }
 
 function postAnimateResult (result, correctSpeed, action, basketId, itemSection)
 {
-	if (typeof speed == "undefined") { speed = 333; } else {speed = parseInt(speed);}	
-	if (typeof correctSpeed == "undefined") { correctSpeed = 50; } else {correctSpeed = parseInt(correctSpeed);}	
-	if (typeof basketId != "undefined") {basketId = parseInt(basketId);}	
+	if (typeof speed == "undefined") { speed = 333; } else {speed = parseInt(speed);}
+	if (typeof correctSpeed == "undefined") { correctSpeed = 50; } else {correctSpeed = parseInt(correctSpeed);}
+	if (typeof basketId != "undefined") {basketId = parseInt(basketId);}
 	if (typeof result != "undefined")
 	{
 		var newBasket = $.parseHTML(result);
 		var oldBasket = $(document).find(".basket_fly");
-		
+
 		if ($(newBasket).length)
-		{			
-					
-			var results = $(newBasket).find("tr[data-id=total_row]");	
+		{
+
+			var results = $(newBasket).find("tr[data-id=total_row]");
 			if (action=="update")
 			{
 				var arDasketIDs = [];
-				if (typeof basketId == "undefined") { $(oldBasket).find("tbody tr[data-id]").each(function(i, element) { arDasketIDs.push($(element).attr("data-id")); }); } 
+				if (typeof basketId == "undefined") { $(oldBasket).find("tbody tr[data-id]").each(function(i, element) { arDasketIDs.push($(element).attr("data-id")); }); }
 				else { arDasketIDs.push(basketId); }
-				
+
 				if ($(newBasket).find("input[name=COUPON]").val() != $(oldBasket).find("input[name=COUPON]").val())
 				{ $(oldBasket).find("input[name=COUPON]").addClass("error").removeClass("good"); }
-				else if($(newBasket).find("input[name=COUPON]").val() && $(oldBasket).find("input[name=COUPON]").val() && ($(newBasket).find("input[name=COUPON]").val() == $(oldBasket).find("input[name=COUPON]").val())) 
+				else if($(newBasket).find("input[name=COUPON]").val() && $(oldBasket).find("input[name=COUPON]").val() && ($(newBasket).find("input[name=COUPON]").val() == $(oldBasket).find("input[name=COUPON]").val()))
 				{ $(oldBasket).find("input[name=COUPON]").addClass("good").removeClass("error"); }
 				$(oldBasket).find("input[name=COUPON]").attr("value", $(newBasket).find("input[name=COUPON]").attr("value"));
-			
+
 				$(arDasketIDs).each(function(i, basketId)
 				{
 					var newSummPrice = parseInt(delSpaces($(newBasket).find("tr[data-id="+basketId+"] .summ-cell").text()).replace(/,/g, ""));
 					$(oldBasket).find("tr[data-id="+basketId+"] .summ-cell").stop().animateNumbers(newSummPrice, correctSpeed, true);
-					
+
 					if(parseInt(delSpaces($(oldBasket).find("tr[data-id="+basketId+"] .cost-cell .price:not(.discount)").text()))!=parseInt(delSpaces($(newBasket).find("tr[data-id="+basketId+"] .cost-cell .price:not(.discount)").text())))
 					{
 						$(oldBasket).find("tr[data-id="+basketId+"] .cost-cell .price:not(.discount)").stop().animateNumbers(parseInt(delSpaces($(newBasket).find("tr[data-id="+basketId+"] .cost-cell .price:not(.discount)").text())), 333, true);
@@ -268,7 +268,7 @@ function postAnimateResult (result, correctSpeed, action, basketId, itemSection)
 						$(oldBasket).find("tr[data-id="+basketId+"] .cost-cell .price.discount").fadeOut(0).hide();
 						$(oldBasket).find("tr[data-id="+basketId+"] .cost-cell .price.discount").stop().slideDown(333).fadeTo(333, 1).find("strike").animateNumbers(discountPrice, 333, true);
 					}
-					
+
 					if ($(newBasket).find("tr[data-id="+basketId+"] .count-cell .error").length)
 					{
 						if ($(oldBasket).find("tr[data-id="+basketId+"] .count-cell .error").length)
@@ -293,15 +293,15 @@ function postAnimateResult (result, correctSpeed, action, basketId, itemSection)
 				});
 			}
 			else if (action=="delete" && typeof basketId != "undefined")
-			{					
-				if(!$(newBasket).find("tbody tr[data-id="+basketId+"]").length) { $(oldBasket).find("tr[data-id="+basketId+"]").remove(); }	
+			{
+				if(!$(newBasket).find("tbody tr[data-id="+basketId+"]").length) { $(oldBasket).find("tr[data-id="+basketId+"]").remove(); }
 				$(newBasket).find(".basket_sort .tabs li").each(function(i, element)
 				{
 					$(oldBasket).find(".basket_sort .tabs li[item-section="+$(element).attr("item-section")+"] .quantity .count").animateNumbers(parseInt($(element).find(".quantity .count").text()), correctSpeed, false);
 				});
-				
+
 				$(oldBasket).find(".tabs_content.basket li").each(function(i, element)
-				{					
+				{
 					if (!$(newBasket).find(".tabs_content.basket li:eq("+i+")").length)
 					{
 						$(oldBasket).find(".basket_sort .tabs li:eq("+i+") .quantity .count").animateNumbers(0, 333, false);
@@ -321,10 +321,10 @@ function postAnimateResult (result, correctSpeed, action, basketId, itemSection)
 				});
 			}
 			else if ((action=="delay" || action=="add") && typeof basketId != "undefined")
-			{					
-				$(oldBasket).find("tr[data-id="+basketId+"]").remove();	
+			{
+				$(oldBasket).find("tr[data-id="+basketId+"]").remove();
 				$(oldBasket).find(".tabs_content.basket li").each(function(i, element)
-				{					
+				{
 					if (!$(newBasket).find(".tabs_content.basket li:eq("+i+")").length)
 					{
 						$(oldBasket).find(".basket_sort .tabs li:eq("+i+") .quantity .count").animateNumbers(0, 333, false);
@@ -342,21 +342,21 @@ function postAnimateResult (result, correctSpeed, action, basketId, itemSection)
 					var section = $(oldBasket).find(".tabs_content.basket li[item-section="+$(element).attr("item-section")+"]");
 					if ($(section).length)
 					{
-						if (typeof itemSection != "undefined") 
-						{ 
-							if ($(element).attr("item-section")!=itemSection) { $(section).html($(element).html()); } 
+						if (typeof itemSection != "undefined")
+						{
+							if ($(element).attr("item-section")!=itemSection) { $(section).html($(element).html()); }
 						}
 						else { $(section).html($(element).html()); }
-					} 
+					}
 					else { $(oldBasket).find(".tabs_content.basket").append($(element)); }
 				});
-				
+
 				$(newBasket).find(".basket_sort .tabs li").each(function(i, element)
 				{
 					var section = $(oldBasket).find(".basket_sort .tabs li:eq("+i+")");
 					if ($(section).length)
-					{ 
-						$(section).find(".quantity .count").animateNumbers(parseInt($(element).find(".quantity .count").text()), correctSpeed, false); 
+					{
+						$(section).find(".quantity .count").animateNumbers(parseInt($(element).find(".quantity .count").text()), correctSpeed, false);
 					}
 					else
 					{
@@ -365,25 +365,25 @@ function postAnimateResult (result, correctSpeed, action, basketId, itemSection)
 						var itemsCount = parseInt($(element).find(".quantity .count").text());
 						$(newButton).hide().find(".quantity .count").text("0");
 						$(newButton).fadeIn(333).find(".quantity .count").animateNumbers(itemsCount, 333, false);
-					}					
+					}
 				});
 			}
-			
-			
+
+
 			$(oldBasket).find(".row_values div[data-type]").each(function(e, element)
 			{
 				if (!$(results).find(".row_values div[data-type="+$(this).attr("data-type")+"]").length)
 				{
-					
+
 					if ($(this).attr("data-type")=="price_discount" && $(results).find(".row_values div[data-type=price_normal]").length)
 					{
 						$(this).attr("data-type", "price_normal");
 						var priceDiscountBlock = $(this).find(".price.discount");
-						$(priceDiscountBlock).fadeOut(200).slideUp(333, function() { $(priceDiscountBlock).remove(); });	
+						$(priceDiscountBlock).fadeOut(200).slideUp(333, function() { $(priceDiscountBlock).remove(); });
 					}
 					else if ($(this).attr("data-type")=="price_normal" && $(results).find(".row_values div[data-type=price_discount]").length)
 					{
-						
+
 						$(this).attr("data-type", "price_discount");
 						$(this).append("<div class='price discount'><strike>"+$(results).find(".row_values div[data-type=price_discount] strike").html()+"</strike></div>").hide().fadeOut(0);
 						$(this).slideDown(333).fadeIn(200).find(".price.discount").slideDown(333).fadeIn(200);
@@ -393,24 +393,24 @@ function postAnimateResult (result, correctSpeed, action, basketId, itemSection)
 						$(element).fadeOut(200).slideUp(333, function(){$(element).remove();});
 					}
 				}
-			});	
-			
+			});
+
 			$(results).find(".row_values div[data-type]").each(function(e, element)
 			{
 				if ($(oldBasket).find("tr[data-id=total_row] .row_values div[data-type="+$(element).attr("data-type")+"]").length)
-				{	
+				{
 					var newPrice = parseInt(delSpaces($(element).find("span.price").text()).replace(/,/g, ""));
-					var newDiscountPrice = parseInt(delSpaces($(element).find("div.price.discount strike").text()).replace(/,/g, ""));	
+					var newDiscountPrice = parseInt(delSpaces($(element).find("div.price.discount strike").text()).replace(/,/g, ""));
 					var dataBlock = $(oldBasket).find("tr[data-id=total_row] .row_values div[data-type="+$(element).attr("data-type")+"]");
 					if ($(element).attr("data-type")=="price_discount")
 						{
 							$(dataBlock).find("span.price").stop().animateNumbers(newPrice, correctSpeed, true);
-							$(dataBlock).find("div.price.discount strike").stop().animateNumbers(newDiscountPrice, correctSpeed, true);							
-						}	
+							$(dataBlock).find("div.price.discount strike").stop().animateNumbers(newDiscountPrice, correctSpeed, true);
+						}
 					else if ($(element).attr("data-type")=="price_normal")
 						{ $(dataBlock).find("span.price").stop().animateNumbers(newPrice, correctSpeed, true); }
-					else 
-						{ $(dataBlock).find("span.price").stop().animateNumbers(newPrice, correctSpeed, false); }							
+					else
+						{ $(dataBlock).find("span.price").stop().animateNumbers(newPrice, correctSpeed, false); }
 				}
 				else
 				{
@@ -422,21 +422,21 @@ function postAnimateResult (result, correctSpeed, action, basketId, itemSection)
 					}
 				}
 			});
-			
-					
-				
-				
+
+
+
+
 			if ($(newBasket).find(".cart_empty").length && !$(oldBasket).find(".cart_empty").length)
-			{	
+			{
 				var basketNormal = $(oldBasket).find('.tabs_content.basket li[item-section="AnDelCanBuy"]');
 				$(basketNormal).parents("ul").height($(basketNormal).height());
 				$(basketNormal).wrapInner('<div class="fade"></div>');
 				$(basketNormal).find(".fade").css({"position": "absolute", "z-index": "200"}).after($(newBasket).find(".cart_empty"));
-				$(oldBasket).find(".cart_empty").css({"position":"absolute", "z-index":"100"}).fadeOut(0);				
+				$(oldBasket).find(".cart_empty").css({"position":"absolute", "z-index":"100"}).fadeOut(0);
 				$(basketNormal).find(".fade").fadeOut(333, function(){$(basketNormal).find(".fade").remove()});
-				
-				
-				
+
+
+
 				$(oldBasket).find(".cart_empty").fadeIn(333).parents("ul").animate({"height" : $(oldBasket).find(".cart_empty").height()}, function()
 				{
 					$(oldBasket).find(".cart_empty").parents("ul").removeAttr("style");
@@ -446,7 +446,7 @@ function postAnimateResult (result, correctSpeed, action, basketId, itemSection)
 						$(oldBasket).find(".basket_sort .tabs").fadeTo(333, 0);
 						$(oldBasket).find(".basket_sort .tabs").slideUp(333, function()
 						{
-							$(oldBasket).find(".basket_sort .tabs").remove(); 
+							$(oldBasket).find(".basket_sort .tabs").remove();
 						});
 					}
 					else
@@ -455,8 +455,8 @@ function postAnimateResult (result, correctSpeed, action, basketId, itemSection)
 						{
 							var section = $(oldBasket).find(".basket_sort .tabs li:eq("+i+")");
 							if ($(section).length)
-							{ 
-								$(section).find(".quantity .count").animateNumbers(parseInt($(element).find(".quantity .count").text()), correctSpeed, false); 
+							{
+								$(section).find(".quantity .count").animateNumbers(parseInt($(element).find(".quantity .count").text()), correctSpeed, false);
 							}
 							else
 							{
@@ -468,9 +468,9 @@ function postAnimateResult (result, correctSpeed, action, basketId, itemSection)
 							}
 						});
 					}
-					
-					
-				});				
+
+
+				});
 			}
 		}
 		checkRowValuesFly(oldBasket);
