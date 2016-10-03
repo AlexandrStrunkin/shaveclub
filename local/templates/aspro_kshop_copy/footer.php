@@ -56,8 +56,8 @@
                             <img class="iconinstagram" src="/images/inst.png" alt="">
                         </a>
                         <?$APPLICATION->IncludeComponent(
-	"aspro:social.info", 
-	".default", 
+	"aspro:social.info",
+	".default",
 	array(
 		"CACHE_TYPE" => "A",
 		"CACHE_TIME" => "36000000",
@@ -68,7 +68,7 @@
 		"COMPONENT_TEMPLATE" => ".default"
 	),
 	false
-);?> 
+);?>
                     </div>
                 </li>
                 <li>
@@ -114,7 +114,7 @@
                         );?>
                 </li>
                 <li class="stretch"></li>
-            </ul>        
+            </ul>
             <div class="bottom_left_icons">
                 <span class="pay_system_icons">
                     <?$APPLICATION->IncludeFile(SITE_DIR."include/pay_system_icons.php", Array(), Array("MODE" => "html", "NAME" => GetMessage("PHONE"),));?>
@@ -123,14 +123,14 @@
             </div>
             <?$APPLICATION->IncludeFile(SITE_DIR."include/bottom_include1.php", Array(), Array("MODE" => "text", "NAME" => GetMessage("ARBITRARY_1"),)); ?>
             <?$APPLICATION->IncludeFile(SITE_DIR."include/bottom_include2.php", Array(), Array("MODE" => "text", "NAME" => GetMessage("ARBITRARY_2"),)); ?>
-        </div>                    
-    </div>    
-</footer>        
+        </div>
+    </div>
+</footer>
 <?
     if(!CSite::inDir(SITE_DIR."index.php")){
         if(strlen($APPLICATION->GetPageProperty('title')) > 1){
             $title = $APPLICATION->GetPageProperty('title');
-        } 
+        }
         else{
             $title = $APPLICATION->GetTitle();
         }
@@ -159,17 +159,17 @@
         $delay_items = array();
         $subscribe_items = array();
         $compare_items = array();
-        while($arBasketItems = $dbBasketItems->GetNext()){            
+        while($arBasketItems = $dbBasketItems->GetNext()){
             if($arBasketItems["DELAY"]=="N" && $arBasketItems["CAN_BUY"] == "Y" && $arBasketItems["SUBSCRIBE"] == "N"){
                 $basket_items[] = $arBasketItems["PRODUCT_ID"];
-            } 
+            }
             elseif($arBasketItems["DELAY"]=="Y" && $arBasketItems["CAN_BUY"] == "Y" && $arBasketItems["SUBSCRIBE"] == "N"){
                 $delay_items[] = $arBasketItems["PRODUCT_ID"];
             }
             elseif($arBasketItems["SUBSCRIBE"]=="Y"){
                 $subscribe_items[] = $arBasketItems["PRODUCT_ID"];
             }
-        }    
+        }
     }
     if(CModule::IncludeModule("currency")){
         $arCurPriceFormat = CCurrencyLang::GetCurrencyFormat('RUB');
@@ -181,7 +181,7 @@
             elseif($arCurPriceFormat["THOUSANDS_VARIANT"] == "D") $arCurPriceFormat["THOUSANDS_SEP"] = ".";
             elseif($arCurPriceFormat["THOUSANDS_VARIANT"] == "C") $arCurPriceFormat["THOUSANDS_SEP"] = ",";
             elseif($arCurPriceFormat["THOUSANDS_VARIANT"] == "S") $arCurPriceFormat["THOUSANDS_SEP"] = chr(32);
-            elseif($arCurPriceFormat["THOUSANDS_VARIANT"] == "B") $arCurPriceFormat["THOUSANDS_SEP"] = '&nbsp;'; 
+            elseif($arCurPriceFormat["THOUSANDS_VARIANT"] == "B") $arCurPriceFormat["THOUSANDS_SEP"] = '&nbsp;';
         }
         if(!isset($arCurPriceFormat["FORMAT_STRING"])) $arCurPriceFormat["FORMAT_STRING"] = "#";
     }
@@ -203,6 +203,37 @@
         }
     </script>
     <?endif;?>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter28963520 = new Ya.Metrika({
+                        id:28963520,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true,
+                        webvisor:true
+                    });
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/28963520" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
 <script type="text/javascript">
     $(document).ready(function(){
         <?if(is_array($basket_items) && !empty($basket_items)):?>
