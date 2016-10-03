@@ -9143,6 +9143,8 @@ header ul.menu.adaptive > li.menu_opener i
 .count-cell .measure{
     color: #999!important;
 }
-.price_block_wrapp .price_block .price.discount strike{
+.price_block_wrapp .price_block .price.discount strike,
+.set_wrapp .cost.clearfix .price.discount strike,
+.total_price.bx_item_set_result_block .price.discount strike{
     text-decoration: none;
 }
