@@ -45,7 +45,8 @@ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 
                     clickmap:true,
                     trackLinks:true,
                     accurateTrackBounce:true,
-                    webvisor:true
+                    webvisor:true,
+                    ecommerce:"dataLayer"
                 });
             } catch(e) { }
         });
