@@ -9121,6 +9121,9 @@ header ul.menu.adaptive > li.menu_opener i
     float: left;
     width: 200px;
 }
+.viewed_wrap .item-title{
+    min-height: 50px;
+}
 .viewed_wrap .catalog_item.first.view-item{
     clear: both;
     margin-left: 0;
