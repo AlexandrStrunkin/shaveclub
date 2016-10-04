@@ -422,6 +422,7 @@ global $USER;
     <div class="clearleft"></div>
 
     <div class="recommended">
+    <?arshow($arResult["PROPERTIES"]["SPECIALOFFER"])?>
         <?if($arResult["PROPERTIES"]["SPECIALOFFER"]["VALUE"]){?>
         <h2 style="font-size: 18px; margin-top: 20px;">С этим товаром рекомендуем:</h2>
             <?
