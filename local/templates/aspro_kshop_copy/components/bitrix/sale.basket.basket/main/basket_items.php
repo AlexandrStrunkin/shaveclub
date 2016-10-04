@@ -137,7 +137,6 @@
                                 </td>
                                 <?elseif ($arHeader["id"] == "QUANTITY"):?>
                                 <td class="count-cell">
-                                    <?if($arItem["QUANTITY"]>$arItem["AVAILABLE_QUANTITY"]):?><div class="error" style="display:none;"><?=GetMessage("NO_NEED_AMMOUNT")?></div><?endif;?>
                                     <div class="counter_block basket">
                                         <?
                                             $ratio = isset($arItem["MEASURE_RATIO"]) ? $arItem["MEASURE_RATIO"] : 0;
