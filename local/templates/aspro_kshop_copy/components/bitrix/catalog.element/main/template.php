@@ -190,7 +190,7 @@ global $USER;
                                 <?if(isset($arResult["DISPLAY_PROPERTIES"][$propCode])):?>
                                     <?$arProp = $arResult["DISPLAY_PROPERTIES"][$propCode];?>
 
-                                    <?if(!in_array($arProp["CODE"], array("SERVICES", "BRAND", "HIT", "SPECIALOFFER", "NEW", "STOCK", "VIDEO", "VIDEO_YOUTUBE"))):?>
+                                    <?if(!in_array($arProp["CODE"], array("SERVICES", "BRAND", "HIT", "RECOMMEND", "NEW", "STOCK", "VIDEO", "VIDEO_YOUTUBE"))):?>
                                         <?if((!is_array($arProp["DISPLAY_VALUE"]) && strlen($arProp["DISPLAY_VALUE"])) || (is_array($arProp["DISPLAY_VALUE"]) && implode('', $arProp["DISPLAY_VALUE"]))):?>
                                             <div class="char <?if($arProp["CODE"] == "COMPATIBILITY"){?>_COMPATIBILITY_<?}?>">
                                                 <div class="char_name">
@@ -422,10 +422,10 @@ global $USER;
     <div class="clearleft"></div>
 
     <div class="recommended">
-        <?if($arResult["PROPERTIES"]["SPECIALOFFER"]["VALUE"]){?>
+        <?if($arResult["PROPERTIES"]["RECOMMEND"]["VALUE"]){?>
         <h2 style="font-size: 18px; margin-top: 20px;">С этим товаром рекомендуем:</h2>
             <?
-            foreach($arResult["PROPERTIES"]["SPECIALOFFER"]["VALUE"] as $item_product){
+            foreach($arResult["PROPERTIES"]["RECOMMEND"]["VALUE"] as $item_product){
                 $arSelect = Array("ID", "NAME", "PREVIEW_PICTURE","*","DETAIL_PAGE_URL");
                 $arFilter = Array("IBLOCK_ID"=>$arResult["IBLOCK_ID"], "ID" => $item_product, "ACTIVE"=>"Y");
                 $res = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelect);
@@ -597,7 +597,7 @@ global $USER;
             $showProps = false;
             if($arResult["DISPLAY_PROPERTIES"]){
                 foreach($arResult["DISPLAY_PROPERTIES"] as $arProp){
-                    if(!in_array($arProp["CODE"], array("SERVICES", "BRAND", "HIT", "SPECIALOFFER", "NEW", "STOCK", "VIDEO", "VIDEO_YOUTUBE"))){
+                    if(!in_array($arProp["CODE"], array("SERVICES", "BRAND", "HIT", "RECOMMEND", "NEW", "STOCK", "VIDEO", "VIDEO_YOUTUBE"))){
                         if(!is_array($arProp["DISPLAY_VALUE"])){
                             $arProp["DISPLAY_VALUE"] = array($arProp["DISPLAY_VALUE"]);
                         }
@@ -876,7 +876,7 @@ global $USER;
                         <?else:?>
                         <table class="props_table">
                             <?foreach($arResult["DISPLAY_PROPERTIES"] as $arProp):?>
-                                <?if(!in_array($arProp["CODE"], array("SERVICES", "BRAND", "HIT", "SPECIALOFFER", "NEW", "STOCK", "VIDEO", "VIDEO_YOUTUBE"))):?>
+                                <?if(!in_array($arProp["CODE"], array("SERVICES", "BRAND", "HIT", "RECOMMEND", "NEW", "STOCK", "VIDEO", "VIDEO_YOUTUBE"))):?>
                                     <?if((!is_array($arProp["DISPLAY_VALUE"]) && strlen($arProp["DISPLAY_VALUE"])) || (is_array($arProp["DISPLAY_VALUE"]) && implode('', $arProp["DISPLAY_VALUE"]))):?>
                                         <tr>
                                             <td class="char_name">
@@ -983,7 +983,7 @@ global $USER;
                         <?foreach($arResult["PROPERTIES"] as $propCode => $arProp):?>
                             <?if(isset($arResult["DISPLAY_PROPERTIES"][$propCode])):?>
                                 <?$arProp = $arResult["DISPLAY_PROPERTIES"][$propCode];?>
-                                <?if(!in_array($arProp["CODE"], array("SERVICES", "BRAND", "HIT", "SPECIALOFFER", "NEW", "STOCK", "VIDEO", "VIDEO_YOUTUBE"))):?>
+                                <?if(!in_array($arProp["CODE"], array("SERVICES", "BRAND", "HIT", "RECOMMEND", "NEW", "STOCK", "VIDEO", "VIDEO_YOUTUBE"))):?>
                                     <?if((!is_array($arProp["DISPLAY_VALUE"]) && strlen($arProp["DISPLAY_VALUE"])) || (is_array($arProp["DISPLAY_VALUE"]) && implode('', $arProp["DISPLAY_VALUE"]))):?>
                                         <div class="char">
                                             <div class="char_name">
@@ -1005,7 +1005,7 @@ global $USER;
                     <?else:?>
                     <table class="props_table">
                         <?foreach($arResult["DISPLAY_PROPERTIES"] as $arProp):?>
-                            <?if(!in_array($arProp["CODE"], array("SERVICES", "BRAND", "HIT", "SPECIALOFFER", "NEW", "STOCK", "VIDEO", "VIDEO_YOUTUBE"))):?>
+                            <?if(!in_array($arProp["CODE"], array("SERVICES", "BRAND", "HIT", "RECOMMEND", "NEW", "STOCK", "VIDEO", "VIDEO_YOUTUBE"))):?>
                                 <?if((!is_array($arProp["DISPLAY_VALUE"]) && strlen($arProp["DISPLAY_VALUE"])) || (is_array($arProp["DISPLAY_VALUE"]) && implode('', $arProp["DISPLAY_VALUE"]))):?>
                                     <tr>
                                         <td class="char_name">
