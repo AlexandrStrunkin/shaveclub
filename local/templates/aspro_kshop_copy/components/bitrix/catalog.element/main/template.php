@@ -52,12 +52,12 @@ global $USER;
 <div class="item_main_info" id="<?=$this->GetEditAreaId($arResult['ID']);?>">
     <div class="item_slider">
         <div class="ribbons">
-            <?foreach($arResult["PROPERTIES"] as $key_property => $property_item){?>
-                <?if(in_array("HIT", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])){?><span class="ribon_hit"></span><?}?>
-                <?if(in_array("STOCK", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])){?><span class="ribon_action"></span><?}?>
-                <?if(in_array("NEW", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])){?><span class="ribon_new"></span><?}?>
-                <?if(in_array("SPECIALOFFER", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])){?><span class="ribon_recomend"></span><?}?>
-            <?};?>
+            <?if(is_array($arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])):?>
+                <?if(in_array("HIT", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="ribon_hit"></span><?}?>
+                <?if(in_array("STOCK", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="ribon_action"></span><?}?>
+                <?if(in_array("NEW", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="ribon_new"></span><?}?>
+                <?if(in_array("RECOMMEND", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="ribon_recomend"></span><?}?>
+                <?endif;?>
         </div>
         <ul class="slides">
             <?foreach($arImages as $i => $arImage):?>
@@ -65,12 +65,12 @@ global $USER;
                     <a href="<?=$arImage["BIG"]["src"]?>" <?=($bIsOneImage ? '' : 'rel="item_slider"')?> class="fancy">
                         <span class="zoom" alt="<?=$arResult["NAME"]?>" title="<?=$arResult["NAME"]?>"><i></i></span><b class="triangle"></b>
                         <div class="marks">
-                        <?foreach($arResult["PROPERTIES"] as $key_property => $property_item){?>
-                            <?if(in_array("HIT", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"]) ){?><span class="mark hit"></span><?}?>
-                            <?if(in_array("STOCK", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])){?><span class="mark share"></span><?}?>
-                            <?if(in_array("NEW", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])){?><span class="mark hit"></span><?}?>
-                            <?if(in_array("SPECIALOFFER", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])){?><span class="mark like"></span><?}?>
-                        <?}?>
+                            <?if(is_array($arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])):?>
+                                <?if(in_array("HIT", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"]) ){?><span class="mark hit"></span><?}?>
+                                <?if(in_array("STOCK", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="mark share"></span><?}?>
+                                <?if(in_array("NEW", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="mark hit"></span><?}?>
+                                <?if(in_array("RECOMMEND", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="mark like"></span><?}?>
+                                <?endif;?>
                         </div>
                         <img border="0" src="<?=$arImage["SMALL"]["src"]?>" alt="<?=$arResult["NAME"]?>" title="<?=$arResult["NAME"]?>" />
                     </a>
@@ -79,12 +79,12 @@ global $USER;
             <?if(!$arImages):?>
                 <li class="current">
                     <div class="marks">
-                        <?foreach($arResult["PROPERTIES"] as $key_property => $property_item){?>
-                            <?if(in_array("STOCK", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])){?><span class="mark share"></span><?}?>
-                            <?if(in_array("HIT", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"]) ){?><span class="mark hit"></span><?}?>
-                            <?if(in_array("SPECIALOFFER", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])){?><span class="mark like"></span><?}?>
-                            <?if(in_array("NEW", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])){?><span class="mark new"></span><?}?>
-                        <?};?>
+                        <?if(is_array($arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])):?>
+                            <?if(in_array("STOCK", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="mark share"></span><?}?>
+                            <?if(in_array("HIT", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"]) ){?><span class="mark hit"></span><?}?>
+                            <?if(in_array("RECOMMEND", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="mark like"></span><?}?>
+                            <?if(in_array("NEW", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="mark new"></span><?}?>
+                            <?endif;?>
                     </div>
                     <img border="0" src="<?=SITE_TEMPLATE_PATH?>/images/no_photo_medium.png" alt="<?=$arResult["NAME"]?>" title="<?=$arResult["NAME"]?>" />
                 </li>
@@ -108,12 +108,12 @@ global $USER;
 
     <div class="item_slider flex">
         <div class="ribbons">
-            <?foreach($arResult["PROPERTIES"] as $key_property => $property_item){?>
-                <?if(in_array("HIT", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"]) ):?><span class="ribon_hit"></span><?endif;?>
-                <?if(in_array("SPECIALOFFER", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])):?><span class="ribon_recomend"></span><?endif;?>
-                <?if(in_array("NEW", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])):?><span class="ribon_new"></span><?endif;?>
-                <?if(in_array("STOCK", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])):?><span class="ribon_action"></span><?endif;?>
-            <?};?>
+            <?if(is_array($arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])):?>
+                <?if(in_array("HIT", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"]) ):?><span class="ribon_hit"></span><?endif;?>
+                <?if(in_array("RECOMMEND", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])):?><span class="ribon_recomend"></span><?endif;?>
+                <?if(in_array("NEW", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])):?><span class="ribon_new"></span><?endif;?>
+                <?if(in_array("STOCK", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])):?><span class="ribon_action"></span><?endif;?>
+                <?endif;?>
         </div>
         <ul class="slides">
             <?foreach($arImages as $i => $arImage):?>
@@ -121,12 +121,12 @@ global $USER;
                     <a href="<?=$arImage["BIG"]["src"]?>" rel="item_slider" class="fancy">
                         <span class="zoom" alt="<?=$arResult["NAME"]?>" title="<?=$arResult["NAME"]?>"><i></i></span><b class="triangle"></b>
                         <div class="marks">
-                            <?foreach($arResult["PROPERTIES"] as $key_property => $property_item){?>
-                                <?if(in_array("STOCK", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])){?><span class="mark share"></span><?}?>
-                                <?if(in_array("HIT", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"]) ){?><span class="mark hit"></span><?}?>
-                                <?if(in_array("SPECIALOFFER", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])){?><span class="mark like"></span><?}?>
-                                <?if(in_array("NEW", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])){?><span class="mark new"></span><?}?>
-                            <?};?>
+                            <?if(is_array($arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])):?>
+                                <?if(in_array("STOCK", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="mark share"></span><?}?>
+                                <?if(in_array("HIT", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"]) ){?><span class="mark hit"></span><?}?>
+                                <?if(in_array("RECOMMEND", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="mark like"></span><?}?>
+                                <?if(in_array("NEW", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="mark new"></span><?}?>
+                                <?endif;?>
                         </div>
                         <img border="0" src="<?=$arImage["SMALL"]["src"]?>" alt="<?=$arResult["NAME"]?>" title="<?=$arResult["NAME"]?>" />
                     </a>
@@ -135,12 +135,12 @@ global $USER;
             <?if(!$arImages):?>
                 <li class="current">
                     <div class="marks">
-                        <?foreach($arResult["PROPERTIES"] as $key_property => $property_item){?>
-                            <?if(in_array("STOCK", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])){?><span class="mark share"></span><?}?>
-                            <?if(in_array("HIT", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"]) ){?><span class="mark hit"></span><?}?>
-                            <?if(in_array("SPECIALOFFER", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])){?><span class="mark like"></span><?}?>
-                            <?if(in_array("NEW", $arResult["PROPERTIES"][$key_property]["VALUE_XML_ID"])){?><span class="mark new"></span><?}?>
-                        <?};?>
+                        <?if(is_array($arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])):?>
+                            <?if(in_array("STOCK", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="mark share"></span><?}?>
+                            <?if(in_array("HIT", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"]) ){?><span class="mark hit"></span><?}?>
+                            <?if(in_array("RECOMMEND", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="mark like"></span><?}?>
+                            <?if(in_array("NEW", $arResult["PROPERTIES"]["HIT"]["VALUE_XML_ID"])){?><span class="mark new"></span><?}?>
+                            <?endif;?>
                     </div>
                     <img border="0" src="<?=SITE_TEMPLATE_PATH?>/images/no_photo_medium.png" alt="<?=$arResult["NAME"]?>" title="<?=$arResult["NAME"]?>" />
                 </li>
@@ -444,7 +444,7 @@ global $USER;
                         </div>
                         <div class="item_info">
                             <div class="item-title">
-                                <a href="<?='/'.$url[1].'/'.$url[2].'/'.$arFields["ID"].'/'?>"><span><?=mb_strimwidth($arFields["NAME"], 0, 50, "...")?></span></a>  <!--'/'.$url[3]. -->
+                                <a href="<?='/'.$url[1].'/'.$url[2].'/'.$arFields["ID"].'/'?>"><span><?=mb_strimwidth($arFields["NAME"], 0, 45, "..." )?></span></a>  <!--'/'.$url[3]. -->
                             </div>
                         </div>
 
