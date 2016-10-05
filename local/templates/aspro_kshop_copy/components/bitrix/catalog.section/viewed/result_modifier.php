@@ -38,11 +38,11 @@ foreach($arResult["ITEMS"] as $cell=>$arElement)
 		$minItemPrice = 0;
 		$minItemPriceFormat = "";
 		$arResult["ITEMS"][$cell]["OFFERS_CATALOG_QUANTITY"] = 0;
-		
+
 		foreach($arElement["OFFERS"] as $arOffer)
 		{
 			$arResult["ITEMS"][$cell]["OFFERS_CATALOG_QUANTITY"]  += $arOffer["CATALOG_QUANTITY"];
-			
+
 			foreach($arOffer["PRICES"] as $code=>$arPrice)
 			{
 				if($arPrice["CAN_ACCESS"])

@@ -67,7 +67,7 @@ if(CModule::IncludeModule('sale')){
 	$resViewed = CSaleViewedProduct::GetList(array("DATE_VISIT" => "DESC"), array("LID" => SITE_ID, "FUSER_ID" => CSaleBasket::GetBasketUserID()), false, false, array("ID", "PRODUCT_ID"));
 	while($arItem = $resViewed->Fetch()){
 		$arViewedID[] = $arItem["PRODUCT_ID"];
-		if(count($arViewedID) >= 3){
+		if(count($arViewedID) >= 5){
 			break;
 		}
 	}
@@ -516,8 +516,8 @@ if(CModule::IncludeModule('sale')){
             "ELEMENT_SORT_ORDER" => "ASC",
             "FILTER_NAME" => 'viewedFilter',
             "INCLUDE_SUBSECTIONS" => "Y",
-            "PAGE_ELEMENT_COUNT" => 3,
-            "LINE_ELEMENT_COUNT" => 1,
+            "PAGE_ELEMENT_COUNT" => 5,
+            "LINE_ELEMENT_COUNT" => 5,
             "SET_LAST_MODIFIED" => "Y",
             "PROPERTY_CODE" => $arParams["LIST_PROPERTY_CODE"],
             "OFFERS_FIELD_CODE" => $arParams["LIST_OFFERS_FIELD_CODE"],
@@ -582,7 +582,6 @@ if(CModule::IncludeModule('sale')){
             "SHOW_SECTIONS_LIST_PREVIEW" => $arParams["SHOW_SECTIONS_LIST_PREVIEW"],
             "SECTIONS_LIST_PREVIEW_PROPERTY" => $arParams["SECTIONS_LIST_PREVIEW_PROPERTY"],
             "SHOW_SECTION_LIST_PICTURES" => $arParams["SHOW_SECTION_LIST_PICTURES"],
-            "VIEWED_COUNT" => "3",
             "VIEWED_NAME" => "Y",
             "VIEWED_IMAGE" => "Y",
             "VIEWED_PRICE" => "Y",

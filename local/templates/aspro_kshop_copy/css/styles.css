@@ -9119,10 +9119,10 @@ header ul.menu.adaptive > li.menu_opener i
 }
 .viewed_wrap .catalog_item{
     float: left;
-    width: 200px;
+    width: 180px;
 }
 .viewed_wrap .item-title{
-    min-height: 50px;
+    min-height: 70px;
 }
 .viewed_wrap .catalog_item.first.view-item{
     clear: both;
@@ -9130,7 +9130,10 @@ header ul.menu.adaptive > li.menu_opener i
 }
 .viewed_wrap .viewed_products_column .view-item{
     border-bottom: 1px solid #e7e7e7;
-    margin: 0 10px 20px;
+    margin: 0 9px 20px;
+}
+.viewed_wrap .viewed_products_column .view-item:last-child{
+    margin-left: 8px;
 }
 .viewed_wrap .viewed_products_column .view-item .image{
     height: 190px
