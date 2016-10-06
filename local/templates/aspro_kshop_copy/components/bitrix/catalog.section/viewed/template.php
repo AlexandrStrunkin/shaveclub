@@ -41,7 +41,7 @@ if($arResult['ITEMS'] > 0):?>
 					<div class="item_info">
 						<?if($arParams["VIEWED_NAME"] == "Y"):?>
 							<div class="item-title">
-								<a href="<?=$arItem["DETAIL_PAGE_URL"]?>"><span><?=$arItem["NAME"]?></span></a>
+								<a href="<?=$arItem["DETAIL_PAGE_URL"]?>"><span><?=mb_strimwidth($arItem["NAME"], 0, 75, "...")?></span></a>
 							</div>
 						<?endif;?>
 						<?if($arParams["VIEWED_PRICE"] == "Y"):?>
