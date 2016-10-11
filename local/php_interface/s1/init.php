@@ -344,16 +344,16 @@
 				$DELIVERY_NAME = $arDelivery["NAME"];
 			}
 			$arFields["DELIVERY_NAME"] = $DELIVERY_NAME;
-		
+
 			if($arOrder["DELIVERY_ID"] == 'pickpoint:postamat')
 				$arFields["DELIVERY_NAME"] = 'PickPoint';
-			
+
 			$arFields["DELIVERY_PRICE"] = round($arOrder["PRICE_DELIVERY"], 0);
 			/* if(IntVal($arFields["DELIVERY_PRICE"]) <= 0)
 				$arFields["DELIVERY_PRICE"] = 'Бесплатно';
 			else
 				$arFields["DELIVERY_PRICE"] .= ' руб.'; */
-			
+
 			$arFields["PAYMENT_NAME"] = '';
 			//if (IntVal($arOrder["PAY_SYSTEM_ID"]) > 0) {
 				$arPaySys = CSalePaySystem::GetByID($arOrder["PAY_SYSTEM_ID"]);
@@ -386,7 +386,7 @@
 					if(!empty($arVals)) {
 						$arBasketTmp['NAME'] .= ' ('.implode(', ',$arVals).')';
 					}
-				}    
+				}
 				if($arBasketTmp['DISCOUNT_PRICE'] > 0)
 					$DISCOUNT_PRICE += $arBasketTmp['DISCOUNT_PRICE'];
 
@@ -394,7 +394,7 @@
 					$BASE_PRICE += $arBasketTmp['BASE_PRICE'] * $arBasketTmp['QUANTITY'];
 
 				$arBasketValue[] = $arBasketTmp;
-				
+
 				if(CCatalogProductSet::isProductHaveSet($arBasketTmp["PRODUCT_ID"])) {
 					$isProductInSet = true;
 				}
@@ -435,10 +435,10 @@
 						$ItemPrice = round($arBasket["QUANTITY"] * $arBasket["PRICE"], 0);
 						$ItemPriceAdd = '(' . round($arBasket["PRICE"], 0) . ' руб./шт.)';
 					}
-					
+
 					$i++;
 					$BasketListStr .= "
-						
+
 						<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#ffffff\">
 							<tr>
 								<td class=\"img\" style=\"font-size:0pt; line-height:0pt; text-align:center\" width=\"9\" bgcolor=\"#ffffff\"></td>
@@ -459,10 +459,12 @@
 				}
 			}
 			$arFields["ORDER_LIST"] = $BasketListStr;
+
+            return $arFields;
 		}
 	}
-	
-	
+
+
     //AddEventHandler('main', 'OnBeforeEventSend', Array("newOrder", "orderDataChange"));
 
     class newOrder{
