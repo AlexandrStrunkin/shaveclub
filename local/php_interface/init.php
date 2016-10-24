@@ -5,6 +5,8 @@
     CModule::IncludeModule("sale");
     CModule::IncludeModule("main");
     CModule::IncludeModule("catalog");
+    use Bitrix\Sale\Order;
+    use Bitrix\Main\Loader;
 
     function arshow($array, $adminCheck = false){
         global $USER;
@@ -213,11 +215,13 @@
                 $shipmentCollection = $order->getShipmentCollection();
                 /** @var \Bitrix\Sale\Shipment $shipment */
                 foreach ($shipmentCollection as $shipment) {
-
-                    echo $shipment->setStoreId("1");
+                    echo $shipment->setStoreId(1);
+                    $shipment->save();
                 }
 
                 $order->save();
+            } else if ($val == "V") {
+                CSaleOrder::DeductOrder($ID, "N");    
             }
         }
         AddEventHandler('main', 'OnBeforeEventSend', 'SentMail');
