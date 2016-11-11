@@ -215,8 +215,8 @@
                 $shipmentCollection = $order->getShipmentCollection();
                 /** @var \Bitrix\Sale\Shipment $shipment */
                 foreach ($shipmentCollection as $shipment) {
-                    echo $shipment->setStoreId(1);
-                    $shipment->save();
+
+                    echo $shipment->setStoreId("1");
                 }
 
                 $order->save();
