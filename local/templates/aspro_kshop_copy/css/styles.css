@@ -9089,7 +9089,7 @@ header ul.menu.adaptive > li.menu_opener i
 .order-checkout label{display:inline-block;}
 .order-checkout label img{pointer-events: none;}
 .fancybox-lock .fancybox-overlay {overflow: auto;}
-.right_block li,.price {
+.right_block li,.price, .rouble {
   font-family: 'PT Sans', serif;
   font-size: 13px;
   }
