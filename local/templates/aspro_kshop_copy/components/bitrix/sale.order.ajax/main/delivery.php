@@ -320,7 +320,7 @@
 						</div>
 					<? }
                     if ($arDelivery["CHECKED"] == "Y") {
-                        include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/related_props.php");
+                        include($_SERVER["DOCUMENT_ROOT"] . $templateFolder . "/related_props.php");
                     }
 				}
 			}
