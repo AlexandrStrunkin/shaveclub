@@ -255,14 +255,15 @@
                                         INPOST_MSK_DELIVERY_FOR_EXPENSIVE_ORDERS,
                                         BOXBERRY_MSK_DELIVERY_FOR_EXPENSIVE_ORDERS,
                                         INPOST_REGIONS_DELIVERY_FOR_EXPENSIVE_ORDERS,
-                                        BOXBERRY_REGIONS_DELIVERY_FOR_EXPENSIVE_ORDERS
-                                    );
-                                    if(($_POST["DELIVERY_ID"] != OFFICE_PICKUP_DELIVERY and      // id пунктов самовывоза
-                                       $_POST["DELIVERY_ID"] != PVZ_MSK_DELIVERY_FOR_EXPENSIVE_ORDERS and
-                                       $_POST["DELIVERY_ID"] != PVZ_MSK_DELIVERY_FOR_CHEAP_ORDERS and
-                                       $_POST["DELIVERY_ID"] != PVZ_SPB_DELIVERY_FOR_CHEAP_ORDERS and
-                                       $_POST["DELIVERY_ID"] != PVZ_SPB_DELIVERY_FOR_EXPENSIVE_ORDERS ) and
-                                       !(in_array($_POST["DELIVERY_ID"], $inpost_and_boxberry_deliveries_array) and
+                                        BOXBERRY_REGIONS_DELIVERY_FOR_EXPENSIVE_ORDERS,
+                                        OFFICE_PICKUP_DELIVERY,
+                                        PVZ_MSK_DELIVERY_FOR_EXPENSIVE_ORDERS,
+                                        PVZ_MSK_DELIVERY_FOR_CHEAP_ORDERS,
+                                        PVZ_SPB_DELIVERY_FOR_CHEAP_ORDERS,
+                                        PVZ_SPB_DELIVERY_FOR_EXPENSIVE_ORDERS
+                                        
+                                    );                                                
+                                    if(!(in_array($_POST["DELIVERY_ID"], $inpost_and_boxberry_deliveries_array) and
                                        $arProperties["ID"] == ADDRESS_FIELD_PROPERTY)) {
                                             $rows = ($arProperties["SIZE2"] > 10) ? 4 : $arProperties["SIZE2"];
                                         ?>
