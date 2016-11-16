@@ -234,7 +234,7 @@
                             <?
                             }
                             elseif ($arProperties["TYPE"] == "TEXTAREA")
-                            {
+                            {   
                                 if (($arProperties["CODE"]=="ADDRESS")&&($_POST["DELIVERY_ID"]==14||$_POST["DELIVERY_ID"]==15)){
                                     $rows = ($arProperties["SIZE2"] > 10) ? 4 : $arProperties["SIZE2"];
                                 ?>
@@ -243,12 +243,28 @@
                                 </div>
                                 <?
                                 } else {
-
-                                    if($_POST["DELIVERY_ID"] != 45 and      // id пунктов самовывоза
-                                       $_POST["DELIVERY_ID"] != 47 and
-                                       $_POST["DELIVERY_ID"] != 48 and
-                                       $_POST["DELIVERY_ID"] != 50 and
-                                       $_POST["DELIVERY_ID"] != 51 ){
+                                    $inpost_and_boxberry_deliveries_array = array(
+                                        INPOST_MSK_DELIVERY_FOR_CHEAP_ORDERS,
+                                        INPOST_MSK_DELIVERY_FOR_MEDIUM_ORDERS,
+                                        BOXBERRY_MSK_DELIVERY_FOR_CHEAP_ORDERS,
+                                        BOXBERRY_MSK_DELIVERY_FOR_MEDIUM_ORDERS,
+                                        INPOST_REGIONS_DELIVERY_FOR_CHEAP_ORDERS,
+                                        INPOST_REGIONS_DELIVERY_FOR_MEDIUM_ORDERS,
+                                        BOXBERRY_REGIONS_DELIVERY_FOR_CHEAP_ORDERS,
+                                        BOXBERRY_REGIONS_DELIVERY_FOR_MEDIUM_ORDERS,
+                                        INPOST_MSK_DELIVERY_FOR_EXPENSIVE_ORDERS,
+                                        BOXBERRY_MSK_DELIVERY_FOR_EXPENSIVE_ORDERS,
+                                        INPOST_REGIONS_DELIVERY_FOR_EXPENSIVE_ORDERS,
+                                        BOXBERRY_REGIONS_DELIVERY_FOR_EXPENSIVE_ORDERS,
+                                        OFFICE_PICKUP_DELIVERY,
+                                        PVZ_MSK_DELIVERY_FOR_EXPENSIVE_ORDERS,
+                                        PVZ_MSK_DELIVERY_FOR_CHEAP_ORDERS,
+                                        PVZ_SPB_DELIVERY_FOR_CHEAP_ORDERS,
+                                        PVZ_SPB_DELIVERY_FOR_EXPENSIVE_ORDERS
+                                        
+                                    );                                                
+                                    if(!(in_array($_POST["DELIVERY_ID"], $inpost_and_boxberry_deliveries_array) and
+                                       $arProperties["ID"] == ADDRESS_FIELD_PROPERTY)) {
                                             $rows = ($arProperties["SIZE2"] > 10) ? 4 : $arProperties["SIZE2"];
                                         ?>
                                         <div class="bx_block r1x3 pt8">
