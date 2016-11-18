@@ -221,7 +221,7 @@
                             <tr>
                                 <td class=\"img\" style=\"font-size:0pt; line-height:0pt; text-align:center\" width=\"9\" bgcolor=\"#ffffff\"></td>
                                 <td width=\"50%\">
-                                    <div style=\"font-size:0pt; line-height:0pt; text-align:center\"><img src=\"http://" . SITE_SERVER_NAME . $arFile['src'] . "\" border=\"0\" width=\"" . $arFile['width'] . "\" height=\"" . $arFile['height'] . "\" alt=\"\" /></div>
+                                    <div style=\"font-size:0pt; line-height:0pt; text-align:center\"><img src=\"http://" . S1 . '/' . $arFile['src'] . "\" border=\"0\" width=\"" . $arFile['width'] . "\" height=\"" . $arFile['height'] . "\" alt=\"\" /></div>
                                 </td>
                                 <td width=\"50%\" align=\"center\">
                                     <div style=\"display: inline-block;color:#1e1e1e; font-family:Arial,Helvetica, serif; min-width:auto !important; font-size:14pt; line-height:16pt; text-align:center;font-weight: bold;\">" . $arBasket['~NAME'] . "<br/ >" . round($arBasket['QUANTITY'], 0) . " шт.<br/ >" . $ItemPrice . " руб. " . $ItemPriceAdd . "</div>
