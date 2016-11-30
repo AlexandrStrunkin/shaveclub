@@ -283,7 +283,7 @@
 
 										<?=GetMessage("SALE_DELIV_PRICE");?>: <b>
                                         <?//Условие для доставки по России
-                                        if ($arDelivery['ID'] == DELIVERY_ID) {
+                                        if ($arDelivery['ID'] == DELIVERY_COURIER_IN_RUSSIA_ID) {
                                             echo GetMessage('PRICE_TO_MANAGER');
                                         } else {
                                             echo $arDelivery["PRICE_FORMATED"];
@@ -319,9 +319,6 @@
 							<div class="clear"></div>
 						</div>
 					<? }
-                    if ($arDelivery["CHECKED"] == "Y") {
-                        include($_SERVER["DOCUMENT_ROOT"] . $templateFolder . "/related_props.php");
-                    }
 				}
 			}
 		?>
