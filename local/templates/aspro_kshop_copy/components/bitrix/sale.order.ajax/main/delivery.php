@@ -283,16 +283,15 @@
 
 										<?=GetMessage("SALE_DELIV_PRICE");?>: <b>
                                         <?//”словие дл€ доставки по –оссии
-                                        if($arDelivery['ID']==13) echo "”точн€йте стоимость у менеджеров";
-                                        else echo $arDelivery["PRICE_FORMATED"];
-                                        ?></b><br />
-                                        <?
-                                        if (strlen($arDelivery["PERIOD_TEXT"])>0)
-                                        {
-                                            echo GetMessage('PERIOD_TEXT') . $arDelivery["PERIOD_TEXT"];
-                                            ?><br /><?
+                                        if($arDelivery['ID']==13) {
+                                            echo "”точн€йте стоимость у менеджеров";
+                                        } else {
+                                            echo $arDelivery["PRICE_FORMATED"];
                                         }
-                                        ?>
+                                        ?></b><br />
+                                        <? if (strlen($arDelivery["PERIOD_TEXT"])>0) {
+                                            echo GetMessage('PERIOD_TEXT') . $arDelivery["PERIOD_TEXT"];?><br />
+                                        <?}?>
 										<?
 										if (strlen($arDelivery["DESCRIPTION"])>0)
 											echo $arDelivery["DESCRIPTION"]."<br />";
