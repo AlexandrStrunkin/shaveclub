@@ -1,5 +1,6 @@
 <?
 
+    define('DELIVERY_ID', 13);
 
     CModule::IncludeModule("iblock");
     CModule::IncludeModule("sale");

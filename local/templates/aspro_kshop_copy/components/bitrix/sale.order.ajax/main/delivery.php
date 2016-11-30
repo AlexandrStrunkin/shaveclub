@@ -283,8 +283,8 @@
 
 										<?=GetMessage("SALE_DELIV_PRICE");?>: <b>
                                         <?//Условие для доставки по России
-                                        if($arDelivery['ID']==13) {
-                                            echo "Уточняйте стоимость у менеджеров";
+                                        if ($arDelivery['ID'] == DELIVERY_ID) {
+                                            echo GetMessage('PRICE_TO_MANAGER');
                                         } else {
                                             echo $arDelivery["PRICE_FORMATED"];
                                         }
