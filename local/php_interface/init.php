@@ -51,7 +51,7 @@
 
     if($site == 's1' || $_SERVER["SERVER_NAME"] == S1){
        //добавл€ем в письмо о заказе дополнительную информацию
-    AddEventHandler('sale', 'OnOrderNewSendEmail', Array("cEventHandler", "bxModifySaleMails"));
+   /* AddEventHandler('sale', 'OnOrderNewSendEmail', Array("cEventHandler", "bxModifySaleMails"));
     class cEventHandler {
         function bxModifySaleMails($orderID, &$eventName, &$arFields) {
 
@@ -127,10 +127,7 @@
                 $arFields["DELIVERY_NAME"] = 'PickPoint';
 
             $arFields["DELIVERY_PRICE"] = round($arOrder["PRICE_DELIVERY"], 0);
-            /* if(IntVal($arFields["DELIVERY_PRICE"]) <= 0)
-                $arFields["DELIVERY_PRICE"] = 'Ѕесплатно';
-            else
-                $arFields["DELIVERY_PRICE"] .= ' руб.'; */
+
 
             $arFields["PAYMENT_NAME"] = '';
             //if (IntVal($arOrder["PAY_SYSTEM_ID"]) > 0) {
@@ -177,10 +174,7 @@
                     $isProductInSet = true;
                 }
             }
-            /* if($BASE_PRICE > 0) {
-                $DISCOUNT_VALUE = $BASE_PRICE - $arOrder["PRICE"] + $arOrder["PRICE_DELIVERY"];
-                $arFields["DISCOUNT_VALUE"] = round($DISCOUNT_VALUE, 0);
-            } */
+
 
             $BasketListStr = '';
             if(!empty($arBasketId)) {
@@ -240,7 +234,13 @@
 
             return $arFields;
         }
-    }
+    }  */
+        function custom_mail($to,$subject,$body,$headers) {
+            $f=fopen($_SERVER["DOCUMENT_ROOT"]."/maillog.txt", "a+");
+            fwrite($f, print_r(array('TO' => $to, 'SUBJECT' => $subject, 'BODY' => $body, 'HEADERS' => $headers),1)."\n========\n");
+            fclose($f);
+            return mail($to,$subject,$body,$headers);
+        }
     }
 
     if($site == 's2' || $_SERVER["SERVER_NAME"] == S2){
