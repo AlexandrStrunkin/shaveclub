@@ -280,18 +280,19 @@
 								<div class="desc">
 									<div class="name"><?= htmlspecialcharsbx($arDelivery["NAME"])?></div>
 									<span class="desc">
-										<?
-										if (strlen($arDelivery["PERIOD_TEXT"])>0)
-										{
-											echo $arDelivery["PERIOD_TEXT"];
-											?><br /><?
-										}
-										?>
+
 										<?=GetMessage("SALE_DELIV_PRICE");?>: <b>
                                         <?//Условие для доставки по России
                                         if($arDelivery['ID']==13) echo "Уточняйте стоимость у менеджеров";
                                         else echo $arDelivery["PRICE_FORMATED"];
                                         ?></b><br />
+                                        <?
+                                        if (strlen($arDelivery["PERIOD_TEXT"])>0)
+                                        {
+                                            echo GetMessage('PERIOD_TEXT') . $arDelivery["PERIOD_TEXT"];
+                                            ?><br /><?
+                                        }
+                                        ?>
 										<?
 										if (strlen($arDelivery["DESCRIPTION"])>0)
 											echo $arDelivery["DESCRIPTION"]."<br />";

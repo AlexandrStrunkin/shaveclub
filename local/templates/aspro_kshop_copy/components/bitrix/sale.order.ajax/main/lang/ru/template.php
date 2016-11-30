@@ -73,6 +73,7 @@ $MESS['SALE_PRODUCTS_SUMMARY'] = "Товары в заказе";
 $MESS['SALE_PACKS_COUNT'] = "Необходимо коробок (штук)";
 $MESS['SOA_ORDER_DELIVERY_EXTRA_PARAMS'] = "Дополнительные параметры для доставки";
 $MESS['SOA_ORDER_DELIVERY_EXTRA_PARAMS_SAVE_ERROR'] = "Ошибка сохранения данных";
+$MESS['PERIOD_TEXT'] = "Срок доставки: ";
 
 $MESS['SOA_OTHER_LOCATION'] = "Другое местоположение";
 $MESS['SOA_LOCATION_NOT_FOUND'] = "Местоположение не найдено";
