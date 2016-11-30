@@ -1,4 +1,6 @@
 <?
+
+    define('DELIVERY_COURIER_IN_RUSSIA_ID', 13);     //  Доставка курьером по России сайта  DORCO-razors.ru
     define('S1', 'shaveclub.ru');
     define('S2', 'dorco-razors.ru');
 
