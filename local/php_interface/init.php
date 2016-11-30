@@ -1,6 +1,4 @@
 <?
-
-    define('DELIVERY_COURIER_IN_RUSSIA_ID', 13);     //  Доставка курьером по России сайта  DORCO-razors.ru
     define('S1', 'shaveclub.ru');
     define('S2', 'dorco-razors.ru');
 
@@ -53,7 +51,7 @@
 
     if($site == 's1' || $_SERVER["SERVER_NAME"] == S1){
        //добавляем в письмо о заказе дополнительную информацию
-   /* AddEventHandler('sale', 'OnOrderNewSendEmail', Array("cEventHandler", "bxModifySaleMails"));
+    AddEventHandler('sale', 'OnOrderNewSendEmail', Array("cEventHandler", "bxModifySaleMails"));
     class cEventHandler {
         function bxModifySaleMails($orderID, &$eventName, &$arFields) {
 
@@ -236,7 +234,7 @@
 
             return $arFields;
         }
-    }  */
+    }
         function custom_mail($to,$subject,$body,$headers) {
             $f=fopen($_SERVER["DOCUMENT_ROOT"]."/maillog.txt", "a+");
             fwrite($f, print_r(array('TO' => $to, 'SUBJECT' => $subject, 'BODY' => $body, 'HEADERS' => $headers),1)."\n========\n");
