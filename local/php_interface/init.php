@@ -351,15 +351,15 @@
                 $order->save();
             }
         }
-        AddEventHandler('main', 'OnBeforeEventSend', 'SentMail');
+        AddEventHandler('sale', 'OnOrderNewSendEmail', "SentMail");
+            function SentMail($orderID, &$arTemplate, &$arFields) {
 
-        function SentMail(&$arFields, &$arTemplate) {
-            if($arTemplate["EVENT_NAME"] != "USER_PASS_REQUEST"){
+            if($arFields["EVENT_NAME"] != "USER_PASS_REQUEST"){
                 CModule::IncludeModule("iblock");
                 CModule::IncludeModule("catalog");
                 CModule::IncludeModule("sale");
                 $path = $_SERVER["HTTP_HOST"] ;
-                $arItems = CSaleOrderPropsValue::GetList(array(), array("ORDER_ID" => $arFields["ORDER_ID"]));
+                $arItems = CSaleOrderPropsValue::GetList(array(), array("ORDER_ID" => $orderID));
 
                 while ($item = $arItems -> Fetch()) {
                     if ($item["CODE"] == "store_pickup") {
@@ -374,7 +374,7 @@
                 }
 
                 if ($arOrder_new["quick_order"] && $arOrder_new["quick_order"] != "Y") {
-                    $ORDER_ID = $arFields["ORDER_ID"];
+                    $ORDER_ID = $orderID;
                     $arOrderProps = array();
                     $order_props = CSaleOrderPropsValue::GetOrderProps($ORDER_ID);//Свойства заказа
                     while ($arProps = $order_props->Fetch()) {
