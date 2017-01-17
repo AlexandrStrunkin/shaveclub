@@ -3,6 +3,7 @@
 <?if(strlen($arResult["ERROR_MESSAGE"])):?>
     <?=ShowError($arResult["ERROR_MESSAGE"]);?>
     <?else:?>
+
     <div class="module-order-history orderdetail">
         <table class="module-orders-list colored">
             <tbody>
@@ -63,8 +64,9 @@
     <table class="module-orders-list colored">
         <tbody>
             <?foreach($arResult["ORDER_PROPS"] as $prop):?>
+            <?if($prop["CODE"] != 'store_pickup'){?>
                 <tr class="vl">
-                    <td><?=$prop['NAME']?>:</td>
+                    <td><?echo $prop['NAME'];?>:</td>
                     <td>
                         <?if($prop["TYPE"] == "CHECKBOX"):?>
                             <?=GetMessage('SPOD_'.($prop["VALUE"] == "Y" ? 'YES' : 'NO'))?>
@@ -73,7 +75,18 @@
                             <?endif;?>
                     </td>
                 </tr>
+            <?}?>
                 <?endforeach;?>
+            <?if($arResult["SHIPMENT"][0]["STORE_ID"]){?>
+                <tr class="vl">
+                    <td><?echo $arResult["SHIPMENT"][0]["DELIVERY_NAME"];?>:</td>
+                    <td>
+                        <?if($arResult["SHIPMENT"][0]["STORE_ID"]){
+                             echo $arResult["DELIVERY"]["STORE_LIST"][$arResult["SHIPMENT"][0]["STORE_ID"]]["TITLE"];
+                        }?>
+                    </td>
+                </tr>
+            <?}?>
             <?if(!empty($arResult["USER_DESCRIPTION"])):?>
                 <tr>
                     <td><?=GetMessage('SPOD_ORDER_USER_COMMENT')?>:</td>
