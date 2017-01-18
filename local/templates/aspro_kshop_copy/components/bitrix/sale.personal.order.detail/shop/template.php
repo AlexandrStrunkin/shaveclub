@@ -64,7 +64,7 @@
     <table class="module-orders-list colored">
         <tbody>
             <?foreach($arResult["ORDER_PROPS"] as $prop):?>
-            <?if($prop["CODE"] != 'store_pickup' && $prop["CODE"] != 'PVZ_ADDRESS'){?>
+            <?if($prop["CODE"] != 'store_pickup' && $prop["CODE"] != 'PVZ_ADDRESS' && $prop["CODE"] != 'TERMINAL_ADDRESS'){?>
                 <tr class="vl">
                     <td><?echo $prop['NAME'];?>:</td>
                     <td>
@@ -237,7 +237,7 @@
                 </td>
             </tr>
             <?foreach($arResult["ORDER_PROPS"] as $prop):?>
-            <?if($prop["CODE"] == 'store_pickup' || $prop["CODE"] == 'PVZ_ADDRESS'){?>
+            <?if($prop["CODE"] == 'store_pickup' || $prop["CODE"] == 'PVZ_ADDRESS' || $prop["CODE"] == 'TERMINAL_ADDRESS'){?>
                 <tr class="vl">
                     <td><?echo $prop['NAME'];?>:</td>
                     <td>
