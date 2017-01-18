@@ -1,3 +1,7 @@
+.result-row form {
+    clear: both;
+    margin-top: 10px;
+}
 .result-row .sale-paysystem-wrapper {
     position: relative;
     padding: 0;

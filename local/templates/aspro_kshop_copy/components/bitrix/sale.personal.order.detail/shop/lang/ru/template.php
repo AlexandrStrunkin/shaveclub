@@ -15,6 +15,7 @@ $MESS["SPOD_ORDER_USER_COMMENT"] = "Комментарии покупателя";
 $MESS["SPOD_ORDER_PAYMENT"] = "Параметры доставки и оплаты";
 $MESS["SPOD_PAY_SYSTEM"] = "Платёжная система";
 $MESS["SPOD_ORDER_PAYED"] = "Оплачен";
+$MESS["ADRESS_ORDER_PAYED"] = "Адрес доставки";
 $MESS["SPOD_ORDER_DELIVERY"] = "Служба доставки";
 $MESS["SPOD_ORDER_TRACKING_NUMBER"] = "Идентификатор отправления";
 $MESS["SPOD_ORDER_BASKET"] = "Содержимое заказа";

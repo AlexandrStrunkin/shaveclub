@@ -64,7 +64,7 @@
     <table class="module-orders-list colored">
         <tbody>
             <?foreach($arResult["ORDER_PROPS"] as $prop):?>
-            <?if($prop["CODE"] != 'store_pickup'){?>
+            <?if($prop["CODE"] != 'store_pickup' && $prop["CODE"] != 'PVZ_ADDRESS'){?>
                 <tr class="vl">
                     <td><?echo $prop['NAME'];?>:</td>
                     <td>
@@ -76,17 +76,7 @@
                     </td>
                 </tr>
             <?}?>
-                <?endforeach;?>
-            <?if($arResult["SHIPMENT"][0]["STORE_ID"]){?>
-                <tr class="vl">
-                    <td><?echo $arResult["SHIPMENT"][0]["DELIVERY_NAME"];?>:</td>
-                    <td>
-                        <?if($arResult["SHIPMENT"][0]["STORE_ID"]){
-                             echo $arResult["DELIVERY"]["STORE_LIST"][$arResult["SHIPMENT"][0]["STORE_ID"]]["TITLE"];
-                        }?>
-                    </td>
-                </tr>
-            <?}?>
+            <?endforeach;?>
             <?if(!empty($arResult["USER_DESCRIPTION"])):?>
                 <tr>
                     <td><?=GetMessage('SPOD_ORDER_USER_COMMENT')?>:</td>
@@ -246,6 +236,30 @@
                         <?endif?>
                 </td>
             </tr>
+            <?foreach($arResult["ORDER_PROPS"] as $prop):?>
+            <?if($prop["CODE"] == 'store_pickup' || $prop["CODE"] == 'PVZ_ADDRESS'){?>
+                <tr class="vl">
+                    <td><?echo $prop['NAME'];?>:</td>
+                    <td>
+                        <?if($prop["TYPE"] == "CHECKBOX"):?>
+                            <?=GetMessage('SPOD_'.($prop["VALUE"] == "Y" ? 'YES' : 'NO'))?>
+                            <?else:?>
+                            <?=$prop["VALUE"]?>
+                            <?endif;?>
+                    </td>
+                </tr>
+            <?}?>
+            <?endforeach;?>
+            <?if($arResult["SHIPMENT"][0]["STORE_ID"]){?>
+                <tr class="vl">
+                    <td><?echo GetMessage('ADRESS_ORDER_PAYED');?>:</td>
+                    <td>
+                        <?if($arResult["SHIPMENT"][0]["STORE_ID"]){
+                             echo $arResult["DELIVERY"]["STORE_LIST"][$arResult["SHIPMENT"][0]["STORE_ID"]]["TITLE"];
+                        }?>
+                    </td>
+                </tr>
+            <?}?>
             <?if($arResult["TRACKING_NUMBER"]):?>
                 <tr class="vl">
                     <td><?=GetMessage('SPOD_ORDER_TRACKING_NUMBER')?>:</td>
