@@ -1,6 +1,6 @@
 <?
 
-foreach($arResult["ORDERS"] as $arOrder){
+foreach($arResult["ORDERS"] as $key => $arOrder){
 if (IntVal($arOrder["ORDER"]["PAY_SYSTEM_ID"]) > 0)
     {
         $arPaySys = CSalePaySystem::GetByID($arOrder["ORDER"]["PAY_SYSTEM_ID"], $arOrder["ORDER"]["PERSON_TYPE_ID"]);
@@ -60,5 +60,8 @@ if ($arOrder["ORDER"]["PAY_SYSTEM_ID"] > 0)
                 }
             }
         }
+        $key = $arOrder["ORDER"]["DATE_INSERT_FORMATED"].' '.$key;
+        $arResult["ORDER"][$key] = $arOrder;
 }
+
 ?>

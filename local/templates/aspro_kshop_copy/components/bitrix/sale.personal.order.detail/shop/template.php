@@ -255,7 +255,7 @@
                     <td><?echo GetMessage('ADRESS_ORDER_PAYED');?>:</td>
                     <td>
                         <?if($arResult["SHIPMENT"][0]["STORE_ID"]){
-                             echo $arResult["DELIVERY"]["STORE_LIST"][$arResult["SHIPMENT"][0]["STORE_ID"]]["TITLE"];
+                             echo $arResult["DELIVERY"]["STORE_LIST"][$arResult["SHIPMENT"][0]["STORE_ID"]]["ADDRESS"];
                         }?>
                     </td>
                 </tr>

@@ -15,7 +15,7 @@
 	}
 ?>
 <small><?//var_dump($arResult["ORDERS"]);?></small>
-<?if (count($arResult["ORDERS"])):?>
+<?if (count($arResult["ORDER"])):?>
 	<table class="module-orders-list colored">
 		<thead>
 			<tr>
@@ -28,7 +28,8 @@
 			</tr>
 		</thead>
 		<tbody>
-		<?foreach( $arResult["ORDERS"] as $val ) {?>
+        <?ksort($arResult["ORDER"]);?>
+		<?foreach( $arResult["ORDER"] as $key => $val ) {?>
 			<?$summ = 0;
 			foreach( $val["BASKET_ITEMS"] as $vval ) {
 				$summ += $vval["PRICE"] * $vval["QUANTITY"];
@@ -59,7 +60,7 @@
 							</span>
 						</span>
 					</td>
-					<td class="date-cell"><?$date = explode( ' ', $val["ORDER"]["DATE_INSERT_FORMAT"] );?> <?=$date[0]?></td>
+					<td class="date-cell"><?$date = explode( ' ', $val["ORDER"]["DATE_INSERT_FORMATED"] );?> <?=$date[0]?></td>
 					<td class="count-cell"><?=count( $val["BASKET_ITEMS"] )?></td>
 					<td class="price-cell"><?=$val["ORDER"]["FORMATED_PRICE"]?></td>
 					<td class="pay-status-cell<?=$val["ORDER"]["PAYED"] == 'Y' ? ' payed' : ' not_payed'?>">
