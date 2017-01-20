@@ -76,6 +76,7 @@ $MESS['SOA_ORDER_DELIVERY_EXTRA_PARAMS_SAVE_ERROR'] = "Ошибка сохранения данных"
 $MESS['PERIOD_TEXT'] = "Срок доставки: ";
 $MESS['PRICE_TO_MANAGER'] = "Уточняйте стоимость у менеджеров ";
 $MESS['PRICE_TO_COMMISSION'] = "Дополнительная комиссия Почты России при оплате наличными";
+$MESS['FORMAT_RUR'] = " руб.";
 
 $MESS['SOA_OTHER_LOCATION'] = "Другое местоположение";
 $MESS['SOA_LOCATION_NOT_FOUND'] = "Местоположение не найдено";

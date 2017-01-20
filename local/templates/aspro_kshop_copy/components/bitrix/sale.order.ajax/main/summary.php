@@ -20,12 +20,12 @@
         }
 
     }
-    if($delivery_id == DELIVERY_ID && $paysystem_id == PAY_SYSTEM_ID) {
-        if($arResult["ORDER_PRICE"] < 1000){
+    if ($delivery_id == DELIVERY_ID && $paysystem_id == PAY_SYSTEM_ID) {
+        if ($arResult["ORDER_PRICE"] < 1000) {
             $commission_delivery_pric = round(($arResult["ORDER_PRICE"] * 5)/100 + 40, 0);
-        } else if($arResult["ORDER_PRICE"] >= 10000 || $arResult["ORDER_PRICE"] < 5000){
+        } else if ($arResult["ORDER_PRICE"] >= 10000 || $arResult["ORDER_PRICE"] < 5000) {
             $commission_delivery_pric = round(($arResult["ORDER_PRICE"] * 4)/100 + 50, 0);
-        } else if($arResult["ORDER_PRICE"] >= 50000 || $arResult["ORDER_PRICE"] < 20000){
+        } else if ($arResult["ORDER_PRICE"] >= 50000 || $arResult["ORDER_PRICE"] < 20000) {
             $commission_delivery_pric = round(($arResult["ORDER_PRICE"] * 2)/100 + 150, 0);
         }
         $arResult["ORDER_TOTAL_PRICE"] = $arResult["ORDER_TOTAL_PRICE"] + $commission_delivery_pric;
@@ -125,7 +125,7 @@
             <tr>
                 <td class="name-cell"></td>
                 <td colspan="4" style="text-align: right;"><b><?= GetMessage('PRICE_TO_COMMISSION') . ":"?></b></td>
-                <td align="right"><?= $commission_delivery_pric. ' руб.' ?> <span class="comission_message">?<p class="message_wrap">ƒл€ того, чтобы исключить комиссию, выберите "Ёлектронную оплату</p>
+                <td align="right"><?= $commission_delivery_pric . GetMessage('FORMAT_RUR'); ?> <span class="comission_message">?<p class="message_wrap">ƒл€ того, чтобы исключить комиссию, выберите "Ёлектронную оплату</p>
 </span></td>
             </tr>
         <?}?>
@@ -135,7 +135,7 @@
             <td class="order_item_weight"></td>
             <td class="order_item_quantity"></td>
             <td style="text-align: right;"><b><?= GetMessage("SOA_TEMPL_SUM_IT") ?></b></td>
-            <td align="right"><b><?= $arResult["ORDER_TOTAL_PRICE"]. ' руб.' ?></b>
+            <td align="right"><b><?= $arResult["ORDER_TOTAL_PRICE"] . GetMessage('FORMAT_RUR'); ?></b>
             </td>
         </tr>
         <?

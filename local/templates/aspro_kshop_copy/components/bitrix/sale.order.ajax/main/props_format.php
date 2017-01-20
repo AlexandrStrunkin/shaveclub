@@ -124,7 +124,7 @@
                                 if($arProperties["CODE"] == "store_pickup"){ ?>
 
                                         <input class="ora-store" for="" code="<?=$arProperties["CODE"]?>" type="hidden" id="store_pickup" name="<?=$arProperties["FIELD_NAME"]?>" value="<?=htmlspecialcharsbx($arResult["STORE_LIST"][$arResult["BUYER_STORE"]]["ID"])?>">
-                              <?  }else if($arProperties["CODE"] == "COMISSION_DELIVERY"){ ?>
+                              <?} else if ($arProperties["CODE"] == "COMISSION_DELIVERY") { ?>
                                         <input
                                             type="hidden"
                                             code="<?=$arProperties["CODE"]?>"
@@ -133,7 +133,7 @@
                                             name="<?=$arProperties["FIELD_NAME"]?>"
                                             id="<?=$arProperties["FIELD_NAME"]?>"
                                         >
-                              <?  }else{
+                              <?} else {
                                     ?>
                                     <?if ($arProperties["CODE"] == "ZIP" && !empty($_POST["ORDER_PROP_42"])){
                                          $arProperties["VALUE"] =  $_POST["ORDER_PROP_42"];

@@ -3,7 +3,7 @@
     define('S2', 'dorco-razors.ru');
     define('DELIVERY_ID', 44);  // почта России
     define('PAY_SYSTEM_ID', 25); // Наличный платеж
-    define('COMMISSION_PRICE', 82); // Наличный платеж
+    define('COMMISSION_PRICE', 85); // Наличный платеж
 
     CModule::IncludeModule("iblock");
     CModule::IncludeModule("sale");
