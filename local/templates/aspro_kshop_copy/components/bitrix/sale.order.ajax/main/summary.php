@@ -4,9 +4,10 @@
     <?foreach ($arResult["DELIVERY"] as $arDelivery) {
         if ($arDelivery["CHECKED"] == "Y") {
             $delivery_name = GetMessage("DELIVERY_MESS") . " (" . $arDelivery["NAME"];
-        }        
+            $delivery_id = $arDelivery["ID"];
+        }
     }
-    if ($_POST["DELIVERY_ID"] == PVZ_MSK_DELIVERY_FOR_EXPENSIVE_ORDERS or $_POST["DELIVERY_ID"] == PVZ_MSK_DELIVERY_FOR_CHEAP_ORDERS 
+    if ($_POST["DELIVERY_ID"] == PVZ_MSK_DELIVERY_FOR_EXPENSIVE_ORDERS or $_POST["DELIVERY_ID"] == PVZ_MSK_DELIVERY_FOR_CHEAP_ORDERS
         or $_POST["DELIVERY_ID"] == PVZ_SPB_DELIVERY_FOR_CHEAP_ORDERS or $_POST["DELIVERY_ID"] == PVZ_SPB_DELIVERY_FOR_EXPENSIVE_ORDERS) {
             $delivery_name .= " - <span id='pvz_name'>" . htmlspecialcharsbx($arResult["STORE_LIST"][$arResult["BUYER_STORE"]]["TITLE"]) . "</span>):";
     } else {
@@ -15,8 +16,22 @@
     foreach ($arResult["PAY_SYSTEM"] as $arPaySystem) {
         if ($arPaySystem["CHECKED"] == "Y") {
             $paysystem_name = $arPaySystem["NAME"];
-        }        
-    }?>
+            $paysystem_id = $arPaySystem["ID"];
+        }
+
+    }
+    if ($delivery_id == DELIVERY_ID && $paysystem_id == PAY_SYSTEM_ID) {
+        if ($arResult["ORDER_PRICE"] < 1000) {
+            $commission_delivery_pric = round(($arResult["ORDER_PRICE"] * 5)/100 + 40, 0);
+        } else if ($arResult["ORDER_PRICE"] >= 10000 || $arResult["ORDER_PRICE"] < 5000) {
+            $commission_delivery_pric = round(($arResult["ORDER_PRICE"] * 4)/100 + 50, 0);
+        } else if ($arResult["ORDER_PRICE"] >= 50000 || $arResult["ORDER_PRICE"] < 20000) {
+            $commission_delivery_pric = round(($arResult["ORDER_PRICE"] * 2)/100 + 150, 0);
+        }
+        $arResult["ORDER_TOTAL_PRICE"] = $arResult["ORDER_TOTAL_PRICE"] + $commission_delivery_pric;
+    }
+?>
+    <input type="hidden" value="<?=$commission_delivery_pric?>" class="commission_delivery_price">
     <table class="colored summary">
         <thead>
             <tr>
@@ -106,13 +121,21 @@
             <?
         }
         ?>
+        <?if($delivery_id == DELIVERY_ID && $paysystem_id == PAY_SYSTEM_ID) {?>
+            <tr>
+                <td class="name-cell"></td>
+                <td colspan="4" style="text-align: right;"><b><?= GetMessage('PRICE_TO_COMMISSION') . ":"?></b></td>
+                <td align="right"><?= $commission_delivery_pric . GetMessage('FORMAT_RUR'); ?> <span class="comission_message">?<p class="message_wrap">ƒл€ того, чтобы исключить комиссию, выберите "Ёлектронную оплату</p>
+</span></td>
+            </tr>
+        <?}?>
         <tr>
             <td class="name-cell"></td>
             <td class="order_item_discount"></td>
             <td class="order_item_weight"></td>
             <td class="order_item_quantity"></td>
             <td style="text-align: right;"><b><?= GetMessage("SOA_TEMPL_SUM_IT") ?></b></td>
-            <td align="right"><b><?= $arResult["ORDER_TOTAL_PRICE_FORMATED"] ?></b>
+            <td align="right"><b><?= $arResult["ORDER_TOTAL_PRICE"] . GetMessage('FORMAT_RUR'); ?></b>
             </td>
         </tr>
         <?
@@ -139,6 +162,7 @@
                 <td align="right"><?= $paysystem_name ?></td>
             </tr>
         <? } ?>
+
     </table>
 
 

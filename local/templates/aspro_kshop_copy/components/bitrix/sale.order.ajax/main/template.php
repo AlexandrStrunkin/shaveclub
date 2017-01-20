@@ -139,6 +139,8 @@ if (!function_exists("cmpBySort"))
             var BXFormPosting = false;
             function submitForm(val)
             {
+                $('#ORDER_PROP_82').val($('.commission_delivery_price').val());
+                debugger;
                 if (BXFormPosting === true)
                     return true;
 
