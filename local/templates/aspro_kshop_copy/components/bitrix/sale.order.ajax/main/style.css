@@ -443,6 +443,7 @@ div#order_form_content .errortext {
     border-radius: 10px;
     cursor: pointer;
     background-color: #e7e7e7;
+    color:#9b2d30;
 }
 .message_wrap{
     display: none;

@@ -121,21 +121,14 @@
             <?
         }
         ?>
-        <?if($delivery_id == DELIVERY_ID && $paysystem_id == PAY_SYSTEM_ID) {?>
-            <tr>
-                <td class="name-cell"></td>
-                <td colspan="4" style="text-align: right;"><b><?= GetMessage('PRICE_TO_COMMISSION') . ":"?></b></td>
-                <td align="right"><?= $commission_delivery_pric . GetMessage('FORMAT_RUR'); ?> <span class="comission_message">?<p class="message_wrap">ƒл€ того, чтобы исключить комиссию, выберите "Ёлектронную оплату</p>
-</span></td>
-            </tr>
-        <?}?>
+
         <tr>
             <td class="name-cell"></td>
             <td class="order_item_discount"></td>
             <td class="order_item_weight"></td>
             <td class="order_item_quantity"></td>
             <td style="text-align: right;"><b><?= GetMessage("SOA_TEMPL_SUM_IT") ?></b></td>
-            <td align="right"><b><?= $arResult["ORDER_TOTAL_PRICE"] . GetMessage('FORMAT_RUR'); ?></b>
+            <td align="right"><b><?= $arResult["ORDER_TOTAL_PRICE_FORMATED"] ?></b>
             </td>
         </tr>
         <?
@@ -162,7 +155,14 @@
                 <td align="right"><?= $paysystem_name ?></td>
             </tr>
         <? } ?>
-
+        <?if($delivery_id == DELIVERY_ID && $paysystem_id == PAY_SYSTEM_ID) {?>
+            <tr>
+                <td class="name-cell"></td>
+                <td colspan="4" style="text-align: right; color:#9b2d30;"><b><?= GetMessage('PRICE_TO_COMMISSION') . ":"?></b></td>
+                <td align="right"><?= $commission_delivery_pric . GetMessage('FORMAT_RUR'); ?> <span class="comission_message">?<p class="message_wrap">ƒл€ того, чтобы исключить комиссию, выберите "Ёлектронную оплату</p>
+</span></td>
+            </tr>
+        <?}?>
     </table>
 
 
