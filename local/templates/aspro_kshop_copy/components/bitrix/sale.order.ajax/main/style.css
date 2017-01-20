@@ -434,3 +434,28 @@ div#order_form_content .errortext {
 .sale_order_table .hidden{
     display: none;
 }
+.comission_message{
+    display: block;
+    float: right;
+    right: 45px;
+    position: relative;
+    padding: 0px 6px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #e7e7e7;
+}
+.message_wrap{
+    display: none;
+    position: absolute;
+    top: -70px;
+    width: 230px;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid;
+    padding: 10px;
+    left: -120px;
+}
+.comission_message:hover .message_wrap{
+    display: block;
+
+}

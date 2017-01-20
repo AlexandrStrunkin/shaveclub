@@ -124,6 +124,15 @@
                                 if($arProperties["CODE"] == "store_pickup"){ ?>
 
                                         <input class="ora-store" for="" code="<?=$arProperties["CODE"]?>" type="hidden" id="store_pickup" name="<?=$arProperties["FIELD_NAME"]?>" value="<?=htmlspecialcharsbx($arResult["STORE_LIST"][$arResult["BUYER_STORE"]]["ID"])?>">
+                              <?  }else if($arProperties["CODE"] == "COMISSION_DELIVERY"){ ?>
+                                        <input
+                                            type="hidden"
+                                            code="<?=$arProperties["CODE"]?>"
+                                            size="<?=$arProperties["SIZE1"]?>"
+                                            value="<?=$arProperties["VALUE"]?>"
+                                            name="<?=$arProperties["FIELD_NAME"]?>"
+                                            id="<?=$arProperties["FIELD_NAME"]?>"
+                                        >
                               <?  }else{
                                     ?>
                                     <?if ($arProperties["CODE"] == "ZIP" && !empty($_POST["ORDER_PROP_42"])){
@@ -234,7 +243,7 @@
                             <?
                             }
                             elseif ($arProperties["TYPE"] == "TEXTAREA")
-                            {   
+                            {
                                 if (($arProperties["CODE"]=="ADDRESS")&&($_POST["DELIVERY_ID"]==14||$_POST["DELIVERY_ID"]==15)){
                                     $rows = ($arProperties["SIZE2"] > 10) ? 4 : $arProperties["SIZE2"];
                                 ?>
@@ -261,8 +270,8 @@
                                         PVZ_MSK_DELIVERY_FOR_CHEAP_ORDERS,
                                         PVZ_SPB_DELIVERY_FOR_CHEAP_ORDERS,
                                         PVZ_SPB_DELIVERY_FOR_EXPENSIVE_ORDERS
-                                        
-                                    );                                                
+
+                                    );
                                     if(!(in_array($_POST["DELIVERY_ID"], $inpost_and_boxberry_deliveries_array) and
                                        $arProperties["ID"] == ADDRESS_FIELD_PROPERTY)) {
                                             $rows = ($arProperties["SIZE2"] > 10) ? 4 : $arProperties["SIZE2"];

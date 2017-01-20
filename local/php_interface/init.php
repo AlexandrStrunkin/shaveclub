@@ -1,6 +1,9 @@
 <?
     define('S1', 'shaveclub.ru');
     define('S2', 'dorco-razors.ru');
+    define('DELIVERY_ID', 44);  // почта –оссии
+    define('PAY_SYSTEM_ID', 25); // Ќаличный платеж
+    define('COMMISSION_PRICE', 82); // Ќаличный платеж
 
     CModule::IncludeModule("iblock");
     CModule::IncludeModule("sale");
@@ -536,6 +539,16 @@
                 }
             }
         }
+    AddEventHandler("sale", "OnBeforeOrderAdd", "EditCommissionOrder");  // добавл€ем комиссию к сумме заказа
+     function EditCommissionOrder(&$ar) {
+       if ($ar["DELIVERY_ID"] == DELIVERY_ID && $ar["PAY_SYSTEM_ID"] == PAY_SYSTEM_ID) {
+           if(!empty($ar['ORDER_PROP'][COMMISSION_PRICE])){
+             $ar["PRICE"] += $ar['ORDER_PROP'][COMMISSION_PRICE];
+             $ar["PRICE_DELIVERY"] += $ar['ORDER_PROP'][COMMISSION_PRICE];
+           }
+          }
+          return $ar;
+       }
     }
     //дл€ каждого сайта init.php свой и находитс€ в папке, соответствующей ID сайта (s1 или s2) и весь уникальный дл€ сайта код писать туда
 
