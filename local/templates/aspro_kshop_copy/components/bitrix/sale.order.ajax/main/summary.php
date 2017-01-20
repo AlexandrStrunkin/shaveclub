@@ -159,7 +159,7 @@
             <tr>
                 <td class="name-cell"></td>
                 <td colspan="4" style="text-align: right; color:#9b2d30;"><b><?= GetMessage('PRICE_TO_COMMISSION') . ":"?></b></td>
-                <td align="right"><?= $commission_delivery_pric . GetMessage('FORMAT_RUR'); ?> <span class="comission_message">?<p class="message_wrap">ƒл€ того, чтобы исключить комиссию, выберите "Ёлектронную оплату</p>
+                <td align="right" style="color:#9b2d30;"><?= $commission_delivery_pric . GetMessage('FORMAT_RUR'); ?> <span class="comission_message">?<p class="message_wrap">ƒл€ того, чтобы исключить комиссию, выберите "Ёлектронную оплату</p>
 </span></td>
             </tr>
         <?}?>
