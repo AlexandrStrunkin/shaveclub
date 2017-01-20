@@ -21,12 +21,12 @@
 
     }
     if ($delivery_id == DELIVERY_ID && $paysystem_id == PAY_SYSTEM_ID) {
-        if ($arResult["ORDER_PRICE"] < 1000) {
-            $commission_delivery_pric = round(($arResult["ORDER_PRICE"] * 5)/100 + 40, 0);
-        } else if ($arResult["ORDER_PRICE"] >= 1000 || $arResult["ORDER_PRICE"] < 5000) {
-            $commission_delivery_pric = round(($arResult["ORDER_PRICE"] * 4)/100 + 50, 0);
-        } else if ($arResult["ORDER_PRICE"] >= 5000 || $arResult["ORDER_PRICE"] < 20000) {
-            $commission_delivery_pric = round(($arResult["ORDER_PRICE"] * 2)/100 + 150, 0);
+        if ($arResult["ORDER_TOTAL_PRICE"] < 1000) {
+            $commission_delivery_pric = round(($arResult["ORDER_TOTAL_PRICE"] * 5)/100 + 40, 0);
+        } else if ($arResult["ORDER_TOTAL_PRICE"] >= 1000 || $arResult["ORDER_TOTAL_PRICE"] < 5000) {
+            $commission_delivery_pric = round(($arResult["ORDER_TOTAL_PRICE"] * 4)/100 + 50, 0);
+        } else if ($arResult["ORDER_TOTAL_PRICE"] >= 5000 || $arResult["ORDER_TOTAL_PRICE"] < 20000) {
+            $commission_delivery_pric = round(($arResult["ORDER_TOTAL_PRICE"] * 2)/100 + 150, 0);
         }
         $arResult["ORDER_TOTAL_PRICE"] = $arResult["ORDER_TOTAL_PRICE"] + $commission_delivery_pric;
     }
