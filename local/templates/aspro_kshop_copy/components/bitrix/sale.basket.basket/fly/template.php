@@ -86,7 +86,7 @@ $paramsString = urlencode(serialize($arParams));
 					}));
 				});
 
-				$("#basket_line .basket_fly .opener > div").live("click", function()
+				$("#basket_line .basket_fly .opener > div, .button30.close_basket_popup").live("click", function()
 				{
 					if (parseInt($("#basket_line .basket_fly").css("right"))<0)
 					{

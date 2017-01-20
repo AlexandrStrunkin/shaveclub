@@ -256,7 +256,7 @@
 				<tr data-id="total_buttons">
 					<td>
 						<div class="basket_close">
-							<a class="button30 "><span><?=GetMessage("SALE_BACK")?></span></a>
+							<a class="button30 close_basket_popup"><span><?=GetMessage("SALE_BACK")?></span></a>
 							<div class="description"><?=GetMessage("SALE_BACK_DESCRIPTION");?></div>
 						</div>
 					</td>
