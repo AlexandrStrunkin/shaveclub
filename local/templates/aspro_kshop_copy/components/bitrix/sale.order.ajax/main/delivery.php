@@ -40,10 +40,17 @@
        // alert('dfd');
 	}
 
-    function delyverySubmit()
-    {
-        $('#ORDER_CONFIRM_BUTTON').attr('onclick',"submitForm('Y')");
-    }
+    <?if($USER->IsAuthorized()){?>
+        function delyverySubmit()
+        {
+            $('#ORDER_CONFIRM_BUTTON').attr('onclick',"submitForm('Y')");
+        }
+    <?} else {?>
+        function delyverySubmit()
+        {
+            $('#ORDER_CONFIRM_BUTTON').attr('onclick',"submitForm('N')");
+        }
+    <?}?>
 	function GetBuyerStore()
 	{
 

@@ -1,6 +1,6 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
-if(!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "N"){
+if(!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "N" && !$_REQUEST["register_user"]){
     include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/auth.php");
 }elseif( !$_REQUEST["ORDER_ID"] ){
     $price=0;
@@ -17,9 +17,27 @@ if(!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "N"){
         LocalRedirect($arParams["PATH_TO_BASKET"]);
     }
 }
+global $user_name;
+global $user_email;
+$user_name = $USER->GetFullName();
+$user_email = $USER->GetEmail();
 ?>
+<div class="auth_form_user">
+<div class="errortext"><?=GetMessage('EMAIL_OLD_USER')?></div>
+<?if(!$USER->IsAuthorized()){
+    $APPLICATION->IncludeComponent(
+        "bitrix:system.auth.form",
+        "main_order",
+        Array(
+            "REGISTER_URL" => SITE_DIR."auth/registration/",
+            "PROFILE_URL" => SITE_DIR."auth/forgot-password/",
+            "SHOW_ERRORS" => "N"
+        )
+    );
+}?>
+</div>
 <?
-if($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y")
+if($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" && $_REQUEST["register_user"])
 {
     if($arResult["USER_VALS"]["CONFIRM_ORDER"] == "Y" || $arResult["NEED_REDIRECT"] == "Y")
     {
@@ -79,7 +97,7 @@ if (!function_exists("cmpBySort"))
 
 <div class="bx_order_make">
     <?
-    if(!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "N")
+    if(!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "N" && !$_REQUEST["register_user"])
     {
         if(!empty($arResult["ERROR"]))
         {
@@ -137,10 +155,29 @@ if (!function_exists("cmpBySort"))
             <?endif;?>
 
             var BXFormPosting = false;
-            function submitForm(val)
-            {
+            <?if(!$USER->IsAuthorized()){?>
+                $(document).ready(function() {
+                    $('.wrapper_inner').on('click', '.button30.checkout', function(){
+                        $.ajax({
+                            url: arKShopOptions['SITE_DIR'] + 'ajax/auth_order.php',
+                            data: $('#ORDER_FORM').serialize(),
+                            type: 'post',
+                            success: function(data){
+                                console.log(data);
+                                if(data == 'Y'){
+                                    $('.auth_form_user').hide();
+                                    location.assign('/order/');
+                                } else {
+                                    $('.auth_form_user').show();
+                                }
+                            }
+                        });
+                    });
+                })
+            <?}?>
+            function submitForm(val) {
+
                 $('#ORDER_PROP_82').val($('.commission_delivery_price').val());
-                debugger;
                 if (BXFormPosting === true)
                     return true;
 
@@ -225,6 +262,7 @@ if (!function_exists("cmpBySort"))
                             $('#basket_line').append(html);
                         }
                     });
+
                 });
             </script>
             <?if($_POST["is_ajax_post"] != "Y")
@@ -294,7 +332,11 @@ if (!function_exists("cmpBySort"))
                     <input type="hidden" name="profile_change" id="profile_change" value="N">
                     <input type="hidden" name="is_ajax_post" id="is_ajax_post" value="Y">
                     <input type="hidden" name="json" value="Y">
+                    <?if($_REQUEST["register_user"]){ ?>
+                    <button class="button30 checkout" type="button" id="ORDER_CONFIRM_BUTTON" name="submitbutton" onclick="submitForm('N')" value="<?=GetMessage("SOA_TEMPL_BUTTON")?>"><span><?=GetMessage("SOA_TEMPL_BUTTON")?></span></button>
+                    <?} else {?>
                     <button class="button30 checkout" type="button" id="ORDER_CONFIRM_BUTTON" name="submitbutton" onClick="submitForm('Y');" value="<?=GetMessage("SOA_TEMPL_BUTTON")?>"><span><?=GetMessage("SOA_TEMPL_BUTTON")?></span></button>
+                    <?}?>
                 </form>
                 <?
                 if($arParams["DELIVERY_NO_AJAX"] == "N")

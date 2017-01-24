@@ -291,7 +291,11 @@
                             <td class="basket_checkout_wrapp">
                                 <?if ($arParams["SHOW_FULL_ORDER_BUTTON"]=="Y"):?>
                                     <div class="basket_checkout clearfix">
+                                    <?if($USER->isauthorized()){?>
                                         <a href="javascript:void(0)" class="button30 fast_order checkout" onclick="checkOut();"><span><?=GetMessage("SALE_ORDER")?></span></a>
+                                    <?} else {?>
+                                        <a href="/auth/?backurl=/order/" class="button30 fast_order checkout"><span><?=GetMessage("SALE_ORDER")?></span></a>
+                                    <?}?>
                                         <div class="description"><?=GetMessage("SALE_ORDER_DESCRIPTION");?></div>
                                         <input type="hidden" value="BasketOrder" name="BasketOrder">
                                     </div>
