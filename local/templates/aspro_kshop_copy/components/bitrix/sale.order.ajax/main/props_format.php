@@ -1,5 +1,5 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-<?
+<?  global $USER;
     if (!function_exists("showFilePropertyField"))
     {
         function showFilePropertyField($name, $property_fields, $values, $max_file_size_show=50000)
@@ -139,7 +139,13 @@
                                          $arProperties["VALUE"] =  $_POST["ORDER_PROP_42"];
                                     }
                                     ?>
-
+                                    <?global $user_name;
+                                    global $user_email;?>
+                                    <?if($arProperties["CODE"] == 'FIO'){
+                                        $arProperties["VALUE"] = $user_name;
+                                    } else if ($arProperties["CODE"] == 'EMAIL') {
+                                        $arProperties["VALUE"] = $user_email;
+                                    }?>
                                     <div class="bx_block r1x3 pt8">
                                         <?=$arProperties["NAME"]?>
                                         <?if ($arProperties["REQUIED_FORMATED"]=="Y"):?>

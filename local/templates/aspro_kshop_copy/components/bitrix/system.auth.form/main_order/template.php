@@ -12,7 +12,6 @@ if(!empty( $_REQUEST["change_password"])){
 		<?endif;?>
 		<div class="authorization-cols">
 			<div class="col authorization">
-				<div class="auth-title"><?=GetMessage("ALLREADY_REGISTERED");?></div>
 				<div class="form-block">
 					<div class="form_wrapp">
 						<?$email=($arResult["USER_LOGIN"] ? $arResult["USER_LOGIN"] : $_REQUEST["USER_LOGIN"] );?>
@@ -74,36 +73,7 @@ if(!empty( $_REQUEST["change_password"])){
 				</div>
 
 			</div>
-            <?if($_REQUEST["backurl"] == '/order/'){?>
-			    <div class="col registration">
-                <div class="auth-title"></div>
-				    <div class="form-block">
-					    <div class="form_wrapp">
-                        <br>
-                        <br>
-						    <!--noindex-->
-							    <a href="<?=$_REQUEST["backurl"]?>?register_user=Y" class="button30 user-ic" rel="nofollow">
-								    <span><?=GetMessage("REGISTER_NEW_USER")?></span>
-							    </a>
-						    <!--/noindex-->
-					    </div>
-				    </div>
-			    </div>
-            <?} else { ?>
-                <div class="col registration">
-                    <div class="auth-title"><?=GetMessage("NEW_USER");?></div>
-                    <div class="form-block">
-                        <div class="form_wrapp">
-                            <p><?=GetMessage("ORDER_AUTH_DESCRIPTION")?></p><?=GetMessage("TWO_MINUTES")?>.<br /><br /><br />
-                            <!--noindex-->
-                                <a href="<?=SITE_DIR?>auth/registration/<?=!empty( $_REQUEST["backurl"] ) ? '?backurl='.$_REQUEST["backurl"] : ''?>" class="button30 user-ic" rel="nofollow">
-                                    <span><?=GetMessage("REGISTER")?></span>
-                                </a>
-                            <!--/noindex-->
-                        </div>
-                    </div>
-                </div>
-            <?}?>
+
 		</div>
 	</div>
 	<script type="text/javascript">

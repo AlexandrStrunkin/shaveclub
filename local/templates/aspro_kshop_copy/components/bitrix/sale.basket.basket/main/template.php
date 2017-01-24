@@ -1,18 +1,18 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 
 <script src="<?=$templateFolder.'/script.js'?>" type="text/javascript"></script>
-<? 
+<?
     include($_SERVER["DOCUMENT_ROOT"] . $templateFolder . "/functions.php");
     $arUrls = Array("delete" => $APPLICATION->GetCurPage() . "?action=delete&id=#ID#",
         "delay" => $APPLICATION->GetCurPage() . "?action=delay&id=#ID#",
         "add" => $APPLICATION->GetCurPage() . "?action=add&id=#ID#");
 
     if (strlen($arResult["ERROR_MESSAGE"]) <= 0) {
-        if (is_array($arResult["WARNING_MESSAGE"]) 
-            && !empty($arResult["WARNING_MESSAGE"])) { 
-                foreach ($arResult["WARNING_MESSAGE"] as $v) { 
-                    echo ShowError($v); 
-                } 
+        if (is_array($arResult["WARNING_MESSAGE"])
+            && !empty($arResult["WARNING_MESSAGE"])) {
+                foreach ($arResult["WARNING_MESSAGE"] as $v) {
+                    echo ShowError($v);
+                }
         }
 
         $normalCount = count($arResult["ITEMS"]["AnDelCanBuy"]);
@@ -22,55 +22,55 @@
 
         $arMenu = array(
             array(
-                "ID"=>"AnDelCanBuy", 
-                "TITLE"=>GetMessage("SALE_BASKET_ITEMS"), 
-                "COUNT"=>$normalCount, 
+                "ID"=>"AnDelCanBuy",
+                "TITLE"=>GetMessage("SALE_BASKET_ITEMS"),
+                "COUNT"=>$normalCount,
                 "FILE"=>"/basket_items.php"
             )
         );
-        if ($delayCount) { 
+        if ($delayCount) {
             $arMenu[] = array(
-                "ID"=>"DelDelCanBuy", 
-                "TITLE"=>GetMessage("SALE_BASKET_ITEMS_DELAYED"), 
-                "COUNT"=>$delayCount, 
+                "ID"=>"DelDelCanBuy",
+                "TITLE"=>GetMessage("SALE_BASKET_ITEMS_DELAYED"),
+                "COUNT"=>$delayCount,
                 "FILE"=>"/basket_items_delayed.php"
-            ); 
+            );
         }
-        if ($subscribeCount) { 
+        if ($subscribeCount) {
             $arMenu[] = array(
-                "ID"=>"ProdSubscribe", 
-                "TITLE"=>GetMessage("SALE_BASKET_ITEMS_SUBSCRIBED"), 
-                "COUNT"=>$subscribeCount, 
+                "ID"=>"ProdSubscribe",
+                "TITLE"=>GetMessage("SALE_BASKET_ITEMS_SUBSCRIBED"),
+                "COUNT"=>$subscribeCount,
                 "FILE"=>"/basket_items_subscribed.php"
-            ); 
+            );
         }
-        if ($naCount) { 
+        if ($naCount) {
             $arMenu[] = array(
-                "ID"=>"nAnCanBuy", 
-                "TITLE"=>GetMessage("SALE_BASKET_ITEMS_NOT_AVAILABLE"), 
-                "COUNT"=>$naCount, 
+                "ID"=>"nAnCanBuy",
+                "TITLE"=>GetMessage("SALE_BASKET_ITEMS_NOT_AVAILABLE"),
+                "COUNT"=>$naCount,
                 "FILE"=>"/basket_items_not_available.php"
-            ); 
+            );
         }
         if ($_COOKIES["KSHOP_BASKET_OPEN_TAB"]) {
-            foreach($arMenu as $key => $arElement) { 
-                if ($_COOKIES["KSHOP_BASKET_OPEN_TAB"] == $arElement["ID"]) { 
-                    $arMenu[$key]["SELECTED"]=true; 
-                } 
+            foreach($arMenu as $key => $arElement) {
+                if ($_COOKIES["KSHOP_BASKET_OPEN_TAB"] == $arElement["ID"]) {
+                    $arMenu[$key]["SELECTED"]=true;
+                }
             }
         }
 
-        if($_REQUEST["section"] == "delay") { 
-            foreach($arMenu as $key => $arElement) { 
+        if($_REQUEST["section"] == "delay") {
+            foreach($arMenu as $key => $arElement) {
                 if ($arElement["ID"] == "DelDelCanBuy") {
-                    $arMenu[$key]["SELECTED"] = true;  
+                    $arMenu[$key]["SELECTED"] = true;
                 } else {
-                    $arMenu[$key]["SELECTED"] = false; 
+                    $arMenu[$key]["SELECTED"] = false;
                 }
-            } 
+            }
         }
 
-    ?>    
+    ?>
 
     <form method="post" action="<?= POST_FORM_ACTION_URI ?>" name="basket_form" id="basket_form" class="basket_wrapp">
         <div id="basket_sort" class="basket_sort">
@@ -108,7 +108,7 @@
 
                 $("#basket_form .tabs_content.basket li.cur tfoot .delay-cell").width($("#basket_form .tabs_content.basket li.cur tbody td.delay-cell").first().width());
                 $("#basket_form .tabs_content.basket li.cur tfoot .row_values").width($("#basket_form .tabs_content.basket li.cur tbody td.summ-cell").first().width());
-            }    
+            }
         });
 
         $(".tabs > li").live("click", function() {
@@ -118,8 +118,8 @@
                 $(this).addClass("cur");
                 $(".tabs_content > li").removeClass("cur");
                 $(".tabs_content > li:eq("+$(this).index()+")").addClass("cur");
-                $(".tabs_content > li:eq("+$(this).index()+") td").each(function() { 
-                    $(this).width($(this).width()); 
+                $(".tabs_content > li:eq("+$(this).index()+") td").each(function() {
+                    $(this).width($(this).width());
                 });
             }
         });
@@ -138,7 +138,7 @@
                 $('form[name^=basket_form] a.apply-button').click(function() {
                     $('form[name^=basket_form]').prepend('<input type="hidden" name="BasketRefresh" value="Y" />');
                     $.post( arKShopOptions['SITE_DIR']+'basket/', $("form[name^=basket_form]").serialize(), $.proxy(
-                        function( data) {                    
+                        function( data) {
                             $('form[name^=basket_form] input[name=BasketRefresh]').remove();
                             animateBasketLine();
                             postAnimateResult(data, 333, 'update');

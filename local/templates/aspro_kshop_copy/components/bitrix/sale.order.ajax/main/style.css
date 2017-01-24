@@ -460,3 +460,33 @@ div#order_form_content .errortext {
     display: block;
 
 }
+.auth_form_user{
+    display: none;
+}
+.auth_form_user .form-block{
+    height: auto!important;
+    overflow: hidden;
+}
+.auth_form_user .errortext{
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 15px 10px 60px !important;
+    border-top: 1px solid #E4CBD1;
+    border-right: 1px solid #D5BABE;
+    border-bottom: 1px solid #C9ABAF;
+    border-left: 1px solid #D5BABE;
+    border-radius: 5px;
+    background: #F8EAED;
+    background: url(images/alert.png) 10px 50% no-repeat, url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: url(images/alert.png) 10px 50% no-repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F8EAED), color-stop(100%,#EDD0D6));
+    background: url(images/alert.png) 10px 50% no-repeat, -webkit-linear-gradient(top, #F8EAED 0%,#EDD0D6 100%);
+    background: url(images/alert.png) 10px 50% no-repeat, -moz-linear-gradient(top, #f8eaed 0%,#edd0d6 100%);
+    background: url(images/alert.png) 10px 50% no-repeat, -ms-linear-gradient(top, #f8eaed 0%,#edd0d6 100%);
+    background: url(images/alert.png) 10px 50% no-repeat, -o-linear-gradient(top, #f8eaed 0%,#edd0d6 100%);
+    background: url(images/alert.png) 10px 50% no-repeat, linear-gradient(to bottom, #F8EAED 0%,#EDD0D6 100%);
+    box-shadow: inset 0 1px 1px 0 #FFF;
+    color: #881521 !important;
+    text-shadow: 0 1px 0 #FFF;
+    font-weight: bold;
+    font-size: 15px;
+}
