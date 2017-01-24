@@ -163,7 +163,6 @@ if (!function_exists("cmpBySort"))
                             data: $('#ORDER_FORM').serialize(),
                             type: 'post',
                             success: function(data){
-                                console.log(data);
                                 if(data == 'Y'){
                                     $('.auth_form_user').hide();
                                     location.assign('/order/');
