@@ -141,9 +141,9 @@
                                     ?>
                                     <?global $user_name;
                                     global $user_email;?>
-                                    <?if($arProperties["CODE"] == 'FIO'){
+                                    <?if($arProperties["CODE"] == 'FIO' && $user_name){
                                         $arProperties["VALUE"] = $user_name;
-                                    } else if ($arProperties["CODE"] == 'EMAIL') {
+                                    } else if ($arProperties["CODE"] == 'EMAIL' && $user_email) {
                                         $arProperties["VALUE"] = $user_email;
                                     }?>
                                     <div class="bx_block r1x3 pt8">
@@ -250,6 +250,11 @@
                             }
                             elseif ($arProperties["TYPE"] == "TEXTAREA")
                             {
+                                if($_REQUEST["ORDER_PROP_45"]){
+                                    $arProperties["VALUE"] = $_REQUEST["ORDER_PROP_45"];
+                                } else if ($_SESSION["ORDER_PROP_45"] && $_REQUEST["new_user"]){
+                                    $arProperties["VALUE"] = $_SESSION["ORDER_PROP_45"];
+                                }
                                 if (($arProperties["CODE"]=="ADDRESS")&&($_POST["DELIVERY_ID"]==14||$_POST["DELIVERY_ID"]==15)){
                                     $rows = ($arProperties["SIZE2"] > 10) ? 4 : $arProperties["SIZE2"];
                                 ?>

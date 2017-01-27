@@ -1,7 +1,7 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-<?$APPLICATION->SetTitle(GetMessage("AUTH_AUTH"));?>
+<?//$APPLICATION->SetTitle(GetMessage("AUTH_AUTH"));?>
 <?
-if(!empty( $_REQUEST["change_password"])){
+if(!empty($_REQUEST["change_password"])){
 	LocalRedirect(SITE_DIR.'auth/change-password/?change_password='.$_REQUEST["change_password"].'&lang='.$_REQUEST["lang"].'&USER_CHECKWORD='.$_REQUEST["USER_CHECKWORD"].'&USER_LOGIN='.$_REQUEST["USER_LOGIN"].'');
 }
 ?>
@@ -21,7 +21,10 @@ if(!empty( $_REQUEST["change_password"])){
 								<input type="hidden" name="<?=$key?>" value="<?=$value?>" />
 							<?endforeach;?>
 							<input type="hidden" name="AUTH_FORM" value="Y" />
-							<input type="hidden" name="TYPE" value="AUTH" />
+                            <input type="hidden" name="TYPE" value="AUTH" />
+                            <input type="hidden" name="NEW_NAME" id="new_name" value="" />
+                            <input type="hidden" name="NEW_PHONE" id="new_phone" value="" />
+							<input type="hidden" name="NEW_ADRESS" id="new_adress" value="" />
 							<div class="r">
 								<label><?=GetMessage("EMAIL")?>:<span class="star">*</span></label>
 								<input type="text"  name="USER_LOGIN" required maxlength="50" value="<?=$email;?>" size="17" tabindex="7" />
