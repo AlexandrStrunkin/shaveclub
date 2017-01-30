@@ -5,6 +5,9 @@
     define('PAY_SYSTEM_ID', 25); // Наличный платеж
     define('COMMISSION_PRICE', 85); // Наличный платеж
     define('PERSON_TYPE_DORCO', 5); // тип плательщмка на dorco
+    define('PERSONAL_ORDER_PROPS_PHONE', 41); // тип плательщмка на dorco
+    define('PERSONAL_ORDER_PROPS_NAME', 39); // тип плательщмка на dorco
+    define('PERSONAL_ORDER_PROPS_ADRESS', 45); // тип плательщмка на dorco
 
     CModule::IncludeModule("iblock");
     CModule::IncludeModule("sale");
@@ -562,7 +565,7 @@
               $arProfileFields = array(
                  "NAME" => "Профиль покупателя (".$arFields["user_fields"]['LOGIN'].')',
                  "USER_ID" => $arFields["user_fields"]['ID'],
-                 "PERSON_TYPE_ID" => 5
+                 "PERSON_TYPE_ID" => PERSON_TYPE_DORCO
               );
               $PROFILE_ID = CSaleOrderUserProps::Add($arProfileFields);
               //если профиль создан
@@ -571,19 +574,19 @@
                  $PROPS=Array(
                  array(
                        "USER_PROPS_ID" => $PROFILE_ID,
-                       "ORDER_PROPS_ID" => 41,
+                       "ORDER_PROPS_ID" => PERSONAL_ORDER_PROPS_PHONE,
                        "NAME" => "Телефон",
                        "VALUE" => $_REQUEST['NEW_PHONE']
                     ),
                  array(
                        "USER_PROPS_ID" => $PROFILE_ID,
-                       "ORDER_PROPS_ID" => 39,
+                       "ORDER_PROPS_ID" => PERSONAL_ORDER_PROPS_NAME,
                        "NAME" => "Ф.И.О.",
                        "VALUE" => $_REQUEST['NEW_NAME']
                     ),
                  array(
                        "USER_PROPS_ID" => $PROFILE_ID,
-                       "ORDER_PROPS_ID" => 45,
+                       "ORDER_PROPS_ID" => PERSONAL_ORDER_PROPS_ADRESS,
                        "NAME" => "Адресс доставки",
                        "VALUE" => $_REQUEST['NEW_ADRESS']
                     )
