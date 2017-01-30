@@ -178,7 +178,7 @@ if (!function_exists("cmpBySort"))
 
                 return true;
             }
-            <?if(!$USER->IsAuthorized()){?>
+            <?if(!$USER->IsAuthorized()){ // если не авторизован то подключается файл ajax для регистрации при оформлении заказа?>
                 $(document).ready(function() {
                     $('.wrapper_inner').on('click', '.button30.checkout', function(){
                         $.ajax({
@@ -191,9 +191,11 @@ if (!function_exists("cmpBySort"))
                                     location.assign('/order/?new_user=Y');
                                 } else {
                                     $('.auth_form_user').show();
+                                    // записываем данные в форму авторизации для создания типа плательщика
                                     $('#new_name').val($('#ORDER_PROP_39').val());
                                     $('#new_phone').val($('#ORDER_PROP_41').val());
                                     $('#new_adress').val($('#ORDER_PROP_45').val());
+                                    // прокуручиваем страницу вверх
                                     $('html, body').animate({scrollTop: 0},500);
                                 }
                             }
@@ -256,7 +258,7 @@ if (!function_exists("cmpBySort"))
                 }
                 catch(e){}
             });
-            <?if($_REQUEST["new_user"]){?>
+            <?if($_REQUEST["new_user"]){// если пользователь зарегестрирован при оформлении заказа до оформляем заказ?>
                 $(document).ready(function(){
                     $('.button30.checkout').click();
                 })

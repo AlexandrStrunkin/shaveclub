@@ -4,6 +4,7 @@
     define('DELIVERY_ID', 44);  // почта России
     define('PAY_SYSTEM_ID', 25); // Наличный платеж
     define('COMMISSION_PRICE', 85); // Наличный платеж
+    define('PERSON_TYPE_DORCO', 5); // тип плательщмка на dorco
 
     CModule::IncludeModule("iblock");
     CModule::IncludeModule("sale");
@@ -551,14 +552,12 @@
        }
 
 
-        AddEventHandler("main", "OnAfterUserAuthorize", "OnBeforeUserAuthorizeHandler");
+        AddEventHandler("main", "OnAfterUserAuthorize", "OnBeforeUserAuthorizeHandler"); // добавляет новый тип плательщика при авторизации нового пользователя
 
-        function OnBeforeUserAuthorizeHandler($arFields)
-        {
+        function OnBeforeUserAuthorizeHandler($arFields) {
          $url_order = explode('/', $_REQUEST['backurl']); // разбираем url и проверяем создаётся ли новый пользователь
          if($url_order[2] == '?register_user=Y'){
                //создаём профиль
-
               //PERSON_TYPE_ID - идентификатор типа плательщика, для которого создаётся профиль
               $arProfileFields = array(
                  "NAME" => "Профиль покупателя (".$arFields["user_fields"]['LOGIN'].')',
@@ -567,8 +566,7 @@
               );
               $PROFILE_ID = CSaleOrderUserProps::Add($arProfileFields);
               //если профиль создан
-              if ($PROFILE_ID)
-              {
+              if ($PROFILE_ID) {
                  //формируем массив свойств
                  $PROPS=Array(
                  array(
@@ -591,8 +589,9 @@
                     )
                  );
                  //добавляем значения свойств к созданному ранее профилю
-                 foreach ($PROPS as $prop)
+                 foreach ($PROPS as $prop){
                     $USER_PROPS_ID  = CSaleOrderUserPropsValue::Add($prop);  // добавляем в профиль данные из заказа
+                 }
               }
             }
         }
