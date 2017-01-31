@@ -195,6 +195,8 @@ if (!function_exists("cmpBySort"))
                                     $('#new_name').val($('#ORDER_PROP_39').val());
                                     $('#new_phone').val($('#ORDER_PROP_41').val());
                                     $('#new_adress').val($('#ORDER_PROP_45').val());
+                                    $('#new_location').val($('#ORDER_PROP_44').val());
+                                    $('#new_discription').val($('#ORDER_DESCRIPTION').val());
                                     // прокуручиваем страницу вверх
                                     $('html, body').animate({scrollTop: 0},500);
                                 }

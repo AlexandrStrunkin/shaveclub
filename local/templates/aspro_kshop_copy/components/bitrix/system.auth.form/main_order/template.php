@@ -24,7 +24,9 @@ if(!empty($_REQUEST["change_password"])){
                             <input type="hidden" name="TYPE" value="AUTH" />
                             <input type="hidden" name="NEW_NAME" id="new_name" value="" />
                             <input type="hidden" name="NEW_PHONE" id="new_phone" value="" />
-							<input type="hidden" name="NEW_ADRESS" id="new_adress" value="" />
+                            <input type="hidden" name="NEW_ADRESS" id="new_adress" value="" />
+                            <input type="hidden" name="NEW_LOCATION" id="new_location" value="" />
+							<input type="hidden" name="NEW_DISCRIPTION" id="new_discription" value="" />
 							<div class="r">
 								<label><?=GetMessage("EMAIL")?>:<span class="star">*</span></label>
 								<input type="text"  name="USER_LOGIN" required maxlength="50" value="<?=$email;?>" size="17" tabindex="7" />

@@ -1,5 +1,5 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-<div class="section">      
+<div class="section">
 	<script type="text/javascript">
 		function changePaySystem(param)
 		{
@@ -51,6 +51,10 @@
 			submitForm();
 		}
 	</script>
+    <?if(!$USER->IsAuthorized()){
+        session_start();
+        $_SESSION['PAY_SYSTEM_ID'] = $_POST["PAY_SYSTEM_ID"];
+    }?>
 	<div class="title"><?=GetMessage("SOA_TEMPL_PAY_SYSTEM")?></div>
 	<div class="sale_order_table paysystem">
 		<?
@@ -89,6 +93,9 @@
 				if (count($arResult["PAY_SYSTEM"]) == 1)
 				{
 					?>
+                    <?if($_SESSION['PAY_SYSTEM_ID'] == $arPaySystem["ID"]){
+                       $arPaySystem["CHECKED"] = 'Y';
+                    }?>
 					<div class="ps_logo">
 						<input type="hidden" name="PAY_SYSTEM_ID" value="<?=$arPaySystem["ID"]?>">
 						<input type="radio"

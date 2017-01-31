@@ -8,6 +8,7 @@
     define('PERSONAL_ORDER_PROPS_PHONE', 41); // тип плательщмка на dorco
     define('PERSONAL_ORDER_PROPS_NAME', 39); // тип плательщмка на dorco
     define('PERSONAL_ORDER_PROPS_ADRESS', 45); // тип плательщмка на dorco
+    define('PERSONAL_ORDER_PROPS_DISCRIPTION', 69); // тип плательщмка на dorco
 
     CModule::IncludeModule("iblock");
     CModule::IncludeModule("sale");
@@ -589,6 +590,18 @@
                        "ORDER_PROPS_ID" => PERSONAL_ORDER_PROPS_ADRESS,
                        "NAME" => "Адресс доставки",
                        "VALUE" => $_REQUEST['NEW_ADRESS']
+                 ),
+                 array(
+                       "USER_PROPS_ID" => $PROFILE_ID,
+                       "ORDER_PROPS_ID" => PERSONAL_ORDER_PROPS_LOCATION,
+                       "NAME" => "Местоположение",
+                       "VALUE" => $_REQUEST['NEW_LOCATION']
+                ),
+                array(
+                       "USER_PROPS_ID" => $PROFILE_ID,
+                       "ORDER_PROPS_ID" => PERSONAL_ORDER_PROPS_DISCRIPTION,
+                       "NAME" => "Комментарий",
+                       "VALUE" => $_REQUEST['NEW_DISCRIPTION']
                     )
                  );
                  //добавляем значения свойств к созданному ранее профилю

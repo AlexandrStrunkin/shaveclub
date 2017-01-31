@@ -316,6 +316,7 @@
                             elseif ($arProperties["TYPE"] == "LOCATION")
                             {
                             ?>
+
                             <div class="bx_block r1x3 pt8">
                                 <?=$arProperties["NAME"]?>
                                 <?if ($arProperties["REQUIED_FORMATED"]=="Y"):?>
@@ -351,8 +352,14 @@
                                 <?if($locationTemplate == 'steps'):?>
                                     <input code="<?=$arProperties["CODE"]?>" type="hidden" id="LOCATION_ALT_PROP_DISPLAY_MANUAL[<?=intval($arProperties["ID"])?>]" name="LOCATION_ALT_PROP_DISPLAY_MANUAL[<?=intval($arProperties["ID"])?>]" value="<?=($_REQUEST['LOCATION_ALT_PROP_DISPLAY_MANUAL'][intval($arProperties["ID"])] ? '1' : '0')?>" />
                                     <?endif?>
+                                    <?
+                                     if($_REQUEST["ORDER_PROP_44"]){
+                                        $value = $_REQUEST["ORDER_PROP_44"];
+                                    } else if ($_SESSION["ORDER_PROP_44"] && $_REQUEST["new_user"]){
+                                        $value = $_SESSION["ORDER_PROP_44"];
+                                    }?>
 
-                                <?CSaleLocation::proxySaleAjaxLocationsComponent(array(
+                                    <?CSaleLocation::proxySaleAjaxLocationsComponent(array(
                                     "AJAX_CALL" => "N",
                                     "COUNTRY_INPUT_NAME" => "COUNTRY",
                                     "REGION_INPUT_NAME" => "REGION",
