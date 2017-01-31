@@ -4,6 +4,10 @@
     define('DELIVERY_ID', 44);  // почта России
     define('PAY_SYSTEM_ID', 25); // Наличный платеж
     define('COMMISSION_PRICE', 85); // Наличный платеж
+    define('PERSON_TYPE_DORCO', 5); // тип плательщмка на dorco
+    define('PERSONAL_ORDER_PROPS_PHONE', 41); // тип плательщмка на dorco
+    define('PERSONAL_ORDER_PROPS_NAME', 39); // тип плательщмка на dorco
+    define('PERSONAL_ORDER_PROPS_ADRESS', 45); // тип плательщмка на dorco
 
     CModule::IncludeModule("iblock");
     CModule::IncludeModule("sale");
@@ -549,6 +553,51 @@
           }
           return $ar;
        }
+
+
+        AddEventHandler("main", "OnAfterUserAuthorize", "OnBeforeUserAuthorizeHandler"); // добавляет новый тип плательщика при авторизации нового пользователя
+
+        function OnBeforeUserAuthorizeHandler($arFields) {
+         $url_order = explode('/', $_REQUEST['backurl']); // разбираем url и проверяем создаётся ли новый пользователь
+         if($url_order[2] == '?register_user=Y'){
+               //создаём профиль
+              //PERSON_TYPE_ID - идентификатор типа плательщика, для которого создаётся профиль
+              $arProfileFields = array(
+                 "NAME" => "Профиль покупателя (".$arFields["user_fields"]['LOGIN'].')',
+                 "USER_ID" => $arFields["user_fields"]['ID'],
+                 "PERSON_TYPE_ID" => PERSON_TYPE_DORCO
+              );
+              $PROFILE_ID = CSaleOrderUserProps::Add($arProfileFields);
+              //если профиль создан
+              if ($PROFILE_ID) {
+                 //формируем массив свойств
+                 $PROPS=Array(
+                 array(
+                       "USER_PROPS_ID" => $PROFILE_ID,
+                       "ORDER_PROPS_ID" => PERSONAL_ORDER_PROPS_PHONE,
+                       "NAME" => "Телефон",
+                       "VALUE" => $_REQUEST['NEW_PHONE']
+                    ),
+                 array(
+                       "USER_PROPS_ID" => $PROFILE_ID,
+                       "ORDER_PROPS_ID" => PERSONAL_ORDER_PROPS_NAME,
+                       "NAME" => "Ф.И.О.",
+                       "VALUE" => $_REQUEST['NEW_NAME']
+                    ),
+                 array(
+                       "USER_PROPS_ID" => $PROFILE_ID,
+                       "ORDER_PROPS_ID" => PERSONAL_ORDER_PROPS_ADRESS,
+                       "NAME" => "Адресс доставки",
+                       "VALUE" => $_REQUEST['NEW_ADRESS']
+                    )
+                 );
+                 //добавляем значения свойств к созданному ранее профилю
+                 foreach ($PROPS as $prop){
+                    $USER_PROPS_ID  = CSaleOrderUserPropsValue::Add($prop);  // добавляем в профиль данные из заказа
+                 }
+              }
+            }
+        }
     }
     //для каждого сайта init.php свой и находится в папке, соответствующей ID сайта (s1 или s2) и весь уникальный для сайта код писать туда
 

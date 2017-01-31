@@ -125,6 +125,7 @@ if (!function_exists("cmpBySort"))
         {
             ?>
             <script type="text/javascript">
+
             try{
                 $(document).ready(function(){
                     <?if(trim(COption::GetOptionString("aspro.kshop", "PHONE_MASK", "+9 (999) 999-99-99", SITE_ID))){?>
@@ -155,25 +156,7 @@ if (!function_exists("cmpBySort"))
             <?endif;?>
 
             var BXFormPosting = false;
-            <?if(!$USER->IsAuthorized()){?>
-                $(document).ready(function() {
-                    $('.wrapper_inner').on('click', '.button30.checkout', function(){
-                        $.ajax({
-                            url: arKShopOptions['SITE_DIR'] + 'ajax/auth_order.php',
-                            data: $('#ORDER_FORM').serialize(),
-                            type: 'post',
-                            success: function(data){
-                                if(data == 'Y'){
-                                    $('.auth_form_user').hide();
-                                    location.assign('/order/');
-                                } else {
-                                    $('.auth_form_user').show();
-                                }
-                            }
-                        });
-                    });
-                })
-            <?}?>
+
             function submitForm(val) {
 
                 $('#ORDER_PROP_82').val($('.commission_delivery_price').val());
@@ -195,7 +178,31 @@ if (!function_exists("cmpBySort"))
 
                 return true;
             }
-
+            <?if(!$USER->IsAuthorized()){ // если не авторизован то подключается файл ajax для регистрации при оформлении заказа?>
+                $(document).ready(function() {
+                    $('.wrapper_inner').on('click', '.button30.checkout', function(){
+                        $.ajax({
+                            url: arKShopOptions['SITE_DIR'] + 'ajax/auth_order.php',
+                            data: $('#ORDER_FORM').serialize(),
+                            type: 'post',
+                            success: function(data){
+                                if(data == 'Y'){
+                                    $('.auth_form_user').hide();
+                                    location.assign('/order/?new_user=Y');
+                                } else {
+                                    $('.auth_form_user').show();
+                                    // записываем данные в форму авторизации для создания типа плательщика
+                                    $('#new_name').val($('#ORDER_PROP_39').val());
+                                    $('#new_phone').val($('#ORDER_PROP_41').val());
+                                    $('#new_adress').val($('#ORDER_PROP_45').val());
+                                    // прокуручиваем страницу вверх
+                                    $('html, body').animate({scrollTop: 0},500);
+                                }
+                            }
+                        });
+                    });
+                })
+            <?}?>
             function ajaxResult(res)
             {
                 var orderForm = BX('ORDER_FORM');
@@ -251,6 +258,11 @@ if (!function_exists("cmpBySort"))
                 }
                 catch(e){}
             });
+            <?if($_REQUEST["new_user"]){// если пользователь зарегестрирован при оформлении заказа до оформляем заказ?>
+                $(document).ready(function(){
+                    $('.button30.checkout').click();
+                })
+            <?}?>
             </script>
             <script type="text/javascript">
                 $(document).ready(function() {
@@ -261,7 +273,6 @@ if (!function_exists("cmpBySort"))
                             $('#basket_line').append(html);
                         }
                     });
-
                 });
             </script>
             <?if($_POST["is_ajax_post"] != "Y")
