@@ -1,5 +1,8 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
+if($USER->IsAuthorized()){
+    $_REQUEST["register_user"] = 'N';
+}
 if(!$USER->IsAuthorized() && $arParams["ALLOW_AUTO_REGISTER"] == "N" && !$_REQUEST["register_user"]){
     include($_SERVER["DOCUMENT_ROOT"].$templateFolder."/auth.php");
 }elseif( !$_REQUEST["ORDER_ID"] ){
@@ -34,13 +37,11 @@ $user_email = $USER->GetEmail();
             "SHOW_ERRORS" => "N"
         )
     );
-} else {
-    $_REQUEST["register_user"] = 'N';
 }?>
 
 </div>
 <?
-if($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" && $_REQUEST["register_user"] == 'Y')
+if($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" && $_REQUEST["register_user"])
 {
     if($arResult["USER_VALS"]["CONFIRM_ORDER"] == "Y" || $arResult["NEED_REDIRECT"] == "Y")
     {
@@ -183,7 +184,7 @@ if (!function_exists("cmpBySort"))
             }
             <?if(!$USER->IsAuthorized()){ // если не авторизован то подключается файл ajax для регистрации при оформлении заказа?>
                 $(document).ready(function() {
-                    $('.wrapper_inner').on('click', '.button30.checkout', function(){
+                    $('.wrapper_inner').on('click', '.button30.checkout.register', function(){
                         $.ajax({
                             url: arKShopOptions['SITE_DIR'] + 'ajax/auth_order.php',
                             data: $('#ORDER_FORM').serialize(),
@@ -191,7 +192,8 @@ if (!function_exists("cmpBySort"))
                             success: function(data){
                                 if(data == 'Y'){
                                     $('.auth_form_user').hide();
-                                    $('.wrapper_inner ').load( window.location.href + ' .middle');
+                                    location.replace('?new_user=Y');
+
                                 } else {
                                     $('.auth_form_user').show();
                                     // записываем данные в форму авторизации для создания типа плательщика
@@ -265,7 +267,7 @@ if (!function_exists("cmpBySort"))
             });
             <?if($_REQUEST["new_user"]){// если пользователь зарегестрирован при оформлении заказа до оформляем заказ?>
                 $(document).ready(function(){
-                  //  $('.button30.checkout').click();
+                    $('.button30.checkout').click();
                 })
             <?}?>
             </script>
@@ -348,9 +350,9 @@ if (!function_exists("cmpBySort"))
                     <input type="hidden" name="is_ajax_post" id="is_ajax_post" value="Y">
                     <input type="hidden" name="json" value="Y">
                     <?if($_REQUEST["register_user"] == 'Y'){ ?>
-                    <button class="button30 checkout" type="button" id="ORDER_CONFIRM_BUTTON" name="submitbutton" onclick="submitForm('N')" value="<?=GetMessage("SOA_TEMPL_BUTTON")?>"><span><?=GetMessage("SOA_TEMPL_BUTTON")?></span></button>
+                    <button class="button30 checkout register" type="button" id="ORDER_CONFIRM_BUTTON" name="submitbutton" onclick="submitForm('N')" value="<?=GetMessage("SOA_TEMPL_BUTTON")?>"><span><?=GetMessage("SOA_TEMPL_BUTTON")?></span></button>
                     <?} else {?>
-                    <button class="button30 checkout" type="button" id="ORDER_CONFIRM_BUTTON" name="submitbutton" onClick="submitForm('Y');" value="<?=GetMessage("SOA_TEMPL_BUTTON")?>"><span><?=GetMessage("SOA_TEMPL_BUTTON")?></span></button>
+                    <button class="button30 checkout register" type="button" id="ORDER_CONFIRM_BUTTON" name="submitbutton" onClick="submitForm('Y');" value="<?=GetMessage("SOA_TEMPL_BUTTON")?>"><span><?=GetMessage("SOA_TEMPL_BUTTON")?></span></button>
                     <?}?>
                 </form>
                 <?

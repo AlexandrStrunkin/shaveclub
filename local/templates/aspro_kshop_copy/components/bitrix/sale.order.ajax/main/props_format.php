@@ -139,10 +139,12 @@
                                          $arProperties["VALUE"] =  $_POST["ORDER_PROP_42"];
                                     }
                                     ?>
-                                    <?global $user_name;
-                                    global $user_email;?>
+                                    <?
+                                    global $user_name;
+                                    global $user_email;
+                                    ?>
                                     <?if($arProperties["CODE"] == 'FIO' && $user_name){
-                                     //   $arProperties["VALUE"] = $user_name;
+                                        $arProperties["VALUE"] = $user_name;
                                     } else if ($arProperties["CODE"] == 'EMAIL' && $user_email) {
                                         $arProperties["VALUE"] = $user_email;
                                     }?>
