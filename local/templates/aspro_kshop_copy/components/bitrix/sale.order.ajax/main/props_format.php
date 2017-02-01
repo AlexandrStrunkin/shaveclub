@@ -142,7 +142,7 @@
                                     <?global $user_name;
                                     global $user_email;?>
                                     <?if($arProperties["CODE"] == 'FIO' && $user_name){
-                                        $arProperties["VALUE"] = $user_name;
+                                     //   $arProperties["VALUE"] = $user_name;
                                     } else if ($arProperties["CODE"] == 'EMAIL' && $user_email) {
                                         $arProperties["VALUE"] = $user_email;
                                     }?>
@@ -252,7 +252,7 @@
                             {
                                 if($_REQUEST["ORDER_PROP_45"]){
                                     $arProperties["VALUE"] = $_REQUEST["ORDER_PROP_45"];
-                                } else if ($_SESSION["ORDER_PROP_45"] && $_REQUEST["new_user"]){
+                                } else if ($_SESSION["ORDER_PROP_45"]){
                                     $arProperties["VALUE"] = $_SESSION["ORDER_PROP_45"];
                                 }
                                 if (($arProperties["CODE"]=="ADDRESS")&&($_POST["DELIVERY_ID"]==14||$_POST["DELIVERY_ID"]==15)){
@@ -355,7 +355,7 @@
                                     <?
                                      if($_REQUEST["ORDER_PROP_44"]){
                                         $value = $_REQUEST["ORDER_PROP_44"];
-                                    } else if ($_SESSION["ORDER_PROP_44"] && $_REQUEST["new_user"]){
+                                    } else if ($_SESSION["ORDER_PROP_44"]){
                                         $value = $_SESSION["ORDER_PROP_44"];
                                     }?>
 

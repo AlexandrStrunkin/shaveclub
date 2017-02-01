@@ -88,14 +88,15 @@
 
 		foreach($arResult["PAY_SYSTEM"] as $arPaySystem)
 		{
+            if($_SESSION['PAY_SYSTEM_ID'] == $arPaySystem["ID"]){
+               $arPaySystem["CHECKED"] = 'Y';
+               $arParams["ONLY_FULL_PAY_FROM_ACCOUNT"] = 'Y';
+            }
 			if (strlen(trim(str_replace("<br />", "", $arPaySystem["DESCRIPTION"]))) > 0 || intval($arPaySystem["PRICE"]) > 0)
 			{
 				if (count($arResult["PAY_SYSTEM"]) == 1)
 				{
 					?>
-                    <?if($_SESSION['PAY_SYSTEM_ID'] == $arPaySystem["ID"]){
-                       $arPaySystem["CHECKED"] = 'Y';
-                    }?>
 					<div class="ps_logo">
 						<input type="hidden" name="PAY_SYSTEM_ID" value="<?=$arPaySystem["ID"]?>">
 						<input type="radio"
@@ -125,6 +126,7 @@
 				else // more than one
 				{
 				?>
+
 					<div class="ps_logo">
 						<input type="radio"
 							id="ID_PAY_SYSTEM_ID_<?=$arPaySystem["ID"]?>"
