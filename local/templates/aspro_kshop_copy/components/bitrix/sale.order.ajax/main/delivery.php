@@ -147,7 +147,10 @@
 		BX.onCustomEvent('onSaleDeliveryGetExtraParams',[window.BX.SaleDeliveryExtraParams]);
 	}
 </script>
-
+<?if(!$USER->IsAuthorized()){
+    session_start();
+    $_SESSION['DELIVERY_ID'] = $_POST["DELIVERY_ID"];
+}?>
 <input type="hidden" name="BUYER_STORE" id="BUYER_STORE" value="<?=$arResult["BUYER_STORE"]?>" />
 <div class="section">
 	<?
@@ -166,7 +169,9 @@
 					{
 						?>
 						<div class="bx_element prop">
-
+                             <?if($_SESSION['DELIVERY_ID'] == $delivery_id){
+                               $arProfile["CHECKED"] = 'Y';
+                            }?>
 							<input
 								type="radio"
 								id="ID_DELIVERY_<?=$delivery_id?>_<?=$profile_id?>"
@@ -256,7 +261,9 @@
                       // arshow($arDelivery);
                        if($arDelivery["ID"] != 41){?>
 						<div class="bx_element prop">
-
+                            <?if($_SESSION['DELIVERY_ID'] == $arDelivery["ID"]){
+                               $arDelivery["CHECKED"] = 'Y';
+                            }?>
 							<input type="radio"
 								id="ID_DELIVERY_ID_<?= $arDelivery["ID"] ?>"
 								name="<?=htmlspecialcharsbx($arDelivery["FIELD_NAME"])?>"

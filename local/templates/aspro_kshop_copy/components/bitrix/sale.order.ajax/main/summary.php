@@ -173,6 +173,12 @@
         <tr>
             <td class="order_comment">
                 <div><?= GetMessage("SOA_TEMPL_SUM_COMMENTS") ?></div>
+                <?
+                 if($_REQUEST["ORDER_DESCRIPTION"]){
+                    $arProperties["ORDER_DESCRIPTION"] = $_REQUEST["ORDER_DESCRIPTION"];
+                } else if ($_SESSION["ORDER_DESCRIPTION"]){
+                    $arResult["USER_VALS"]["ORDER_DESCRIPTION"] = $_SESSION["ORDER_DESCRIPTION"];
+                }?>
                 <textarea name="ORDER_DESCRIPTION" id="ORDER_DESCRIPTION"><?= $arResult["USER_VALS"]["ORDER_DESCRIPTION"] ?></textarea>
             </td>
         </tr>

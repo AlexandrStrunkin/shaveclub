@@ -142,7 +142,7 @@
                                     <?global $user_name;
                                     global $user_email;?>
                                     <?if($arProperties["CODE"] == 'FIO' && $user_name){
-                                        $arProperties["VALUE"] = $user_name;
+                                     //   $arProperties["VALUE"] = $user_name;
                                     } else if ($arProperties["CODE"] == 'EMAIL' && $user_email) {
                                         $arProperties["VALUE"] = $user_email;
                                     }?>
@@ -252,7 +252,7 @@
                             {
                                 if($_REQUEST["ORDER_PROP_45"]){
                                     $arProperties["VALUE"] = $_REQUEST["ORDER_PROP_45"];
-                                } else if ($_SESSION["ORDER_PROP_45"] && $_REQUEST["new_user"]){
+                                } else if ($_SESSION["ORDER_PROP_45"]){
                                     $arProperties["VALUE"] = $_SESSION["ORDER_PROP_45"];
                                 }
                                 if (($arProperties["CODE"]=="ADDRESS")&&($_POST["DELIVERY_ID"]==14||$_POST["DELIVERY_ID"]==15)){
@@ -316,6 +316,7 @@
                             elseif ($arProperties["TYPE"] == "LOCATION")
                             {
                             ?>
+
                             <div class="bx_block r1x3 pt8">
                                 <?=$arProperties["NAME"]?>
                                 <?if ($arProperties["REQUIED_FORMATED"]=="Y"):?>
@@ -351,8 +352,14 @@
                                 <?if($locationTemplate == 'steps'):?>
                                     <input code="<?=$arProperties["CODE"]?>" type="hidden" id="LOCATION_ALT_PROP_DISPLAY_MANUAL[<?=intval($arProperties["ID"])?>]" name="LOCATION_ALT_PROP_DISPLAY_MANUAL[<?=intval($arProperties["ID"])?>]" value="<?=($_REQUEST['LOCATION_ALT_PROP_DISPLAY_MANUAL'][intval($arProperties["ID"])] ? '1' : '0')?>" />
                                     <?endif?>
+                                    <?
+                                     if($_REQUEST["ORDER_PROP_44"]){
+                                        $value = $_REQUEST["ORDER_PROP_44"];
+                                    } else if ($_SESSION["ORDER_PROP_44"]){
+                                        $value = $_SESSION["ORDER_PROP_44"];
+                                    }?>
 
-                                <?CSaleLocation::proxySaleAjaxLocationsComponent(array(
+                                    <?CSaleLocation::proxySaleAjaxLocationsComponent(array(
                                     "AJAX_CALL" => "N",
                                     "COUNTRY_INPUT_NAME" => "COUNTRY",
                                     "REGION_INPUT_NAME" => "REGION",

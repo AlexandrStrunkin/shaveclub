@@ -34,10 +34,13 @@ $user_email = $USER->GetEmail();
             "SHOW_ERRORS" => "N"
         )
     );
+} else {
+    $_REQUEST["register_user"] = 'N';
 }?>
+
 </div>
 <?
-if($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" && $_REQUEST["register_user"])
+if($USER->IsAuthorized() || $arParams["ALLOW_AUTO_REGISTER"] == "Y" && $_REQUEST["register_user"] == 'Y')
 {
     if($arResult["USER_VALS"]["CONFIRM_ORDER"] == "Y" || $arResult["NEED_REDIRECT"] == "Y")
     {
@@ -188,13 +191,15 @@ if (!function_exists("cmpBySort"))
                             success: function(data){
                                 if(data == 'Y'){
                                     $('.auth_form_user').hide();
-                                    location.assign('/order/?new_user=Y');
+                                    $('.wrapper_inner ').load( window.location.href + ' .middle');
                                 } else {
                                     $('.auth_form_user').show();
                                     // записываем данные в форму авторизации дл€ создани€ типа плательщика
                                     $('#new_name').val($('#ORDER_PROP_39').val());
                                     $('#new_phone').val($('#ORDER_PROP_41').val());
                                     $('#new_adress').val($('#ORDER_PROP_45').val());
+                                    $('#new_location').val($('#ORDER_PROP_44').val());
+                                    $('#new_discription').val($('#ORDER_DESCRIPTION').val());
                                     // прокуручиваем страницу вверх
                                     $('html, body').animate({scrollTop: 0},500);
                                 }
@@ -260,7 +265,7 @@ if (!function_exists("cmpBySort"))
             });
             <?if($_REQUEST["new_user"]){// если пользователь зарегестрирован при оформлении заказа до оформл€ем заказ?>
                 $(document).ready(function(){
-                    $('.button30.checkout').click();
+                  //  $('.button30.checkout').click();
                 })
             <?}?>
             </script>
@@ -342,7 +347,7 @@ if (!function_exists("cmpBySort"))
                     <input type="hidden" name="profile_change" id="profile_change" value="N">
                     <input type="hidden" name="is_ajax_post" id="is_ajax_post" value="Y">
                     <input type="hidden" name="json" value="Y">
-                    <?if($_REQUEST["register_user"]){ ?>
+                    <?if($_REQUEST["register_user"] == 'Y'){ ?>
                     <button class="button30 checkout" type="button" id="ORDER_CONFIRM_BUTTON" name="submitbutton" onclick="submitForm('N')" value="<?=GetMessage("SOA_TEMPL_BUTTON")?>"><span><?=GetMessage("SOA_TEMPL_BUTTON")?></span></button>
                     <?} else {?>
                     <button class="button30 checkout" type="button" id="ORDER_CONFIRM_BUTTON" name="submitbutton" onClick="submitForm('Y');" value="<?=GetMessage("SOA_TEMPL_BUTTON")?>"><span><?=GetMessage("SOA_TEMPL_BUTTON")?></span></button>

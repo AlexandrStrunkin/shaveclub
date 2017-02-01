@@ -100,4 +100,5 @@ else
 	</table>
 	<?
 }
+session_destroy();
 ?>
