@@ -85,5 +85,6 @@ $MESS['SOA_LOCATION_NOT_FOUND_PROMPT'] = "Нажмите #ANCHOR#добавить местоположени
 $MESS['SOA_NOT_SELECTED_ALT'] = "При необходимости уточнить местоположение";
 $MESS["DELIVERY_MESS"] = "Доставка";
 $MESS["CHOOSE"] = "Выбрать";
+$MESS['SALE_DELIV_PRICE_INDIVIDUAL'] = "Рассчитывается индивидуально";
 $MESS["EMAIL_OLD_USER"] = "E-mail уже зарегистрирован на нашем сайте. Пожалуйста, авторизуйтесь под Вашей учётной записью или введите другой E-mail адрес.";
 ?>

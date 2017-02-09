@@ -10,6 +10,7 @@
     define('PERSONAL_ORDER_PROPS_ADRESS', 45); // тип плательщмка на dorco
     define('PERSONAL_ORDER_PROPS_LOCATION', 44); // тип плательщмка на dorco
     define('PERSONAL_ORDER_PROPS_DISCRIPTION', 69); // тип плательщмка на dorco
+    define('DELIVERY_ID_COURIER', 13); // доставка курьером по России
 
     CModule::IncludeModule("iblock");
     CModule::IncludeModule("sale");
