@@ -297,8 +297,8 @@
 
 										<?=GetMessage("SALE_DELIV_PRICE");?>: <b>
                                         <?//Условие для доставки по России
-                                        if ($arDelivery['ID'] == DELIVERY_COURIER_IN_RUSSIA_ID) {
-                                            echo GetMessage('PRICE_TO_MANAGER');
+                                        if ($arDelivery['ID'] == DELIVERY_ID_COURIER) {
+                                            echo GetMessage('SALE_DELIV_PRICE_INDIVIDUAL');
                                         } else {
                                             echo $arDelivery["PRICE_FORMATED"];
                                         }
