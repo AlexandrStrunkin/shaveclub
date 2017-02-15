@@ -33,7 +33,7 @@
 
         <?
             //åñëè â êîðçèíå ÊÎÌÏËÅÊÒ
-            if (count($arResult["BASKET_ITEMS"]) == 1  && $arResult["BASKET_ITEMS"][0]["CATALOG"]["PROPERTIES"]["PRICE_START"]["VALUE"]=='') {?>
+            if (count($arResult["BASKET_ITEMS"]) == 1 && $arResult["BASKET_ITEMS"][0]["QUANTITY"] == 1  && $arResult["BASKET_ITEMS"][0]["CATALOG"]["PROPERTIES"]["PRICE_START"]["VALUE"]=='') {?>
 
             <img class="img" src="<?=CFIle::GetPath($arSection["UF_DETAIL_PICTURE"])?>" alt=""/>
             <?foreach ($arResult["BASKET_ITEMS"] as $item){?>
@@ -231,6 +231,7 @@
                 <br>
             </div>
             <?} else { //åñëè â êîðçèíå ÑÂÎÉ ÏËÀÍ?>
+
             <img class="img" src="<?=CFIle::GetPath($arSection["UF_DETAIL_PICTURE"])?>" alt=""/>
             <div class="table-container">
 
@@ -252,8 +253,8 @@
                     <?foreach ($arResult["BASKET_ITEMS"] as $item){?>
                         <tr>
                             <td><?=$item["NAME"]?></td>
-                            <td><?=$item["PRICE"]?> Ð</td>
-                            <td>x <?=$item["QUANTITY"]?></td>
+                            <td><?=round($item["PRICE"])?> Ð</td>
+                            <td style="width: 6%;">x <?=$item["QUANTITY"]?></td>
                             <td><?=$item["PRICE"]*$item["QUANTITY"]?> Ð</td>
                         </tr>
                         <?}?>
