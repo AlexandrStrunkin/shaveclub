@@ -163,12 +163,13 @@ if (!function_exists("cmpBySort"))
 
             function submitForm(val) {
 
-                $('#ORDER_PROP_82').val($('.commission_delivery_price').val());
+                $('#COMISSION_DELIVERY').val($('.commission_delivery_price').val());
+
                 $('body').on('click', '.need_to_call_wrap input', function(){
                    if($(this).prop("checked")){
-                        $('#ORDER_PROP_83').val($(this).val());
+                        $('#NEED_TO_CALL').val($(this).val());
                    } else {
-                        $('#ORDER_PROP_83').val('');
+                        $('#NEED_TO_CALL').val('');
                    }
                 })
 

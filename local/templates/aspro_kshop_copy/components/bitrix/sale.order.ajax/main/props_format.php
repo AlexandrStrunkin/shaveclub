@@ -92,7 +92,7 @@
                                 if($arProperties["CODE"] == "quick_order"){  ?>
                                 <input type="hidden" code="<?=$arProperties["CODE"]?>" name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>" value="N" <?if ($arProperties["CHECKED"]=="Y") echo " checked";?>>
                         <?  } else if($arProperties["CODE"] == "NEED_TO_CALL"){?>
-                                <input type="hidden" name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>" value="">
+                                <input type="hidden" name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["CODE"]?>" value="">
                         <?  } else {
                                     ?>
                                     <input type="hidden" name="<?=$arProperties["FIELD_NAME"]?>" value="">
@@ -133,7 +133,7 @@
                                             size="<?=$arProperties["SIZE1"]?>"
                                             value="<?=$arProperties["VALUE"]?>"
                                             name="<?=$arProperties["FIELD_NAME"]?>"
-                                            id="<?=$arProperties["FIELD_NAME"]?>"
+                                            id="<?=$arProperties["CODE"]?>"
                                         >
                               <?} else {
                                     ?>
