@@ -91,7 +91,9 @@
                             {
                                 if($arProperties["CODE"] == "quick_order"){  ?>
                                 <input type="hidden" code="<?=$arProperties["CODE"]?>" name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>" value="N" <?if ($arProperties["CHECKED"]=="Y") echo " checked";?>>
-                            <?  }else{
+                        <?  } else if($arProperties["CODE"] == "NEED_TO_CALL"){?>
+                                <input type="hidden" name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>" value="">
+                        <?  } else {
                                     ?>
                                     <input type="hidden" name="<?=$arProperties["FIELD_NAME"]?>" value="">
 
@@ -106,13 +108,13 @@
                                         <input type="checkbox" code="<?=$arProperties["CODE"]?>" name="<?=$arProperties["FIELD_NAME"]?>" id="<?=$arProperties["FIELD_NAME"]?>" value="Y"<?if ($arProperties["CHECKED"]=="Y") echo " checked";?>>
 
                                         <?
-                                            if (strlen(trim($arProperties["DESCRIPTION"])) > 0):
+                                        if (strlen(trim($arProperties["DESCRIPTION"])) > 0):
                                             ?>
                                             <div class="bx_description">
                                                 <?=$arProperties["DESCRIPTION"]?>
                                             </div>
                                             <?
-                                                endif;
+                                        endif;
                                         ?>
                                     </div>
 
