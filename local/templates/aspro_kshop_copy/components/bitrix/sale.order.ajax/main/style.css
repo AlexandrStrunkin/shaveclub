@@ -142,7 +142,7 @@ div.bx_section div.bx_block div.bx_element input[type=checkbox],
 	width: auto;
 }
 #order_form_div .sale_order_table.delivery .desc {
-	max-width: 400px;
+	max-width: 360px;
 }
 #order_form_div .sale_order_table.delivery td table {
 	width: auto;
@@ -386,6 +386,8 @@ div#order_form_content .errortext {
 }
 #order_form_div .sale_order_table.delivery .bx_element {
     padding: 7px 0;
+    float: left;
+    width: 50%;
 }
 #order_form_div .sale_order_table .bx_element {
     padding: 15px 0;
@@ -489,6 +491,9 @@ div#order_form_content .errortext {
     text-shadow: 0 1px 0 #FFF;
     font-weight: bold;
     font-size: 15px;
+}
+.sale_order_table.delivery > div > div > div{
+    clear: both;
 }
 .need_to_call_wrap{
     margin-bottom: 10px;
