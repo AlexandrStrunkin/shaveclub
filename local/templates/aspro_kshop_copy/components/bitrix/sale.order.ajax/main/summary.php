@@ -62,7 +62,7 @@
                     <td class="name-cell"><?= $arBasketItems["NAME"] ?><span class="order_item_quantity_small">, <b><?= $arBasketItems["QUANTITY"] ?> <?= GetMessage("MEASURE"); ?></b></span></td>
                     <td align="right" class="cost_cell"><?= $arBasketItems["PRICE_FORMATED"] ?></td>
                     <td class="order_item_quantity"><?= $arBasketItems["QUANTITY"] ?></td>
-                    <td class="order_item_discount"><?= $arBasketItems["DISCOUNT_PRICE_PERCENT_FORMATED"] ?></td>
+                    <td class="order_item_discount"><?= round($arBasketItems["DISCOUNT_PRICE"]) ?> <?=GetMessage('FORMAT_RUR')?></td>
                     <td align="right" class="cost_cell"><?= $arBasketItems["PRICE"]*$arBasketItems["QUANTITY"] ?> руб.</td>
                 </tr>
                 <?
