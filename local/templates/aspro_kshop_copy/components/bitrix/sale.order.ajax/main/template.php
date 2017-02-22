@@ -163,7 +163,16 @@ if (!function_exists("cmpBySort"))
 
             function submitForm(val) {
 
-                $('#ORDER_PROP_82').val($('.commission_delivery_price').val());
+                $('#COMISSION_DELIVERY').val($('.commission_delivery_price').val());
+
+                $('body').on('click', '.need_to_call_wrap input', function(){
+                   if($(this).prop("checked")){
+                        $('#NEED_TO_CALL').val($(this).val());
+                   } else {
+                        $('#NEED_TO_CALL').val('');
+                   }
+                })
+
                 if (BXFormPosting === true)
                     return true;
 
@@ -355,6 +364,9 @@ if (!function_exists("cmpBySort"))
                     <input type="hidden" name="profile_change" id="profile_change" value="N">
                     <input type="hidden" name="is_ajax_post" id="is_ajax_post" value="Y">
                     <input type="hidden" name="json" value="Y">
+                    <div class="need_to_call_wrap">
+                        <label><input type="checkbox" id="need_to_call" value="Y"<?if ($_POST["NEED_TO_CALL"]=="Y") echo " checked";?>><?=GetMessage('NEED_TO_CALL')?></label>
+                    </div>
                     <?if($_REQUEST["register_user"] == 'Y'){ ?>
                     <button class="button30 checkout" type="button" id="ORDER_CONFIRM_BUTTON" name="submitbutton" onclick="submitForm('N')" value="<?=GetMessage("SOA_TEMPL_BUTTON")?>"><span><?=GetMessage("SOA_TEMPL_BUTTON")?></span></button>
                     <?} else {?>

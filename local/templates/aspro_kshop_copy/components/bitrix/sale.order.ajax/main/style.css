@@ -495,3 +495,6 @@ div#order_form_content .errortext {
 .sale_order_table.delivery > div > div > div{
     clear: both;
 }
+.need_to_call_wrap{
+    margin-bottom: 10px;
+}
