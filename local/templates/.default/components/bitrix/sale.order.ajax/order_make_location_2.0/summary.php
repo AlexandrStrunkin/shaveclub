@@ -254,7 +254,7 @@
                         <tr>
                             <td><?=$item["NAME"]?></td>
                             <td><?=round($item["PRICE"])?> Ð</td>
-                            <td style="width: 6%;">x <?=$item["QUANTITY"]?></td>
+                            <td style="width: 9%;">x <?=$item["QUANTITY"]?></td>
                             <td><?=$item["PRICE"]*$item["QUANTITY"]?> Ð</td>
                         </tr>
                         <?}?>
