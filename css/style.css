@@ -1365,6 +1365,21 @@ display: inline;
     font-family: arial;
     color:#fff;
     padding-left: 40px;
+}  
+
+.inside-page .form_text {
+    position: relative;
+    width:90%;                 
+    margin:0 auto;
+    margin-top: 30px;     
+    padding-left: 0px;
+}    
+
+.inside-page .form_text {
+    width:90%;      
+    margin-top: 30px;
+    text-align: center; 
+    padding-left: 0px;
 }
 
 .form_text a {
