@@ -1369,25 +1369,16 @@ display: inline;
 
 .inside-page .form_text {
     position: relative;
-    width:90%;                 
-    margin:0 auto;
+    width:90%;      
     margin-top: 30px;     
     padding-left: 0px;
-}    
-
-.inside-page .form_text {
-    width:90%;      
-    margin-top: 30px;
-    text-align: center; 
-    padding-left: 0px;
-}
+}                 
 
 .form_text a {
     color:#e3890e;
     text-decoration: underline;
     cursor: pointer;
-}
-
+} 
 
 .form_title {
     font-size:20px;
